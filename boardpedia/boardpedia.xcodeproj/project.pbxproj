@@ -56,15 +56,103 @@
 		9B41FA512643DD92002A3E13 /* boardpedia */ = {
 			isa = PBXGroup;
 			children = (
-				9B41FA522643DD92002A3E13 /* AppDelegate.swift */,
-				9B41FA542643DD92002A3E13 /* SceneDelegate.swift */,
-				9B41FA562643DD92002A3E13 /* ViewController.swift */,
-				9B41FA582643DD92002A3E13 /* Main.storyboard */,
-				9B41FA5B2643DD95002A3E13 /* Assets.xcassets */,
-				9B41FA5D2643DD95002A3E13 /* LaunchScreen.storyboard */,
-				9B41FA602643DD95002A3E13 /* Info.plist */,
+				9B41FA692643DF07002A3E13 /* Global */,
+				9B41FA682643DF02002A3E13 /* Screen */,
+				9B41FA672643DEFA002A3E13 /* Support */,
 			);
 			path = boardpedia;
+			sourceTree = "<group>";
+		};
+		9B41FA672643DEFA002A3E13 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA602643DD95002A3E13 /* Info.plist */,
+				9B41FA5B2643DD95002A3E13 /* Assets.xcassets */,
+				9B41FA6B2643DF21002A3E13 /* Delegate */,
+				9B41FA6A2643DF17002A3E13 /* Font */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		9B41FA682643DF02002A3E13 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA712643DF68002A3E13 /* Main */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		9B41FA692643DF07002A3E13 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA702643DF4A002A3E13 /* Extension */,
+				9B41FA6F2643DF45002A3E13 /* Service */,
+				9B41FA6E2643DF41002A3E13 /* Model */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		9B41FA6A2643DF17002A3E13 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		9B41FA6B2643DF21002A3E13 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA5D2643DD95002A3E13 /* LaunchScreen.storyboard */,
+				9B41FA522643DD92002A3E13 /* AppDelegate.swift */,
+				9B41FA542643DD92002A3E13 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		9B41FA6E2643DF41002A3E13 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B41FA6F2643DF45002A3E13 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9B41FA702643DF4A002A3E13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		9B41FA712643DF68002A3E13 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA732643DF72002A3E13 /* Storyboard */,
+				9B41FA722643DF6F002A3E13 /* VC */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9B41FA722643DF6F002A3E13 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA562643DD92002A3E13 /* ViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		9B41FA732643DF72002A3E13 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA582643DD92002A3E13 /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
