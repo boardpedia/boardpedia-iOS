@@ -17,6 +17,7 @@
 		9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA802643ED31002A3E13 /* UIColor+Extension.swift */; };
 		9B41FA842643EE67002A3E13 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA832643EE67002A3E13 /* UIView+Extension.swift */; };
 		9B41FA8E2643EEEC002A3E13 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA8D2643EEEC002A3E13 /* UILabel+Extension.swift */; };
+		9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9B41FA802643ED31002A3E13 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		9B41FA832643EE67002A3E13 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9B41FA8D2643EEEC002A3E13 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				9B41FA802643ED31002A3E13 /* UIColor+Extension.swift */,
 				9B41FA832643EE67002A3E13 /* UIView+Extension.swift */,
 				9B41FA8D2643EEEC002A3E13 /* UILabel+Extension.swift */,
+				9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */,
 				9B41FA8E2643EEEC002A3E13 /* UILabel+Extension.swift in Sources */,
 				9B41FA7A2643E138002A3E13 /* UIFont+Extension.swift in Sources */,
+				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
 			);
