@@ -11,11 +11,13 @@ class KeywordVC: UIViewController {
 
     // MARK: Variable Part
     
+    var recentKeywordData: [KeywordData] = []
+    
+    // MARK: IBOutlet
+    
     @IBOutlet weak var recentKeywordView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var recentKeywordCollectionView: UICollectionView!
-    
-    // MARK: IBOutlet
     
     // MARK: IBAction
     
@@ -24,6 +26,7 @@ class KeywordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
+        setCollectionView()
     }
     
 }
@@ -50,6 +53,77 @@ extension KeywordVC {
         noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
         
         noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
+    }
+    
+    func setCollectionView() {
+        
+        // Test Data (서버 연결 전)
+        let item1 = KeywordData(keyword: "스피드")
+        let item2 = KeywordData(keyword: "스피드")
+        let item3 = KeywordData(keyword: "스피드")
+        
+        recentKeywordData.append(contentsOf: [item1,item2,item3])
+        
+        recentKeywordCollectionView.delegate = self
+        recentKeywordCollectionView.dataSource = self
+        
+    }
+    
+}
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension KeywordVC: UICollectionViewDelegateFlowLayout {
+    // CollectionView 크기 잡기
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 한 아이템의 크기
+        
+        return CGSize(width: 78, height: 30)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // 아이템간의 간격
+        
+        return 10
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // collectionView와 View 간의 간격
+        
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+    }
+    
+}
+
+// MARK: UICollectionViewDataSource
+
+extension KeywordVC: UICollectionViewDataSource {
+    // CollectionView 데이터 넣기
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return recentKeywordData.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentKeywordCell.identifier, for: indexPath) as? RecentKeywordCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(search: recentKeywordData[indexPath.row].keyword)
+        return cell
+        
     }
     
 }
