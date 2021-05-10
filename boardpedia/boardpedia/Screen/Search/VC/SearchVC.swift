@@ -40,7 +40,10 @@ extension SearchVC {
     func setView() {
         
         searchHeaderView.setRounded(radius: 6)
+        
+        searchTextField.addLeftPadding()
         searchTextField.placeholder = "원하는 보드게임을 찾아보세요!"
         searchTextField.font = .neoMedium(ofSize: 17)
+    
     }
 }
