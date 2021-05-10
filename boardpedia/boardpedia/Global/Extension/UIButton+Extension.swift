@@ -26,7 +26,7 @@ extension UIButton {
         
         self.setTitle(text, for: .normal)
         self.titleLabel?.font = font
-        self.tintColor = color
+        self.setTitleColor(color, for: .normal)
         self.backgroundColor = backgroundColor
     }
 }
