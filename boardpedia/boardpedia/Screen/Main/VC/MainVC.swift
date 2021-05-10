@@ -27,6 +27,10 @@ class MainVC: UIViewController {
     @IBOutlet weak var bestThemeNameLabel: UILabel!
     @IBOutlet weak var themeGameCollectionView: UICollectionView!
     
+    @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var stackFirstLabel: UILabel!
+    @IBOutlet weak var stackSecondLabel: UILabel!
+    
     // MARK: IBAction
     
     // MARK: Life Cycle Part
@@ -70,6 +74,24 @@ extension MainVC {
         
         bestThemeButton.setRounded(radius: 6)
         bestThemeNameLabel.numberOfLines = 0
+        
+        instagramButton.setRounded(radius: 6)
+        stackFirstLabel.setLabel(text: "보드피디아\n100% 사용하는 방법!", color: .boardWhite, font: .neoBold(ofSize: 17))
+        stackFirstLabel.numberOfLines = 0
+        stackFirstLabel.lineSetting(lineSpacing: 5)
+        stackFirstLabel.textAlignment = .left
+        
+        if let text = stackFirstLabel.text {
+            // 앞부분만 폰트와 컬러를 다르게 설정
+            
+            let attributedStr = NSMutableAttributedString(string: text)
+            
+            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 17), range: (text as NSString).range(of: "100% 사용하는 방법!"))
+
+            stackFirstLabel.attributedText = attributedStr
+        }
+        
+        stackSecondLabel.setLabel(text: "보드피디아 제작자가 알려드려요", color: .boardWhite70, font: .neoMedium(ofSize: 14))
         
     }
     

@@ -44,6 +44,7 @@ extension UIFont {
     class func neoThin(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.thin, size: size)!
     }
+    
     class func neoUltraLight(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.ultraLigth, size: size)!
     }
