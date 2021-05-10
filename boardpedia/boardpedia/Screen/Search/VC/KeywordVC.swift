@@ -12,6 +12,7 @@ class KeywordVC: UIViewController {
     // MARK: Variable Part
     
     var recentKeywordData: [KeywordData] = []
+    var topKeywordData: [KeywordData] = []
     
     // MARK: IBOutlet
     
@@ -19,11 +20,22 @@ class KeywordVC: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var recentKeywordCollectionView: UICollectionView!
     
+    
+    @IBOutlet weak var secondInfoLabel: UILabel!
+    @IBOutlet weak var topKeywordCollectionView: UICollectionView!
+    
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
         didSet {
             collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
     }
+    
+    @IBOutlet weak var topCollectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            topCollectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
     
     // MARK: IBAction
     
@@ -32,7 +44,8 @@ class KeywordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        haveKeyword()
+        noKeyword()
+        topKeywordSet()
     }
     
 }
@@ -45,6 +58,7 @@ extension KeywordVC {
     
     func setView() {
         infoLabel.setLabel(text: "최근 검색어", font: .neoBold(ofSize: 16))
+        secondInfoLabel.setLabel(text: "많이 찾고 있어요!", font: .neoBold(ofSize: 16))
     }
     
     // MARK: No Recent Keyword Style Function
@@ -55,7 +69,7 @@ extension KeywordVC {
         let noKeywordLabel = UILabel()
         self.view.addSubview(noKeywordLabel)
         noKeywordLabel.translatesAutoresizingMaskIntoConstraints = false
-        noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 16).isActive = true
+        noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 20).isActive = true
         noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
         
         noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
@@ -89,7 +103,29 @@ extension KeywordVC {
 
         removeButton.setButton(text: "모두 지우기", color: .boardGray40, font: .neoSemiBold(ofSize: 16))
         
+    }
+    
+    func topKeywordSet() {
         
+        // Test Data (서버 연결 전)
+        let item1 = KeywordData(keyword: "미니")
+        let item2 = KeywordData(keyword: "마라탕이")
+        let item3 = KeywordData(keyword: "엄청나게 먹고싶음")
+        let item4 = KeywordData(keyword: "누가")
+        let item5 = KeywordData(keyword: "사주실?")
+        let item6 = KeywordData(keyword: "제발~")
+        
+        topKeywordData.append(contentsOf: [item1,item2,item3,item4,item5,item6])
+        
+        let layout = topKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
+        
+        let customLayout = LeftAlignFlowLayout()
+        topKeywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
+        
+        topKeywordCollectionView.delegate = self
+        topKeywordCollectionView.dataSource = self
     }
     
 }
@@ -113,8 +149,12 @@ extension KeywordVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
-        
+        if collectionView == recentKeywordCollectionView {
+            return 0
+        } else {
+            return 10
+        }
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -133,21 +173,34 @@ extension KeywordVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return recentKeywordData.count
+        if collectionView == recentKeywordCollectionView {
+            return recentKeywordData.count
+        } else {
+            return topKeywordData.count
+        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentKeywordCell.identifier, for: indexPath) as? RecentKeywordCell else {
-            return UICollectionViewCell()
+        if collectionView == recentKeywordCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentKeywordCell.identifier, for: indexPath) as? RecentKeywordCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.configure(search: recentKeywordData[indexPath.row].keyword)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopKeywordCell.identifier, for: indexPath) as? TopKeywordCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.configure(search: topKeywordData[indexPath.row].keyword)
+            return cell
         }
-        
-        cell.configure(search: recentKeywordData[indexPath.row].keyword)
-//        cell.contentView.setRounded(radius: 30)
-        return cell
         
     }
     
 }
+
