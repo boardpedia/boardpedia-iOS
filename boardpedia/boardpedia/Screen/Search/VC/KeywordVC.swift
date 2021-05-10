@@ -19,6 +19,12 @@ class KeywordVC: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var recentKeywordCollectionView: UICollectionView!
     
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
     // MARK: IBAction
     
     // MARK: Life Cycle Part
@@ -58,14 +64,19 @@ extension KeywordVC {
     func setCollectionView() {
         
         // Test Data (서버 연결 전)
-        let item1 = KeywordData(keyword: "스피드")
-        let item2 = KeywordData(keyword: "스피드")
-        let item3 = KeywordData(keyword: "스피드")
+        let item1 = KeywordData(keyword: "다함께 즐기는")
+        let item2 = KeywordData(keyword: "루미큐브")
+        let item3 = KeywordData(keyword: "보드피디아ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ")
         
         recentKeywordData.append(contentsOf: [item1,item2,item3])
         
+        let layout = recentKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .horizontal
+        
         recentKeywordCollectionView.delegate = self
         recentKeywordCollectionView.dataSource = self
+        
+        
         
     }
     
@@ -97,7 +108,7 @@ extension KeywordVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // collectionView와 View 간의 간격
         
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         
     }
     
@@ -122,6 +133,7 @@ extension KeywordVC: UICollectionViewDataSource {
         }
         
         cell.configure(search: recentKeywordData[indexPath.row].keyword)
+//        cell.contentView.setRounded(radius: 30)
         return cell
         
     }
