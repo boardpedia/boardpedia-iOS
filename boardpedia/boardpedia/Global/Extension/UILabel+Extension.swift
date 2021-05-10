@@ -16,20 +16,27 @@ extension UILabel {
         self.font = font
         self.textColor = color
     }
-    
-    func setLabel(text: String, color: UIColor = .boardBlack, font: UIFont, letterSpacing: Double) {
-        // setLabel : 위의 함수에서 letterSpacing 도 추가로 넣어야한다면 넣어서 사용할 수 있게 제작
+
+    func lineSetting(kernValue: Double = 1.15, lineSpacing: CGFloat = 0.0, lineHeightMultiple: CGFloat = 0.0) {
+        // lineSetting: UILabel의 text가 lineSpacing 또는 letterSpacing 이 있을 때 사용
         
-        self.text = text
-        var attributedString = NSMutableAttributedString(string: text)
+        guard let labelText = self.text else { return }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.lineHeightMultiple = lineHeightMultiple
+        paragraphStyle.alignment = .center
+        var attributedString = NSMutableAttributedString(string: labelText)
         if let labelattributedText = self.attributedText {
             attributedString = NSMutableAttributedString(attributedString: labelattributedText)
-            attributedString.addAttribute(NSAttributedString.Key.kern, value: letterSpacing, range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
         } else {
-            attributedString = NSMutableAttributedString(string: text)
+            attributedString = NSMutableAttributedString(string: labelText)
         }
+        
+        // (Swift 4.2 and above) Line spacing attribute
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        
         self.attributedText = attributedString
-        self.font = font
-        self.textColor = color
     }
 }
