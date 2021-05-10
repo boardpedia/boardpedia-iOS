@@ -27,6 +27,7 @@ class KeywordVC: UIViewController {
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
         didSet {
             collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            // 동적 사이즈를 주기 위해 estimatedItemSize 를 사용했다. 대략적인 셀의 크기를 먼저 조정한 후에 셀이 나중에 AutoLayout 될 때, 셀의 크기가 변경된다면 그 값이 다시 UICollectionViewFlowLayout에 전달되어 최종 사이즈가 결정되게 된다.
         }
     }
     
@@ -75,6 +76,8 @@ extension KeywordVC {
         noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
     }
     
+    // MARK: Have Recent Keyword Style Function
+    
     func haveKeyword() {
         // 최근 검색어가 있는 상황
         
@@ -91,7 +94,7 @@ extension KeywordVC {
         recentKeywordCollectionView.delegate = self
         recentKeywordCollectionView.dataSource = self
         
-        
+        // 모두 지우기 버튼 코드로 구현
         let removeButton = UIButton()
         self.view.addSubview(removeButton)
         
@@ -104,6 +107,8 @@ extension KeywordVC {
         removeButton.setButton(text: "모두 지우기", color: .boardGray40, font: .neoSemiBold(ofSize: 16))
         
     }
+    
+    // MARK: Top Keyword Style Function
     
     func topKeywordSet() {
         
