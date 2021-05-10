@@ -52,26 +52,50 @@
                                 </constraints>
                                 <state key="normal" image="bntBack"/>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-3e-USH">
+                                <rect key="frame" x="0.0" y="102" width="414" height="794"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TUR-hE-bAA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TUR-hE-bAA" firstAttribute="trailing" secondItem="baw-8k-QfC" secondAttribute="trailing" constant="16" id="3jt-ho-MRX"/>
                             <constraint firstItem="baw-8k-QfC" firstAttribute="leading" secondItem="Q9u-dC-gGn" secondAttribute="trailing" id="HRO-Ho-lgq"/>
+                            <constraint firstAttribute="bottom" secondItem="xrk-3e-USH" secondAttribute="bottom" id="Jrk-oT-hKm"/>
+                            <constraint firstItem="xrk-3e-USH" firstAttribute="leading" secondItem="TUR-hE-bAA" secondAttribute="leading" id="LzY-Qq-sqz"/>
                             <constraint firstItem="Q9u-dC-gGn" firstAttribute="leading" secondItem="TUR-hE-bAA" secondAttribute="leading" id="bgd-Lf-vtV"/>
                             <constraint firstItem="baw-8k-QfC" firstAttribute="top" secondItem="TUR-hE-bAA" secondAttribute="top" constant="16" id="dQ3-nd-opx"/>
+                            <constraint firstItem="TUR-hE-bAA" firstAttribute="trailing" secondItem="xrk-3e-USH" secondAttribute="trailing" id="rpc-zq-mn5"/>
                             <constraint firstItem="Q9u-dC-gGn" firstAttribute="centerY" secondItem="baw-8k-QfC" secondAttribute="centerY" id="sJl-1q-XbO"/>
+                            <constraint firstItem="xrk-3e-USH" firstAttribute="top" secondItem="baw-8k-QfC" secondAttribute="bottom" id="vDi-nf-fSL"/>
                             <constraint firstItem="baw-8k-QfC" firstAttribute="width" secondItem="r1a-Pe-R3g" secondAttribute="width" multiplier="319/375" id="vEv-XY-6dK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchHeaderView" destination="baw-8k-QfC" id="whX-YG-apK"/>
+                        <outlet property="searchStateView" destination="xrk-3e-USH" id="2u3-Dy-vnf"/>
                         <outlet property="searchTextField" destination="fZX-Uu-X4w" id="aIf-zu-vpe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5X-hi-6pj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="327.536231884058" y="-217.63392857142856"/>
+        </scene>
+        <!--KeywordVC-->
+        <scene sceneID="ueM-O1-qj2">
+            <objects>
+                <viewController storyboardIdentifier="KeywordVC" id="FMS-by-AtX" customClass="KeywordVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cOl-lA-cUo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TkZ-nG-Mb0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kI6-6Q-2x4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1160" y="-337"/>
         </scene>
     </scenes>
     <resources>

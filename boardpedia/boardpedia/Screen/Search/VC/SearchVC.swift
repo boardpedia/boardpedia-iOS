@@ -13,6 +13,7 @@ class SearchVC: UIViewController {
     
     @IBOutlet weak var searchHeaderView: UIView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchStateView: UIView!
     
     // MARK: IBOutlet
     
@@ -23,12 +24,7 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-
-//        let vc = self.storyboard!.instantiateViewController(identifier: "subViewController")
-//        self.addChild(vc)
-//        vc.view.frame = presentView.frame
-//        self.presentView.addSubview(vc.view)
-//        vc.didMove(toParent: self)
+        setStateView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,6 +49,15 @@ extension SearchVC {
         searchTextField.font = .neoMedium(ofSize: 17)
         searchTextField.delegate = self
     
+    }
+    
+    func setStateView() {
+        
+        let vc = self.storyboard!.instantiateViewController(identifier: "KeywordVC")
+        self.addChild(vc)
+        vc.view.frame = searchStateView.frame
+        self.searchStateView.addSubview(vc.view)
+        vc.didMove(toParent: self)
     }
 }
 
