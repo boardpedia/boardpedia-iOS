@@ -7,11 +7,11 @@
 
 import UIKit
 
-class trandingGameCell: UICollectionViewCell {
+class TrandingGameCell: UICollectionViewCell {
     
     // MARK: Variable Part
     
-    static let identifier = "trandingGameCell"
+    static let identifier = "TrandingGameCell"
     
     // MARK: IBOutlet
     

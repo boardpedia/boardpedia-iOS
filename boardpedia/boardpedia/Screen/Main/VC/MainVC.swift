@@ -119,7 +119,6 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
             let itemWidth = 160/375 * self.view.frame.width
             return CGSize(width: itemWidth, height: collectionView.layer.frame.height)
         } else {
-            print(self.themeGameCollectionView.frame.width/2)
             let itemWidth = self.themeGameCollectionView.frame.width / 2 - 7.5
             return CGSize(width: itemWidth, height: itemWidth)
         }
@@ -175,7 +174,7 @@ extension MainVC: UICollectionViewDataSource {
         
         if collectionView == trandingGameCollectionView {
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trandingGameCell.identifier, for: indexPath) as? trandingGameCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrandingGameCell.identifier, for: indexPath) as? TrandingGameCell else {
                 return UICollectionViewCell()
             }
             
