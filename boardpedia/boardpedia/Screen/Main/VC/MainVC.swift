@@ -11,8 +11,8 @@ class MainVC: UIViewController {
     
     // MARK: Variable Part
     
-    var firstHeaderData: [gameDate] = []
-    var secondHeaderData: [themeData] = []
+    var firstHeaderData: [GameDate] = []
+    var secondHeaderData: [ThemeData] = []
 
     // MARK: IBOutlet
     
@@ -100,24 +100,24 @@ extension MainVC {
     func setCollectionView() {
         
         // Test Data (서버 연결 전)
-        let item1 = gameDate(gameImage: "", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
-        let item2 = gameDate(gameImage: "", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
-        let item3 = gameDate(gameImage: "", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
+        let item1 = GameDate(gameImage: "", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
+        let item2 = GameDate(gameImage: "", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
+        let item3 = GameDate(gameImage: "", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
         firstHeaderData.append(contentsOf: [item1,item2,item3])
         
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
         
         // Test Data (서버 연결 전)
-        let themeItem1 = themeData(themeImage: "testBackImage_1", themeName: "내가 이 구역 최고 브레인!")
-        let themeItem2 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem3 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem4 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem5 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem6 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem7 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem8 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem9 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem1 = ThemeData(themeImage: "testBackImage_1", themeName: "내가 이 구역 최고 브레인!")
+        let themeItem2 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem3 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem4 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem5 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem6 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem7 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem8 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem9 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
         secondHeaderData.append(contentsOf: [themeItem1,themeItem2,themeItem3,themeItem4,themeItem5,themeItem6,themeItem7,themeItem8,themeItem9])
         
         bestThemeNameLabel.setLabel(text: secondHeaderData[0].themeName, color: .boardWhite, font: .neoBold(ofSize: 24))
