@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -99,9 +100,48 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="p4o-Wx-JIH">
+                                        <rect key="frame" x="16" y="62" width="382" height="28"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="avF-3T-bLo">
+                                            <size key="itemSize" width="135" height="28"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecentKeywordCell" id="swJ-YG-SpO" customClass="RecentKeywordCell" customModule="boardpedia" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="135" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BFo-5x-uRB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slg-c2-Ido">
+                                                            <rect key="frame" x="0.0" y="0.0" width="135" height="28"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="slg-c2-Ido" secondAttribute="bottom" id="SUG-jf-o5A"/>
+                                                        <constraint firstItem="slg-c2-Ido" firstAttribute="leading" secondItem="BFo-5x-uRB" secondAttribute="leading" id="gMa-S0-uEw"/>
+                                                        <constraint firstAttribute="trailing" secondItem="slg-c2-Ido" secondAttribute="trailing" id="hKa-Au-bGv"/>
+                                                        <constraint firstItem="slg-c2-Ido" firstAttribute="top" secondItem="BFo-5x-uRB" secondAttribute="top" id="lpO-vz-SjB"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="135" height="28"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="p4o-Wx-JIH" secondAttribute="bottom" constant="25" id="0py-vq-3yJ"/>
+                                    <constraint firstItem="p4o-Wx-JIH" firstAttribute="leading" secondItem="mgx-gy-SV9" secondAttribute="leading" constant="16" id="BQp-um-R9p"/>
+                                    <constraint firstAttribute="trailing" secondItem="p4o-Wx-JIH" secondAttribute="trailing" constant="16" id="EHL-FU-gUL"/>
+                                    <constraint firstItem="p4o-Wx-JIH" firstAttribute="top" secondItem="gso-vF-tct" secondAttribute="bottom" constant="16" id="KDq-f5-mGJ"/>
                                     <constraint firstItem="gso-vF-tct" firstAttribute="leading" secondItem="mgx-gy-SV9" secondAttribute="leading" constant="17" id="XPE-Nj-eBZ"/>
                                     <constraint firstItem="gso-vF-tct" firstAttribute="top" secondItem="mgx-gy-SV9" secondAttribute="top" constant="25" id="yvC-Cd-SUV"/>
                                     <constraint firstAttribute="height" constant="115" id="zoO-dR-nNi"/>
@@ -118,12 +158,13 @@
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="gso-vF-tct" id="NqL-PY-sYE"/>
+                        <outlet property="recentKeywordCollectionView" destination="p4o-Wx-JIH" id="mLE-4T-Glf"/>
                         <outlet property="recentKeywordView" destination="mgx-gy-SV9" id="pEe-EM-jVg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kI6-6Q-2x4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="-337"/>
+            <point key="canvasLocation" x="1159.4202898550725" y="-337.5"/>
         </scene>
     </scenes>
     <resources>

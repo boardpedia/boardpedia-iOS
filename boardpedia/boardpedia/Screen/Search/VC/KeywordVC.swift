@@ -13,6 +13,7 @@ class KeywordVC: UIViewController {
     
     @IBOutlet weak var recentKeywordView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var recentKeywordCollectionView: UICollectionView!
     
     // MARK: IBOutlet
     
@@ -23,7 +24,6 @@ class KeywordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        setNoKeyword()
     }
     
 }
