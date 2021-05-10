@@ -20,6 +20,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baw-8k-QfC">
                                 <rect key="frame" x="46" y="60" width="352" height="42"/>
                                 <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZX-Uu-X4w">
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPv-aT-MCU">
                                         <rect key="frame" x="310" y="0.0" width="42" height="42"/>
                                         <constraints>
@@ -27,22 +32,17 @@
                                         </constraints>
                                         <state key="normal" image="bntSearch"/>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XgA-SA-LpT">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="42"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="dPv-aT-MCU" firstAttribute="leading" secondItem="XgA-SA-LpT" secondAttribute="trailing" id="BV8-GJ-ZUf"/>
+                                    <constraint firstItem="dPv-aT-MCU" firstAttribute="leading" secondItem="fZX-Uu-X4w" secondAttribute="trailing" id="3sI-xr-bcy"/>
                                     <constraint firstAttribute="width" secondItem="baw-8k-QfC" secondAttribute="height" multiplier="319:38" id="Lsg-YA-WQI"/>
-                                    <constraint firstItem="XgA-SA-LpT" firstAttribute="leading" secondItem="baw-8k-QfC" secondAttribute="leading" id="ZxV-4K-PG7"/>
+                                    <constraint firstAttribute="bottom" secondItem="fZX-Uu-X4w" secondAttribute="bottom" id="Tlt-oe-rAW"/>
+                                    <constraint firstItem="fZX-Uu-X4w" firstAttribute="top" secondItem="baw-8k-QfC" secondAttribute="top" id="Ubs-fh-Mgc"/>
                                     <constraint firstItem="dPv-aT-MCU" firstAttribute="top" secondItem="baw-8k-QfC" secondAttribute="top" id="eIp-pO-Hbs"/>
                                     <constraint firstAttribute="trailing" secondItem="dPv-aT-MCU" secondAttribute="trailing" id="gZQ-vZ-fvO"/>
-                                    <constraint firstItem="XgA-SA-LpT" firstAttribute="top" secondItem="baw-8k-QfC" secondAttribute="top" id="jc7-5O-Rhx"/>
+                                    <constraint firstItem="fZX-Uu-X4w" firstAttribute="leading" secondItem="baw-8k-QfC" secondAttribute="leading" id="kuf-CF-d5I"/>
                                     <constraint firstAttribute="bottom" secondItem="dPv-aT-MCU" secondAttribute="bottom" id="pxA-m8-Qgn"/>
-                                    <constraint firstAttribute="bottom" secondItem="XgA-SA-LpT" secondAttribute="bottom" id="qrX-ZF-DnR"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9u-dC-gGn">
@@ -66,7 +66,7 @@
                     </view>
                     <connections>
                         <outlet property="searchHeaderView" destination="baw-8k-QfC" id="whX-YG-apK"/>
-                        <outlet property="searchTextField" destination="XgA-SA-LpT" id="G8v-ek-fjl"/>
+                        <outlet property="searchTextField" destination="fZX-Uu-X4w" id="aIf-zu-vpe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5X-hi-6pj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
