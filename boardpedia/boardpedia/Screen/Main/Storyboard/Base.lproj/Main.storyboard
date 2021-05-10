@@ -122,13 +122,22 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brandCh" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-VF-HjM">
+                                                <rect key="frame" x="16" y="51" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1bC-VF-HjM" secondAttribute="height" multiplier="1:1" id="TWL-Gw-2am"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="vA5-T8-YHx" firstAttribute="top" secondItem="cig-21-Ycs" secondAttribute="top" constant="60" id="2uu-Pd-XXs"/>
                                             <constraint firstItem="Jt1-wi-lQ9" firstAttribute="height" secondItem="cig-21-Ycs" secondAttribute="width" multiplier="150/375" id="65A-OZ-fR0"/>
+                                            <constraint firstItem="1bC-VF-HjM" firstAttribute="leading" secondItem="cig-21-Ycs" secondAttribute="leading" constant="16" id="Euf-jj-0oA"/>
                                             <constraint firstItem="wuV-cc-1gv" firstAttribute="leading" secondItem="cig-21-Ycs" secondAttribute="leading" id="GQ5-QO-eae"/>
+                                            <constraint firstItem="vA5-T8-YHx" firstAttribute="leading" secondItem="1bC-VF-HjM" secondAttribute="trailing" constant="16" id="HzU-X1-1M1"/>
                                             <constraint firstItem="0St-Px-NRT" firstAttribute="leading" secondItem="WBG-v8-NbR" secondAttribute="leading" id="OYW-Ob-eXy"/>
+                                            <constraint firstItem="1bC-VF-HjM" firstAttribute="centerY" secondItem="vA5-T8-YHx" secondAttribute="centerY" id="QYO-cH-R6z"/>
                                             <constraint firstItem="WBG-v8-NbR" firstAttribute="top" secondItem="vA5-T8-YHx" secondAttribute="bottom" constant="25" id="TK0-Hv-mXZ"/>
                                             <constraint firstAttribute="trailing" secondItem="vA5-T8-YHx" secondAttribute="trailing" constant="16" id="XG8-TG-CQs"/>
                                             <constraint firstAttribute="trailing" secondItem="wuV-cc-1gv" secondAttribute="trailing" id="Xmn-Mq-fhO"/>
@@ -175,6 +184,7 @@
     </scenes>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+        <image name="brandCh" width="50" height="50"/>
         <image name="testImage" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
