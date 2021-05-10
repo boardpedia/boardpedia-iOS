@@ -32,7 +32,7 @@ class KeywordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        setCollectionView()
+        haveKeyword()
     }
     
 }
@@ -49,7 +49,7 @@ extension KeywordVC {
     
     // MARK: No Recent Keyword Style Function
     
-    func setNoKeyword() {
+    func noKeyword() {
         // 최근 검색어가 없는 상황
         
         let noKeywordLabel = UILabel()
@@ -61,12 +61,13 @@ extension KeywordVC {
         noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
     }
     
-    func setCollectionView() {
+    func haveKeyword() {
+        // 최근 검색어가 있는 상황
         
         // Test Data (서버 연결 전)
         let item1 = KeywordData(keyword: "다함께 즐기는")
         let item2 = KeywordData(keyword: "루미큐브")
-        let item3 = KeywordData(keyword: "보드피디아ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ")
+        let item3 = KeywordData(keyword: "보드피디아")
         
         recentKeywordData.append(contentsOf: [item1,item2,item3])
         
@@ -76,6 +77,17 @@ extension KeywordVC {
         recentKeywordCollectionView.delegate = self
         recentKeywordCollectionView.dataSource = self
         
+        
+        let removeButton = UIButton()
+        self.view.addSubview(removeButton)
+        
+        removeButton.translatesAutoresizingMaskIntoConstraints = false
+        removeButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        removeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        removeButton.centerYAnchor.constraint(equalTo: self.infoLabel.centerYAnchor).isActive = true
+        removeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -0).isActive = true
+
+        removeButton.setButton(text: "모두 지우기", color: .boardGray40, font: .neoSemiBold(ofSize: 16))
         
         
     }
