@@ -55,7 +55,6 @@ extension SearchVC {
         
         let vc = self.storyboard!.instantiateViewController(identifier: "KeywordVC")
         self.addChild(vc)
-        vc.view.frame = searchStateView.frame
         self.searchStateView.addSubview(vc.view)
         vc.didMove(toParent: self)
     }

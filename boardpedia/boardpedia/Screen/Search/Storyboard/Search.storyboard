@@ -89,9 +89,37 @@
                     <view key="view" contentMode="scaleToFill" id="cOl-lA-cUo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgx-gy-SV9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gso-vF-tct">
+                                        <rect key="frame" x="17" y="25" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="gso-vF-tct" firstAttribute="leading" secondItem="mgx-gy-SV9" secondAttribute="leading" constant="17" id="XPE-Nj-eBZ"/>
+                                    <constraint firstItem="gso-vF-tct" firstAttribute="top" secondItem="mgx-gy-SV9" secondAttribute="top" constant="25" id="yvC-Cd-SUV"/>
+                                    <constraint firstAttribute="height" constant="115" id="zoO-dR-nNi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="TkZ-nG-Mb0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mgx-gy-SV9" firstAttribute="leading" secondItem="TkZ-nG-Mb0" secondAttribute="leading" id="5jW-Pc-SBq"/>
+                            <constraint firstItem="mgx-gy-SV9" firstAttribute="top" secondItem="cOl-lA-cUo" secondAttribute="top" id="WQ5-Fx-AUs"/>
+                            <constraint firstItem="TkZ-nG-Mb0" firstAttribute="trailing" secondItem="mgx-gy-SV9" secondAttribute="trailing" id="saY-UL-U1Y"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="gso-vF-tct" id="NqL-PY-sYE"/>
+                        <outlet property="recentKeywordView" destination="mgx-gy-SV9" id="pEe-EM-jVg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kI6-6Q-2x4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
