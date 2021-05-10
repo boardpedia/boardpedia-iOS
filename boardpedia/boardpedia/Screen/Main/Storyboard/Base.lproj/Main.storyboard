@@ -68,7 +68,7 @@
                                                                         <constraint firstAttribute="width" secondItem="jsJ-Zf-EjJ" secondAttribute="height" multiplier="18:24" id="5Bp-02-lg7"/>
                                                                     </constraints>
                                                                     <state key="normal">
-                                                                        <imageReference key="image" image="bookmark.fill" catalog="system" symbolScale="large"/>
+                                                                        <imageReference key="image" image="icStorageUnselected" symbolScale="large"/>
                                                                     </state>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZt-vZ-6fi">
@@ -329,9 +329,9 @@
     </scenes>
     <resources>
         <image name="bntSearch" width="18" height="18"/>
-        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="brandBannerCh" width="99" height="104"/>
         <image name="brandCh" width="50" height="50"/>
+        <image name="icStorageUnselected" width="18" height="21.5"/>
         <image name="testImage" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
