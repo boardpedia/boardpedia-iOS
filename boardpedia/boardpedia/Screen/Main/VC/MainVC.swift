@@ -12,12 +12,20 @@ class MainVC: UIViewController {
     // MARK: Variable Part
     
     var firstHeaderData: [gameDate] = []
+    var secondHeaderData: [themeData] = []
 
     // MARK: IBOutlet
     
     @IBOutlet weak var seachButton: UIButton!
     @IBOutlet weak var firstHeaderLabel: UILabel!
     @IBOutlet weak var trandingGameCollectionView: UICollectionView!
+    
+    @IBOutlet weak var secondHeaderLabel: UILabel!
+    @IBOutlet weak var explainLabel: UILabel!
+    
+    @IBOutlet weak var bestThemeButton: UIButton!
+    @IBOutlet weak var bestThemeNameLabel: UILabel!
+    @IBOutlet weak var themeGameCollectionView: UICollectionView!
     
     // MARK: IBAction
     
@@ -57,6 +65,12 @@ extension MainVC {
             firstHeaderLabel.attributedText = attributedStr
         }
         
+        secondHeaderLabel.setLabel(text: "오늘의 추천 테마", font: .neoSemiBold(ofSize: 20))
+        explainLabel.setLabel(text: "보드게임 진심러들이 고른 진짜 중 진짜!", color: .boardGray50, font: .neoMedium(ofSize: 15))
+        
+        bestThemeButton.setRounded(radius: 6)
+        bestThemeNameLabel.numberOfLines = 0
+        
     }
     
     // MARK: CollectionView Style Function
@@ -72,6 +86,24 @@ extension MainVC {
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
         
+        // Test Data (서버 연결 전)
+        let themeItem1 = themeData(themeImage: "testBackImage_1", themeName: "내가 이 구역 최고 브레인!")
+        let themeItem2 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem3 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem4 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem5 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem6 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem7 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem8 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        let themeItem9 = themeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
+        secondHeaderData.append(contentsOf: [themeItem1,themeItem2,themeItem3,themeItem4,themeItem5,themeItem6,themeItem7,themeItem8,themeItem9])
+        
+        bestThemeNameLabel.setLabel(text: secondHeaderData[0].themeName, color: .boardWhite, font: .neoBold(ofSize: 24))
+        bestThemeButton.setImage(UIImage(named: secondHeaderData[0].themeImage), for: .normal)
+        
+        themeGameCollectionView.delegate = self
+        themeGameCollectionView.dataSource = self
+        
     }
 }
 
@@ -83,14 +115,24 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 한 아이템의 크기
         
-        let itemWidth = 160/375 * self.view.frame.width
-        return CGSize(width: itemWidth, height: collectionView.layer.frame.height)
+        if collectionView == trandingGameCollectionView {
+            let itemWidth = 160/375 * self.view.frame.width
+            return CGSize(width: itemWidth, height: collectionView.layer.frame.height)
+        } else {
+            print(self.themeGameCollectionView.frame.width/2)
+            let itemWidth = self.themeGameCollectionView.frame.width / 2 - 7.5
+            return CGSize(width: itemWidth, height: itemWidth)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // 아이템간의 간격
         
-        return 10
+        if collectionView == trandingGameCollectionView {
+            return 10
+        } else {
+            return 15
+        }
         
     }
     
@@ -103,7 +145,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // collectionView와 View 간의 간격
         
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        if collectionView == trandingGameCollectionView {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        } else {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
         
     }
     
@@ -116,20 +162,35 @@ extension MainVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return firstHeaderData.count
+        if collectionView == trandingGameCollectionView {
+            return firstHeaderData.count
+        } else {
+            return 8
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trandingGameCell.identifier, for: indexPath) as? trandingGameCell else {
-            return UICollectionViewCell()
+        
+        if collectionView == trandingGameCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trandingGameCell.identifier, for: indexPath) as? trandingGameCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.configure(name: firstHeaderData[indexPath.row].gameName, explain: firstHeaderData[indexPath.row].gameExplain)
+            return cell
+            
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeGameCell.identifier, for: indexPath) as? ThemeGameCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.configure(name: secondHeaderData[indexPath.row+1].themeName, image: secondHeaderData[indexPath.row+1].themeImage)
+            return cell
         }
         
-        cell.configure(name: firstHeaderData[indexPath.row].gameName, explain: firstHeaderData[indexPath.row].gameExplain)
-        
-        
-        
-        return cell
     }
     
 }

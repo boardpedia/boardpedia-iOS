@@ -20,6 +20,8 @@
 		9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */; };
 		9B41FA9626467B96002A3E13 /* trandingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9526467B96002A3E13 /* trandingGameCell.swift */; };
 		9B41FA9926467FBC002A3E13 /* gameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9826467FBC002A3E13 /* gameData.swift */; };
+		9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098C826490A01007D2BEC /* ThemeGameCell.swift */; };
+		9BE098CC26490AB2007D2BEC /* themeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098CB26490AB2007D2BEC /* themeData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		9B41FA9526467B96002A3E13 /* trandingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trandingGameCell.swift; sourceTree = "<group>"; };
 		9B41FA9826467FBC002A3E13 /* gameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameData.swift; sourceTree = "<group>"; };
+		9BE098C826490A01007D2BEC /* ThemeGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGameCell.swift; sourceTree = "<group>"; };
+		9BE098CB26490AB2007D2BEC /* themeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themeData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				9B41FA9826467FBC002A3E13 /* gameData.swift */,
+				9BE098CB26490AB2007D2BEC /* themeData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,9 +158,9 @@
 		9B41FA712643DF68002A3E13 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9BE098C7264909EE007D2BEC /* Cell */,
 				9B41FA732643DF72002A3E13 /* Storyboard */,
 				9B41FA722643DF6F002A3E13 /* VC */,
-				9B41FA9526467B96002A3E13 /* trandingGameCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -174,6 +179,15 @@
 				9B41FA582643DD92002A3E13 /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9BE098C7264909EE007D2BEC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9B41FA9526467B96002A3E13 /* trandingGameCell.swift */,
+				9BE098C826490A01007D2BEC /* ThemeGameCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,11 +263,13 @@
 				9B41FA842643EE67002A3E13 /* UIView+Extension.swift in Sources */,
 				9B41FA9926467FBC002A3E13 /* gameData.swift in Sources */,
 				9B41FA572643DD92002A3E13 /* MainVC.swift in Sources */,
+				9BE098CC26490AB2007D2BEC /* themeData.swift in Sources */,
 				9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */,
 				9B41FA8E2643EEEC002A3E13 /* UILabel+Extension.swift in Sources */,
 				9B41FA7A2643E138002A3E13 /* UIFont+Extension.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
+				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
 				9B41FA9626467B96002A3E13 /* trandingGameCell.swift in Sources */,
 			);
