@@ -5,11 +5,11 @@
 ## 관계된 이슈, PR :  
 
 
-## 스크린샷  
+## Zepline 스크린샷  
 
 
 ### 기기별 스크린 샷
-iphone12Pro | iphone12 | iphoneSE  |
+iphone12ProMax | iphone12mini | iphoneSE  |
 :---: | :---: | :---:
 <img width="250" src=""> | <img width="250" src=""> | <img width="250" src="">
 
