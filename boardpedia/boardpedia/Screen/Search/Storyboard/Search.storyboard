@@ -244,9 +244,90 @@
                     <view key="view" contentMode="scaleToFill" id="Ylp-gd-eMQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sf5-jb-ms9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xoW-XC-iNR">
+                                        <rect key="frame" x="16" y="16" width="332" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkE-Eu-dNH">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="72" id="8nG-e0-qh8"/>
+                                                    <constraint firstAttribute="height" constant="30" id="iyM-wK-r3j"/>
+                                                </constraints>
+                                                <state key="normal" title="인기순"/>
+                                                <connections>
+                                                    <action selector="filterButtonDidTap:" destination="oe3-i5-lHc" eventType="touchUpInside" id="eLB-Wv-4lr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kX-b9-ufJ">
+                                                <rect key="frame" x="82" y="0.0" width="86" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="86" id="KSA-1a-W6m"/>
+                                                    <constraint firstAttribute="height" constant="30" id="ifN-Em-Gjf"/>
+                                                </constraints>
+                                                <state key="normal" title="가나다순"/>
+                                                <connections>
+                                                    <action selector="filterButtonDidTap:" destination="oe3-i5-lHc" eventType="touchUpInside" id="UnL-uW-e5y"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UC-IE-PMq">
+                                                <rect key="frame" x="178" y="0.0" width="72" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Ocx-4L-hFf"/>
+                                                    <constraint firstAttribute="width" constant="72" id="saR-ma-ygN"/>
+                                                </constraints>
+                                                <state key="normal" title="별점순"/>
+                                                <connections>
+                                                    <action selector="filterButtonDidTap:" destination="oe3-i5-lHc" eventType="touchUpInside" id="nuq-zE-dQm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-Y3-Mar">
+                                                <rect key="frame" x="260" y="0.0" width="72" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="M9d-Kr-efU"/>
+                                                    <constraint firstAttribute="width" constant="72" id="T26-CH-GkH"/>
+                                                </constraints>
+                                                <state key="normal" title="저장순"/>
+                                                <connections>
+                                                    <action selector="filterButtonDidTap:" destination="oe3-i5-lHc" eventType="touchUpInside" id="U4d-fd-5Wv"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ1-Yp-r9b">
+                                        <rect key="frame" x="16" y="68.5" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="105" id="RnD-Rr-Yml"/>
+                                    <constraint firstItem="zJ1-Yp-r9b" firstAttribute="leading" secondItem="sf5-jb-ms9" secondAttribute="leading" constant="16" id="bX0-DB-9LL"/>
+                                    <constraint firstAttribute="bottom" secondItem="zJ1-Yp-r9b" secondAttribute="bottom" constant="16" id="gIC-WZ-3AD"/>
+                                    <constraint firstItem="xoW-XC-iNR" firstAttribute="leading" secondItem="sf5-jb-ms9" secondAttribute="leading" constant="16" id="jln-7f-8DB"/>
+                                    <constraint firstItem="xoW-XC-iNR" firstAttribute="top" secondItem="sf5-jb-ms9" secondAttribute="top" constant="16" id="ozk-dn-d99"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="V65-ap-QNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sf5-jb-ms9" firstAttribute="top" secondItem="Ylp-gd-eMQ" secondAttribute="top" id="SCy-xd-CYO"/>
+                            <constraint firstItem="V65-ap-QNs" firstAttribute="trailing" secondItem="sf5-jb-ms9" secondAttribute="trailing" id="kI1-KS-Ovi"/>
+                            <constraint firstItem="sf5-jb-ms9" firstAttribute="leading" secondItem="V65-ap-QNs" secondAttribute="leading" id="zo7-Ii-ibC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="filterButton" destination="ZkE-Eu-dNH" collectionClass="NSMutableArray" id="Qwz-Gn-lCJ"/>
+                        <outletCollection property="filterButton" destination="1kX-b9-ufJ" collectionClass="NSMutableArray" id="p3O-rH-HYw"/>
+                        <outletCollection property="filterButton" destination="8UC-IE-PMq" collectionClass="NSMutableArray" id="F2x-PB-Ks0"/>
+                        <outletCollection property="filterButton" destination="OTM-Y3-Mar" collectionClass="NSMutableArray" id="xdo-cX-smj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUL-rg-h4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
