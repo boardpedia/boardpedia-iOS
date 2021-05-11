@@ -12,6 +12,8 @@ class SearchResultCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "SearchResultCell"
+    var cellDelegate: SearchResultCellDelegate?
+    var cellIndex : IndexPath?
     
     // MARK: IBOutlet
     
@@ -20,6 +22,14 @@ class SearchResultCell: UICollectionViewCell {
     @IBOutlet weak var boardGameInfoLabel: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameValueLabel: UILabel!
+    
+    @IBAction func bookmarkDidTap(_ sender: Any) {
+        // 북마크 버튼 클릭 시 이미지 변경을 위해 index 전송
+        
+        cellDelegate?.SearchResultCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        
+    }
+    
     
     
     // MARK: ContentView Default Set Function
@@ -44,4 +54,8 @@ class SearchResultCell: UICollectionViewCell {
         gameValueLabel.setLabel(text: "별점 \(star) / 저장 \(save)회", color: .boardGray40, font: .neoMedium(ofSize: 12))
         
     }
+}
+
+protocol SearchResultCellDelegate {
+    func SearchResultCellGiveIndex(_ cell:SearchResultCell, didClickedIndex value:Int)
 }

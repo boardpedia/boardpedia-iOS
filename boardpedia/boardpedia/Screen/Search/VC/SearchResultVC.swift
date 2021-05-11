@@ -106,7 +106,7 @@ extension SearchResultVC {
     func setResultCollectionView() {
         
         // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5)
+        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
         
         searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1])
         
@@ -170,10 +170,38 @@ extension SearchResultVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        cell.cellDelegate = self
+        cell.cellIndex = indexPath
+        // Cell의 indexPath 저장
+        
+        if searchResultData[indexPath.row].bookMark {
+            // 북마크 상태가 true(선택된 상태)라면
+            
+            cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+        } else {
+            // 북마크 상태가 false(미선택된 상태)라면
+            
+            cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+        }
+        
         cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+        
         return cell
         
     }
     
 }
 
+
+extension SearchResultVC: SearchResultCellDelegate {
+    func SearchResultCellGiveIndex(_ cell: SearchResultCell, didClickedIndex value: Int) {
+        
+        searchResultData[value].bookMark = !searchResultData[value].bookMark
+        // 북마크 상태 반대로 전환 (선택 <--> 미선택)
+        
+        self.searchResultCollectionView.reloadData()
+        // 새로고침
+    }
+    
+    
+}

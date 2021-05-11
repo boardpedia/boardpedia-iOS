@@ -11,4 +11,5 @@ struct SearchResultData: Codable {
     let gameImage, gameName, gameInfo: String
     let saveNumber: Int
     let startNumber: Float
+    var bookMark: Bool
 }
