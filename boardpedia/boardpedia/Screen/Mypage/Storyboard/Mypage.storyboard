@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,90 +76,67 @@
                                     <constraint firstAttribute="height" constant="10" id="Qob-wy-hpQ"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FE6-bg-TaZ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-pt-Hjn">
                                 <rect key="frame" x="0.0" y="232" width="414" height="58.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaH-J7-hBx">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="58.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="SaH-J7-hBx" secondAttribute="height" multiplier="187:53" id="qgs-7A-Fuh"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="saveListButtonDidTap:" destination="eDo-UA-kVl" eventType="touchUpInside" id="yo3-Ys-RsG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZL-Sw-raV">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="58.5"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="reviewListButtonDidTap:" destination="eDo-UA-kVl" eventType="touchUpInside" id="hLX-z3-6Lr"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GT-0B-25r">
-                                <rect key="frame" x="0.0" y="290.5" width="100" height="3"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="Hne-Rn-vhz"/>
-                                    <constraint firstAttribute="width" constant="100" id="NSH-6t-YkZ"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8A-Ex-T26">
-                                <rect key="frame" x="0.0" y="293.5" width="414" height="1"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="pgI-Hz-gp3"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOo-Gf-epR">
-                                <rect key="frame" x="0.0" y="294.5" width="414" height="601.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hgg-pt-Hjn" secondAttribute="height" multiplier="375:53" id="A4b-y7-acv"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cj9-ii-gh3">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="949-wp-5ap">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0rQ-1T-mqu">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0e5-JJ-fre">
+                                <rect key="frame" x="0.0" y="290.5" width="414" height="605.5"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DVk-zW-I6F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FE6-bg-TaZ" firstAttribute="top" secondItem="DGf-PW-zcS" secondAttribute="bottom" id="1Wv-kI-Yza"/>
                             <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="vz2-JX-7GI" secondAttribute="trailing" id="3Vp-m3-Yhz"/>
-                            <constraint firstItem="bOo-Gf-epR" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="3cY-ZX-yqR"/>
-                            <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="FE6-bg-TaZ" secondAttribute="trailing" id="BVa-EA-Tn8"/>
+                            <constraint firstAttribute="bottom" secondItem="0e5-JJ-fre" secondAttribute="bottom" id="8pg-E4-vu2"/>
                             <constraint firstItem="eqq-ns-WKg" firstAttribute="centerY" secondItem="6HJ-dJ-uA2" secondAttribute="centerY" id="Bif-Xr-Sko"/>
                             <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="8Us-WH-GHG" secondAttribute="trailing" id="C3J-4q-YLo"/>
-                            <constraint firstItem="7GT-0B-25r" firstAttribute="top" secondItem="FE6-bg-TaZ" secondAttribute="bottom" id="FBH-Zi-trO"/>
                             <constraint firstItem="8Us-WH-GHG" firstAttribute="top" secondItem="vz2-JX-7GI" secondAttribute="bottom" id="FgF-pk-TSt"/>
-                            <constraint firstItem="e8A-Ex-T26" firstAttribute="top" secondItem="7GT-0B-25r" secondAttribute="bottom" id="Gzp-5O-igH"/>
-                            <constraint firstAttribute="bottom" secondItem="bOo-Gf-epR" secondAttribute="bottom" id="Hcg-M4-tCn"/>
-                            <constraint firstItem="bOo-Gf-epR" firstAttribute="top" secondItem="e8A-Ex-T26" secondAttribute="bottom" id="Mpk-dE-FFZ"/>
                             <constraint firstItem="6HJ-dJ-uA2" firstAttribute="centerY" secondItem="YeB-9A-pRM" secondAttribute="centerY" constant="-10" id="MtI-Qx-EV3"/>
                             <constraint firstItem="YeB-9A-pRM" firstAttribute="top" secondItem="8Us-WH-GHG" secondAttribute="bottom" constant="20" id="NCP-8a-L3X"/>
                             <constraint firstItem="vz2-JX-7GI" firstAttribute="top" secondItem="DVk-zW-I6F" secondAttribute="top" id="OIv-ab-Amw"/>
                             <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="DGf-PW-zcS" secondAttribute="trailing" id="OKe-gZ-v5s"/>
                             <constraint firstItem="5QJ-eR-LHR" firstAttribute="leading" secondItem="YeB-9A-pRM" secondAttribute="trailing" constant="20" id="QOW-ez-RZv"/>
+                            <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="hgg-pt-Hjn" secondAttribute="trailing" id="QSQ-fQ-2jt"/>
+                            <constraint firstItem="hgg-pt-Hjn" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="RNz-Qy-k0G"/>
                             <constraint firstItem="vz2-JX-7GI" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="UN0-ol-yKu"/>
+                            <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="0e5-JJ-fre" secondAttribute="trailing" id="WH5-5B-JN7"/>
                             <constraint firstItem="eqq-ns-WKg" firstAttribute="leading" secondItem="5QJ-eR-LHR" secondAttribute="trailing" constant="10" id="WUP-Ii-dsT"/>
                             <constraint firstItem="8Us-WH-GHG" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="Y8x-Gh-Ja3"/>
-                            <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="e8A-Ex-T26" secondAttribute="trailing" id="aXA-J2-TAJ"/>
+                            <constraint firstItem="0e5-JJ-fre" firstAttribute="top" secondItem="hgg-pt-Hjn" secondAttribute="bottom" id="anq-BH-rhX"/>
                             <constraint firstItem="YeB-9A-pRM" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" constant="16" id="eNg-mv-siu"/>
                             <constraint firstItem="5QJ-eR-LHR" firstAttribute="centerY" secondItem="YeB-9A-pRM" secondAttribute="centerY" constant="10" id="f4B-gj-2Eq"/>
-                            <constraint firstItem="FE6-bg-TaZ" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="gGX-P7-uBC"/>
                             <constraint firstItem="DGf-PW-zcS" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="nHZ-UC-Ogk"/>
                             <constraint firstItem="6HJ-dJ-uA2" firstAttribute="leading" secondItem="YeB-9A-pRM" secondAttribute="trailing" constant="20" id="nXO-wd-KKE"/>
-                            <constraint firstItem="DVk-zW-I6F" firstAttribute="trailing" secondItem="bOo-Gf-epR" secondAttribute="trailing" id="oku-tN-QeN"/>
-                            <constraint firstItem="7GT-0B-25r" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="s9g-7w-xEL"/>
-                            <constraint firstItem="e8A-Ex-T26" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="sf7-uO-VbX"/>
+                            <constraint firstItem="0e5-JJ-fre" firstAttribute="leading" secondItem="DVk-zW-I6F" secondAttribute="leading" id="qWP-uO-rOI"/>
                             <constraint firstItem="YeB-9A-pRM" firstAttribute="width" secondItem="fAf-dL-wwu" secondAttribute="width" multiplier="76/375" id="x2I-lJ-UfL"/>
                             <constraint firstItem="DGf-PW-zcS" firstAttribute="top" secondItem="YeB-9A-pRM" secondAttribute="bottom" constant="20" id="zGP-FH-gTm"/>
+                            <constraint firstItem="hgg-pt-Hjn" firstAttribute="top" secondItem="DGf-PW-zcS" secondAttribute="bottom" id="zJg-gd-max"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="levelButton" destination="5QJ-eR-LHR" id="2M3-Az-muY"/>
-                        <outlet property="listView" destination="bOo-Gf-epR" id="MxC-A1-mT2"/>
                         <outlet property="nickLabel" destination="6HJ-dJ-uA2" id="ZRU-dR-mLG"/>
                         <outlet property="profileImageView" destination="YeB-9A-pRM" id="usX-L3-wE1"/>
-                        <outlet property="reviewListButton" destination="6ZL-Sw-raV" id="ItB-oT-xQS"/>
-                        <outlet property="saveListButton" destination="SaH-J7-hBx" id="lYH-c8-Eug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3c-hU-aOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -171,9 +149,6 @@
         <image name="bntSetting" width="23" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
