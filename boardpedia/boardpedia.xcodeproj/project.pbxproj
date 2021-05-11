@@ -30,6 +30,7 @@
 		9BE098EB264995DC007D2BEC /* RecentKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098EA264995DC007D2BEC /* RecentKeywordCell.swift */; };
 		9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098EE2649AE19007D2BEC /* TopKeywordCell.swift */; };
 		9BE098F22649B3E8007D2BEC /* LeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098F12649B3E8007D2BEC /* LeftAlignFlowLayout.swift */; };
+		9BE098F8264A4FD9007D2BEC /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098F7264A4FD9007D2BEC /* SearchResultVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		9BE098EA264995DC007D2BEC /* RecentKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentKeywordCell.swift; sourceTree = "<group>"; };
 		9BE098EE2649AE19007D2BEC /* TopKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopKeywordCell.swift; sourceTree = "<group>"; };
 		9BE098F12649B3E8007D2BEC /* LeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignFlowLayout.swift; sourceTree = "<group>"; };
+		9BE098F7264A4FD9007D2BEC /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				9BE098D826492562007D2BEC /* SearchVC.swift */,
 				9BE098E3264991C7007D2BEC /* KeywordVC.swift */,
 				9BE098F12649B3E8007D2BEC /* LeftAlignFlowLayout.swift */,
+				9BE098F7264A4FD9007D2BEC /* SearchResultVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				9B41FA7A2643E138002A3E13 /* UIFont+Extension.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
+				9BE098F8264A4FD9007D2BEC /* SearchResultVC.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
