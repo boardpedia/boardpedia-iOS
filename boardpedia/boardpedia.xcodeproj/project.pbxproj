@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EBC77143FB85DC8C21C2050 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718802CED13D1ECE3B089BF3 /* Pods_boardpedia.framework */; };
 		9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA522643DD92002A3E13 /* AppDelegate.swift */; };
 		9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA542643DD92002A3E13 /* SceneDelegate.swift */; };
 		9B41FA572643DD92002A3E13 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA562643DD92002A3E13 /* MainVC.swift */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		718802CED13D1ECE3B089BF3 /* Pods_boardpedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_boardpedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E4CA5EA5BC5D64FE002580 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
 		9B41FA4F2643DD92002A3E13 /* boardpedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boardpedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B41FA522643DD92002A3E13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B41FA542643DD92002A3E13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		9BE098FD264A6E8D007D2BEC /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		9BE09904264A8CBD007D2BEC /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		9BE09914264AA448007D2BEC /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		C35AC79445CBFE79952B997F /* Pods-boardpedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.debug.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,17 +79,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EBC77143FB85DC8C21C2050 /* Pods_boardpedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52401B6C5CCD03DD2C1DF364 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				718802CED13D1ECE3B089BF3 /* Pods_boardpedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9B41FA462643DD92002A3E13 = {
 			isa = PBXGroup;
 			children = (
 				9B41FA512643DD92002A3E13 /* boardpedia */,
 				9B41FA502643DD92002A3E13 /* Products */,
+				EC35ADC36490DF61FE5A1FCD /* Pods */,
+				52401B6C5CCD03DD2C1DF364 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,6 +300,16 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		EC35ADC36490DF61FE5A1FCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C35AC79445CBFE79952B997F /* Pods-boardpedia.debug.xcconfig */,
+				91E4CA5EA5BC5D64FE002580 /* Pods-boardpedia.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -292,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B41FA632643DD95002A3E13 /* Build configuration list for PBXNativeTarget "boardpedia" */;
 			buildPhases = (
+				25E675DFEEDB67C44784782C /* [CP] Check Pods Manifest.lock */,
 				9B41FA4B2643DD92002A3E13 /* Sources */,
 				9B41FA4C2643DD92002A3E13 /* Frameworks */,
 				9B41FA4D2643DD92002A3E13 /* Resources */,
+				84002C7288207C49FFBFE57A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,6 +378,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25E675DFEEDB67C44784782C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boardpedia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84002C7288207C49FFBFE57A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B41FA4B2643DD92002A3E13 /* Sources */ = {
@@ -523,6 +592,7 @@
 		};
 		9B41FA642643DD95002A3E13 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C35AC79445CBFE79952B997F /* Pods-boardpedia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -542,6 +612,7 @@
 		};
 		9B41FA652643DD95002A3E13 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91E4CA5EA5BC5D64FE002580 /* Pods-boardpedia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
