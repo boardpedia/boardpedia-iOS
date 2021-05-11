@@ -1,0 +1,47 @@
+//
+//  SearchResultCell.swift
+//  boardpedia
+//
+//  Created by 김민희 on 2021/05/11.
+//
+
+import UIKit
+
+class SearchResultCell: UICollectionViewCell {
+    
+    // MARK: Variable Part
+    
+    static let identifier = "SearchResultCell"
+    
+    // MARK: IBOutlet
+    
+    @IBOutlet weak var boardImageView: UIImageView!
+    @IBOutlet weak var boardGameNameLabel: UILabel!
+    @IBOutlet weak var boardGameInfoLabel: UILabel!
+    @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet weak var gameValueLabel: UILabel!
+    
+    
+    // MARK: ContentView Default Set Function
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.contentView.backgroundColor = .boardWhite
+        self.contentView.setRounded(radius: 6)
+        
+        boardGameNameLabel.numberOfLines = 0
+        boardGameInfoLabel.numberOfLines = 0
+        boardImageView.setRounded(radius: 6)
+    }
+    
+    // MARK: Data Set Function
+    func configure(image: String, name: String, info: String, star: Float, save: Int) {
+
+        boardImageView.image = UIImage(named: image)
+        boardGameNameLabel.setLabel(text: name, font: .neoMedium(ofSize: 16))
+        boardGameInfoLabel.setLabel(text: info, color: .boardGray50, font: .neoRegular(ofSize: 13))
+        gameValueLabel.setLabel(text: "별점 \(star) / 저장 \(save)회", color: .boardGray40, font: .neoMedium(ofSize: 12))
+        
+    }
+}
