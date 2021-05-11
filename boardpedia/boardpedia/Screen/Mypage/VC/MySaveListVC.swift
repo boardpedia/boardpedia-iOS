@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class MySaveListVC: UIViewController {
+class MySaveListVC: UIViewController, IndicatorInfoProvider {
 
     // MARK: Variable Part
+    
+    var tabName: String = ""
     
     var saveListData: [GameDate] = []
     
@@ -24,6 +27,18 @@ class MySaveListVC: UIViewController {
         setResultCollectionView()
         // Do any additional setup after loading the view.
     }
+    
+    override func didReceiveMemoryWarning() {
+
+        super.didReceiveMemoryWarning()
+
+      }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+
+        return IndicatorInfo(title: "\(tabName)")
+
+      }
 
 
 }
