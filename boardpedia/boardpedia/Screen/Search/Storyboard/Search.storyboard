@@ -366,7 +366,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHi-0Y-s8d">
-                                                    <rect key="frame" x="237" y="179.5" width="162" height="20.5"/>
+                                                    <rect key="frame" x="237" y="180.5" width="162" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -384,7 +384,7 @@
                                                 <constraint firstItem="XhM-Bs-lxK" firstAttribute="height" secondItem="ASk-5u-H3t" secondAttribute="height" multiplier="24/100" id="l1p-uZ-4m6"/>
                                                 <constraint firstItem="wHi-0Y-s8d" firstAttribute="leading" secondItem="KQI-6Z-2Vm" secondAttribute="trailing" constant="5" id="lgb-gM-ysa"/>
                                                 <constraint firstItem="ASk-5u-H3t" firstAttribute="centerY" secondItem="S92-Bb-9GV" secondAttribute="centerY" id="pef-x3-IsD"/>
-                                                <constraint firstItem="wHi-0Y-s8d" firstAttribute="centerY" secondItem="KQI-6Z-2Vm" secondAttribute="centerY" id="qP7-UU-GKG"/>
+                                                <constraint firstItem="wHi-0Y-s8d" firstAttribute="centerY" secondItem="KQI-6Z-2Vm" secondAttribute="centerY" constant="1" id="qP7-UU-GKG"/>
                                                 <constraint firstItem="ASk-5u-H3t" firstAttribute="top" secondItem="S92-Bb-9GV" secondAttribute="top" constant="10" id="t3A-z7-pZR"/>
                                                 <constraint firstItem="jDs-cY-I1w" firstAttribute="leading" secondItem="1LM-Qq-Fs9" secondAttribute="leading" id="ufk-Gp-8mt"/>
                                                 <constraint firstItem="1LM-Qq-Fs9" firstAttribute="top" secondItem="ASk-5u-H3t" secondAttribute="top" constant="5" id="ygm-kY-MoK"/>
