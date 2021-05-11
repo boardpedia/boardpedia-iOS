@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class MypageVC: ButtonBarPagerTabStripViewController {
+class MypageVC: UIViewController {
     
     // MARK: Variable Part
     
@@ -17,41 +16,21 @@ class MypageVC: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var levelButton: UIButton!
+    @IBOutlet weak var subView: UIView!
     
     // MARK: IBAction
+
     
-    //    @IBAction func saveListButtonDidTap(_ sender: Any) {
-    //
-    //        saveListButton.setButton(text: "저장 목록", font: .neoSemiBold(ofSize: 16))
-    //        reviewListButton.setButton(text: "후기 목록", color: .boardGray50, font: .neoMedium(ofSize: 16))
-    //
-    //    }
-    //
-    //    @IBAction func reviewListButtonDidTap(_ sender: Any) {
-    //
-    //        reviewListButton.setButton(text: "후기 목록", font: .neoSemiBold(ofSize: 16))
-    //        saveListButton.setButton(text: "저장 목록", color: .boardGray50, font: .neoMedium(ofSize: 16))
-    //    }
     // MARK: Life Cycle Part
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        setView()
         
+        super.viewDidLoad()
+        setSubView()
+        setProfile()
         // Do any additional setup after loading the view.
     }
-    
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-//        let saveList = UIStoryboard.init(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "SearchResultVC") as! SearchResultVC
-//        saveList.tabName = "저장 목록"
-////        saveList.nibName
-//
-//
-////        let reviewList = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as! MypageVC
-//        reviewList.tabName = "후기 목록"
-        
-        return []
-    }
+
     
 }
 
@@ -59,9 +38,27 @@ class MypageVC: ButtonBarPagerTabStripViewController {
 
 extension MypageVC {
     
-    func setView() {
-        //        saveListButtonDidTap(self)
+    // MARK: List View Insert Function
+    
+    func setSubView() {
+        let vc = self.storyboard!.instantiateViewController(identifier: "SwipeVC")
+        self.addChild(vc)
+        
+        self.subView.addSubview(vc.view)
+        vc.view.frame = self.subView.bounds
+        vc.willMove(toParent: self)
+        vc.didMove(toParent: self)
     }
     
+    // MARK: Profile Style Function
+    
+    func setProfile() {
+        
+        profileImageView.image = UIImage(named: "profile")
+        nickLabel.setLabel(text: "미니", font: .neoBold(ofSize: 20))
+        levelButton.setButton(text: "보드초보자", color: .boardOrange, font: .neoMedium(ofSize: 15), backgroundColor: UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1))
+        levelButton.setRounded(radius: 12)
+        levelButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
+    }
     
 }

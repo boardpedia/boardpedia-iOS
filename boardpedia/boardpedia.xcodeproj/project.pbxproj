@@ -10,6 +10,8 @@
 		2EBC77143FB85DC8C21C2050 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718802CED13D1ECE3B089BF3 /* Pods_boardpedia.framework */; };
 		9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C43264AD75A00219529 /* MySaveListVC.swift */; };
 		9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C48264AD79700219529 /* MySaveListCell.swift */; };
+		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
+		9B162C4F264AE29C00219529 /* SwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4E264AE29C00219529 /* SwipeVC.swift */; };
 		9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA522643DD92002A3E13 /* AppDelegate.swift */; };
 		9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA542643DD92002A3E13 /* SceneDelegate.swift */; };
 		9B41FA572643DD92002A3E13 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA562643DD92002A3E13 /* MainVC.swift */; };
@@ -45,6 +47,8 @@
 		91E4CA5EA5BC5D64FE002580 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
 		9B162C43264AD75A00219529 /* MySaveListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListVC.swift; sourceTree = "<group>"; };
 		9B162C48264AD79700219529 /* MySaveListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListCell.swift; sourceTree = "<group>"; };
+		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
+		9B162C4E264AE29C00219529 /* SwipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeVC.swift; sourceTree = "<group>"; };
 		9B41FA4F2643DD92002A3E13 /* boardpedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boardpedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B41FA522643DD92002A3E13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B41FA542643DD92002A3E13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 			children = (
 				9BE09914264AA448007D2BEC /* MypageVC.swift */,
 				9B162C43264AD75A00219529 /* MySaveListVC.swift */,
+				9B162C4B264ADC7600219529 /* MyReviewListVC.swift */,
+				9B162C4E264AE29C00219529 /* SwipeVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */,
 				9BE098FB264A6AEB007D2BEC /* SearchResultData.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
+				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9BE098F8264A4FD9007D2BEC /* SearchResultVC.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
@@ -459,6 +466,7 @@
 				9BE098D926492562007D2BEC /* SearchVC.swift in Sources */,
 				9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */,
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
+				9B162C4F264AE29C00219529 /* SwipeVC.swift in Sources */,
 				9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */,
 				9B41FA9626467B96002A3E13 /* TrandingGameCell.swift in Sources */,
 				9BE098F22649B3E8007D2BEC /* LeftAlignFlowLayout.swift in Sources */,

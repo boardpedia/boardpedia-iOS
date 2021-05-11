@@ -13,7 +13,6 @@ class MySaveListVC: UIViewController, IndicatorInfoProvider {
     // MARK: Variable Part
     
     var tabName: String = ""
-    
     var saveListData: [GameDate] = []
     
     // MARK: IBOutlet
@@ -60,7 +59,7 @@ extension MySaveListVC {
         
         saveListCollectionView.delegate = self
         saveListCollectionView.dataSource = self
-        saveListCollectionView.backgroundColor = .boardGray
+        saveListCollectionView.backgroundColor = .boardWhite
     }
 }
 
