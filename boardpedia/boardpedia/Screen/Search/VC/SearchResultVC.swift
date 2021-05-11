@@ -60,6 +60,7 @@ class SearchResultVC: UIViewController {
         setButton()
         setResultLabel()
         setResultCollectionView()
+        setNoSearchData()
     }
     
 }
@@ -109,12 +110,58 @@ extension SearchResultVC {
         let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
         let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
         
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
+//        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
         
         
         searchResultCollectionView.delegate = self
         searchResultCollectionView.dataSource = self
         searchResultCollectionView.backgroundColor = .boardGray
+    }
+    
+    func setNoSearchData() {
+        // 검색 결과가 없을 때
+        
+        self.view.backgroundColor = .boardGray
+        
+        let infoLabel = UILabel()
+        self.view.addSubview(infoLabel)
+
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        infoLabel.centerYAnchor.constraint(equalTo: self.searchResultCollectionView.centerYAnchor).isActive = true
+        
+        infoLabel.setLabel(text: "찾고있는 보드게임이 없나요?", font: .neoMedium(ofSize: 16))
+        
+        
+        let brandImage = UIImageView()
+        self.view.addSubview(brandImage)
+
+        brandImage.translatesAutoresizingMaskIntoConstraints = false
+
+        brandImage.widthAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
+        brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
+        brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
+
+        brandImage.image = UIImage(named: "brandNoDataChacter")
+        
+        let addButton = UIButton()
+        self.view.addSubview(addButton)
+        
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+
+        addButton.widthAnchor.constraint(equalToConstant: 164/375 * self.view.frame.width).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 40/375 * self.view.frame.width).isActive = true
+        addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        addButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30).isActive = true
+        
+        addButton.setButton(text: "내가 직접 추가해보기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+        addButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
+        addButton.setRounded(radius: 6)
+
+        
     }
 }
 
