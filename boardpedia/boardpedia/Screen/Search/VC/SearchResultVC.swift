@@ -11,9 +11,17 @@ class SearchResultVC: UIViewController {
     
     // MARK: Variable Part
     
+    var number: Int = 0 {
+        // number가 바뀔 때 마다 실행
+        didSet {
+            setResultLabel()
+        }
+    }
+    
     // MARK: IBOutlet
     
     @IBOutlet var filterButton: [UIButton]!
+    @IBOutlet weak var resultLabel: UILabel!
     
     // MARK: IBAction
     
@@ -22,7 +30,7 @@ class SearchResultVC: UIViewController {
         for i in Range(0...3) {
             if filterButton[i].isTouchInside {
                 // 터치된 특정 인덱스 찾기
-                
+//                number += 1
                 filterButton[i].isSelected = !filterButton[i].isSelected
                 // 활성화 <--> 비활성화
                 
@@ -48,8 +56,7 @@ class SearchResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setButton()
-        
-        // Do any additional setup after loading the view.
+        setResultLabel()
     }
     
 }
@@ -71,5 +78,23 @@ extension SearchResultVC {
             button.tintColor = .clear
         }
         
+    }
+    
+    // MARK: Result Count Label Style Function
+    
+    func setResultLabel() {
+        resultLabel.setLabel(text: "전체 \(number)개의 검색 결과가 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        
+        if let text = resultLabel.text {
+            // 앞부분만 폰트와 컬러를 다르게 설정
+            
+            let changeString: String = "\(number)개"
+            let attributedStr = NSMutableAttributedString(string: text)
+            
+            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 15), range: (text as NSString).range(of: changeString))
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: changeString))
+
+            resultLabel.attributedText = attributedStr
+        }
     }
 }

@@ -323,6 +323,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="resultLabel" destination="zJ1-Yp-r9b" id="pDc-fS-Hmg"/>
                         <outletCollection property="filterButton" destination="ZkE-Eu-dNH" collectionClass="NSMutableArray" id="Qwz-Gn-lCJ"/>
                         <outletCollection property="filterButton" destination="1kX-b9-ufJ" collectionClass="NSMutableArray" id="p3O-rH-HYw"/>
                         <outletCollection property="filterButton" destination="8UC-IE-PMq" collectionClass="NSMutableArray" id="F2x-PB-Ks0"/>
