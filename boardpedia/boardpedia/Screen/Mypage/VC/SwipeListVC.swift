@@ -116,9 +116,9 @@ extension SwipeListVC {
         // 버튼 클릭 시 viewLine의 위치를 변경
         
         if btn.tag == 1 {
-            lineFrame.constant -= self.secondButton.frame.width
+            lineFrame.constant = 0
         } else {
-            lineFrame.constant += self.secondButton.frame.width
+            lineFrame.constant = self.firstButton.frame.width
         }
         
         UIView.animate(withDuration: 0.3) {
