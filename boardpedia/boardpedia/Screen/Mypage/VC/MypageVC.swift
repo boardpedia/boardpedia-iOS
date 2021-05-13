@@ -41,7 +41,7 @@ extension MypageVC {
     // MARK: List View Insert Function
     
     func setSubView() {
-        let vc = self.storyboard!.instantiateViewController(identifier: "SwipeVC")
+        let vc = self.storyboard!.instantiateViewController(identifier: "SwipeListVC")
         self.addChild(vc)
         
         self.subView.addSubview(vc.view)

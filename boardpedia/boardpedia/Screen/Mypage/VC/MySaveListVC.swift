@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class MySaveListVC: UIViewController, IndicatorInfoProvider {
+class MySaveListVC: UIViewController {
 
     // MARK: Variable Part
     
-    var tabName: String = ""
     var saveListData: [GameDate] = []
     
     // MARK: IBOutlet
@@ -26,19 +24,6 @@ class MySaveListVC: UIViewController, IndicatorInfoProvider {
         setResultCollectionView()
         // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-
-        super.didReceiveMemoryWarning()
-
-      }
-    
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-
-        return IndicatorInfo(title: "\(tabName)")
-
-      }
-
 
 }
 
@@ -54,7 +39,7 @@ extension MySaveListVC {
         let item1 = GameDate(gameImage: "testImage", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
         let item2 = GameDate(gameImage: "testImage", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
         let item3 = GameDate(gameImage: "testImage", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
-        saveListData.append(contentsOf: [item1,item2,item3])
+        saveListData.append(contentsOf: [item1,item2,item3,item1,item2,item3,item1,item2,item3,item1,item2,item3])
         
         
         saveListCollectionView.delegate = self

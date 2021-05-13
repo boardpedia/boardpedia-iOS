@@ -6,13 +6,10 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class MyReviewListVC: UIViewController, IndicatorInfoProvider {
+class MyReviewListVC: UIViewController {
 
     // MARK: Variable Part
-    
-    var tabName: String = ""
     
     // MARK: Life Cycle Part
     
@@ -21,17 +18,4 @@ class MyReviewListVC: UIViewController, IndicatorInfoProvider {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-
-        super.didReceiveMemoryWarning()
-
-      }
-    
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-
-        return IndicatorInfo(title: "\(tabName)")
-
-      }
-
 }
