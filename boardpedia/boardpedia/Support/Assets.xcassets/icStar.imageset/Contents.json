@@ -1,14 +1,14 @@
 {
   "images" : [
     {
+      "idiom" : "universal",
       "filename" : "icStar.png",
-      "scale" : "1x",
-      "idiom" : "universal"
+      "scale" : "1x"
     },
     {
-      "filename" : "icStar@2x.png",
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "icStar@2x.png"
     },
     {
       "idiom" : "universal",
