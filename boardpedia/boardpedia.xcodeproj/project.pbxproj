@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B09110C265BEEBA00FB5928 /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09110B265BEEBA00FB5928 /* ThemeVC.swift */; };
+		9B09110F265BEEF500FB5928 /* ThemeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */; };
+		9B091112265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */; };
+		9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */; };
+		9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */; };
 		9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C43264AD75A00219529 /* MySaveListVC.swift */; };
 		9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C48264AD79700219529 /* MySaveListCell.swift */; };
 		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
@@ -44,6 +49,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B09110B265BEEBA00FB5928 /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
+		9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionReusableView.swift; sourceTree = "<group>"; };
+		9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeKeywordCell.swift; sourceTree = "<group>"; };
+		9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGameListCell.swift; sourceTree = "<group>"; };
 		9B162C43264AD75A00219529 /* MySaveListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListVC.swift; sourceTree = "<group>"; };
 		9B162C48264AD79700219529 /* MySaveListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListCell.swift; sourceTree = "<group>"; };
 		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
@@ -222,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				9B41FA562643DD92002A3E13 /* MainVC.swift */,
+				9B09110B265BEEBA00FB5928 /* ThemeVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -239,6 +250,10 @@
 			children = (
 				9B41FA9526467B96002A3E13 /* TrandingGameCell.swift */,
 				9BE098C826490A01007D2BEC /* ThemeGameCell.swift */,
+				9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */,
+				9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */,
+				9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */,
+				9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -391,10 +406,13 @@
 				9B41FA8E2643EEEC002A3E13 /* UILabel+Extension.swift in Sources */,
 				9B41FA7A2643E138002A3E13 /* UIFont+Extension.swift in Sources */,
 				9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */,
+				9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */,
 				9BE098FB264A6AEB007D2BEC /* SearchResultData.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
+				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
+				9B09110C265BEEBA00FB5928 /* ThemeVC.swift in Sources */,
 				9BE098F8264A4FD9007D2BEC /* SearchResultVC.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
@@ -412,6 +430,8 @@
 				9BE098E4264991C7007D2BEC /* KeywordVC.swift in Sources */,
 				9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */,
 				9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */,
+				9B091112265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift in Sources */,
+				9B09110F265BEEF500FB5928 /* ThemeCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
