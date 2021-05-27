@@ -337,20 +337,87 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fcq-Ft-ALJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MxT-Gc-IRn" customClass="ThemeCollectionViewFlowLayout" customModule="boardpedia" customModuleProvider="target">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MxT-Gc-IRn" customClass="ThemeCollectionViewFlowLayout" customModule="boardpedia" customModuleProvider="target">
+                                    <size key="itemSize" width="414" height="170"/>
                                     <size key="headerReferenceSize" width="50" height="262"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="x4J-UD-r46">
-                                        <rect key="frame" x="0.0" y="262" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeGameListCell" id="x4J-UD-r46" customClass="ThemeGameListCell" customModule="boardpedia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="262" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hp9-rb-Uty">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mcH-8g-bL5">
+                                                    <rect key="frame" x="10" y="10" width="150" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="mcH-8g-bL5" secondAttribute="height" multiplier="1:1" id="7UF-Fm-P98"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXu-ci-hcy">
+                                                    <rect key="frame" x="175" y="15" width="193" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxn-qZ-PrT">
+                                                    <rect key="frame" x="175" y="40.5" width="193" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYL-Mq-NQ4">
+                                                    <rect key="frame" x="368" y="10" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="PYL-Mq-NQ4" secondAttribute="height" multiplier="1:1" id="opq-Q6-ooT"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icStorageUnselected"/>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStar" translatesAutoresizingMaskIntoConstraints="NO" id="c3i-51-W9P">
+                                                    <rect key="frame" x="175" y="140" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="ChM-fP-5e1"/>
+                                                        <constraint firstAttribute="width" constant="15" id="ohL-Wn-16N"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVQ-K6-DNa">
+                                                    <rect key="frame" x="195" y="138.5" width="41.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mcH-8g-bL5" firstAttribute="leading" secondItem="hp9-rb-Uty" secondAttribute="leading" constant="10" id="1DC-7E-gc5"/>
+                                                <constraint firstItem="PYL-Mq-NQ4" firstAttribute="width" secondItem="PYL-Mq-NQ4" secondAttribute="height" multiplier="1:1" id="1iV-Z9-7UN"/>
+                                                <constraint firstItem="wXu-ci-hcy" firstAttribute="leading" secondItem="mcH-8g-bL5" secondAttribute="trailing" constant="15" id="5mu-nB-bhR"/>
+                                                <constraint firstItem="PYL-Mq-NQ4" firstAttribute="top" secondItem="wXu-ci-hcy" secondAttribute="top" constant="-5" id="6sB-Ez-qXe"/>
+                                                <constraint firstItem="c3i-51-W9P" firstAttribute="leading" secondItem="mcH-8g-bL5" secondAttribute="trailing" constant="15" id="A5N-A7-Xmg"/>
+                                                <constraint firstItem="PYL-Mq-NQ4" firstAttribute="height" secondItem="mcH-8g-bL5" secondAttribute="height" multiplier="24/100" id="LK0-SH-OYs"/>
+                                                <constraint firstItem="sVQ-K6-DNa" firstAttribute="leading" secondItem="c3i-51-W9P" secondAttribute="trailing" constant="5" id="Pr5-aQ-meR"/>
+                                                <constraint firstAttribute="bottom" secondItem="mcH-8g-bL5" secondAttribute="bottom" constant="10" id="R16-zB-Mta"/>
+                                                <constraint firstItem="mcH-8g-bL5" firstAttribute="top" secondItem="hp9-rb-Uty" secondAttribute="top" constant="10" id="RYq-So-9NY"/>
+                                                <constraint firstAttribute="trailing" secondItem="PYL-Mq-NQ4" secondAttribute="trailing" constant="10" id="S6B-82-qX8"/>
+                                                <constraint firstItem="sVQ-K6-DNa" firstAttribute="centerY" secondItem="c3i-51-W9P" secondAttribute="centerY" constant="1" id="Siz-wa-zdZ"/>
+                                                <constraint firstItem="PYL-Mq-NQ4" firstAttribute="leading" secondItem="mxn-qZ-PrT" secondAttribute="trailing" id="Tnq-fY-z42"/>
+                                                <constraint firstItem="c3i-51-W9P" firstAttribute="bottom" secondItem="mcH-8g-bL5" secondAttribute="bottom" constant="-5" id="Zuj-CH-O57"/>
+                                                <constraint firstItem="wXu-ci-hcy" firstAttribute="top" secondItem="mcH-8g-bL5" secondAttribute="top" constant="5" id="fz6-rI-MWB"/>
+                                                <constraint firstItem="mxn-qZ-PrT" firstAttribute="leading" secondItem="wXu-ci-hcy" secondAttribute="leading" id="htc-rD-mMv"/>
+                                                <constraint firstItem="mxn-qZ-PrT" firstAttribute="top" secondItem="wXu-ci-hcy" secondAttribute="bottom" constant="5" id="pNT-IO-WNA"/>
+                                                <constraint firstItem="PYL-Mq-NQ4" firstAttribute="leading" secondItem="wXu-ci-hcy" secondAttribute="trailing" id="tkP-VJ-Whv"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="414" height="170"/>
+                                        <connections>
+                                            <outlet property="bookmarkButton" destination="PYL-Mq-NQ4" id="vGB-Os-hdX"/>
+                                            <outlet property="gameImageView" destination="mcH-8g-bL5" id="IbO-H6-1IC"/>
+                                            <outlet property="gameInfoLabel" destination="mxn-qZ-PrT" id="at8-tK-UWF"/>
+                                            <outlet property="gameNameLabel" destination="wXu-ci-hcy" id="7VL-lY-WyK"/>
+                                            <outlet property="gameValueLabel" destination="sVQ-K6-DNa" id="nGZ-gu-sI3"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeCollectionReusableView" id="6k1-TH-P8q" customClass="ThemeCollectionReusableView" customModule="boardpedia" customModuleProvider="target">
@@ -482,6 +549,8 @@
         <image name="bntSearch" width="18" height="18"/>
         <image name="brandBannerCh" width="99" height="104"/>
         <image name="brandCh" width="50" height="50"/>
+        <image name="icStar" width="37" height="36"/>
+        <image name="icStorageUnselected" width="18" height="21.5"/>
         <image name="icStorageUnselected" width="18" height="21.5"/>
         <image name="testBackImage_1" width="566" height="422"/>
         <image name="testImage" width="600" height="600"/>

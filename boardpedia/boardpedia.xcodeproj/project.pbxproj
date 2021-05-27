@@ -11,6 +11,7 @@
 		9B09110F265BEEF500FB5928 /* ThemeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */; };
 		9B091112265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */; };
 		9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */; };
+		9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */; };
 		9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C43264AD75A00219529 /* MySaveListVC.swift */; };
 		9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C48264AD79700219529 /* MySaveListCell.swift */; };
 		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
@@ -52,6 +53,7 @@
 		9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionReusableView.swift; sourceTree = "<group>"; };
 		9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeKeywordCell.swift; sourceTree = "<group>"; };
+		9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGameListCell.swift; sourceTree = "<group>"; };
 		9B162C43264AD75A00219529 /* MySaveListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListVC.swift; sourceTree = "<group>"; };
 		9B162C48264AD79700219529 /* MySaveListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListCell.swift; sourceTree = "<group>"; };
 		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */,
 				9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */,
 				9B09111B265BFB2600FB5928 /* ThemeKeywordCell.swift */,
+				9B09111E265C05F100FB5928 /* ThemeGameListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */,
 				9BE098FB264A6AEB007D2BEC /* SearchResultData.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
+				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9B09110C265BEEBA00FB5928 /* ThemeVC.swift in Sources */,
