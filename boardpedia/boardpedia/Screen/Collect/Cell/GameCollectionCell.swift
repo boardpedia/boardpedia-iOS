@@ -9,13 +9,19 @@ import UIKit
 
 class GameCollectionCell: UICollectionViewCell {
     
+    // MARK: Variable Part
+    
     static let identifier = "GameCollectionCell"
+    
+    // MARK: IBOutlet
     
     @IBOutlet weak var gameImageView: UIImageView!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameInfoLabel: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameValueLabel: UILabel!
+    
+    // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +36,7 @@ class GameCollectionCell: UICollectionViewCell {
     }
     
     // MARK: Data Set Function
+    
     func configure(image: String, name: String, info: String, star: Float, save: Int) {
 
         gameImageView.image = UIImage(named: image)

@@ -103,7 +103,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DrY-fp-t5d">
                                 <rect key="frame" x="0.0" y="205" width="414" height="691"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XtO-lh-b8L">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XtO-lh-b8L">
                                     <size key="itemSize" width="402" height="169"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -144,7 +144,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterCollcectionView" destination="IA1-UG-fhh" id="OvV-eB-PCu"/>
                         <outlet property="gameCollectionView" destination="DrY-fp-t5d" id="qlF-eM-EWO"/>
+                        <outlet property="resultLabel" destination="z0D-eI-Ah8" id="fkF-1W-8Ch"/>
+                        <outlet property="titleLabel" destination="qQj-SG-xbh" id="G8s-hK-DaN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4Z-eI-JHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -50,7 +50,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYs-91-xhY">
-                        <rect key="frame" x="173" y="115" width="110" height="21"/>
+                        <rect key="frame" x="173" y="116" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="dZa-o9-BGq" firstAttribute="leading" secondItem="wOV-xb-Z2j" secondAttribute="trailing" constant="15" id="1MD-tj-2bN"/>
-                <constraint firstItem="mYs-91-xhY" firstAttribute="centerY" secondItem="dZa-o9-BGq" secondAttribute="centerY" id="3gc-2c-mLd"/>
+                <constraint firstItem="mYs-91-xhY" firstAttribute="centerY" secondItem="dZa-o9-BGq" secondAttribute="centerY" constant="1" id="3gc-2c-mLd"/>
                 <constraint firstItem="mYs-91-xhY" firstAttribute="leading" secondItem="dZa-o9-BGq" secondAttribute="trailing" constant="5" id="7cd-eL-a2d"/>
                 <constraint firstItem="Rp5-55-EMF" firstAttribute="top" secondItem="wOV-xb-Z2j" secondAttribute="top" id="9Je-A6-nQF"/>
                 <constraint firstAttribute="trailing" secondItem="Rp5-55-EMF" secondAttribute="trailing" constant="5" id="9y4-bz-TXB"/>
