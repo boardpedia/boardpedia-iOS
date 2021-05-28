@@ -20,6 +20,8 @@
 		9B40CFA52660C34B00221ED4 /* GameCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */; };
 		9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */; };
 		9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA82660CEDC00221ED4 /* FilterCell.swift */; };
+		9B40CFB02660E56F00221ED4 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B40CFAF2660E56F00221ED4 /* Game.storyboard */; };
+		9B40CFB32660E57E00221ED4 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFB22660E57E00221ED4 /* GameVC.swift */; };
 		9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA522643DD92002A3E13 /* AppDelegate.swift */; };
 		9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA542643DD92002A3E13 /* SceneDelegate.swift */; };
 		9B41FA572643DD92002A3E13 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA562643DD92002A3E13 /* MainVC.swift */; };
@@ -67,6 +69,8 @@
 		9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionCell.swift; sourceTree = "<group>"; };
 		9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCollectionCell.xib; sourceTree = "<group>"; };
 		9B40CFA82660CEDC00221ED4 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		9B40CFAF2660E56F00221ED4 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		9B40CFB22660E57E00221ED4 /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		9B41FA4F2643DD92002A3E13 /* boardpedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boardpedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B41FA522643DD92002A3E13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B41FA542643DD92002A3E13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +162,31 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		9B40CFAC2660E54E00221ED4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				9B40CFAE2660E55E00221ED4 /* VC */,
+				9B40CFAD2660E55600221ED4 /* Storyboard */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		9B40CFAD2660E55600221ED4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9B40CFAF2660E56F00221ED4 /* Game.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9B40CFAE2660E55E00221ED4 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9B40CFB22660E57E00221ED4 /* GameVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		9B41FA462643DD92002A3E13 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +227,7 @@
 		9B41FA682643DF02002A3E13 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				9B40CFAC2660E54E00221ED4 /* Game */,
 				9B091123265FC0FD00FB5928 /* Collect */,
 				9BE09901264A8CA1007D2BEC /* Mypage */,
 				9BE098D2264924AF007D2BEC /* Search */,
@@ -430,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B40CFB02660E56F00221ED4 /* Game.storyboard in Resources */,
 				9B41FA5F2643DD95002A3E13 /* LaunchScreen.storyboard in Resources */,
 				9B41FA5C2643DD95002A3E13 /* Assets.xcassets in Resources */,
 				9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */,
@@ -477,6 +508,7 @@
 				9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */,
 				9B41FA9626467B96002A3E13 /* TrandingGameCell.swift in Sources */,
 				9BE098F22649B3E8007D2BEC /* LeftAlignFlowLayout.swift in Sources */,
+				9B40CFB32660E57E00221ED4 /* GameVC.swift in Sources */,
 				9B40CFA52660C34B00221ED4 /* GameCollectionCell.swift in Sources */,
 				9BE098FE264A6E8D007D2BEC /* SearchResultCell.swift in Sources */,
 				9BE098E4264991C7007D2BEC /* KeywordVC.swift in Sources */,
