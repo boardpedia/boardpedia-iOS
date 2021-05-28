@@ -9,21 +9,21 @@ import UIKit
 
 class GameCollectVC: UIViewController {
 
+    @IBOutlet weak var gameCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerXib()
 
         // Do any additional setup after loading the view.
     }
     
+    private func registerXib() {
 
-    /*
-    // MARK: - Navigation
+        let nibName = UINib(nibName: "GameCollectionCell", bundle: nil)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        gameCollectionView.register(nibName, forCellWithReuseIdentifier: "GameCollectionCell")
+
     }
-    */
 
 }
