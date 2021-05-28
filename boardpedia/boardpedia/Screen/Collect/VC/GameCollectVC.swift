@@ -19,12 +19,21 @@ class GameCollectVC: UIViewController {
         }
     }
     
+    var filterData: [String] = []
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var filterCollcectionView: UICollectionView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var gameCollectionView: UICollectionView!
+    
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            // 동적 사이즈를 주기 위해 estimatedItemSize 를 사용했다. 대략적인 셀의 크기를 먼저 조정한 후에 셀이 나중에 AutoLayout 될 때, 셀의 크기가 변경된다면 그 값이 다시 UICollectionViewFlowLayout에 전달되어 최종 사이즈가 결정되게 된다.
+        }
+    }
     
     // MARK: IBAction
     
@@ -35,6 +44,7 @@ class GameCollectVC: UIViewController {
         super.viewDidLoad()
         setView()
         setResultCollectionView()
+        setFilterCollectionView()
         setResultLabel()
 
         // Do any additional setup after loading the view.
@@ -69,6 +79,17 @@ extension GameCollectVC {
         gameCollectionView.backgroundColor = .boardGray
     }
     
+    func setFilterCollectionView() {
+        
+        filterData.append(contentsOf: ["인원 수", "난이도", "키워드", "시간순"])
+        filterCollcectionView.delegate = self
+        filterCollcectionView.dataSource = self
+        filterCollcectionView.backgroundColor = .clear
+        
+        let layout = filterCollcectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .horizontal
+    }
+    
     // MARK: Result Count Label Style Function
     
     func setResultLabel() {
@@ -97,14 +118,22 @@ extension GameCollectVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 한 아이템의 크기
         
-        let itemWidth = self.view.frame.width - 32
-        return CGSize(width: itemWidth, height: 120/343 * itemWidth)
+        if collectionView == gameCollectionView {
+            
+            let itemWidth = self.view.frame.width - 32
+            return CGSize(width: itemWidth, height: 120/343 * itemWidth)
+            
+        } else {
+            return CGSize(width: 30, height: 30)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // 아이템간의 간격
         
         return 10
+        
         
     }
     
@@ -117,7 +146,11 @@ extension GameCollectVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // collectionView와 View 간의 간격
         
-        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        if collectionView == gameCollectionView {
+            return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        } else {
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        }
         
     }
     
@@ -130,30 +163,47 @@ extension GameCollectVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return searchResultData.count
+        if collectionView == gameCollectionView {
+            return searchResultData.count
+        } else {
+            return filterData.count
+        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCollectionCell.identifier, for: indexPath) as? GameCollectionCell else {
-            return UICollectionViewCell()
-        }
-        
-        if searchResultData[indexPath.row].bookMark {
-            // 북마크 상태가 true(선택된 상태)라면
+        if collectionView == gameCollectionView {
             
-            cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCollectionCell.identifier, for: indexPath) as? GameCollectionCell else {
+                return UICollectionViewCell()
+            }
+            
+            if searchResultData[indexPath.row].bookMark {
+                // 북마크 상태가 true(선택된 상태)라면
+                
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            } else {
+                // 북마크 상태가 false(미선택된 상태)라면
+                
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            }
+            
+            cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+            
+            return cell
+            
         } else {
-            // 북마크 상태가 false(미선택된 상태)라면
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as? FilterCell else {
+                return UICollectionViewCell()
+            }
             
-            cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            cell.filterLabel.text = filterData[indexPath.row]
+            
+            return cell
         }
         
-        cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
-        
-        return cell
         
     }
     
