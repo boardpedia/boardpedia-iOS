@@ -13,19 +13,37 @@ class GameVC: UIViewController {
     
     var tab1VC: GameManualVC! = nil
     var tab2VC: GameManualVC! = nil
+    var starPoint: Float = 4.8
     
     private var pageController: UIPageViewController!
     private var arrVC: [UIViewController] = []
     private var currentPage: Int!
     
+    var gameTagData: [KeywordData] = []
+    
+    // MARK: IBOutlet
+    
+    @IBOutlet weak var titleImageView: UIImageView!
+    @IBOutlet weak var gameNameLabel: UILabel!
+    @IBOutlet weak var gameTagCollectionView: UICollectionView!
+    @IBOutlet weak var gameInfoLabel: UILabel!
+    @IBOutlet weak var gameStarLabel: UILabel!
+    
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            // 동적 사이즈를 주기 위해 estimatedItemSize 를 사용했다. 대략적인 셀의 크기를 먼저 조정한 후에 셀이 나중에 AutoLayout 될 때, 셀의 크기가 변경된다면 그 값이 다시 UICollectionViewFlowLayout에 전달되어 최종 사이즈가 결정되게 된다.
+        }
+    }
+    
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     
     @IBOutlet weak var viewLine: UIView!
-    
     @IBOutlet weak var lineFrame: NSLayoutConstraint!
-    
     @IBOutlet weak var myView: UIView!
+    
+    // MARK: IBAction
     
     @IBAction func buttonDidTap(_ sender: UIButton) {
         
@@ -49,17 +67,13 @@ class GameVC: UIViewController {
         
     }
     
+    // MARK: Life Cycle Part
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        currentPage = 0
-        // 첫번째 버튼이 클릭 된 상태로 시작
+        setView()
+        setCollectionView()
         
-        createPageViewController()
-        viewLine.backgroundColor = .boardOrange
-        
-        self.firstButton.setButton(text: "게임 설명", color: .boardBlack, font: .neoSemiBold(ofSize: 16))
-        self.secondButton.setButton(text: "후기", color: .boardGray50, font: .neoSemiBold(ofSize: 16))
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,6 +88,39 @@ class GameVC: UIViewController {
 //MARK: Extension
 
 extension GameVC {
+    
+    func setView() {
+        
+        titleImageView.image = UIImage(named: "abaloneImg")
+        gameNameLabel.setLabel(text: "모노폴리 클래식", font: .neoSemiBold(ofSize: 22))
+        gameInfoLabel.setLabel(text: "보드게임 진심러들이 고른 진짜 중 진짜!", color: .boardGray50, font: .neoMedium(ofSize: 17))
+        gameStarLabel.setLabel(text: "별점 \(starPoint)점", font: .neoMedium(ofSize: 14))
+        
+        currentPage = 0
+        // 첫번째 버튼이 클릭 된 상태로 시작
+        
+        createPageViewController()
+        viewLine.backgroundColor = .boardOrange
+        
+        self.firstButton.setButton(text: "게임 설명", color: .boardBlack, font: .neoSemiBold(ofSize: 16))
+        self.secondButton.setButton(text: "후기", color: .boardGray50, font: .neoSemiBold(ofSize: 16))
+    }
+    
+    func setCollectionView() {
+        
+        // Test Data (서버 연결 전)
+        let item1 = KeywordData(keyword: "파티")
+        let item2 = KeywordData(keyword: "전략적인")
+        let item3 = KeywordData(keyword: "즐거운")
+        
+        gameTagData.append(contentsOf: [item1,item2,item3])
+        
+        gameTagCollectionView.delegate = self
+        gameTagCollectionView.dataSource = self
+        
+        let layout = gameTagCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
+    }
     
     //MARK: Set Page View Controller Func
     
@@ -200,3 +247,62 @@ extension GameVC: UIPageViewControllerDataSource, UIPageViewControllerDelegate, 
         }
     }
 }
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension GameVC: UICollectionViewDelegateFlowLayout {
+    // CollectionView 크기 잡기
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 한 아이템의 크기
+        
+        return CGSize(width: 78, height: 30)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 10
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // collectionView와 View 간의 간격
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+    }
+    
+}
+
+// MARK: UICollectionViewDataSource
+
+extension GameVC: UICollectionViewDataSource {
+    // CollectionView 데이터 넣기
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return gameTagData.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.tagLabel.text = gameTagData[indexPath.row].keyword
+        
+        return cell
+        
+    }
+    
+}
+
