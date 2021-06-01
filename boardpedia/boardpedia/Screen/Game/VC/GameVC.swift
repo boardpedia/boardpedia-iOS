@@ -19,7 +19,7 @@ class GameVC: UIViewController {
     private var arrVC: [UIViewController] = []
     private var currentPage: Int!
     
-    var gameTagData: [KeywordData] = []
+    var gameDetail: GameDetailData?
     
     // MARK: IBOutlet
     
@@ -91,11 +91,6 @@ extension GameVC {
     
     func setView() {
         
-        titleImageView.image = UIImage(named: "abaloneImg")
-        gameNameLabel.setLabel(text: "모노폴리 클래식", font: .neoSemiBold(ofSize: 22))
-        gameInfoLabel.setLabel(text: "보드게임 진심러들이 고른 진짜 중 진짜!", color: .boardGray50, font: .neoMedium(ofSize: 17))
-        gameStarLabel.setLabel(text: "별점 \(starPoint)점", font: .neoMedium(ofSize: 14))
-        
         currentPage = 0
         // 첫번째 버튼이 클릭 된 상태로 시작
         
@@ -109,11 +104,18 @@ extension GameVC {
     func setCollectionView() {
         
         // Test Data (서버 연결 전)
-        let item1 = KeywordData(keyword: "파티")
-        let item2 = KeywordData(keyword: "전략적인")
-        let item3 = KeywordData(keyword: "즐거운")
+        let item = GameDetailData(gameIdx: 2, name: "다이아몬드 게임", intro: "내 말을 움직여 반대편의 우리집으로 먼저 옮기자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/639261505700784.png", tag: ["유명한", "간단한", "클래식"], saved: 1, star: 3.5, objective: "도로, 마을과 도시, 교역로와 기사를 이용하여 가장 먼저 10점을 달성하세요. 상대방이 필요한 자원이 무엇인지 파악하고, 유리하게 거래에 이용해보세요!", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/639261505700784", method: "1. 맵을 구성하고 구성물을 나눠 가지세요.\n2. 플레이어 당 마을 2개와 도로 2개를 놓아 근거지를 정하세요.\n3. 주사위를 굴려 자원을 획득합니다.\n4. 자원을 교환하고 필요한 건물을 건설하여 영역을 확장해 나가보세요!")
         
-        gameTagData.append(contentsOf: [item1,item2,item3])
+        gameDetail = item
+        
+        if let gameDetail = gameDetail {
+            
+            titleImageView.image = UIImage(named: "abaloneImg")
+            gameNameLabel.setLabel(text: gameDetail.name, font: .neoSemiBold(ofSize: 22))
+            gameInfoLabel.setLabel(text: gameDetail.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
+            gameStarLabel.setLabel(text: "별점 \(gameDetail.star)점", font: .neoMedium(ofSize: 14))
+        }
+        
         
         gameTagCollectionView.delegate = self
         gameTagCollectionView.dataSource = self
@@ -287,7 +289,10 @@ extension GameVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return gameTagData.count
+        if let data = gameDetail {
+            return data.tag.count
+        }
+         return 0
         
     }
     
@@ -298,7 +303,12 @@ extension GameVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.tagLabel.text = gameTagData[indexPath.row].keyword
+        if let data = gameDetail {
+            
+            cell.tagLabel.text = data.tag[indexPath.row]
+            
+        }
+        
         
         return cell
         
