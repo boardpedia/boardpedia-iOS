@@ -20,7 +20,7 @@ class GameVC: UIViewController {
     private var currentPage: Int!
     
     var gameDetail: GameDetailData?
-    
+    var heightConstraints: NSLayoutConstraint = NSLayoutConstraint()
     // MARK: IBOutlet
     
     @IBOutlet weak var titleImageView: UIImageView!
@@ -114,6 +114,12 @@ extension GameVC {
             gameNameLabel.setLabel(text: gameDetail.name, font: .neoSemiBold(ofSize: 22))
             gameInfoLabel.setLabel(text: gameDetail.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
             gameStarLabel.setLabel(text: "별점 \(gameDetail.star)점", font: .neoMedium(ofSize: 14))
+            
+//            self.myView.heightAnchor.constraint(equalToConstant: self.tab1VC.view.frame.height).isActive = true
+            
+            tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, headcount: "최대 2인", level: "하 (누구나 쉽게)", method: gameDetail.method)
+
+            
         }
         
         
@@ -140,13 +146,27 @@ extension GameVC {
         }
         
         tab1VC = self.storyboard?.instantiateViewController(withIdentifier: "GameManualVC") as? GameManualVC
+        tab1VC.loadCompletion = { [weak self] height in
+            guard let strongSelf = self else { return }
+            strongSelf.heightConstraints.constant = height
+            strongSelf.pageController.view.frame = CGRect(x: 0,
+                                                          y: 0,
+                                                          width: strongSelf.view.frame.size.width,
+                                                          height: height)
+            self?.view.layoutIfNeeded()
+        }
+        
         tab2VC = self.storyboard?.instantiateViewController(withIdentifier: "GameManualVC") as? GameManualVC
         
+        self.myView.translatesAutoresizingMaskIntoConstraints = false
+        heightConstraints = self.myView.heightAnchor.constraint(equalToConstant: 0)
+        heightConstraints.isActive = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 
-            self.pageController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.tab1VC.view.frame.height)
-            self.myView.translatesAutoresizingMaskIntoConstraints = false
-            self.myView.heightAnchor.constraint(equalToConstant: self.tab1VC.view.frame.height).isActive = true
+            
+            
+            
+            
         }
         
         arrVC = [tab1VC, tab2VC]

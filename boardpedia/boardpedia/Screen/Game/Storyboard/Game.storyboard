@@ -653,6 +653,14 @@
                             <constraint firstItem="Hzg-0e-J3O" firstAttribute="trailing" secondItem="iVX-SH-ZRH" secondAttribute="trailing" constant="16" id="yD0-U3-nk7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headcountLabel" destination="Afb-CM-Qom" id="mdv-Sq-Pfj"/>
+                        <outlet property="levelLabel" destination="klC-cS-fhU" id="Ihf-vw-Qnp"/>
+                        <outlet property="methodLabel" destination="iVX-SH-ZRH" id="vIP-qV-ys9"/>
+                        <outlet property="nameLabel" destination="Z6v-g0-Fqf" id="RnH-EZ-vjz"/>
+                        <outlet property="objectiveLabel" destination="IBg-0V-3sz" id="oTZ-Kb-xLH"/>
+                        <outlet property="timeLabel" destination="pXz-ns-R86" id="OEm-Nc-Zf1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqB-gg-FzZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
