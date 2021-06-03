@@ -21,6 +21,7 @@ class GameVC: UIViewController {
     
     var gameDetail: GameDetailData?
     var heightConstraints: NSLayoutConstraint = NSLayoutConstraint()
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var titleImageView: UIImageView!
@@ -28,6 +29,9 @@ class GameVC: UIViewController {
     @IBOutlet weak var gameTagCollectionView: UICollectionView!
     @IBOutlet weak var gameInfoLabel: UILabel!
     @IBOutlet weak var gameStarLabel: UILabel!
+    
+    @IBOutlet weak var saveImage: UIImageView!
+    
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
         didSet {
@@ -104,7 +108,7 @@ extension GameVC {
     func setCollectionView() {
         
         // Test Data (서버 연결 전)
-        let item = GameDetailData(gameIdx: 2, name: "다이아몬드 게임", intro: "내 말을 움직여 반대편의 우리집으로 먼저 옮기자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/639261505700784.png", tag: ["유명한", "간단한", "클래식"], saved: 1, star: 3.5, objective: "도로, 마을과 도시, 교역로와 기사를 이용하여 가장 먼저 10점을 달성하세요. 상대방이 필요한 자원이 무엇인지 파악하고, 유리하게 거래에 이용해보세요!", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/639261505700784", method: "1. 맵을 구성하고 구성물을 나눠 가지세요.\n2. 플레이어 당 마을 2개와 도로 2개를 놓아 근거지를 정하세요.\n3. 주사위를 굴려 자원을 획득합니다.\n4. 자원을 교환하고 필요한 건물을 건설하여 영역을 확장해 나가보세요!")
+        let item = GameDetailData(gameIdx: 73, name: "다빈치 코드", intro: "상대방의 숫자를 추리하여 맞춰보자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", playerNum: 2, maxPlayerNum: 4, duration: "15분", level: "하", tag: ["클래식", "머리쓰는", "카드","추리"], saved: 0, star: 0, objective: "여러분의 비밀코드는 숨기고, 상대방의 코드를 추리하세요. 하나씩 드러나는 상대방의 코드를 바탕으로 나머지 코드를 모두 맞춰보세요.", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", method: "1.타일을 뒤집어서 잘 섞은 후, 각자 타일을 4개씩 가져오세요. \n2. 자기 차례가 되면 뒤집어진 타일 1개를 가져와 순서에 맞게 정리해서 놓으세요. 그리고 상대방의 타일 중 하나를 선택해 숫자를 맞혀주세요. \n3.상대방의 타일을 맞췄다면 계속 맞힐지 그만둘지를 결정하세요. \n4. 한 명만 남고 모든 타일이 공개되면 게임 끝!")
         
         gameDetail = item
         
@@ -115,7 +119,13 @@ extension GameVC {
             gameInfoLabel.setLabel(text: gameDetail.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
             gameStarLabel.setLabel(text: "별점 \(gameDetail.star)점", font: .neoMedium(ofSize: 14))
             
-            let viewHeigth = tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, headcount: "최대 2인", level: "하 (누구나 쉽게)", method: gameDetail.method)
+            if gameDetail.saved == 0 {
+                saveImage.image = UIImage(named: "icStorageUnselected")
+            } else {
+                saveImage.image = UIImage(named: "icStorageSelected")
+            }
+            
+            let viewHeigth = tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, playerNum: gameDetail.playerNum, maxPlayerNum: gameDetail.maxPlayerNum, level: "하", method: gameDetail.method, tip: "어쩌구 저쩌구를 열심히 어쩌구 해보세요! 그럼 당신이 아발론 승리자!")
             
             self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
             

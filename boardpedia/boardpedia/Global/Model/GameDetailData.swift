@@ -8,21 +8,23 @@
 import Foundation
 
 struct GameDetailData: Codable {
+    
     let gameIdx: Int
     let name, intro: String
     let imageURL: String
+    let playerNum, maxPlayerNum: Int
+    let duration, level: String
     let tag: [String]
-    let saved: Int
-    let star: Double
+    let saved, star: Int
     let objective: String
     let webURL: String
     let method: String
-
+    
     enum CodingKeys: String, CodingKey {
         case gameIdx = "GameIdx"
         case name, intro
         case imageURL = "imageUrl"
-        case tag, saved, star, objective
+        case playerNum, maxPlayerNum, duration, level, tag, saved, star, objective
         case webURL = "webUrl"
         case method
     }
