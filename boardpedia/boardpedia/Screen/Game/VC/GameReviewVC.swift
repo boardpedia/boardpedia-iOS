@@ -40,6 +40,7 @@ class GameReviewVC: UIViewController {
     override func viewWillLayoutSubviews() {
         
         self.topKeywordCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.reviewTableView.translatesAutoresizingMaskIntoConstraints = false
         
         if let data = reviewData {
             if data.reviewInfo.topKeywords.count > 2 {
@@ -51,6 +52,8 @@ class GameReviewVC: UIViewController {
                 self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
             }
         }
+        
+        
         
     }
 
@@ -97,6 +100,8 @@ extension GameReviewVC {
             
             topKeywordCollectionView.reloadData()
             reviewTableView.reloadData()
+            
+            self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
             
             countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
             

@@ -757,7 +757,7 @@
                                                                         <rect key="frame" x="20" y="0.0" width="151" height="104"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="104" id="7DO-jl-Gn2"/>
+                                                                            <constraint firstAttribute="height" priority="250" constant="104" id="7DO-jl-Gn2"/>
                                                                         </constraints>
                                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lmW-0C-b3f">
                                                                             <size key="itemSize" width="122" height="53"/>
@@ -893,20 +893,37 @@
                                                                     <rect key="frame" x="139" y="54.5" width="233" height="70.5"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RSc-Xi-mFf">
-                                                                        <size key="itemSize" width="141" height="22"/>
+                                                                        <size key="itemSize" width="191" height="37"/>
                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                     </collectionViewFlowLayout>
                                                                     <cells>
-                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bnu-8T-jzn">
-                                                                            <rect key="frame" x="46" y="0.0" width="141" height="22"/>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameTagCell" id="Bnu-8T-jzn" customClass="GameTagCell" customModule="boardpedia" customModuleProvider="target">
+                                                                            <rect key="frame" x="21" y="0.0" width="191" height="37"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mI0-XZ-hpc">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="141" height="22"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="191" height="37"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJI-pm-D4d">
+                                                                                        <rect key="frame" x="10" y="3" width="171" height="33"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="gJI-pm-D4d" secondAttribute="trailing" constant="10" id="H92-y9-TL8"/>
+                                                                                    <constraint firstItem="gJI-pm-D4d" firstAttribute="top" secondItem="mI0-XZ-hpc" secondAttribute="top" constant="3" id="Kkb-2K-rwK"/>
+                                                                                    <constraint firstItem="gJI-pm-D4d" firstAttribute="leading" secondItem="mI0-XZ-hpc" secondAttribute="leading" constant="10" id="jmy-SQ-Xtw"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="gJI-pm-D4d" secondAttribute="bottom" constant="1" id="wld-Ls-kz3"/>
+                                                                                </constraints>
                                                                             </collectionViewCellContentView>
-                                                                            <size key="customSize" width="141" height="22"/>
+                                                                            <size key="customSize" width="191" height="37"/>
+                                                                            <connections>
+                                                                                <outlet property="tagLabel" destination="gJI-pm-D4d" id="kS0-7C-QTY"/>
+                                                                            </connections>
                                                                         </collectionViewCell>
                                                                     </cells>
                                                                 </collectionView>
@@ -928,7 +945,9 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="collectionLayout" destination="RSc-Xi-mFf" id="ZZM-fs-pdH"/>
                                                             <outlet property="dateLabel" destination="PP4-0A-Bcq" id="qYl-8V-0rS"/>
+                                                            <outlet property="keywordCollectionView" destination="tv9-lG-yXo" id="ixQ-eV-11O"/>
                                                             <outlet property="nickLabel" destination="ddF-Tf-jzT" id="eBb-mn-9x4"/>
                                                             <outlet property="profileImageView" destination="UBR-Kh-Yeh" id="QmP-3V-6ji"/>
                                                         </connections>

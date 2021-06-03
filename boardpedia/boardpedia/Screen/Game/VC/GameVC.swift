@@ -22,6 +22,9 @@ class GameVC: UIViewController {
     var gameDetail: GameDetailData?
     var heightConstraints: NSLayoutConstraint = NSLayoutConstraint()
     
+    var reviewViewHeigth: CGFloat = 100
+    var viewHeigth: CGFloat = 100
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var titleImageView: UIImageView!
@@ -56,11 +59,16 @@ class GameVC: UIViewController {
             
             sender.tag = 1
             
+//            self.myView.heightAnchor.constraint(equalToConstant: 2000).isActive = true
+            
+            
         
         } else if sender == self.secondButton {
             // 두번째 버튼 클릭 시
             
             sender.tag = 2
+            
+//            self.myView.heightAnchor.constraint(equalToConstant: reviewViewHeigth).isActive = true
         }
         
         pageController.setViewControllers([arrVC[sender.tag-1]], direction: UIPageViewController.NavigationDirection.reverse, animated: false, completion: {(Bool) -> Void in
@@ -125,7 +133,7 @@ extension GameVC {
                 saveImage.image = UIImage(named: "icStorageSelected")
             }
             
-            let viewHeigth = tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, playerNum: gameDetail.playerNum, maxPlayerNum: gameDetail.maxPlayerNum, level: "하", method: gameDetail.method, tip: "어쩌구 저쩌구를 열심히 어쩌구 해보세요! 그럼 당신이 아발론 승리자!")
+            viewHeigth = tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, playerNum: gameDetail.playerNum, maxPlayerNum: gameDetail.maxPlayerNum, level: "하", method: gameDetail.method, tip: "어쩌구 저쩌구를 열심히 어쩌구 해보세요! 그럼 당신이 아발론 승리자!")
             
             self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
             
@@ -178,9 +186,13 @@ extension GameVC {
         // 버튼 클릭 시 viewLine의 위치를 변경
         
         if btn.tag == 1 {
+            
             lineFrame.constant = 0
+
         } else {
+            
             lineFrame.constant = self.firstButton.frame.width
+            
         }
         
         UIView.animate(withDuration: 0.3) {
@@ -193,21 +205,23 @@ extension GameVC {
     
     private func resetTabBarForTag(tag: Int) {
         
+        
         var sender: UIButton!
         
         if(tag == 0) {
             sender = firstButton
             self.firstButton.setTitleColor(.boardBlack, for: .normal)
             self.secondButton.setTitleColor(.boardGray50, for: .normal)
+            selectedButton(btn: sender)
         }
         else if(tag == 1) {
             sender = secondButton
             self.secondButton.setTitleColor(.boardBlack, for: .normal)
             self.firstButton.setTitleColor(.boardGray50, for: .normal)
+            selectedButton(btn: sender)
         }
         
         currentPage = tag
-        selectedButton(btn: sender)
         
     }
 }
