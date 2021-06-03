@@ -20,7 +20,7 @@ class GameReviewVC: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var writeButton: UIButton!
     
-    @IBOutlet weak var reviewCollectionView: UITableView!
+    @IBOutlet weak var reviewTableView: UITableView!
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
         didSet {
@@ -78,6 +78,10 @@ extension GameReviewVC {
         topKeywordCollectionView.dataSource = self
         
         topKeywordCollectionView.backgroundColor = .clear
+        
+        reviewTableView.delegate = self
+        reviewTableView.dataSource = self
+        reviewTableView.backgroundColor = .clear
     }
     
     func setData() {
@@ -90,9 +94,11 @@ extension GameReviewVC {
             
             averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
             keyword = data.reviewInfo.topKeywords
-            topKeywordCollectionView.reloadData()
             
-            countLabel.setLabel(text: "후기 \(data.reviewInfo.topKeywords.count)개", font: .neoMedium(ofSize: 16))
+            topKeywordCollectionView.reloadData()
+            reviewTableView.reloadData()
+            
+            countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
             
         }
         
@@ -167,5 +173,48 @@ extension GameReviewVC: UICollectionViewDataSource {
         
         
     }
+    
+}
+
+
+
+// MARK: UITableViewDataSource
+
+extension GameReviewVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let data = reviewData {
+            return data.reviews.count
+        } else {
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GameReviewCell.identifier, for: indexPath) as? GameReviewCell else { return UITableViewCell() }
+        
+        if let data = reviewData {
+            
+            cell.configure(nick: data.reviews[indexPath.row].nickName, start: data.reviews[indexPath.row].star, keyword: data.reviews[indexPath.row].keyword, date: data.reviews[indexPath.row].createdAt, level: data.reviews[indexPath.row].level)
+        }
+        
+        
+        return cell
+        
+    }
+    
+    
+}
+
+// MARK: UITableViewDelegate
+
+extension GameReviewVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     
 }

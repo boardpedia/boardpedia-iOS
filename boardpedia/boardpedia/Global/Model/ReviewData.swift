@@ -21,7 +21,8 @@ struct ReviewInfo: Codable {
 
 // MARK: - Review
 struct Review: Codable {
-    let reviewIdx, star: Int
+    let reviewIdx: Int
+    let star: Double
     let keyword: [String]
     let createdAt: String
     let userIdx: Int
