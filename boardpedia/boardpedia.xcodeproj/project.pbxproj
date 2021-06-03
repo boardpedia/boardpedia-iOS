@@ -40,6 +40,8 @@
 		9B7F182E2666277B00BD29CC /* GameDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F182D2666277B00BD29CC /* GameDetailData.swift */; };
 		9B7F18332668AF7400BD29CC /* SimilarGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */; };
 		9B7F18362668C88800BD29CC /* GameReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18352668C88800BD29CC /* GameReviewVC.swift */; };
+		9B7F18392668DE8E00BD29CC /* ReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18382668DE8D00BD29CC /* ReviewData.swift */; };
+		9B7F18482668F2A000BD29CC /* CollectionViewCenterLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18472668F2A000BD29CC /* CollectionViewCenterLayout.swift */; };
 		9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */; };
 		9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */; };
 		9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53CA264D23C900C6A01C /* MyReviewData.swift */; };
@@ -96,6 +98,8 @@
 		9B7F182D2666277B00BD29CC /* GameDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailData.swift; sourceTree = "<group>"; };
 		9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGameCell.swift; sourceTree = "<group>"; };
 		9B7F18352668C88800BD29CC /* GameReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReviewVC.swift; sourceTree = "<group>"; };
+		9B7F18382668DE8D00BD29CC /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
+		9B7F18472668F2A000BD29CC /* CollectionViewCenterLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCenterLayout.swift; sourceTree = "<group>"; };
 		9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeListVC.swift; sourceTree = "<group>"; };
 		9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewCell.swift; sourceTree = "<group>"; };
 		9B9C53CA264D23C900C6A01C /* MyReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewData.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				9B40CFB22660E57E00221ED4 /* GameVC.swift */,
 				9B40CFE32664D68900221ED4 /* GameManualVC.swift */,
 				9B7F18352668C88800BD29CC /* GameReviewVC.swift */,
+				9B7F18472668F2A000BD29CC /* CollectionViewCenterLayout.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				9BE098FA264A6AEA007D2BEC /* SearchResultData.swift */,
 				9B9C53CA264D23C900C6A01C /* MyReviewData.swift */,
 				9B7F182D2666277B00BD29CC /* GameDetailData.swift */,
+				9B7F18382668DE8D00BD29CC /* ReviewData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9B09110C265BEEBA00FB5928 /* ThemeVC.swift in Sources */,
 				9BE098F8264A4FD9007D2BEC /* SearchResultVC.swift in Sources */,
+				9B7F18482668F2A000BD29CC /* CollectionViewCenterLayout.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B40CFE42664D68900221ED4 /* GameManualVC.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
@@ -524,6 +531,7 @@
 				9BE098EB264995DC007D2BEC /* RecentKeywordCell.swift in Sources */,
 				9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */,
 				9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */,
+				9B7F18392668DE8E00BD29CC /* ReviewData.swift in Sources */,
 				9BE098E7264995A6007D2BEC /* KeywordData.swift in Sources */,
 				9BE098D926492562007D2BEC /* SearchVC.swift in Sources */,
 				9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */,

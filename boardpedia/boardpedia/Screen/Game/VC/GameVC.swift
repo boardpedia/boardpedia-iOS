@@ -12,7 +12,7 @@ class GameVC: UIViewController {
     // MARK: Variable Part
     
     var tab1VC: GameManualVC! = nil
-    var tab2VC: GameManualVC! = nil
+    var tab2VC: GameReviewVC! = nil
     var starPoint: Float = 4.8
     
     private var pageController: UIPageViewController!
@@ -155,7 +155,7 @@ extension GameVC {
         }
         
         tab1VC = self.storyboard?.instantiateViewController(withIdentifier: "GameManualVC") as? GameManualVC
-        tab2VC = self.storyboard?.instantiateViewController(withIdentifier: "GameManualVC") as? GameManualVC
+        tab2VC = self.storyboard?.instantiateViewController(withIdentifier: "GameReviewVC") as? GameReviewVC
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 
