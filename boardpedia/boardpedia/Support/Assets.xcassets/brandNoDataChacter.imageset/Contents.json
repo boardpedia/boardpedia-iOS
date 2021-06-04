@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "brandNoDataChacter.png"
+      "filename" : "brandNoDataChacter.png",
+      "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "filename" : "brandNoDataChacter@2x.png",
       "scale" : "2x",
-      "filename" : "brandNoDataChacter@2x.png"
+      "idiom" : "universal"
     },
     {
-      "filename" : "brandNoDataChacter@3x.png",
       "scale" : "3x",
+      "filename" : "brandNoDataChacter@3x.png",
       "idiom" : "universal"
     }
   ],

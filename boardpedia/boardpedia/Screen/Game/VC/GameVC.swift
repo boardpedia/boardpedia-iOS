@@ -116,7 +116,7 @@ extension GameVC {
     func setCollectionView() {
         
         // Test Data (서버 연결 전)
-        let item = GameDetailData(gameIdx: 73, name: "다빈치 코드", intro: "상대방의 숫자를 추리하여 맞춰보자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", playerNum: 2, maxPlayerNum: 4, duration: "15분", level: "하", tag: ["클래식", "머리쓰는", "카드","추리"], saved: 0, star: 0, objective: "여러분의 비밀코드는 숨기고, 상대방의 코드를 추리하세요. 하나씩 드러나는 상대방의 코드를 바탕으로 나머지 코드를 모두 맞춰보세요.", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", method: "1.타일을 뒤집어서 잘 섞은 후, 각자 타일을 4개씩 가져오세요. \n2. 자기 차례가 되면 뒤집어진 타일 1개를 가져와 순서에 맞게 정리해서 놓으세요. 그리고 상대방의 타일 중 하나를 선택해 숫자를 맞혀주세요. \n3.상대방의 타일을 맞췄다면 계속 맞힐지 그만둘지를 결정하세요. \n4. 한 명만 남고 모든 타일이 공개되면 게임 끝!")
+        let item = GameDetailData(gameIdx: 73, name: "다빈치 코드", intro: "상대방의 숫자를 추리하여 맞춰보자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", playerNum: 2, maxPlayerNum: 4, duration: "15분", level: "하", tag: ["클래식", "머리쓰는", "카드","추리"], saved: 0, star: 3.5, objective: "여러분의 비밀코드는 숨기고, 상대방의 코드를 추리하세요. 하나씩 드러나는 상대방의 코드를 바탕으로 나머지 코드를 모두 맞춰보세요.", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", method: "1.타일을 뒤집어서 잘 섞은 후, 각자 타일을 4개씩 가져오세요. \n2. 자기 차례가 되면 뒤집어진 타일 1개를 가져와 순서에 맞게 정리해서 놓으세요. 그리고 상대방의 타일 중 하나를 선택해 숫자를 맞혀주세요. \n3.상대방의 타일을 맞췄다면 계속 맞힐지 그만둘지를 결정하세요. \n4. 한 명만 남고 모든 타일이 공개되면 게임 끝!")
         
         gameDetail = item
         
