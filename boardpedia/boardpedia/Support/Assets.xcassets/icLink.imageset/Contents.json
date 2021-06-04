@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "brandNoDataChacter.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "icLink.png",
+      "idiom" : "universal"
     },
     {
-      "filename" : "brandNoDataChacter@2x.png",
       "scale" : "2x",
+      "filename" : "icLink@2x.png",
       "idiom" : "universal"
     },
     {
       "scale" : "3x",
-      "filename" : "brandNoDataChacter@3x.png",
+      "filename" : "icLink@3x.png",
       "idiom" : "universal"
     }
   ],
