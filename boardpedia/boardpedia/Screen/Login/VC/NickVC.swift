@@ -9,10 +9,17 @@ import UIKit
 
 class NickVC: UIViewController {
 
+    // MARK: IBOutlet
+    
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var nickTextField: UITextField!
     @IBOutlet weak var startButton: UIButton!
     
+    
+    // MARK: IBAction
+    
+    
+    // MARK: Life Cycle Part
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +41,11 @@ class NickVC: UIViewController {
 
 }
 
+// MARK: Extension
+
 extension NickVC {
+    
+    // MARK: View Style Function
     
     func setView() {
         
@@ -46,6 +57,7 @@ extension NickVC {
         nickTextField.backgroundColor = .backGray
         nickTextField.placeholder = "닉네임을 입력해주세요!"
         nickTextField.font = .neoMedium(ofSize: 16)
+        nickTextField.setRounded(radius: 6)
         
         nickTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
