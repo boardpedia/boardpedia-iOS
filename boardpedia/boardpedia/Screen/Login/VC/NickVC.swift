@@ -20,6 +20,17 @@ class NickVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // 이 뷰에 들어오자 마자 바로 키보드 띄우고 cursor 포커스 주기
+        self.nickTextField.becomeFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 뷰 클릭 시 키보드 내리기
+        view.endEditing(true)
+    }
+    
 
 }
 
@@ -36,5 +47,57 @@ extension NickVC {
         nickTextField.placeholder = "닉네임을 입력해주세요!"
         nickTextField.font = .neoMedium(ofSize: 16)
         
+        nickTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        
+        
+        startButton.setRounded(radius: 8)
+        startButton.setButton(text: "보드피디아 시작하기", color: .boardWhite, font: .neoLight(ofSize: 18), backgroundColor: .boardGray20)
+        
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        if textField.text?.count == 0 || textField.text == nil {
+            // Text가 존재하지 않을 때 버튼 비활성화
+            
+            startButton.isEnabled = false
+            startButton.setButton(text: "보드피디아 시작하기", color: .boardWhite, font: .neoLight(ofSize: 18), backgroundColor: .boardGray20)
+
+
+        } else {
+            
+            startButton.isEnabled = true
+            startButton.setButton(text: "보드피디아 시작하기", color: .boardWhite, font: .neoBold(ofSize: 18 ), backgroundColor: .boardOrange)
+
+        }
+        
+        if let count = textField.text?.count {
+            if count > 4 {
+                // 닉네임이 최대 4글자를 넘는다면?
+                
+                textField.deleteBackward()
+                // 그 뒤에 글자들은 쳐져도 삭제된다
+            }
+        }
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension NickVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 리턴 키 클릭 시
+        
+        textField.endEditing(true)
+        return true
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        // textField 클릭하면 무조건 키보드 올라오게
+        textField.becomeFirstResponder()
+    }
+    
 }
