@@ -54,6 +54,7 @@
 		9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */; };
 		9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */; };
 		9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53CA264D23C900C6A01C /* MyReviewData.swift */; };
+		9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD72CD12671EA8900CE299C /* APITarget.swift */; };
 		9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098C826490A01007D2BEC /* ThemeGameCell.swift */; };
 		9BE098CC26490AB2007D2BEC /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098CB26490AB2007D2BEC /* ThemeData.swift */; };
 		9BE098D6264924D9007D2BEC /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE098D5264924D9007D2BEC /* Search.storyboard */; };
@@ -124,6 +125,7 @@
 		9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeListVC.swift; sourceTree = "<group>"; };
 		9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewCell.swift; sourceTree = "<group>"; };
 		9B9C53CA264D23C900C6A01C /* MyReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewData.swift; sourceTree = "<group>"; };
+		9BD72CD12671EA8900CE299C /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		9BE098C826490A01007D2BEC /* ThemeGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGameCell.swift; sourceTree = "<group>"; };
 		9BE098CB26490AB2007D2BEC /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
 		9BE098D5264924D9007D2BEC /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			children = (
 				9B4ACDCF266B688A00381416 /* NetworkResult.swift */,
 				9B4ACDD6266B6A9400381416 /* APIService.swift */,
+				9BD72CD12671EA8900CE299C /* APITarget.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				9B7F18482668F2A000BD29CC /* CollectionViewCenterLayout.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B40CFE42664D68900221ED4 /* GameManualVC.swift in Sources */,
+				9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */,
 				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
