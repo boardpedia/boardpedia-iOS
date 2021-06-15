@@ -17,6 +17,7 @@
 		9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C43264AD75A00219529 /* MySaveListVC.swift */; };
 		9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C48264AD79700219529 /* MySaveListCell.swift */; };
 		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
+		9B294180267904120008F69F /* TrendingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29417F267904120008F69F /* TrendingGame.swift */; };
 		9B40CFA52660C34B00221ED4 /* GameCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */; };
 		9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */; };
 		9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA82660CEDC00221ED4 /* FilterCell.swift */; };
@@ -86,6 +87,7 @@
 		9B162C43264AD75A00219529 /* MySaveListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListVC.swift; sourceTree = "<group>"; };
 		9B162C48264AD79700219529 /* MySaveListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListCell.swift; sourceTree = "<group>"; };
 		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
+		9B29417F267904120008F69F /* TrendingGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGame.swift; sourceTree = "<group>"; };
 		9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionCell.swift; sourceTree = "<group>"; };
 		9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCollectionCell.xib; sourceTree = "<group>"; };
 		9B40CFA82660CEDC00221ED4 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				9B7F18382668DE8D00BD29CC /* ReviewData.swift */,
 				9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */,
 				9B4ACDDC266B703100381416 /* SimpleData.swift */,
+				9B29417F267904120008F69F /* TrendingGame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */,
 				9BE098FB264A6AEB007D2BEC /* SearchResultData.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
+				9B294180267904120008F69F /* TrendingGame.swift in Sources */,
 				9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */,
 				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
