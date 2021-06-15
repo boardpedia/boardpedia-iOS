@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,6 +40,10 @@
 		9B4ACDC5266B539F00381416 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC4266B539F00381416 /* Login.storyboard */; };
 		9B4ACDC8266B53B100381416 /* LoginPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */; };
 		9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDCA266B5ACB00381416 /* NickVC.swift */; };
+		9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDCF266B688A00381416 /* NetworkResult.swift */; };
+		9B4ACDD7266B6A9400381416 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDD6266B6A9400381416 /* APIService.swift */; };
+		9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */; };
+		9B4ACDDD266B703100381416 /* SimpleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDDC266B703100381416 /* SimpleData.swift */; };
 		9B7F182E2666277B00BD29CC /* GameDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F182D2666277B00BD29CC /* GameDetailData.swift */; };
 		9B7F18332668AF7400BD29CC /* SimilarGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */; };
 		9B7F18362668C88800BD29CC /* GameReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18352668C88800BD29CC /* GameReviewVC.swift */; };
@@ -50,6 +54,7 @@
 		9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */; };
 		9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */; };
 		9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53CA264D23C900C6A01C /* MyReviewData.swift */; };
+		9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD72CD12671EA8900CE299C /* APITarget.swift */; };
 		9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098C826490A01007D2BEC /* ThemeGameCell.swift */; };
 		9BE098CC26490AB2007D2BEC /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098CB26490AB2007D2BEC /* ThemeData.swift */; };
 		9BE098D6264924D9007D2BEC /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE098D5264924D9007D2BEC /* Search.storyboard */; };
@@ -65,9 +70,12 @@
 		9BE098FE264A6E8D007D2BEC /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE098FD264A6E8D007D2BEC /* SearchResultCell.swift */; };
 		9BE09905264A8CBD007D2BEC /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE09904264A8CBD007D2BEC /* Mypage.storyboard */; };
 		9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE09914264AA448007D2BEC /* MypageVC.swift */; };
+		BDD02A23D6CC622A1D25CF31 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_boardpedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D81D051F43E6C38C6ECFDE /* Pods-boardpedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.debug.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.debug.xcconfig"; sourceTree = "<group>"; };
 		9B09110B265BEEBA00FB5928 /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
 		9B09110E265BEEF500FB5928 /* ThemeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionReusableView.swift; sourceTree = "<group>"; };
 		9B091111265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -103,6 +111,10 @@
 		9B4ACDC4266B539F00381416 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPopupVC.swift; sourceTree = "<group>"; };
 		9B4ACDCA266B5ACB00381416 /* NickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickVC.swift; sourceTree = "<group>"; };
+		9B4ACDCF266B688A00381416 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		9B4ACDD6266B6A9400381416 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		9B4ACDDC266B703100381416 /* SimpleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleData.swift; sourceTree = "<group>"; };
 		9B7F182D2666277B00BD29CC /* GameDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailData.swift; sourceTree = "<group>"; };
 		9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGameCell.swift; sourceTree = "<group>"; };
 		9B7F18352668C88800BD29CC /* GameReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReviewVC.swift; sourceTree = "<group>"; };
@@ -113,6 +125,7 @@
 		9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeListVC.swift; sourceTree = "<group>"; };
 		9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewCell.swift; sourceTree = "<group>"; };
 		9B9C53CA264D23C900C6A01C /* MyReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewData.swift; sourceTree = "<group>"; };
+		9BD72CD12671EA8900CE299C /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		9BE098C826490A01007D2BEC /* ThemeGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGameCell.swift; sourceTree = "<group>"; };
 		9BE098CB26490AB2007D2BEC /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
 		9BE098D5264924D9007D2BEC /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -128,6 +141,7 @@
 		9BE098FD264A6E8D007D2BEC /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		9BE09904264A8CBD007D2BEC /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		9BE09914264AA448007D2BEC /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,12 +149,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD02A23D6CC622A1D25CF31 /* Pods_boardpedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93CC178009DD5EA7EFC703BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9B091123265FC0FD00FB5928 /* Collect */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +253,8 @@
 			children = (
 				9B41FA512643DD92002A3E13 /* boardpedia */,
 				9B41FA502643DD92002A3E13 /* Products */,
+				E2B62CFF7852D67A2556631C /* Pods */,
+				93CC178009DD5EA7EFC703BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,6 +337,8 @@
 				9B9C53CA264D23C900C6A01C /* MyReviewData.swift */,
 				9B7F182D2666277B00BD29CC /* GameDetailData.swift */,
 				9B7F18382668DE8D00BD29CC /* ReviewData.swift */,
+				9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */,
+				9B4ACDDC266B703100381416 /* SimpleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,6 +346,9 @@
 		9B41FA6F2643DF45002A3E13 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				9B4ACDCF266B688A00381416 /* NetworkResult.swift */,
+				9B4ACDD6266B6A9400381416 /* APIService.swift */,
+				9BD72CD12671EA8900CE299C /* APITarget.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -471,6 +501,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		E2B62CFF7852D67A2556631C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21D81D051F43E6C38C6ECFDE /* Pods-boardpedia.debug.xcconfig */,
+				CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,9 +517,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B41FA632643DD95002A3E13 /* Build configuration list for PBXNativeTarget "boardpedia" */;
 			buildPhases = (
+				A505D93D1AE9FE513DE82783 /* [CP] Check Pods Manifest.lock */,
 				9B41FA4B2643DD92002A3E13 /* Sources */,
 				9B41FA4C2643DD92002A3E13 /* Frameworks */,
 				9B41FA4D2643DD92002A3E13 /* Resources */,
+				8C1B4CF77E1103F4076D4CC2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -542,6 +583,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C1B4CF77E1103F4076D4CC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boardpedia/Pods-boardpedia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A505D93D1AE9FE513DE82783 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boardpedia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B41FA4B2643DD92002A3E13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -554,11 +637,13 @@
 				9BE098CC26490AB2007D2BEC /* ThemeData.swift in Sources */,
 				9B41FA532643DD92002A3E13 /* AppDelegate.swift in Sources */,
 				9B41FA8E2643EEEC002A3E13 /* UILabel+Extension.swift in Sources */,
+				9B4ACDDD266B703100381416 /* SimpleData.swift in Sources */,
 				9B41FA7A2643E138002A3E13 /* UIFont+Extension.swift in Sources */,
 				9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */,
 				9B09111C265BFB2600FB5928 /* ThemeKeywordCell.swift in Sources */,
 				9BE098FB264A6AEB007D2BEC /* SearchResultData.swift in Sources */,
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
+				9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */,
 				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
@@ -568,6 +653,8 @@
 				9B7F18482668F2A000BD29CC /* CollectionViewCenterLayout.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B40CFE42664D68900221ED4 /* GameManualVC.swift in Sources */,
+				9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */,
+				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
 				9BE098EB264995DC007D2BEC /* RecentKeywordCell.swift in Sources */,
@@ -580,6 +667,7 @@
 				9B7F18362668C88800BD29CC /* GameReviewVC.swift in Sources */,
 				9B40CFE92664E6F200221ED4 /* GameTagCell.swift in Sources */,
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
+				9B4ACDD7266B6A9400381416 /* APIService.swift in Sources */,
 				9B09112B265FC14500FB5928 /* GameCollectVC.swift in Sources */,
 				9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */,
 				9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */,
@@ -739,6 +827,7 @@
 		};
 		9B41FA642643DD95002A3E13 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21D81D051F43E6C38C6ECFDE /* Pods-boardpedia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -758,6 +847,7 @@
 		};
 		9B41FA652643DD95002A3E13 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
