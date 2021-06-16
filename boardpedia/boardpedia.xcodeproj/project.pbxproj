@@ -19,6 +19,8 @@
 		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
 		9B294180267904120008F69F /* TrendingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29417F267904120008F69F /* TrendingGame.swift */; };
 		9B2941882679CACB0008F69F /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2941872679CACB0008F69F /* UIImageView+Extension.swift */; };
+		9B29418C267A48640008F69F /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B29418B267A48640008F69F /* Splash.storyboard */; };
+		9B294193267A4A420008F69F /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B294192267A4A420008F69F /* SplashVC.swift */; };
 		9B40CFA52660C34B00221ED4 /* GameCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */; };
 		9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */; };
 		9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B40CFA82660CEDC00221ED4 /* FilterCell.swift */; };
@@ -90,6 +92,8 @@
 		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
 		9B29417F267904120008F69F /* TrendingGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGame.swift; sourceTree = "<group>"; };
 		9B2941872679CACB0008F69F /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		9B29418B267A48640008F69F /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		9B294192267A4A420008F69F /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		9B40CFA32660C34B00221ED4 /* GameCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionCell.swift; sourceTree = "<group>"; };
 		9B40CFA42660C34B00221ED4 /* GameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCollectionCell.xib; sourceTree = "<group>"; };
 		9B40CFA82660CEDC00221ED4 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -213,6 +217,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		9B29418A267A48550008F69F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9B29418B267A48640008F69F /* Splash.storyboard */,
+				9B294192267A4A420008F69F /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		9B40CFAC2660E54E00221ED4 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +307,7 @@
 		9B41FA682643DF02002A3E13 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				9B29418A267A48550008F69F /* Splash */,
 				9B4ACDC1266B538800381416 /* Login */,
 				9B40CFAC2660E54E00221ED4 /* Game */,
 				9B091123265FC0FD00FB5928 /* Collect */,
@@ -578,6 +592,7 @@
 				9B40CFB02660E56F00221ED4 /* Game.storyboard in Resources */,
 				9B41FA5F2643DD95002A3E13 /* LaunchScreen.storyboard in Resources */,
 				9B41FA5C2643DD95002A3E13 /* Assets.xcassets in Resources */,
+				9B29418C267A48640008F69F /* Splash.storyboard in Resources */,
 				9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */,
 				9BE09905264A8CBD007D2BEC /* Mypage.storyboard in Resources */,
 				9B091128265FC12700FB5928 /* GameCollect.storyboard in Resources */,
@@ -662,6 +677,7 @@
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B40CFE42664D68900221ED4 /* GameManualVC.swift in Sources */,
 				9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */,
+				9B294193267A4A420008F69F /* SplashVC.swift in Sources */,
 				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,

@@ -556,7 +556,6 @@
         <image name="brandCh" width="50" height="50"/>
         <image name="icStar" width="37" height="36"/>
         <image name="icStorageUnselected" width="18" height="21.5"/>
-        <image name="icStorageUnselected" width="18" height="21.5"/>
         <image name="testBackImage_1" width="566" height="422"/>
         <image name="testImage" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
