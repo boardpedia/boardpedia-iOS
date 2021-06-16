@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 struct APIService {
     
@@ -81,3 +82,8 @@ extension APIService {
 }
 
 
+class NetworkState {
+    class func isConnected() -> Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}
