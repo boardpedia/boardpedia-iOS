@@ -11,7 +11,7 @@ class MainVC: UIViewController {
     
     // MARK: Variable Part
     
-    var firstHeaderData: [GameDate] = []
+    var trendingData: [TrendingGame] = []
     var secondHeaderData: [ThemeData] = []
 
     // MARK: IBOutlet
@@ -39,6 +39,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setView()
         setCollectionView()
+        trendingGameData(jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI")
         // Do any additional setup after loading the view.
     }
 
@@ -99,12 +100,6 @@ extension MainVC {
     
     func setCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let item1 = GameDate(gameImage: "", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
-        let item2 = GameDate(gameImage: "", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
-        let item3 = GameDate(gameImage: "", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
-        firstHeaderData.append(contentsOf: [item1,item2,item3])
-        
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
         
@@ -126,6 +121,25 @@ extension MainVC {
         themeGameCollectionView.delegate = self
         themeGameCollectionView.dataSource = self
         
+    }
+    
+    func trendingGameData(jwt: String) {
+        
+        APIService.shared.trending(jwt) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                // 로그인이 되어있는 상황
+                trendingData = data
+                print(trendingData)
+                trandingGameCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            
+            }
+            
+        }
     }
 }
 
@@ -184,7 +198,7 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == trandingGameCollectionView {
-            return firstHeaderData.count
+            return trendingData.count
         } else {
             return 8
         }
@@ -199,8 +213,7 @@ extension MainVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrandingGameCell.identifier, for: indexPath) as? TrandingGameCell else {
                 return UICollectionViewCell()
             }
-            
-            cell.configure(name: firstHeaderData[indexPath.row].gameName, explain: firstHeaderData[indexPath.row].gameExplain)
+            cell.configure(name: trendingData[indexPath.row].name, explain: trendingData[indexPath.row].intro)
             return cell
             
         } else {

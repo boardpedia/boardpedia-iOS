@@ -15,7 +15,7 @@ struct APIService {
     let provider = MoyaProvider<APITarget>()
     // MoyaProvider(->요청 보내는 클래스) 인스턴스 생성
     
-    func trending(_ jwt: String, completion: @escaping (NetworkResult<TrendingGame>)->(Void)) {
+    func trending(_ jwt: String, completion: @escaping (NetworkResult<[TrendingGame]>)->(Void)) {
     // 홈 - 트렌딩 게임 조회하기
         
         let target: APITarget = .trending(jwt: jwt)
@@ -41,7 +41,7 @@ extension APIService {
                     print("구조체를 확인해보세요")
                 }
             case .failure(let error):
-                completion(.failure(error.response!.statusCode))
+                completion(.failure(error.response?.statusCode ?? 100))
             }
         }
     }
