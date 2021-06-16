@@ -259,6 +259,13 @@ extension MainVC: BookmarkCellDelegate {
         
         // 로그인을 했을 시
         
+        if trendingData[value].saved == 0 {
+            // 미저장 -> 저장으로 변경
+            
+        } else {
+            // 저장 -> 미저장으로 변경
+            
+        }
         
     }
     

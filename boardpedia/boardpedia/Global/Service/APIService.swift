@@ -21,6 +21,21 @@ struct APIService {
         let target: APITarget = .trending(jwt: jwt)
         judgeObject(target, completion: completion)
     }
+    
+    func saveGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
+    // 북마크 저장
+        
+        let target: APITarget = .saveGame(jwt: jwt, gameIdx: gameIdx)
+        judgeSimpleObject(target, completion: completion)
+    }
+    
+    func saveCancleGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
+    // 북마크 저장 취소
+        
+        let target: APITarget = .saveCancleGame(jwt: jwt, gameIdx: gameIdx)
+        judgeSimpleObject(target, completion: completion)
+    }
+    
 
 }
 
