@@ -37,6 +37,13 @@ struct APIService {
         judgeSimpleObject(target, completion: completion)
     }
     
+    func login(_ snsId: String, _ provider: String, completion: @escaping (NetworkResult<TokenData>)->(Void)) {
+    // 유저 로그인
+        
+        let target: APITarget = .login(snsId: snsId, provider: provider)
+        judgeObject(target, completion: completion)
+    }
+    
 
 }
 
