@@ -23,7 +23,6 @@ class TrandingGameCell: UICollectionViewCell {
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
-        bookmarkButton.tintColor = .gray
         gameNameLabel.setLabel(text: "게임 이름", font: .neoMedium(ofSize: 16))
         gameExplainLabel.setLabel(text: "보드게임 한 줄 설명", color: .boardGray50, font: .neoRegular(ofSize: 13))
         gameImageView.setRounded(radius: 6)

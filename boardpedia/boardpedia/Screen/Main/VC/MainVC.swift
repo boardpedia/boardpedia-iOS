@@ -213,7 +213,15 @@ extension MainVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrandingGameCell.identifier, for: indexPath) as? TrandingGameCell else {
                 return UICollectionViewCell()
             }
+            
             cell.configure(name: trendingData[indexPath.row].name, explain: trendingData[indexPath.row].intro)
+            
+            if trendingData[indexPath.row].saved == 0 {
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            } else {
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            }
+            
             return cell
             
         } else {
