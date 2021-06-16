@@ -257,13 +257,41 @@ extension MainVC: BookmarkCellDelegate {
         
         // 로그인을 안했을 시 -> 로그인을 하라는 창으로 이동
         
+        
         // 로그인을 했을 시
         
         if trendingData[value].saved == 0 {
             // 미저장 -> 저장으로 변경
             
+            APIService.shared.saveGame("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI", trendingData[value].gameIdx) { [self] result in
+                switch result {
+                
+                case .success(_):
+                    
+                    trendingGameData(jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI")
+                    
+                case .failure(let error):
+                    print(error)
+                
+                }
+                
+            }
         } else {
             // 저장 -> 미저장으로 변경
+            
+            APIService.shared.saveCancleGame("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI", trendingData[value].gameIdx) { [self] result in
+                switch result {
+                
+                case .success(_):
+                    
+                    trendingGameData(jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI")
+                    
+                case .failure(let error):
+                    print(error)
+                
+                }
+                
+            }
             
         }
         
