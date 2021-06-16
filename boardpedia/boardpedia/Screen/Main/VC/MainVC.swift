@@ -224,6 +224,13 @@ extension MainVC: UICollectionViewDataSource {
             
             cell.configure(name: trendingData[indexPath.row].name, explain: trendingData[indexPath.row].intro)
             
+            if trendingData[indexPath.row].imageURL != "" {
+                cell.setImage(imageURL: trendingData[indexPath.row].imageURL)
+            } else {
+                cell.gameImageView.image = UIImage(named: "testImage")
+            }
+            
+            
             if trendingData[indexPath.row].saved == 0 {
                 cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
             } else {

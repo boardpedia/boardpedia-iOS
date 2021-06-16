@@ -47,7 +47,7 @@ class TrandingGameCell: UICollectionViewCell {
     // MARK: Image Set Function
     
     func setImage(imageURL: String) {
-//        gameImageView.setImage(imageURL)
+        gameImageView.setImage(from: imageURL)
     }
     
 }
