@@ -39,8 +39,12 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setView()
         setCollectionView()
-        trendingGameData(jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI")
+       
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        trendingGameData(jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo4LCJpYXQiOjE2MjM4MjEwNjksImV4cCI6MTYyNDQyNTg2OSwiaXNzIjoiYm9hcmRwZWRpYSJ9.Jy6KDtE2fRvb4Yb0MfcVdSJ7JofGpoH2t7gtt3FgQHI")
     }
 
 }
@@ -123,15 +127,16 @@ extension MainVC {
         
     }
     
+    // MARK: TrendingGame Network Connect
+    
     func trendingGameData(jwt: String) {
         
         APIService.shared.trending(jwt) { [self] result in
             switch result {
             
             case .success(let data):
-                // 로그인이 되어있는 상황
+                
                 trendingData = data
-                print(trendingData)
                 trandingGameCollectionView.reloadData()
                 
             case .failure(let error):
@@ -214,6 +219,9 @@ extension MainVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
+            cell.cellDelegate = self
+            cell.cellIndex = indexPath
+            
             cell.configure(name: trendingData[indexPath.row].name, explain: trendingData[indexPath.row].intro)
             
             if trendingData[indexPath.row].saved == 0 {
@@ -234,5 +242,18 @@ extension MainVC: UICollectionViewDataSource {
         }
         
     }
+    
+}
+
+extension MainVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        // 로그인을 안했을 시 -> 로그인을 하라는 창으로 이동
+        
+        // 로그인을 했을 시
+        
+        
+    }
+    
     
 }

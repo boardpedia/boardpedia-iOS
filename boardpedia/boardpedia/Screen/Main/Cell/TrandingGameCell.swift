@@ -12,6 +12,8 @@ class TrandingGameCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "TrandingGameCell"
+    var cellDelegate: BookmarkCellDelegate?
+    var cellIndex : IndexPath?
     
     // MARK: IBOutlet
     
@@ -19,6 +21,13 @@ class TrandingGameCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameExplainLabel: UILabel!
+    
+    // MARK: IBAction
+    
+    @IBAction func bookmarkDidTap(_ sender: Any) {
+        
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+    }
     
     // MARK: ContentView Default Set Function
     

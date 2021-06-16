@@ -241,8 +241,8 @@ extension SearchResultVC: UICollectionViewDataSource {
 }
 
 
-extension SearchResultVC: SearchResultCellDelegate {
-    func SearchResultCellGiveIndex(_ cell: SearchResultCell, didClickedIndex value: Int) {
+extension SearchResultVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
         
         searchResultData[value].bookMark = !searchResultData[value].bookMark
         // 북마크 상태 반대로 전환 (선택 <--> 미선택)

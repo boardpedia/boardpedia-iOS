@@ -70,6 +70,9 @@
                                                                     <state key="normal">
                                                                         <imageReference key="image" image="icStorageUnselected" symbolScale="large"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="bookmarkDidTap:" destination="vn5-6D-Qg2" eventType="touchUpInside" id="vDv-6K-8Qd"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZt-vZ-6fi">
                                                                     <rect key="frame" x="4" y="128" width="184" height="20.5"/>
