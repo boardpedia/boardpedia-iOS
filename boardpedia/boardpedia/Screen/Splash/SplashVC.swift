@@ -41,6 +41,15 @@ extension SplashVC {
                         UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
                         // 토큰 저장
                         
+                        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                        guard let mainTab = storyboard.instantiateViewController(identifier: "MainVC") as? MainVC else {
+                            return
+                        }
+                        
+                        mainTab.modalPresentationStyle = .fullScreen
+                        self.present(mainTab, animated: false, completion: nil)
+                        // main 화면으로 이동
+                        
                     case .failure(let error):
                         print(error)
                         
