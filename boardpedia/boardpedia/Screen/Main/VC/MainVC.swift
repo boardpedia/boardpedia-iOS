@@ -11,9 +11,9 @@ class MainVC: UIViewController {
     
     // MARK: Variable Part
     
-    var firstHeaderData: [GameDate] = []
+    var trendingData: [TrendingGame] = []
     var secondHeaderData: [ThemeData] = []
-
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var seachButton: UIButton!
@@ -39,9 +39,18 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setView()
         setCollectionView()
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+            trendingGameData(jwt: token)
+        }
+        
+    }
+    
 }
 
 // MARK: Extension
@@ -63,9 +72,9 @@ extension MainVC {
             
             let attributedStr = NSMutableAttributedString(string: text)
             
-//            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.threeLight(size: 14), range: (text as NSString).range(of: "Now!"))
+            //            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.threeLight(size: 14), range: (text as NSString).range(of: "Now!"))
             attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: "Now!"))
-
+            
             firstHeaderLabel.attributedText = attributedStr
         }
         
@@ -87,7 +96,7 @@ extension MainVC {
             let attributedStr = NSMutableAttributedString(string: text)
             
             attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 17), range: (text as NSString).range(of: "100% 사용하는 방법!"))
-
+            
             stackFirstLabel.attributedText = attributedStr
         }
         
@@ -98,12 +107,6 @@ extension MainVC {
     // MARK: CollectionView Style Function
     
     func setCollectionView() {
-        
-        // Test Data (서버 연결 전)
-        let item1 = GameDate(gameImage: "", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
-        let item2 = GameDate(gameImage: "", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
-        let item3 = GameDate(gameImage: "", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
-        firstHeaderData.append(contentsOf: [item1,item2,item3])
         
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
@@ -126,6 +129,26 @@ extension MainVC {
         themeGameCollectionView.delegate = self
         themeGameCollectionView.dataSource = self
         
+    }
+    
+    // MARK: TrendingGame Network Connect
+    
+    func trendingGameData(jwt: String) {
+        
+        APIService.shared.trending(jwt) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                
+                trendingData = data
+                trandingGameCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
     }
 }
 
@@ -184,7 +207,7 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == trandingGameCollectionView {
-            return firstHeaderData.count
+            return trendingData.count
         } else {
             return 8
         }
@@ -200,7 +223,24 @@ extension MainVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(name: firstHeaderData[indexPath.row].gameName, explain: firstHeaderData[indexPath.row].gameExplain)
+            cell.cellDelegate = self
+            cell.cellIndex = indexPath
+            
+            cell.configure(name: trendingData[indexPath.row].name, explain: trendingData[indexPath.row].intro)
+            
+            if trendingData[indexPath.row].imageURL != "" {
+                cell.setImage(imageURL: trendingData[indexPath.row].imageURL)
+            } else {
+                cell.gameImageView.image = UIImage(named: "testImage")
+            }
+            
+            
+            if trendingData[indexPath.row].saved == 0 {
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            } else {
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            }
+            
             return cell
             
         } else {
@@ -214,4 +254,65 @@ extension MainVC: UICollectionViewDataSource {
         
     }
     
+}
+
+extension MainVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                if trendingData[value].saved == 0 {
+                    // 미저장 -> 저장으로 변경
+                    
+                    APIService.shared.saveGame(token, trendingData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            trendingGameData(jwt: token)
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                } else {
+                    // 저장 -> 미저장으로 변경
+                    
+                    APIService.shared.saveCancleGame(token, trendingData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            trendingGameData(jwt: token)
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
 }

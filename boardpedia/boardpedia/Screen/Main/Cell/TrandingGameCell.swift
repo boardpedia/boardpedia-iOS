@@ -12,6 +12,8 @@ class TrandingGameCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "TrandingGameCell"
+    var cellDelegate: BookmarkCellDelegate?
+    var cellIndex : IndexPath?
     
     // MARK: IBOutlet
     
@@ -20,10 +22,16 @@ class TrandingGameCell: UICollectionViewCell {
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameExplainLabel: UILabel!
     
+    // MARK: IBAction
+    
+    @IBAction func bookmarkDidTap(_ sender: Any) {
+        
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+    }
+    
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
-        bookmarkButton.tintColor = .gray
         gameNameLabel.setLabel(text: "게임 이름", font: .neoMedium(ofSize: 16))
         gameExplainLabel.setLabel(text: "보드게임 한 줄 설명", color: .boardGray50, font: .neoRegular(ofSize: 13))
         gameImageView.setRounded(radius: 6)
@@ -39,7 +47,7 @@ class TrandingGameCell: UICollectionViewCell {
     // MARK: Image Set Function
     
     func setImage(imageURL: String) {
-//        gameImageView.setImage(imageURL)
+        gameImageView.setImage(from: imageURL)
     }
     
 }

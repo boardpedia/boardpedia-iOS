@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 struct APIService {
     
@@ -14,6 +15,35 @@ struct APIService {
     // 싱글톤객체로 생성
     let provider = MoyaProvider<APITarget>()
     // MoyaProvider(->요청 보내는 클래스) 인스턴스 생성
+    
+    func trending(_ jwt: String, completion: @escaping (NetworkResult<[TrendingGame]>)->(Void)) {
+    // 홈 - 트렌딩 게임 조회하기
+        
+        let target: APITarget = .trending(jwt: jwt)
+        judgeObject(target, completion: completion)
+    }
+    
+    func saveGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
+    // 북마크 저장
+        
+        let target: APITarget = .saveGame(jwt: jwt, gameIdx: gameIdx)
+        judgeSimpleObject(target, completion: completion)
+    }
+    
+    func saveCancleGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
+    // 북마크 저장 취소
+        
+        let target: APITarget = .saveCancleGame(jwt: jwt, gameIdx: gameIdx)
+        judgeSimpleObject(target, completion: completion)
+    }
+    
+    func login(_ snsId: String, _ provider: String, completion: @escaping (NetworkResult<TokenData>)->(Void)) {
+    // 유저 로그인
+        
+        let target: APITarget = .login(snsId: snsId, provider: provider)
+        judgeObject(target, completion: completion)
+    }
+    
 
 }
 
@@ -34,7 +64,7 @@ extension APIService {
                     print("구조체를 확인해보세요")
                 }
             case .failure(let error):
-                completion(.failure(error.response!.statusCode))
+                completion(.failure(error.response?.statusCode ?? 100))
             }
         }
     }
@@ -59,3 +89,8 @@ extension APIService {
 }
 
 
+class NetworkState {
+    class func isConnected() -> Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}

@@ -12,7 +12,7 @@ class SearchResultCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "SearchResultCell"
-    var cellDelegate: SearchResultCellDelegate?
+    var cellDelegate: BookmarkCellDelegate?
     var cellIndex : IndexPath?
     
     // MARK: IBOutlet
@@ -26,7 +26,7 @@ class SearchResultCell: UICollectionViewCell {
     @IBAction func bookmarkDidTap(_ sender: Any) {
         // 북마크 버튼 클릭 시 이미지 변경을 위해 index 전송
         
-        cellDelegate?.SearchResultCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
         
     }
     
@@ -56,6 +56,6 @@ class SearchResultCell: UICollectionViewCell {
     }
 }
 
-protocol SearchResultCellDelegate {
-    func SearchResultCellGiveIndex(_ cell:SearchResultCell, didClickedIndex value:Int)
+protocol BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value:Int)
 }
