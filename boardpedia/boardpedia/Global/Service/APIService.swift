@@ -44,6 +44,14 @@ struct APIService {
         judgeObject(target, completion: completion)
     }
     
+    func todayTheme(_ jwt: String, completion: @escaping (NetworkResult<ThemeData>)->(Void)) {
+    // 오늘의 테마
+        
+        let target: APITarget = .theme(jwt: jwt)
+        judgeObject(target, completion: completion)
+        
+    }
+    
 
 }
 
