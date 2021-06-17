@@ -8,5 +8,15 @@
 import Foundation
 
 struct ThemeData: Codable {
-    let themeImage, themeName: String
+    let themeIdx: Int
+    let name, detail: String
+    let imageURL: String
+    let tag: [String]
+
+    enum CodingKeys: String, CodingKey {
+        case themeIdx = "ThemeIdx"
+        case name, detail
+        case imageURL = "imageUrl"
+        case tag
+    }
 }
