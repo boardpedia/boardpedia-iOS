@@ -39,6 +39,7 @@ extension SplashVC {
                         
                         tokenData = data
                         UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
+                        // 토큰 저장
                         
                     case .failure(let error):
                         print(error)
@@ -51,7 +52,7 @@ extension SplashVC {
                 
                 UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
                 UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
-                // 비회원으로 접속
+                // 일단 비회원으로 접속
                 
                 checkDeviceNetworkStatus()
 
