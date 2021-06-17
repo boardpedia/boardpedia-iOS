@@ -262,6 +262,12 @@ extension MainVC: BookmarkCellDelegate {
         
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
             
             
         } else {
