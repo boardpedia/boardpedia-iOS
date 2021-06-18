@@ -21,16 +21,19 @@ class ThemeGameCell: UICollectionViewCell {
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
+        
+        self.contentView.backgroundColor = .gray
         self.themeNameLabel.setLabel(text: "추천 테마", color: .boardWhite, font: .neoBold(ofSize: 22))
         self.themeNameLabel.numberOfLines = 0
-        themeBackImageView.setRounded(radius: 6)
+        contentView.setRounded(radius: 6)
+        
     }
     
     // MARK: Data Set Function
     
     func configure(name: String, image: String) {
         self.themeNameLabel.text = name
-        self.themeBackImageView.image = UIImage(named: image)
+        self.themeBackImageView.setImage(from: image)
     }
 
 }

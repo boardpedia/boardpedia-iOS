@@ -12,7 +12,7 @@ class MainVC: UIViewController {
     // MARK: Variable Part
     
     var trendingData: [TrendingGame] = []
-    var secondHeaderData: [ThemeData] = []
+    var todayThemeData: [ThemeData] = []
     
     // MARK: IBOutlet
     
@@ -23,6 +23,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var secondHeaderLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
     
+    @IBOutlet weak var bestThemeImageView: UIImageView!
     @IBOutlet weak var bestThemeButton: UIButton!
     @IBOutlet weak var bestThemeNameLabel: UILabel!
     @IBOutlet weak var themeGameCollectionView: UICollectionView!
@@ -47,6 +48,7 @@ class MainVC: UIViewController {
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
             trendingGameData(jwt: token)
+            todayThemeData(jwt: token)
         }
         
     }
@@ -72,7 +74,6 @@ extension MainVC {
             
             let attributedStr = NSMutableAttributedString(string: text)
             
-            //            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.threeLight(size: 14), range: (text as NSString).range(of: "Now!"))
             attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: "Now!"))
             
             firstHeaderLabel.attributedText = attributedStr
@@ -82,6 +83,7 @@ extension MainVC {
         explainLabel.setLabel(text: "보드게임 진심러들이 고른 진짜 중 진짜!", color: .boardGray50, font: .neoMedium(ofSize: 15))
         
         bestThemeButton.setRounded(radius: 6)
+        bestThemeImageView.setRounded(radius: 6)
         bestThemeNameLabel.numberOfLines = 0
         
         instagramButton.setRounded(radius: 6)
@@ -111,21 +113,6 @@ extension MainVC {
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
         
-        // Test Data (서버 연결 전)
-        let themeItem1 = ThemeData(themeImage: "testBackImage_1", themeName: "내가 이 구역 최고 브레인!")
-        let themeItem2 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem3 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem4 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem5 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem6 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem7 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem8 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem9 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        secondHeaderData.append(contentsOf: [themeItem1,themeItem2,themeItem3,themeItem4,themeItem5,themeItem6,themeItem7,themeItem8,themeItem9])
-        
-        bestThemeNameLabel.setLabel(text: secondHeaderData[0].themeName, color: .boardWhite, font: .neoBold(ofSize: 24))
-        bestThemeButton.setImage(UIImage(named: secondHeaderData[0].themeImage), for: .normal)
-        
         themeGameCollectionView.delegate = self
         themeGameCollectionView.dataSource = self
         
@@ -142,6 +129,28 @@ extension MainVC {
                 
                 trendingData = data
                 trandingGameCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+    }
+    
+    func todayThemeData(jwt: String) {
+        
+        APIService.shared.todayTheme(jwt) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                
+                todayThemeData = data
+                print(todayThemeData)
+                themeGameCollectionView.reloadData()
+                
+                bestThemeNameLabel.setLabel(text: todayThemeData[0].name, color: .boardWhite, font: .neoBold(ofSize: 24))
+                bestThemeImageView.setImage(from: todayThemeData[0].imageURL)
                 
             case .failure(let error):
                 print(error)
@@ -209,7 +218,7 @@ extension MainVC: UICollectionViewDataSource {
         if collectionView == trandingGameCollectionView {
             return trendingData.count
         } else {
-            return 8
+            return todayThemeData.count - 1
         }
         
     }
@@ -248,7 +257,8 @@ extension MainVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(name: secondHeaderData[indexPath.row+1].themeName, image: secondHeaderData[indexPath.row+1].themeImage)
+            cell.configure(name: todayThemeData[indexPath.row+1].name, image: todayThemeData[indexPath.row+1].imageURL)
+            
             return cell
         }
         
