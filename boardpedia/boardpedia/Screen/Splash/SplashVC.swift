@@ -42,7 +42,7 @@ extension SplashVC {
                         // 토큰 저장
                         
                         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                        guard let mainTab = storyboard.instantiateViewController(identifier: "MainVC") as? MainVC else {
+                        guard let mainTab = storyboard.instantiateViewController(identifier: "MainNaviVC") as? MainNaviVC else {
                             return
                         }
                         

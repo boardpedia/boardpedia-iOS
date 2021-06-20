@@ -55,23 +55,23 @@ extension SearchVC {
         
         // 키워드 검색 뷰
         
-//        let vc = self.storyboard!.instantiateViewController(identifier: "KeywordVC")
+        let vc = self.storyboard!.instantiateViewController(identifier: "KeywordVC")
+        self.addChild(vc)
+
+        self.searchStateView.addSubview(vc.view)
+        vc.view.frame = self.searchStateView.bounds
+        vc.willMove(toParent: self)
+        vc.didMove(toParent: self)
+        
+        // 키워드 검색 결과 뷰
+        
+//        let vc = self.storyboard!.instantiateViewController(identifier: "SearchResultVC")
 //        self.addChild(vc)
 //
 //        self.searchStateView.addSubview(vc.view)
 //        vc.view.frame = self.searchStateView.bounds
 //        vc.willMove(toParent: self)
 //        vc.didMove(toParent: self)
-        
-        // 키워드 검색 결과 뷰
-        
-        let vc = self.storyboard!.instantiateViewController(identifier: "SearchResultVC")
-        self.addChild(vc)
-        
-        self.searchStateView.addSubview(vc.view)
-        vc.view.frame = self.searchStateView.bounds
-        vc.willMove(toParent: self)
-        vc.didMove(toParent: self)
         
     }
 }
