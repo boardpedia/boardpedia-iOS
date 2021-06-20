@@ -41,6 +41,8 @@ class MainVC: UIViewController {
             return
         }
         self.navigationController?.pushViewController(searchTab, animated: true)
+        searchTab.topKeyword = trendingData
+        
     }
     
     // MARK: Life Cycle Part

@@ -12,7 +12,7 @@ class KeywordVC: UIViewController {
     // MARK: Variable Part
     
     var recentKeywordData: [KeywordData] = []
-    var topKeywordData: [KeywordData] = []
+    var topKeywordData: [TrendingGame] = []
     
     // MARK: IBOutlet
     
@@ -112,16 +112,6 @@ extension KeywordVC {
     
     func topKeywordSet() {
         
-        // Test Data (서버 연결 전)
-        let item1 = KeywordData(keyword: "미니")
-        let item2 = KeywordData(keyword: "마라탕이")
-        let item3 = KeywordData(keyword: "엄청나게 먹고싶음")
-        let item4 = KeywordData(keyword: "누가")
-        let item5 = KeywordData(keyword: "사주실?")
-        let item6 = KeywordData(keyword: "제발~")
-        
-        topKeywordData.append(contentsOf: [item1,item2,item3,item4,item5,item6])
-        
         let layout = topKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .vertical
         
@@ -202,7 +192,7 @@ extension KeywordVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(search: topKeywordData[indexPath.row].keyword)
+            cell.configure(search: topKeywordData[indexPath.row].name)
             return cell
         }
         

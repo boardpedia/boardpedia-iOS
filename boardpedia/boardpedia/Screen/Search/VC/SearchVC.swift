@@ -17,6 +17,8 @@ class SearchVC: UIViewController {
     
     // MARK: IBOutlet
     
+    var topKeyword: [TrendingGame] = []
+    
     // MARK: IBAction
     
     // MARK: Life Cycle Part
@@ -55,7 +57,10 @@ extension SearchVC {
         
         // 키워드 검색 뷰
         
-        let vc = self.storyboard!.instantiateViewController(identifier: "KeywordVC")
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "KeywordVC") as? KeywordVC else {
+            return
+        }
+        vc.topKeywordData = topKeyword
         self.addChild(vc)
 
         self.searchStateView.addSubview(vc.view)
