@@ -20,6 +20,7 @@ class ThemeKeywordCell: UICollectionViewCell {
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
+        
         keywordLabel.setLabel(text: "", color: .boardOrange, font: .neoMedium(ofSize: 15))
         self.contentView.backgroundColor = .white
         self.contentView.setBorder(borderColor: .boardOrange, borderWidth: 1)

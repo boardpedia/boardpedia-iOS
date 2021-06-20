@@ -257,7 +257,7 @@ extension MainVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(name: todayThemeData[indexPath.row+1].name, image: todayThemeData[indexPath.row+1].imageURL)
+            cell.configure(name: todayThemeData[indexPath.row+1].name, image: todayThemeData[indexPath.row+1].imageURL, keyword: todayThemeData[indexPath.row+1].tag)
             
             return cell
         }
