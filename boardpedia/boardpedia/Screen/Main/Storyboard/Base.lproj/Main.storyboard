@@ -152,6 +152,47 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evJ-lu-YeD">
+                                                        <rect key="frame" x="20" y="166" width="342" height="30"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="7wI-bd-JNn"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="I3P-dA-gK5">
+                                                            <size key="itemSize" width="129" height="26"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="5zp-DK-Rda" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="129" height="26"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="x3B-mR-wbV">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="129" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwE-kO-VIT">
+                                                                            <rect key="frame" x="10" y="6" width="109" height="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="LwE-kO-VIT" secondAttribute="bottom" constant="4" id="6Sa-am-Ppc"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="LwE-kO-VIT" secondAttribute="trailing" constant="10" id="BjY-JZ-ACm"/>
+                                                                        <constraint firstItem="LwE-kO-VIT" firstAttribute="leading" secondItem="x3B-mR-wbV" secondAttribute="leading" constant="10" id="bVC-dT-D3z"/>
+                                                                        <constraint firstItem="LwE-kO-VIT" firstAttribute="top" secondItem="x3B-mR-wbV" secondAttribute="top" constant="6" id="yQF-hm-uYv"/>
+                                                                    </constraints>
+                                                                </collectionViewCellContentView>
+                                                                <size key="customSize" width="129" height="26"/>
+                                                                <connections>
+                                                                    <outlet property="keywordLabel" destination="LwE-kO-VIT" id="QiX-5r-YWn"/>
+                                                                </connections>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                    </collectionView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="wEB-c4-bfr" secondAttribute="height" multiplier="343:194" id="0VL-mt-8nv"/>
@@ -162,8 +203,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="rdo-wq-3JD" secondAttribute="trailing" id="BeY-Ny-MkY"/>
                                                     <constraint firstItem="rdo-wq-3JD" firstAttribute="leading" secondItem="wEB-c4-bfr" secondAttribute="leading" id="CVh-2d-wyN"/>
                                                     <constraint firstItem="NuL-ie-icb" firstAttribute="leading" secondItem="wEB-c4-bfr" secondAttribute="leading" constant="20" id="GhP-M5-JHP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="evJ-lu-YeD" secondAttribute="trailing" constant="20" id="TAA-Mb-iHz"/>
+                                                    <constraint firstItem="evJ-lu-YeD" firstAttribute="leading" secondItem="wEB-c4-bfr" secondAttribute="leading" constant="20" id="UGo-2D-Pys"/>
                                                     <constraint firstAttribute="trailing" secondItem="naX-hW-PA1" secondAttribute="trailing" id="d0X-wG-n1r"/>
                                                     <constraint firstItem="NuL-ie-icb" firstAttribute="top" secondItem="wEB-c4-bfr" secondAttribute="top" constant="20" id="fiQ-ty-xVv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="evJ-lu-YeD" secondAttribute="bottom" constant="20" id="qmn-tl-D0z"/>
                                                     <constraint firstItem="rdo-wq-3JD" firstAttribute="top" secondItem="wEB-c4-bfr" secondAttribute="top" id="rCB-OZ-iGU"/>
                                                     <constraint firstAttribute="bottom" secondItem="rdo-wq-3JD" secondAttribute="bottom" id="vbv-CA-VuC"/>
                                                 </constraints>
@@ -366,9 +410,11 @@
                         <outlet property="bestThemeButton" destination="rdo-wq-3JD" id="zxW-jy-w9m"/>
                         <outlet property="bestThemeImageView" destination="naX-hW-PA1" id="9NE-ab-fi7"/>
                         <outlet property="bestThemeNameLabel" destination="NuL-ie-icb" id="oJj-zP-d71"/>
+                        <outlet property="collectionLayout" destination="I3P-dA-gK5" id="G24-ET-6hE"/>
                         <outlet property="explainLabel" destination="hsi-V7-ndT" id="Rhu-Bh-4OH"/>
                         <outlet property="firstHeaderLabel" destination="WBG-v8-NbR" id="Tm1-id-Odr"/>
                         <outlet property="instagramButton" destination="HVW-ne-hlX" id="fQC-Ec-hXw"/>
+                        <outlet property="keywordCollectionView" destination="evJ-lu-YeD" id="Vps-Va-I0q"/>
                         <outlet property="seachButton" destination="vA5-T8-YHx" id="QD6-28-idC"/>
                         <outlet property="secondHeaderLabel" destination="0St-Px-NRT" id="wvk-bt-IhX"/>
                         <outlet property="stackFirstLabel" destination="k7f-fW-0W0" id="bMu-Of-OZ2"/>

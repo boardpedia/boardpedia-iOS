@@ -13,6 +13,7 @@ class MainVC: UIViewController {
     
     var trendingData: [TrendingGame] = []
     var todayThemeData: [ThemeData] = []
+    var firstTag: [String] = []
     
     // MARK: IBOutlet
     
@@ -31,6 +32,13 @@ class MainVC: UIViewController {
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var stackFirstLabel: UILabel!
     @IBOutlet weak var stackSecondLabel: UILabel!
+    
+    @IBOutlet weak var keywordCollectionView: UICollectionView!
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
     
     // MARK: IBAction
     
@@ -116,6 +124,16 @@ extension MainVC {
         themeGameCollectionView.delegate = self
         themeGameCollectionView.dataSource = self
         
+        let layout = keywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
+        keywordCollectionView.delegate = self
+        keywordCollectionView.dataSource = self
+        keywordCollectionView.backgroundColor = .none
+        
+        let customLayout = LeftAlignFlowLayout()
+        keywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
+        
     }
     
     // MARK: TrendingGame Network Connect
@@ -149,6 +167,9 @@ extension MainVC {
                 print(todayThemeData)
                 themeGameCollectionView.reloadData()
                 
+                firstTag = todayThemeData[0].tag
+                keywordCollectionView.reloadData()
+                
                 bestThemeNameLabel.setLabel(text: todayThemeData[0].name, color: .boardWhite, font: .neoBold(ofSize: 24))
                 bestThemeImageView.setImage(from: todayThemeData[0].imageURL)
                 
@@ -172,6 +193,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         if collectionView == trandingGameCollectionView {
             let itemWidth = 160/375 * self.view.frame.width
             return CGSize(width: itemWidth, height: collectionView.layer.frame.height)
+        } else if collectionView == keywordCollectionView {
+            return CGSize(width: 36, height: 36)
         } else {
             let itemWidth = self.themeGameCollectionView.frame.width / 2 - 7.5
             return CGSize(width: itemWidth, height: itemWidth)
@@ -183,6 +206,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         
         if collectionView == trandingGameCollectionView {
             return 10
+        } else if collectionView == keywordCollectionView {
+            return 0
         } else {
             return 15
         }
@@ -191,7 +216,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        if collectionView == keywordCollectionView {
+            return 10
+        } else {
+            return 0
+        }
         
     }
     
@@ -217,6 +246,8 @@ extension MainVC: UICollectionViewDataSource {
         
         if collectionView == trandingGameCollectionView {
             return trendingData.count
+        } else if collectionView == keywordCollectionView {
+            return firstTag.count
         } else {
             return todayThemeData.count - 1
         }
@@ -252,7 +283,16 @@ extension MainVC: UICollectionViewDataSource {
             
             return cell
             
-        } else {
+        } else if collectionView == keywordCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(title: firstTag[indexPath.row])
+        
+            return cell
+        }
+        else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeGameCell.identifier, for: indexPath) as? ThemeGameCell else {
                 return UICollectionViewCell()
             }
