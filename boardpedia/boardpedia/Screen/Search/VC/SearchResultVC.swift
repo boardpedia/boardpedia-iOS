@@ -19,6 +19,9 @@ class SearchResultVC: UIViewController {
         }
     }
     
+    var copySearchResult: [SearchGameData] = []
+    // 검색결과 필터로 인한 초기화를 위해 복사본 생성
+    
     var searchWord: String?
     
     // MARK: IBOutlet
@@ -31,7 +34,11 @@ class SearchResultVC: UIViewController {
     
     @IBAction func filterButtonDidTap(_ sender: Any) {
         
+        searchResult = copySearchResult
+        // 정렬 초기화
+        
         for i in Range(0...3) {
+            
             if filterButton[i].isTouchInside {
                 // 터치된 특정 인덱스 찾기
                 
@@ -43,13 +50,31 @@ class SearchResultVC: UIViewController {
                     
                     filterButton[i].backgroundColor = .boardOrange
                     filterButton[i].setTitleColor(.white, for: .normal)
+                    
                 } else {
                     // 선택 취소된 상태라면
                     
                     filterButton[i].backgroundColor = .clear
                     filterButton[i].setTitleColor(.boardOrange, for: .normal)
+                    
                 }
             }
+            
+            if filterButton[i].isSelected {
+                // 선택된 필터가 있다면
+                
+                if i == 1 {
+                    searchResult = searchResult.sorted(by: {$0.name < $1.name})
+                } else if i == 2 {
+                    searchResult = searchResult.sorted(by: {$0.star > $1.star})
+                } else if i == 3 {
+                    searchResult = searchResult.sorted(by: {$0.saveCount > $1.saveCount})
+                }
+            }
+            
+            searchResultCollectionView.reloadData()
+            
+
             
         }
         
@@ -173,6 +198,7 @@ extension SearchResultVC {
                 
                 case .success(let data):
                     searchResult = data
+                    copySearchResult = data
                     
                     if searchResult.count == 0 {
                         // 해당 검색어의 검색 결과가 없을 때
