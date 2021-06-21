@@ -28,7 +28,7 @@ class SearchVC: UIViewController {
         if searchView {
             
             let transition: CATransition = CATransition()
-            transition.duration = 0.3
+            transition.duration = 0.0
             transition.type = CATransitionType.fade
             self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.popViewController(animated: false)
@@ -180,7 +180,7 @@ extension SearchVC: UITextFieldDelegate {
         
         if searchView {
             let transition: CATransition = CATransition()
-            transition.duration = 0.3
+            transition.duration = 0.0
             transition.type = CATransitionType.fade
             self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.popViewController(animated: false)
