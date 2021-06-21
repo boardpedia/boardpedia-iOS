@@ -20,7 +20,6 @@ class SearchVC: UIViewController {
     var topKeyword: [TrendingGame] = []
     var searchView: Bool = false
     var searchText: String?
-    var recentlyKeyword: [String]?
     
     // MARK: IBAction
     

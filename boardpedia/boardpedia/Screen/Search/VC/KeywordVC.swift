@@ -14,6 +14,7 @@ class KeywordVC: UIViewController {
     var recentKeywordData: [String]?
     var topKeywordData: [TrendingGame] = []
     var removeButton = UIButton()
+    var noKeywordLabel = UILabel()
     
     // MARK: IBOutlet
     
@@ -94,6 +95,13 @@ extension KeywordVC {
         topKeywordCollectionView.delegate = self
         topKeywordCollectionView.dataSource = self
         
+        self.view.addSubview(noKeywordLabel)
+        noKeywordLabel.translatesAutoresizingMaskIntoConstraints = false
+        noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 20).isActive = true
+        noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
+        
+        noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
+        
     }
 
     
@@ -130,18 +138,14 @@ extension KeywordVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        if collectionView == recentKeywordCollectionView {
-            return 0
-        } else {
-            return 10
-        }
+        return 10
     
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // collectionView와 View 간의 간격
         
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
     }
     
@@ -159,19 +163,14 @@ extension KeywordVC: UICollectionViewDataSource {
             if let recentKeywordData = recentKeywordData {
                 
                 removeButton.isHidden = false
+                noKeywordLabel.isHidden = true
+                
                 return recentKeywordData.count
                 
             } else {
                 
-                let noKeywordLabel = UILabel()
-                self.view.addSubview(noKeywordLabel)
-                noKeywordLabel.translatesAutoresizingMaskIntoConstraints = false
-                noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 20).isActive = true
-                noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
-                
-                noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
-                
                 removeButton.isHidden = true
+                noKeywordLabel.isHidden = false
                 
                 return 0
             }
@@ -210,6 +209,8 @@ extension KeywordVC: UICollectionViewDataSource {
         
         if collectionView == topKeywordCollectionView {
             NotificationCenter.default.post(name: .clickKeyword, object: topKeywordData[indexPath.row].name)
+        } else {
+            NotificationCenter.default.post(name: .clickKeyword, object: recentKeywordData?[indexPath.row])
         }
     }
     
