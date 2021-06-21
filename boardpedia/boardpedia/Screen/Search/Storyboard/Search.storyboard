@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baw-8k-QfC">
                                 <rect key="frame" x="46" y="60" width="352" height="42"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZX-Uu-X4w">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fZX-Uu-X4w">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -32,6 +32,9 @@
                                             <constraint firstAttribute="width" secondItem="dPv-aT-MCU" secondAttribute="height" multiplier="1:1" id="OM8-IH-p9Y"/>
                                         </constraints>
                                         <state key="normal" image="bntSearch"/>
+                                        <connections>
+                                            <action selector="searchButtonDidTap:" destination="eSR-6Q-xVK" eventType="touchUpInside" id="M7o-jf-56D"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>

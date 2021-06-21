@@ -18,14 +18,14 @@ class SearchVC: UIViewController {
     // MARK: IBOutlet
     
     var topKeyword: [TrendingGame] = []
-    var serchView: Bool = false
+    var searchView: Bool = false
     var searchText: String?
     
     // MARK: IBAction
     
     @IBAction func backButtonDidTap(_ sender: UIButton) {
         
-        if serchView {
+        if searchView {
             
             let transition: CATransition = CATransition()
             transition.duration = 0.3
@@ -35,6 +35,30 @@ class SearchVC: UIViewController {
             
         } else {
             self.navigationController?.popViewController(animated: true)
+        }
+        
+    }
+    
+    
+    @IBAction func searchButtonDidTap(_ sender: Any) {
+        
+        searchTextField.endEditing(true)
+
+        if (searchTextField.text != "") && (searchTextField.text != nil) && !searchView {
+            
+            guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
+                return
+            }
+            
+            let transition: CATransition = CATransition()
+            transition.duration = 0.3
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.pushViewController(searchTab, animated: false)
+            
+            searchTab.searchView = true
+            searchTab.searchText = searchTextField.text
+            
         }
         
     }
@@ -57,7 +81,7 @@ class SearchVC: UIViewController {
         
         // 이 뷰에 들어오자 마자 바로 키보드 띄우고 cursor 포커스 주기
         
-        if !serchView {
+        if !searchView {
             self.searchTextField.becomeFirstResponder()
         }
     }
@@ -89,7 +113,7 @@ extension SearchVC {
         
         // 키워드 검색 뷰
         
-        if !serchView {
+        if !searchView {
             
             guard let vc = self.storyboard?.instantiateViewController(identifier: "KeywordVC") as? KeywordVC else {
                 return
@@ -126,7 +150,7 @@ extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.endEditing(true)
 
-        if (textField.text != "") && (textField.text != nil) {
+        if (textField.text != "") && (textField.text != nil) && !searchView {
             
             guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
                 return true
@@ -138,7 +162,7 @@ extension SearchVC: UITextFieldDelegate {
             self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.pushViewController(searchTab, animated: false)
             
-            searchTab.serchView = true
+            searchTab.searchView = true
             searchTab.searchText = searchTextField.text
             
         }
