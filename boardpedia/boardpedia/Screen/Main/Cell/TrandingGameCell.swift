@@ -13,7 +13,8 @@ class TrandingGameCell: UICollectionViewCell {
     
     static let identifier = "TrandingGameCell"
     var cellDelegate: BookmarkCellDelegate?
-    var cellIndex : IndexPath?
+    var cellIndex: IndexPath?
+    var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     // MARK: IBOutlet
     
@@ -27,6 +28,7 @@ class TrandingGameCell: UICollectionViewCell {
     @IBAction func bookmarkDidTap(_ sender: Any) {
         
         cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        self.impactFeedbackGenerator?.impactOccurred()
     }
     
     // MARK: ContentView Default Set Function
@@ -35,6 +37,7 @@ class TrandingGameCell: UICollectionViewCell {
         gameNameLabel.setLabel(text: "게임 이름", font: .neoMedium(ofSize: 16))
         gameExplainLabel.setLabel(text: "보드게임 한 줄 설명", color: .boardGray50, font: .neoRegular(ofSize: 13))
         gameImageView.setRounded(radius: 6)
+        self.impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     }
     
     // MARK: Data Set Function
