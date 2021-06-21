@@ -176,7 +176,6 @@ extension MainVC {
             case .success(let data):
                 
                 todayThemeData = data
-                print(todayThemeData)
                 themeGameCollectionView.reloadData()
                 
                 firstTag = todayThemeData[0].tag

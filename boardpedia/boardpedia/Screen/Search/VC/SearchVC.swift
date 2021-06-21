@@ -205,7 +205,6 @@ extension SearchVC {
                 
             } else {
                 // 이전에 검색했던 검색어라면
-                print(searchTextField.text!)
                 
                 var testArray = UserDefaults.standard.stringArray(forKey: "recentlyKeyword")
                 
