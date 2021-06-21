@@ -11,13 +11,18 @@ class SearchResultVC: UIViewController {
     
     // MARK: Variable Part
     
-    var searchResultData: [SearchResultData] = [] {
+    var searchResult: [SearchGameData] = [] {
         didSet {
             // 데이터 값이 바뀔 때 마다 라벨 변경
             
             setResultLabel()
         }
     }
+    
+    var copySearchResult: [SearchGameData] = []
+    // 검색결과 필터로 인한 초기화를 위해 복사본 생성
+    
+    var searchWord: String?
     
     // MARK: IBOutlet
     
@@ -29,7 +34,11 @@ class SearchResultVC: UIViewController {
     
     @IBAction func filterButtonDidTap(_ sender: Any) {
         
+        searchResult = copySearchResult
+        // 정렬 초기화
+        
         for i in Range(0...3) {
+            
             if filterButton[i].isTouchInside {
                 // 터치된 특정 인덱스 찾기
                 
@@ -41,13 +50,31 @@ class SearchResultVC: UIViewController {
                     
                     filterButton[i].backgroundColor = .boardOrange
                     filterButton[i].setTitleColor(.white, for: .normal)
+                    
                 } else {
                     // 선택 취소된 상태라면
                     
                     filterButton[i].backgroundColor = .clear
                     filterButton[i].setTitleColor(.boardOrange, for: .normal)
+                    
                 }
             }
+            
+            if filterButton[i].isSelected {
+                // 선택된 필터가 있다면
+                
+                if i == 1 {
+                    searchResult = searchResult.sorted(by: {$0.name < $1.name})
+                } else if i == 2 {
+                    searchResult = searchResult.sorted(by: {$0.star > $1.star})
+                } else if i == 3 {
+                    searchResult = searchResult.sorted(by: {$0.saveCount > $1.saveCount})
+                }
+            }
+            
+            searchResultCollectionView.reloadData()
+            
+
             
         }
         
@@ -60,7 +87,11 @@ class SearchResultVC: UIViewController {
         setButton()
         setResultLabel()
         setResultCollectionView()
-//        setNoSearchData()
+        
+        if let searchWord = searchWord,
+           let token = UserDefaults.standard.string(forKey: "UserToken") {
+            self.searchNetwork(jwt: token, inputWord: searchWord)
+        }
     }
     
 }
@@ -78,7 +109,7 @@ extension SearchResultVC {
             button.titleLabel?.font = .neoMedium(ofSize: 16)
             button.setTitleColor(.boardOrange, for: .normal)
             button.setBorder(borderColor: .boardOrange, borderWidth: 1)
-            button.setRounded(radius: button.frame.width/5)
+            button.setRounded(radius: button.frame.width/5.5)
             button.tintColor = .clear
         }
         
@@ -87,17 +118,17 @@ extension SearchResultVC {
     // MARK: Result Count Label Style Function
     
     func setResultLabel() {
-        resultLabel.setLabel(text: "전체 \(searchResultData.count)개의 검색 결과가 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        resultLabel.setLabel(text: "전체 \(searchResult.count)개의 검색 결과가 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
         
         if let text = resultLabel.text {
             // 앞부분만 폰트와 컬러를 다르게 설정
             
-            let changeString: String = "\(searchResultData.count)개"
+            let changeString: String = "\(searchResult.count)개"
             let attributedStr = NSMutableAttributedString(string: text)
             
             attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 15), range: (text as NSString).range(of: changeString))
             attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: changeString))
-
+            
             resultLabel.attributedText = attributedStr
         }
     }
@@ -105,13 +136,6 @@ extension SearchResultVC {
     // MARK: Result Data Style Function
     
     func setResultCollectionView() {
-        
-        // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
-        let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
-        
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
-        
         
         searchResultCollectionView.delegate = self
         searchResultCollectionView.dataSource = self
@@ -125,9 +149,9 @@ extension SearchResultVC {
         
         let infoLabel = UILabel()
         self.view.addSubview(infoLabel)
-
+        
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         infoLabel.centerYAnchor.constraint(equalTo: self.searchResultCollectionView.centerYAnchor).isActive = true
         
@@ -136,14 +160,14 @@ extension SearchResultVC {
         
         let brandImage = UIImageView()
         self.view.addSubview(brandImage)
-
+        
         brandImage.translatesAutoresizingMaskIntoConstraints = false
-
+        
         brandImage.widthAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
         brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
-
+        
         brandImage.image = UIImage(named: "brandNoDataChacter")
         
         let addButton = UIButton()
@@ -151,7 +175,7 @@ extension SearchResultVC {
         
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
         addButton.widthAnchor.constraint(equalToConstant: 164/375 * self.view.frame.width).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 40/375 * self.view.frame.width).isActive = true
         addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -160,8 +184,49 @@ extension SearchResultVC {
         addButton.setButton(text: "내가 직접 추가해보기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         addButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         addButton.setRounded(radius: 6)
-
         
+        for i in Range(0...3) {
+            filterButton[i].isEnabled = false
+        }
+        
+        
+    }
+    
+    func searchNetwork(jwt: String, inputWord: String) {
+        
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
+            
+            APIService.shared.searchResult(jwt, inputWord) { [self] result in
+                switch result {
+                
+                case .success(let data):
+                    searchResult = data
+                    copySearchResult = data
+                    
+                    if searchResult.count == 0 {
+                        // 해당 검색어의 검색 결과가 없을 때
+                        
+                        setNoSearchData()
+                        
+                    } else {
+                        // 해당 검색어의 검색 결과가 있을 때
+                        
+                        searchResultCollectionView.reloadData()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+                
+            }
+        } else {
+            // 네트워크 제연결 팝업
+            
+            
+        }
     }
 }
 
@@ -188,7 +253,7 @@ extension SearchResultVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0
-    
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -207,7 +272,7 @@ extension SearchResultVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return searchResultData.count
+        return searchResult.count
         
     }
     
@@ -222,17 +287,18 @@ extension SearchResultVC: UICollectionViewDataSource {
         cell.cellIndex = indexPath
         // Cell의 indexPath 저장
         
-        if searchResultData[indexPath.row].bookMark {
+        if searchResult[indexPath.row].saved == 1 {
             // 북마크 상태가 true(선택된 상태)라면
             
             cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            
         } else {
             // 북마크 상태가 false(미선택된 상태)라면
             
             cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
         }
         
-        cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+        cell.configure(image: searchResult[indexPath.row].imageURL, name: searchResult[indexPath.row].name, info: searchResult[indexPath.row].intro, star: searchResult[indexPath.row].star, save: searchResult[indexPath.row].saveCount)
         
         return cell
         
@@ -242,13 +308,62 @@ extension SearchResultVC: UICollectionViewDataSource {
 
 
 extension SearchResultVC: BookmarkCellDelegate {
+    
     func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
         
-        searchResultData[value].bookMark = !searchResultData[value].bookMark
-        // 북마크 상태 반대로 전환 (선택 <--> 미선택)
-        
-        self.searchResultCollectionView.reloadData()
-        // 새로고침
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+            
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let searchWord = searchWord {
+                // 토큰 존재 시
+                if searchResult[value].saved == 0 {
+                    // 미저장 -> 저장으로 변경
+                    
+                    APIService.shared.saveGame(token, searchResult[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            self.searchNetwork(jwt: token, inputWord: searchWord)
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                    
+                } else {
+                    // 저장 -> 미저장으로 변경
+                    
+                    APIService.shared.saveCancleGame(token, searchResult[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            self.searchNetwork(jwt: token, inputWord: searchWord)
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+        }
     }
     
     

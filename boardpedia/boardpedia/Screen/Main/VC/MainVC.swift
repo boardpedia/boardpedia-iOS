@@ -42,6 +42,18 @@ class MainVC: UIViewController {
     
     // MARK: IBAction
     
+    
+    @IBAction func searchButtonDidTap(_ sender: Any) {
+        
+        let storyboard = UIStoryboard.init(name: "Search", bundle: nil)
+        guard let searchTab = storyboard.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
+            return
+        }
+        self.navigationController?.pushViewController(searchTab, animated: true)
+        searchTab.topKeyword = trendingData
+        
+    }
+    
     // MARK: Life Cycle Part
     
     override func viewDidLoad() {
@@ -164,7 +176,6 @@ extension MainVC {
             case .success(let data):
                 
                 todayThemeData = data
-                print(todayThemeData)
                 themeGameCollectionView.reloadData()
                 
                 firstTag = todayThemeData[0].tag

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bha-yn-nib">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -32,6 +32,9 @@
                                                     <constraint firstAttribute="width" secondItem="vA5-T8-YHx" secondAttribute="height" multiplier="277:38" id="dPE-QD-Ntl"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="searchButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xWn-op-sX0"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBG-v8-NbR">
                                                 <rect key="frame" x="16" y="83" width="41.5" height="20.5"/>
@@ -405,6 +408,7 @@
                             <constraint firstItem="cig-21-Ycs" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ULc-vG-acl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="D3k-cR-Ml0"/>
                     <size key="freeformSize" width="414" height="2000"/>
                     <connections>
                         <outlet property="bestThemeButton" destination="rdo-wq-3JD" id="zxW-jy-w9m"/>
@@ -425,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23.188405797101453" y="76.339285714285708"/>
+            <point key="canvasLocation" x="886.95652173913049" y="76.339285714285708"/>
         </scene>
         <!--ThemeVC-->
         <scene sceneID="j3t-1m-Kn8">
@@ -644,7 +648,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FV-oT-gmH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763.768115942029" y="-296.65178571428572"/>
+            <point key="canvasLocation" x="1673.913043478261" y="-296.65178571428572"/>
+        </scene>
+        <!--Main NaviVC-->
+        <scene sceneID="j8G-8L-dCW">
+            <objects>
+                <navigationController storyboardIdentifier="MainNaviVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Bha-yn-nib" customClass="MainNaviVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eft-vJ-FWc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Cit-6l-2AV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gs4-HE-XX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.188405797101453" y="76.339285714285708"/>
         </scene>
     </scenes>
     <resources>
