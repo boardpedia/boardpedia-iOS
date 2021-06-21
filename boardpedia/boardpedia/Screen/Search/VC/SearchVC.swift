@@ -132,8 +132,12 @@ extension SearchVC {
             
             // 키워드 검색 결과 뷰
             
-            let vc = self.storyboard!.instantiateViewController(identifier: "SearchResultVC")
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "SearchResultVC") as? SearchResultVC else {
+                return
+            }
+            
             self.addChild(vc)
+            vc.searchWord = searchTextField.text
             
             self.searchStateView.addSubview(vc.view)
             vc.view.frame = self.searchStateView.bounds

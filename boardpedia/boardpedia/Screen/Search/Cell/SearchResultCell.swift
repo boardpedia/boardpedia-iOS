@@ -46,9 +46,9 @@ class SearchResultCell: UICollectionViewCell {
     }
     
     // MARK: Data Set Function
-    func configure(image: String, name: String, info: String, star: Float, save: Int) {
+    func configure(image: String, name: String, info: String, star: Double, save: Int) {
 
-        boardImageView.image = UIImage(named: image)
+        boardImageView.setImage(from: image)
         boardGameNameLabel.setLabel(text: name, font: .neoMedium(ofSize: 16))
         boardGameInfoLabel.setLabel(text: info, color: .boardGray50, font: .neoRegular(ofSize: 13))
         gameValueLabel.setLabel(text: "별점 \(star) / 저장 \(save)회", color: .boardGray40, font: .neoMedium(ofSize: 12))
