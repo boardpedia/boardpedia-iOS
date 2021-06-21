@@ -84,7 +84,7 @@ extension SearchResultVC {
             button.titleLabel?.font = .neoMedium(ofSize: 16)
             button.setTitleColor(.boardOrange, for: .normal)
             button.setBorder(borderColor: .boardOrange, borderWidth: 1)
-            button.setRounded(radius: button.frame.width/5)
+            button.setRounded(radius: button.frame.width/5.5)
             button.tintColor = .clear
         }
         

@@ -198,5 +198,12 @@ extension KeywordVC: UICollectionViewDataSource {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == topKeywordCollectionView {
+            NotificationCenter.default.post(name: .clickKeyword, object: topKeywordData[indexPath.row].name)
+        }
+    }
+    
 }
 

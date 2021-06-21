@@ -34,7 +34,9 @@ class SearchVC: UIViewController {
             self.navigationController?.popViewController(animated: false)
             
         } else {
+            
             self.navigationController?.popViewController(animated: true)
+            NotificationCenter.default.removeObserver(self, name: .clickKeyword, object: nil)
         }
         
     }
@@ -111,6 +113,26 @@ extension SearchVC {
     
     }
     
+    @objc func clickKeyword(_ notification: Notification) {
+        
+        searchTextField.text = notification.object as? String
+        
+        guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
+            return
+        }
+        
+        let transition: CATransition = CATransition()
+        transition.duration = 0.0
+        transition.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.pushViewController(searchTab, animated: false)
+        
+        searchTab.searchView = true
+        searchTab.searchText = searchTextField.text
+        
+        
+        }
+    
     func setStateView() {
         
         // 키워드 검색 뷰
@@ -127,6 +149,8 @@ extension SearchVC {
             vc.view.frame = self.searchStateView.bounds
             vc.willMove(toParent: self)
             vc.didMove(toParent: self)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(clickKeyword(_:)), name: .clickKeyword, object: nil)
             
         } else {
             
@@ -194,3 +218,9 @@ extension SearchVC: UITextFieldDelegate {
     }
     
 }
+
+extension Notification.Name {
+    // Observer 이름 등록
+    static let clickKeyword = Notification.Name("clickKeyword")
+}
+
