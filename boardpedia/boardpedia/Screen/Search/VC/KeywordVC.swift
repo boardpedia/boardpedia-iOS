@@ -11,8 +11,9 @@ class KeywordVC: UIViewController {
 
     // MARK: Variable Part
     
-    var recentKeywordData: [KeywordData] = []
+    var recentKeywordData: [String]?
     var topKeywordData: [TrendingGame] = []
+    var removeButton = UIButton()
     
     // MARK: IBOutlet
     
@@ -45,8 +46,11 @@ class KeywordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        noKeyword()
-        topKeywordSet()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        recentKeywordData = UserDefaults.standard.stringArray(forKey: "recentlyKeyword")
+        recentKeywordCollectionView.reloadData()
     }
     
 }
@@ -58,44 +62,16 @@ extension KeywordVC {
     // MARK: View Style Function
     
     func setView() {
+        
         infoLabel.setLabel(text: "최근 검색어", font: .neoBold(ofSize: 16))
         secondInfoLabel.setLabel(text: "많이 찾고 있어요!", font: .neoBold(ofSize: 16))
-    }
-    
-    // MARK: No Recent Keyword Style Function
-    
-    func noKeyword() {
-        // 최근 검색어가 없는 상황
         
-        let noKeywordLabel = UILabel()
-        self.view.addSubview(noKeywordLabel)
-        noKeywordLabel.translatesAutoresizingMaskIntoConstraints = false
-        noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 20).isActive = true
-        noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
-        
-        noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
-    }
-    
-    // MARK: Have Recent Keyword Style Function
-    
-    func haveKeyword() {
-        // 최근 검색어가 있는 상황
-        
-        // Test Data (서버 연결 전)
-        let item1 = KeywordData(keyword: "다함께 즐기는")
-        let item2 = KeywordData(keyword: "루미큐브")
-        let item3 = KeywordData(keyword: "보드피디아")
-        
-        recentKeywordData.append(contentsOf: [item1,item2,item3])
-        
-        let layout = recentKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.scrollDirection = .horizontal
+        let recentKeywordLayout = recentKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        recentKeywordLayout.scrollDirection = .horizontal
         
         recentKeywordCollectionView.delegate = self
         recentKeywordCollectionView.dataSource = self
         
-        // 모두 지우기 버튼 코드로 구현
-        let removeButton = UIButton()
         self.view.addSubview(removeButton)
         
         removeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -106,14 +82,10 @@ extension KeywordVC {
 
         removeButton.setButton(text: "모두 지우기", color: .boardGray40, font: .neoSemiBold(ofSize: 16))
         
-    }
-    
-    // MARK: Top Keyword Style Function
-    
-    func topKeywordSet() {
+        removeButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
-        let layout = topKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.scrollDirection = .vertical
+        let topKeywordLayout = topKeywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        topKeywordLayout.scrollDirection = .vertical
         
         let customLayout = LeftAlignFlowLayout()
         topKeywordCollectionView.collectionViewLayout = customLayout
@@ -121,7 +93,20 @@ extension KeywordVC {
         
         topKeywordCollectionView.delegate = self
         topKeywordCollectionView.dataSource = self
+        
     }
+
+    
+    @objc func buttonAction(sender: UIButton!) {
+        // 최근 검색어 삭제
+        
+        UserDefaults.standard.removeObject(forKey: "recentlyKeyword")
+        recentKeywordData = nil
+        recentKeywordCollectionView.reloadData()
+        
+        
+    }
+
     
 }
 
@@ -170,7 +155,27 @@ extension KeywordVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == recentKeywordCollectionView {
-            return recentKeywordData.count
+            
+            if let recentKeywordData = recentKeywordData {
+                
+                removeButton.isHidden = false
+                return recentKeywordData.count
+                
+            } else {
+                
+                let noKeywordLabel = UILabel()
+                self.view.addSubview(noKeywordLabel)
+                noKeywordLabel.translatesAutoresizingMaskIntoConstraints = false
+                noKeywordLabel.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor, constant: 20).isActive = true
+                noKeywordLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 17).isActive = true
+                
+                noKeywordLabel.setLabel(text: "검색어가 아직 없어요!", color: .boardGray30, font: .neoMedium(ofSize: 17))
+                
+                removeButton.isHidden = true
+                
+                return 0
+            }
+            
         } else {
             return topKeywordData.count
         }
@@ -185,7 +190,10 @@ extension KeywordVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configure(search: recentKeywordData[indexPath.row].keyword)
+            if let recentKeywordData = recentKeywordData {
+                cell.configure(search: recentKeywordData[indexPath.row])
+            }
+            
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopKeywordCell.identifier, for: indexPath) as? TopKeywordCell else {

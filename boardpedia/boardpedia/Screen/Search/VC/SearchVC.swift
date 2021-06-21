@@ -20,6 +20,7 @@ class SearchVC: UIViewController {
     var topKeyword: [TrendingGame] = []
     var searchView: Bool = false
     var searchText: String?
+    var recentlyKeyword: [String]?
     
     // MARK: IBAction
     
@@ -51,6 +52,8 @@ class SearchVC: UIViewController {
             guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
                 return
             }
+            
+            saveRecentlyKeyword()
             
             let transition: CATransition = CATransition()
             transition.duration = 0.0
@@ -121,6 +124,8 @@ extension SearchVC {
             return
         }
         
+        saveRecentlyKeyword()
+        
         let transition: CATransition = CATransition()
         transition.duration = 0.0
         transition.type = CATransitionType.fade
@@ -142,7 +147,9 @@ extension SearchVC {
             guard let vc = self.storyboard?.instantiateViewController(identifier: "KeywordVC") as? KeywordVC else {
                 return
             }
+            
             vc.topKeywordData = topKeyword
+            
             self.addChild(vc)
 
             self.searchStateView.addSubview(vc.view)
@@ -171,6 +178,54 @@ extension SearchVC {
         }
         
     }
+    
+    // MARK: Save Recently Keyword
+    
+    func saveRecentlyKeyword() {
+        
+        if let recentlyKeyword = UserDefaults.standard.stringArray(forKey: "recentlyKeyword") {
+            // 만약 이전 검색어가 있다면
+            
+            if recentlyKeyword.contains(searchTextField.text!) == false {
+                // 이전 검색어가 아니라면
+                
+                var testArray = UserDefaults.standard.stringArray(forKey: "recentlyKeyword")
+                testArray?.insert(searchTextField.text!, at: 0)
+                // 맨 앞에 삽입
+                
+                if testArray!.count > 6 {
+                    // 만약 최근 검색어가 6개를 넘는다면?
+                    
+                    UserDefaults.standard.setValue(Array(testArray![0..<6]), forKey: "recentlyKeyword")
+                    // Array Slice를 이용해 자른 후 저장
+                    
+                } else {
+                    
+                    UserDefaults.standard.setValue(testArray, forKey: "recentlyKeyword")
+                }
+                
+            } else {
+                // 이전에 검색했던 검색어라면
+                print(searchTextField.text!)
+                
+                var testArray = UserDefaults.standard.stringArray(forKey: "recentlyKeyword")
+                
+                if let firstIndex = testArray!.firstIndex(of: searchTextField.text!) {
+                    
+                    testArray!.remove(at: firstIndex)
+                    testArray?.insert(searchTextField.text!, at: 0)
+                    // 검색어를 삭제 후 맨 앞으로 다시 옮기기
+                    
+                    UserDefaults.standard.setValue(testArray, forKey: "recentlyKeyword")
+                    
+                }
+                
+                
+            }
+        } else {
+            UserDefaults.standard.setValue([searchTextField.text!], forKey: "recentlyKeyword")
+        }
+    }
 }
 
 // MARK: UITextFieldDelegate
@@ -185,6 +240,8 @@ extension SearchVC: UITextFieldDelegate {
             guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
                 return true
             }
+            
+            saveRecentlyKeyword()
             
             let transition: CATransition = CATransition()
             transition.duration = 0.0
