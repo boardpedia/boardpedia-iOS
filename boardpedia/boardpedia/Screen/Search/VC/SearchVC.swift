@@ -18,8 +18,16 @@ class SearchVC: UIViewController {
     // MARK: IBOutlet
     
     var topKeyword: [TrendingGame] = []
+    var serchView: Bool = false
+    var searchText: String?
     
     // MARK: IBAction
+    
+    @IBAction func backButtonDidTap(_ sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     // MARK: Life Cycle Part
     
@@ -37,7 +45,10 @@ class SearchVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         // 이 뷰에 들어오자 마자 바로 키보드 띄우고 cursor 포커스 주기
-        self.searchTextField.becomeFirstResponder()
+        
+        if !serchView {
+            self.searchTextField.becomeFirstResponder()
+        }
     }
 
 }
@@ -56,6 +67,10 @@ extension SearchVC {
         searchTextField.placeholder = "원하는 보드게임을 찾아보세요!"
         searchTextField.font = .neoMedium(ofSize: 17)
         searchTextField.delegate = self
+        
+        if let text = searchText {
+            searchTextField.text = text
+        }
     
     }
     
@@ -63,26 +78,32 @@ extension SearchVC {
         
         // 키워드 검색 뷰
         
-        guard let vc = self.storyboard?.instantiateViewController(identifier: "KeywordVC") as? KeywordVC else {
-            return
-        }
-        vc.topKeywordData = topKeyword
-        self.addChild(vc)
+        if !serchView {
+            
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "KeywordVC") as? KeywordVC else {
+                return
+            }
+            vc.topKeywordData = topKeyword
+            self.addChild(vc)
 
-        self.searchStateView.addSubview(vc.view)
-        vc.view.frame = self.searchStateView.bounds
-        vc.willMove(toParent: self)
-        vc.didMove(toParent: self)
-        
-        // 키워드 검색 결과 뷰
-        
-//        let vc = self.storyboard!.instantiateViewController(identifier: "SearchResultVC")
-//        self.addChild(vc)
-//
-//        self.searchStateView.addSubview(vc.view)
-//        vc.view.frame = self.searchStateView.bounds
-//        vc.willMove(toParent: self)
-//        vc.didMove(toParent: self)
+            self.searchStateView.addSubview(vc.view)
+            vc.view.frame = self.searchStateView.bounds
+            vc.willMove(toParent: self)
+            vc.didMove(toParent: self)
+            
+        } else {
+            
+            // 키워드 검색 결과 뷰
+            
+            let vc = self.storyboard!.instantiateViewController(identifier: "SearchResultVC")
+            self.addChild(vc)
+            
+            self.searchStateView.addSubview(vc.view)
+            vc.view.frame = self.searchStateView.bounds
+            vc.willMove(toParent: self)
+            vc.didMove(toParent: self)
+            
+        }
         
     }
 }
@@ -93,6 +114,24 @@ extension SearchVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.endEditing(true)
+
+        if (textField.text != "") && (textField.text != nil) {
+            
+            guard let searchTab = self.storyboard?.instantiateViewController(identifier: "SearchVC") as? SearchVC else {
+                return true
+            }
+            
+            let transition: CATransition = CATransition()
+            transition.duration = 0.3
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.pushViewController(searchTab, animated: false)
+            
+            searchTab.serchView = true
+            searchTab.searchText = searchTextField.text
+            
+        }
+
         return true
     }
     

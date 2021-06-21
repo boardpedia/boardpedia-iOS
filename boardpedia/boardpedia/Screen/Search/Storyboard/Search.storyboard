@@ -52,6 +52,9 @@
                                     <constraint firstAttribute="width" secondItem="Q9u-dC-gGn" secondAttribute="height" multiplier="1:1" id="o7r-Oz-eAE"/>
                                 </constraints>
                                 <state key="normal" image="bntBackBlack"/>
+                                <connections>
+                                    <action selector="backButtonDidTap:" destination="eSR-6Q-xVK" eventType="touchUpInside" id="DWF-Q7-IEQ"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-3e-USH">
                                 <rect key="frame" x="0.0" y="102" width="414" height="794"/>
