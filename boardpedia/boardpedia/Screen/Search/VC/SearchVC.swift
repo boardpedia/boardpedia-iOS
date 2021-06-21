@@ -25,7 +25,18 @@ class SearchVC: UIViewController {
     
     @IBAction func backButtonDidTap(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        if serchView {
+            
+            let transition: CATransition = CATransition()
+            transition.duration = 0.3
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.popViewController(animated: false)
+            
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
     
