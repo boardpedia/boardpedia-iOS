@@ -12,7 +12,8 @@ class MainVC: UIViewController {
     // MARK: Variable Part
     
     var trendingData: [TrendingGame] = []
-    var secondHeaderData: [ThemeData] = []
+    var todayThemeData: [ThemeData] = []
+    var firstTag: [String] = []
     
     // MARK: IBOutlet
     
@@ -23,6 +24,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var secondHeaderLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
     
+    @IBOutlet weak var bestThemeImageView: UIImageView!
     @IBOutlet weak var bestThemeButton: UIButton!
     @IBOutlet weak var bestThemeNameLabel: UILabel!
     @IBOutlet weak var themeGameCollectionView: UICollectionView!
@@ -30,6 +32,13 @@ class MainVC: UIViewController {
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var stackFirstLabel: UILabel!
     @IBOutlet weak var stackSecondLabel: UILabel!
+    
+    @IBOutlet weak var keywordCollectionView: UICollectionView!
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
     
     // MARK: IBAction
     
@@ -47,6 +56,7 @@ class MainVC: UIViewController {
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
             trendingGameData(jwt: token)
+            todayThemeData(jwt: token)
         }
         
     }
@@ -72,7 +82,6 @@ extension MainVC {
             
             let attributedStr = NSMutableAttributedString(string: text)
             
-            //            attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.threeLight(size: 14), range: (text as NSString).range(of: "Now!"))
             attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: "Now!"))
             
             firstHeaderLabel.attributedText = attributedStr
@@ -82,6 +91,7 @@ extension MainVC {
         explainLabel.setLabel(text: "보드게임 진심러들이 고른 진짜 중 진짜!", color: .boardGray50, font: .neoMedium(ofSize: 15))
         
         bestThemeButton.setRounded(radius: 6)
+        bestThemeImageView.setRounded(radius: 6)
         bestThemeNameLabel.numberOfLines = 0
         
         instagramButton.setRounded(radius: 6)
@@ -111,23 +121,18 @@ extension MainVC {
         trandingGameCollectionView.delegate = self
         trandingGameCollectionView.dataSource = self
         
-        // Test Data (서버 연결 전)
-        let themeItem1 = ThemeData(themeImage: "testBackImage_1", themeName: "내가 이 구역 최고 브레인!")
-        let themeItem2 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem3 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem4 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem5 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem6 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem7 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem8 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        let themeItem9 = ThemeData(themeImage: "testBackImage_2", themeName: "보드게임\n5분 컷!")
-        secondHeaderData.append(contentsOf: [themeItem1,themeItem2,themeItem3,themeItem4,themeItem5,themeItem6,themeItem7,themeItem8,themeItem9])
-        
-        bestThemeNameLabel.setLabel(text: secondHeaderData[0].themeName, color: .boardWhite, font: .neoBold(ofSize: 24))
-        bestThemeButton.setImage(UIImage(named: secondHeaderData[0].themeImage), for: .normal)
-        
         themeGameCollectionView.delegate = self
         themeGameCollectionView.dataSource = self
+        
+        let layout = keywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
+        keywordCollectionView.delegate = self
+        keywordCollectionView.dataSource = self
+        keywordCollectionView.backgroundColor = .none
+        
+        let customLayout = LeftAlignFlowLayout()
+        keywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
         
     }
     
@@ -150,6 +155,31 @@ extension MainVC {
             
         }
     }
+    
+    func todayThemeData(jwt: String) {
+        
+        APIService.shared.todayTheme(jwt) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                
+                todayThemeData = data
+                print(todayThemeData)
+                themeGameCollectionView.reloadData()
+                
+                firstTag = todayThemeData[0].tag
+                keywordCollectionView.reloadData()
+                
+                bestThemeNameLabel.setLabel(text: todayThemeData[0].name, color: .boardWhite, font: .neoBold(ofSize: 24))
+                bestThemeImageView.setImage(from: todayThemeData[0].imageURL)
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
@@ -163,6 +193,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         if collectionView == trandingGameCollectionView {
             let itemWidth = 160/375 * self.view.frame.width
             return CGSize(width: itemWidth, height: collectionView.layer.frame.height)
+        } else if collectionView == keywordCollectionView {
+            return CGSize(width: 36, height: 36)
         } else {
             let itemWidth = self.themeGameCollectionView.frame.width / 2 - 7.5
             return CGSize(width: itemWidth, height: itemWidth)
@@ -174,6 +206,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         
         if collectionView == trandingGameCollectionView {
             return 10
+        } else if collectionView == keywordCollectionView {
+            return 0
         } else {
             return 15
         }
@@ -182,7 +216,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        if collectionView == keywordCollectionView {
+            return 10
+        } else {
+            return 0
+        }
         
     }
     
@@ -208,8 +246,10 @@ extension MainVC: UICollectionViewDataSource {
         
         if collectionView == trandingGameCollectionView {
             return trendingData.count
+        } else if collectionView == keywordCollectionView {
+            return firstTag.count
         } else {
-            return 8
+            return todayThemeData.count - 1
         }
         
     }
@@ -243,12 +283,22 @@ extension MainVC: UICollectionViewDataSource {
             
             return cell
             
-        } else {
+        } else if collectionView == keywordCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(title: firstTag[indexPath.row])
+        
+            return cell
+        }
+        else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeGameCell.identifier, for: indexPath) as? ThemeGameCell else {
                 return UICollectionViewCell()
             }
             
-            cell.configure(name: secondHeaderData[indexPath.row+1].themeName, image: secondHeaderData[indexPath.row+1].themeImage)
+            cell.configure(name: todayThemeData[indexPath.row+1].name, image: todayThemeData[indexPath.row+1].imageURL, keyword: todayThemeData[indexPath.row+1].tag)
+            
             return cell
         }
         
