@@ -52,6 +52,14 @@ struct APIService {
         
     }
     
+    func searchResult(_ jwt: String, _ inputWord: String, completion: @escaping (NetworkResult<[SearchGameData]>)->(Void)) {
+    // 검색 결과
+        
+        let target: APITarget = .searchGame(jwt: jwt, inputWord: inputWord)
+        judgeObject(target, completion: completion)
+        
+    }
+    
 
 }
 
