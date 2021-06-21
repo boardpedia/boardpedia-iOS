@@ -33,6 +33,12 @@ class SearchVC: UIViewController {
         // 뷰 클릭 시 키보드 내리기
         view.endEditing(true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // 이 뷰에 들어오자 마자 바로 키보드 띄우고 cursor 포커스 주기
+        self.searchTextField.becomeFirstResponder()
+    }
 
 }
 
