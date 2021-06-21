@@ -185,6 +185,10 @@ extension SearchResultVC {
         addButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         addButton.setRounded(radius: 6)
         
+        for i in Range(0...3) {
+            filterButton[i].isEnabled = false
+        }
+        
         
     }
     
