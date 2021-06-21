@@ -51,7 +51,7 @@ class SearchVC: UIViewController {
             }
             
             let transition: CATransition = CATransition()
-            transition.duration = 0.3
+            transition.duration = 0.0
             transition.type = CATransitionType.fade
             self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.pushViewController(searchTab, animated: false)
@@ -83,8 +83,10 @@ class SearchVC: UIViewController {
         
         if !searchView {
             self.searchTextField.becomeFirstResponder()
+            self.searchTextField.text = nil
         }
     }
+
 
 }
 
@@ -157,7 +159,7 @@ extension SearchVC: UITextFieldDelegate {
             }
             
             let transition: CATransition = CATransition()
-            transition.duration = 0.3
+            transition.duration = 0.0
             transition.type = CATransitionType.fade
             self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.pushViewController(searchTab, animated: false)
@@ -172,6 +174,19 @@ extension SearchVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         searchTextField.becomeFirstResponder()
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        
+        if searchView {
+            let transition: CATransition = CATransition()
+            transition.duration = 0.3
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.popViewController(animated: false)
+        }
+        
+        return true
     }
     
 }
