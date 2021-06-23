@@ -41,8 +41,8 @@ extension SplashVC {
                         UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
                         // 토큰 저장
                         
-                        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                        guard let mainTab = storyboard.instantiateViewController(identifier: "MainNaviVC") as? MainNaviVC else {
+                        let storyboard = UIStoryboard.init(name: "TabBar", bundle: nil)
+                        guard let mainTab = storyboard.instantiateViewController(identifier: "TabBarVC") as? TabBarVC else {
                             return
                         }
                         
