@@ -15,6 +15,7 @@
 		9B091128265FC12700FB5928 /* GameCollect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B091127265FC12700FB5928 /* GameCollect.storyboard */; };
 		9B09112B265FC14500FB5928 /* GameCollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09112A265FC14500FB5928 /* GameCollectVC.swift */; };
 		9B140E7E268B4EE6003421F2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B140E7D268B4EE6003421F2 /* UserData.swift */; };
+		9B140E83268B5C06003421F2 /* UserSaveListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B140E82268B5C06003421F2 /* UserSaveListData.swift */; };
 		9B162C44264AD75A00219529 /* MySaveListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C43264AD75A00219529 /* MySaveListVC.swift */; };
 		9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C48264AD79700219529 /* MySaveListCell.swift */; };
 		9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B162C4B264ADC7600219529 /* MyReviewListVC.swift */; };
@@ -94,6 +95,7 @@
 		9B091127265FC12700FB5928 /* GameCollect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameCollect.storyboard; sourceTree = "<group>"; };
 		9B09112A265FC14500FB5928 /* GameCollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectVC.swift; sourceTree = "<group>"; };
 		9B140E7D268B4EE6003421F2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		9B140E82268B5C06003421F2 /* UserSaveListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSaveListData.swift; sourceTree = "<group>"; };
 		9B162C43264AD75A00219529 /* MySaveListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListVC.swift; sourceTree = "<group>"; };
 		9B162C48264AD79700219529 /* MySaveListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySaveListCell.swift; sourceTree = "<group>"; };
 		9B162C4B264ADC7600219529 /* MyReviewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewListVC.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				9B294195267A6C760008F69F /* TokenData.swift */,
 				9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */,
 				9B140E7D268B4EE6003421F2 /* UserData.swift */,
+				9B140E82268B5C06003421F2 /* UserSaveListData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				9BE098F22649B3E8007D2BEC /* LeftAlignFlowLayout.swift in Sources */,
 				9B40CFB32660E57E00221ED4 /* GameVC.swift in Sources */,
 				9B7F182E2666277B00BD29CC /* GameDetailData.swift in Sources */,
+				9B140E83268B5C06003421F2 /* UserSaveListData.swift in Sources */,
 				9B40CFA52660C34B00221ED4 /* GameCollectionCell.swift in Sources */,
 				9BE098FE264A6E8D007D2BEC /* SearchResultCell.swift in Sources */,
 				9BE098E4264991C7007D2BEC /* KeywordVC.swift in Sources */,

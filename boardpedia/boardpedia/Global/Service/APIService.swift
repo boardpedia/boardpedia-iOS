@@ -68,6 +68,11 @@ struct APIService {
         
     }
     
+    func mySaveList(_ jwt: String, completion: @escaping (NetworkResult<UserData>)->(Void)) {
+        
+        
+    }
+    
     
 }
 
