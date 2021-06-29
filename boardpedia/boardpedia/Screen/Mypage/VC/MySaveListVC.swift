@@ -21,7 +21,15 @@ class MySaveListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setResultCollectionView()
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면
+            setGoLogin()
+            
+        } else {
+            setResultCollectionView()
+        }
+       
         // Do any additional setup after loading the view.
     }
 
@@ -45,6 +53,48 @@ extension MySaveListVC {
         saveListCollectionView.delegate = self
         saveListCollectionView.dataSource = self
         saveListCollectionView.backgroundColor = .boardWhite
+    }
+    
+    func setGoLogin() {
+        
+        let infoLabel = UILabel()
+        self.view.addSubview(infoLabel)
+        
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        infoLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
+        infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+        
+        
+        let brandImage = UIImageView()
+        self.view.addSubview(brandImage)
+        
+        brandImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        brandImage.widthAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
+        brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
+        brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
+        
+        brandImage.image = UIImage(named: "charcter")
+        
+        let loginButton = UIButton()
+        self.view.addSubview(loginButton)
+        
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        loginButton.widthAnchor.constraint(equalToConstant: 164/375 * self.view.frame.width).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 40/375 * self.view.frame.width).isActive = true
+        loginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loginButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30).isActive = true
+        
+        loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+        loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
+        loginButton.setRounded(radius: 6)
+        
+        
     }
 }
 

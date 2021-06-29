@@ -251,7 +251,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cE8-fS-XRm">
-                                                                    <rect key="frame" x="15" y="114" width="140" height="30"/>
+                                                                    <rect key="frame" x="10" y="114" width="155" height="30"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="W56-CX-w8Z"/>
@@ -264,7 +264,7 @@
                                                                     </collectionViewFlowLayout>
                                                                     <cells>
                                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="5je-04-8Eu" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
-                                                                            <rect key="frame" x="7.5" y="0.0" width="125" height="34"/>
+                                                                            <rect key="frame" x="15" y="0.0" width="125" height="34"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JCb-fd-Q6f">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="34"/>
@@ -293,8 +293,8 @@
                                                                 </collectionView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="cE8-fS-XRm" firstAttribute="leading" secondItem="R4Q-EO-0G3" secondAttribute="leading" constant="15" id="8h8-SW-Mbw"/>
-                                                                <constraint firstAttribute="trailing" secondItem="cE8-fS-XRm" secondAttribute="trailing" constant="10" id="Bw0-2L-zKZ"/>
+                                                                <constraint firstItem="cE8-fS-XRm" firstAttribute="leading" secondItem="R4Q-EO-0G3" secondAttribute="leading" constant="10" id="8h8-SW-Mbw"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cE8-fS-XRm" secondAttribute="trailing" id="Bw0-2L-zKZ"/>
                                                                 <constraint firstItem="fjV-Lt-9zX" firstAttribute="leading" secondItem="R4Q-EO-0G3" secondAttribute="leading" constant="15" id="DFU-8u-Ruh"/>
                                                                 <constraint firstItem="fjV-Lt-9zX" firstAttribute="top" secondItem="R4Q-EO-0G3" secondAttribute="top" constant="20" id="Srm-6y-mM9"/>
                                                                 <constraint firstAttribute="bottom" secondItem="cE8-fS-XRm" secondAttribute="bottom" constant="16" id="URP-Ci-eYX"/>
