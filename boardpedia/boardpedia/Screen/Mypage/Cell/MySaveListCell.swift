@@ -32,8 +32,8 @@ class MySaveListCell: UICollectionViewCell {
     // MARK: Data Set Function
     
     func configure(image: String, name: String, info: String) {
-
-        gameImageView.image = UIImage(named: image)
+        
+        gameImageView.setImage(from: image)
         gameNameLabel.text = name
         gameInfoLabel.text = info
         
