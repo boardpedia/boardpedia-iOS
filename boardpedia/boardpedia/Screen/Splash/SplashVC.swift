@@ -25,6 +25,9 @@ extension SplashVC {
     
     func checkDeviceNetworkStatus() {
         
+        UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
+        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
+        
         if NetworkState.isConnected() {
             // 네트워크 연결 시
             

@@ -60,7 +60,7 @@ struct APIService {
         
     }
     
-    func searchUser(_ jwt: String, completion: @escaping (NetworkResult<[UserData]>)->(Void)) {
+    func searchUser(_ jwt: String, completion: @escaping (NetworkResult<UserData>)->(Void)) {
         // 유저 조회
         
         let target: APITarget = .getUser(jwt: jwt)

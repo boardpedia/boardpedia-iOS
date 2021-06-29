@@ -11,6 +11,8 @@ class MypageVC: UIViewController {
     
     // MARK: Variable Part
     
+    var userData: UserData?
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -21,7 +23,7 @@ class MypageVC: UIViewController {
     
     
     // MARK: IBAction
-
+    
     
     // MARK: Life Cycle Part
     
@@ -32,7 +34,7 @@ class MypageVC: UIViewController {
         setProfile()
         // Do any additional setup after loading the view.
     }
-
+    
     
 }
 
@@ -56,7 +58,6 @@ extension MypageVC {
     
     func setProfile() {
         
-        
         levelButton.setRounded(radius: 12)
         
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
@@ -70,17 +71,48 @@ extension MypageVC {
             
         } else {
             // 로그인을 했다면
-        
-            profileImageView.image = UIImage(named: "profile")
-            nickLabel.setLabel(text: "미니", font: .neoBold(ofSize: 20))
-            levelButton.setButton(text: "보드초보자", color: .boardOrange, font: .neoMedium(ofSize: 15), backgroundColor: UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1))
+            
             levelButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
             editButton.isHidden = false
+            
+            if NetworkState.isConnected() {
+                // 네트워크 연결 시
+                
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    
+                    APIService.shared.searchUser(token) { [self] result in
+                        switch result {
+                        
+                        case .success(let data):
+                            
+                            userData = data
+                            
+                            if let userData = userData {
+                                nickLabel.setLabel(text: userData.nickName, font: .neoBold(ofSize: 20))
+                                levelButton.setButton(text: userData.level, color: .boardOrange, font: .neoMedium(ofSize: 15), backgroundColor: UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1))
+                                
+                                profileImageView.image = UIImage(named: "profile")
+                                // 레벨별로 이미지 달라야해서 이거 수정해야함! 꼬옥!
+                                
+                            }
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                }
+                
+            } else {
+                
+                // 네트워크 미연결 팝업
+            }
             
         }
         
     }
-        
+    
     
     
     
