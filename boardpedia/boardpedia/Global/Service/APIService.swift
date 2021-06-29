@@ -17,35 +17,35 @@ struct APIService {
     // MoyaProvider(->요청 보내는 클래스) 인스턴스 생성
     
     func trending(_ jwt: String, completion: @escaping (NetworkResult<[TrendingGame]>)->(Void)) {
-    // 홈 - 트렌딩 게임 조회하기
+        // 홈 - 트렌딩 게임 조회하기
         
         let target: APITarget = .trending(jwt: jwt)
         judgeObject(target, completion: completion)
     }
     
     func saveGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
-    // 북마크 저장
+        // 북마크 저장
         
         let target: APITarget = .saveGame(jwt: jwt, gameIdx: gameIdx)
         judgeSimpleObject(target, completion: completion)
     }
     
     func saveCancleGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<Any>)->(Void)) {
-    // 북마크 저장 취소
+        // 북마크 저장 취소
         
         let target: APITarget = .saveCancleGame(jwt: jwt, gameIdx: gameIdx)
         judgeSimpleObject(target, completion: completion)
     }
     
     func login(_ snsId: String, _ provider: String, completion: @escaping (NetworkResult<TokenData>)->(Void)) {
-    // 유저 로그인
+        // 유저 로그인
         
         let target: APITarget = .login(snsId: snsId, provider: provider)
         judgeObject(target, completion: completion)
     }
     
     func todayTheme(_ jwt: String, completion: @escaping (NetworkResult<[ThemeData]>)->(Void)) {
-    // 오늘의 테마
+        // 오늘의 테마
         
         let target: APITarget = .theme(jwt: jwt)
         judgeObject(target, completion: completion)
@@ -53,14 +53,22 @@ struct APIService {
     }
     
     func searchResult(_ jwt: String, _ inputWord: String, completion: @escaping (NetworkResult<[SearchGameData]>)->(Void)) {
-    // 검색 결과
+        // 검색 결과
         
         let target: APITarget = .searchGame(jwt: jwt, inputWord: inputWord)
         judgeObject(target, completion: completion)
         
     }
     
-
+    func searchUser(_ jwt: String, completion: @escaping (NetworkResult<[UserData]>)->(Void)) {
+        // 유저 조회
+        
+        let target: APITarget = .getUser(jwt: jwt)
+        judgeObject(target, completion: completion)
+        
+    }
+    
+    
 }
 
 
