@@ -32,4 +32,29 @@ class ThemeKeywordCell: UICollectionViewCell {
     func configure(title: String) {
         keywordLabel.text = title
     }
+    
+    func nickConfigure(level: String, login: Bool) {
+        
+        keywordLabel.text = level
+        self.contentView.setRounded(radius: 12)
+        
+        if login {
+            // 로그인 유저일 때
+            
+            self.contentView.backgroundColor = UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1)
+            keywordLabel.textColor = .boardOrange
+            self.contentView.setBorder(borderColor: .boardOrange, borderWidth: 1)
+            
+            
+        } else {
+            // 비로그인 유저일 때
+            
+            keywordLabel.textColor = .boardGray30
+            self.contentView.backgroundColor = .boardGray
+            self.contentView.setBorder(borderColor: .boardGray30, borderWidth: 1)
+        }
+        
+        
+        
+    }
 }
