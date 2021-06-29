@@ -58,9 +58,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QJ-eR-LHR">
-                                <rect key="frame" x="120" y="165" width="85" height="24"/>
+                                <rect key="frame" x="120" y="165" width="65" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="LUG-gA-Eck"/>
+                                    <constraint firstAttribute="width" constant="65" id="LUG-gA-Eck"/>
                                     <constraint firstAttribute="height" constant="24" id="NAB-Kw-UnO"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -113,6 +113,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="eqq-ns-WKg" id="C0V-DM-YE0"/>
                         <outlet property="levelButton" destination="5QJ-eR-LHR" id="2M3-Az-muY"/>
                         <outlet property="nickLabel" destination="6HJ-dJ-uA2" id="ZRU-dR-mLG"/>
                         <outlet property="profileImageView" destination="YeB-9A-pRM" id="usX-L3-wE1"/>

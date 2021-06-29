@@ -17,6 +17,8 @@ class MypageVC: UIViewController {
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var levelButton: UIButton!
     @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var editButton: UIButton!
+    
     
     // MARK: IBAction
 
@@ -54,11 +56,32 @@ extension MypageVC {
     
     func setProfile() {
         
-        profileImageView.image = UIImage(named: "profile")
-        nickLabel.setLabel(text: "미니", font: .neoBold(ofSize: 20))
-        levelButton.setButton(text: "보드초보자", color: .boardOrange, font: .neoMedium(ofSize: 15), backgroundColor: UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1))
+        
         levelButton.setRounded(radius: 12)
-        levelButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면
+            
+            nickLabel.setLabel(text: "로그인을 해보세요", font: .neoBold(ofSize: 20))
+            levelButton.setButton(text: "브론즈", color: .boardGray30, font: .neoMedium(ofSize: 15), backgroundColor: .boardGray)
+            levelButton.setBorder(borderColor: .boardGray30, borderWidth: 1)
+            profileImageView.image = UIImage(named: "level1ProfileImg")
+            editButton.isHidden = true
+            
+        } else {
+            // 로그인을 했다면
+        
+            profileImageView.image = UIImage(named: "profile")
+            nickLabel.setLabel(text: "미니", font: .neoBold(ofSize: 20))
+            levelButton.setButton(text: "보드초보자", color: .boardOrange, font: .neoMedium(ofSize: 15), backgroundColor: UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1))
+            levelButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
+            editButton.isHidden = false
+            
+        }
+        
     }
+        
+    
+    
     
 }
