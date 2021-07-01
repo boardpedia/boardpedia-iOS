@@ -175,10 +175,47 @@ extension MySaveListVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        cell.cellDelegate = self
+        cell.cellIndex = indexPath
+        
         cell.configure(image: saveListData[indexPath.row].boardGame.imageURL, name: saveListData[indexPath.row].boardGame.name, info: saveListData[indexPath.row].boardGame.intro)
         
         return cell
         
     }
     
+}
+
+
+extension MySaveListVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        if NetworkState.isConnected() {
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                APIService.shared.saveCancleGame(token, saveListData[value].boardGame.gameIdx) { [self] result in
+                    switch result {
+                    
+                    case .success(_):
+                        
+                        setResultCollectionView()
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        } else {
+            // 네트워크 연결 팝업 띄우기
+            
+        }
+        
+        
+    }
 }

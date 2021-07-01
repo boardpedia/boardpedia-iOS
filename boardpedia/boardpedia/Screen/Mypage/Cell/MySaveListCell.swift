@@ -12,11 +12,20 @@ class MySaveListCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "MySaveListCell"
+    var cellDelegate: BookmarkCellDelegate?
+    var cellIndex: IndexPath?
     
     @IBOutlet weak var gameImageView: UIImageView!
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameInfoLabel: UILabel!
+    
+    
+    @IBAction func bookmarkButtonDidTap(_ sender: Any) {
+        
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        
+    }
     
     // MARK: ContentView Default Set Function
     
