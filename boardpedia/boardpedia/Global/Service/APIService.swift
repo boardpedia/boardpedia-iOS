@@ -68,6 +68,14 @@ struct APIService {
         
     }
     
+    func mySaveList(_ jwt: String, completion: @escaping (NetworkResult<[UserSaveListData]>)->(Void)) {
+        // 유저가 저장한 게임 목록 조회
+        
+        let target: APITarget = .mySavedGame(jwt: jwt)
+        judgeObject(target, completion: completion)
+        
+    }
+    
     
 }
 

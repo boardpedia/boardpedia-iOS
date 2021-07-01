@@ -11,7 +11,7 @@ class MySaveListVC: UIViewController {
 
     // MARK: Variable Part
     
-    var saveListData: [GameDate] = []
+    var saveListData: [UserSaveListData] = []
     
     // MARK: IBOutlet
     
@@ -21,7 +21,11 @@ class MySaveListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
             setGoLogin()
@@ -29,8 +33,6 @@ class MySaveListVC: UIViewController {
         } else {
             setResultCollectionView()
         }
-       
-        // Do any additional setup after loading the view.
     }
 
 }
@@ -43,19 +45,41 @@ extension MySaveListVC {
     
     func setResultCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let item1 = GameDate(gameImage: "testImage", gameName: "보드게임 이름이 길면 어떨까요~", gameExplain: "만약에 설명이 길어지면 어떻게 될까요? 저는 궁금해요 선생님~")
-        let item2 = GameDate(gameImage: "testImage", gameName: "할리갈리", gameExplain: "할리갈리 해볼리?")
-        let item3 = GameDate(gameImage: "testImage", gameName: "루미큐브", gameExplain: "루미큐브 해보큐?")
-        saveListData.append(contentsOf: [item1,item2,item3,item1,item2,item3,item1,item2,item3,item1,item2,item3])
-        
-        
+        saveListCollectionView.isHidden = false
         saveListCollectionView.delegate = self
         saveListCollectionView.dataSource = self
         saveListCollectionView.backgroundColor = .boardWhite
+        
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                
+                APIService.shared.mySaveList(token) { [self] result in
+                    switch result {
+                    
+                    case .success(let data):
+                        
+                        saveListData = data
+                        saveListCollectionView.reloadData()
+                    
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                    
+                }
+            }
+            
+        } else {
+            // 네트워크 팝업 띄우기
+            
+        }
     }
     
     func setGoLogin() {
+        
+        saveListCollectionView.isHidden = true
         
         let infoLabel = UILabel()
         self.view.addSubview(infoLabel)
@@ -151,9 +175,48 @@ extension MySaveListVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(image: saveListData[indexPath.row].gameImage, name: saveListData[indexPath.row].gameName, info: saveListData[indexPath.row].gameExplain)
+        cell.cellDelegate = self
+        cell.cellIndex = indexPath
+        
+        cell.configure(image: saveListData[indexPath.row].boardGame.imageURL, name: saveListData[indexPath.row].boardGame.name, info: saveListData[indexPath.row].boardGame.intro)
+        
         return cell
         
     }
     
+}
+
+
+extension MySaveListVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        if NetworkState.isConnected() {
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                APIService.shared.saveCancleGame(token, saveListData[value].boardGame.gameIdx) { [self] result in
+                    switch result {
+                    
+                    case .success(_):
+                        
+                        setResultCollectionView()
+                       
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        } else {
+            // 네트워크 연결 팝업 띄우기
+            
+        }
+        
+        
+    }
 }

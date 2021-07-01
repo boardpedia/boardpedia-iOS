@@ -87,7 +87,9 @@ class SearchResultVC: UIViewController {
         setButton()
         setResultLabel()
         setResultCollectionView()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if let searchWord = searchWord,
            let token = UserDefaults.standard.string(forKey: "UserToken") {
             self.searchNetwork(jwt: token, inputWord: searchWord)
