@@ -201,6 +201,7 @@ extension MySaveListVC: BookmarkCellDelegate {
                     case .success(_):
                         
                         setResultCollectionView()
+                       
                         
                     case .failure(let error):
                         print(error)

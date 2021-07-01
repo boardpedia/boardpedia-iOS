@@ -61,6 +61,11 @@ class MainVC: UIViewController {
         setView()
         setCollectionView()
         
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+            trendingGameData(jwt: token)
+            todayThemeData(jwt: token)
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -68,7 +73,6 @@ class MainVC: UIViewController {
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
             trendingGameData(jwt: token)
-            todayThemeData(jwt: token)
         }
         
     }
