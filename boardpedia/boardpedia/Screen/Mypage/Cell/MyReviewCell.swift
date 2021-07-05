@@ -48,7 +48,7 @@ class MyReviewCell: UITableViewCell {
         
         let customLayout = LeftAlignFlowLayout()
         keywordCollectionView.collectionViewLayout = customLayout
-        customLayout.estimatedItemSize = CGSize(width: 10, height: 20)
+        customLayout.estimatedItemSize = CGSize(width: 40, height: 20)
     }
     
     
@@ -80,7 +80,7 @@ extension MyReviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 한 아이템의 크기
         
-        return CGSize(width: 36, height: 10)
+        return CGSize(width: 40, height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -119,6 +119,7 @@ extension MyReviewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.configure(title: keywordData[indexPath.row])
+        cell.contentView.setRounded(radius: 11)
     
         return cell
     }
