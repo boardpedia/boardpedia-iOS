@@ -76,6 +76,14 @@ struct APIService {
         
     }
     
+    func myReviewList(_ jwt: String, completion: @escaping (NetworkResult<[UserReviewListData]>)->(Void)) {
+        // 유저가 작성한 후기 목록 조회
+        
+        let target: APITarget = .myReivew(jwt: jwt)
+        judgeObject(target, completion: completion)
+        
+    }
+    
     
 }
 

@@ -11,7 +11,7 @@ class MyReviewListVC: UIViewController {
     
     // MARK: Variable Part
     
-    var myReviewData: [MyReviewData] = []
+    var myReviewData: [UserReviewListData] = []
     
     @IBOutlet weak var MyReviewListTableView: UITableView!
     
@@ -37,13 +37,28 @@ class MyReviewListVC: UIViewController {
         MyReviewListTableView.backgroundColor = .boardGray
         self.view.backgroundColor = .boardGray
         
-        // Test Data (서버 연결 전)
-        let item1 = MyReviewData(gameImage: "testImage", gameName: "할리갈리 디럭스", firstKeyword: "스피드", secondKeyword: "꿀잼보장", star: 5)
-        let item2 = MyReviewData(gameImage: "testBackImage_2", gameName: "미니미", firstKeyword: "김민희", secondKeyword: "24살", star: 4)
-        let item3 = MyReviewData(gameImage: "testBackImage_1", gameName: "보드피디아", firstKeyword: "귀요미", secondKeyword: "3명", star: 3.5)
-        myReviewData.append(contentsOf: [item1,item2,item3,item1,item2,item3])
-        
-        MyReviewListTableView.backgroundColor = .boardGray
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                
+                APIService.shared.myReviewList(token) { [self] result in
+                    switch result {
+                    
+                    case .success(let data):
+                        myReviewData = data
+                        MyReviewListTableView.reloadData()
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                }
+            }
+        } else {
+            // 네트워크 팝업 띄우기
+            
+        }
         
     }
     
@@ -104,7 +119,7 @@ extension MyReviewListVC: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyReviewCell.identifier, for: indexPath) as? MyReviewCell else { return UITableViewCell() }
         
-        cell.configure(image: myReviewData[indexPath.row].gameImage, name: myReviewData[indexPath.row].gameName, first: myReviewData[indexPath.row].firstKeyword, second: myReviewData[indexPath.row].secondKeyword, star: myReviewData[indexPath.row].star)
+        cell.configure(image: myReviewData[indexPath.row].boardGame.imageURL, name: myReviewData[indexPath.row].boardGame.name, keyword: myReviewData[indexPath.row].keyword, star: myReviewData[indexPath.row].star)
         
         return cell
         

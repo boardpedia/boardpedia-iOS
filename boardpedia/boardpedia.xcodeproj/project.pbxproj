@@ -82,6 +82,7 @@
 		9BE09905264A8CBD007D2BEC /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE09904264A8CBD007D2BEC /* Mypage.storyboard */; };
 		9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE09914264AA448007D2BEC /* MypageVC.swift */; };
 		BDD02A23D6CC622A1D25CF31 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */; };
+		D2AF055C268EE0A900E71138 /* UserReviewListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF055B268EE0A900E71138 /* UserReviewListData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		9BE09904264A8CBD007D2BEC /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		9BE09914264AA448007D2BEC /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
 		CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
+		D2AF055B268EE0A900E71138 /* UserReviewListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewListData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +379,7 @@
 				9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */,
 				9B140E7D268B4EE6003421F2 /* UserData.swift */,
 				9B140E82268B5C06003421F2 /* UserSaveListData.swift */,
+				D2AF055B268EE0A900E71138 /* UserReviewListData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				9B7F18482668F2A000BD29CC /* CollectionViewCenterLayout.swift in Sources */,
 				9B41FA552643DD92002A3E13 /* SceneDelegate.swift in Sources */,
 				9B40CFE42664D68900221ED4 /* GameManualVC.swift in Sources */,
+				D2AF055C268EE0A900E71138 /* UserReviewListData.swift in Sources */,
 				9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */,
 				9B294193267A4A420008F69F /* SplashVC.swift in Sources */,
 				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
