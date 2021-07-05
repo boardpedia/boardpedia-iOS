@@ -47,7 +47,6 @@ class MyReviewListVC: UIViewController {
                     
                     case .success(let data):
                         myReviewData = data
-                        print(data)
                         MyReviewListTableView.reloadData()
                         
                     case .failure(let error):
