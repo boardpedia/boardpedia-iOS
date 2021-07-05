@@ -12,6 +12,9 @@ class MyReviewListVC: UIViewController {
     // MARK: Variable Part
     
     var myReviewData: [UserReviewListData] = []
+    var infoLabel = UILabel()
+    var brandImage = UIImageView()
+    var loginButton = UIButton()
     
     @IBOutlet weak var MyReviewListTableView: UITableView!
     
@@ -22,7 +25,9 @@ class MyReviewListVC: UIViewController {
         
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
-            setGoLogin()
+            setEmptyView()
+            infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+            loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
             
         } else {
             setResultTableView()
@@ -47,7 +52,15 @@ class MyReviewListVC: UIViewController {
                     
                     case .success(let data):
                         myReviewData = data
-                        MyReviewListTableView.reloadData()
+                        if myReviewData.count == 0 {
+                            setEmptyView()
+                            infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
+                            loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                            
+                        } else {
+                            MyReviewListTableView.reloadData()
+                        }
+                       
                         
                     case .failure(let error):
                         print(error)
@@ -62,9 +75,8 @@ class MyReviewListVC: UIViewController {
         
     }
     
-    func setGoLogin() {
+    func setEmptyView() {
         
-        let infoLabel = UILabel()
         self.view.addSubview(infoLabel)
         
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,10 +84,6 @@ class MyReviewListVC: UIViewController {
         infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         infoLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
-        infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
-        
-        
-        let brandImage = UIImageView()
         self.view.addSubview(brandImage)
         
         brandImage.translatesAutoresizingMaskIntoConstraints = false
@@ -84,10 +92,9 @@ class MyReviewListVC: UIViewController {
         brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
-        
         brandImage.image = UIImage(named: "charcter")
         
-        let loginButton = UIButton()
+       
         self.view.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +104,6 @@ class MyReviewListVC: UIViewController {
         loginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30).isActive = true
         
-        loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
         
