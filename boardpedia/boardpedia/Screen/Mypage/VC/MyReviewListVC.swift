@@ -49,7 +49,10 @@ class MyReviewListVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setResultTableView()
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+            setResultTableView()
+        }
     }
 }
 
