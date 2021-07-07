@@ -11,7 +11,29 @@ class MyReviewListVC: UIViewController {
     
     // MARK: Variable Part
     
-    var myReviewData: [UserReviewListData] = []
+    var myReviewData: [UserReviewListData] = [] {
+        didSet {
+            if myReviewData.count == 0 {
+                if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+                    // 비회원이라면
+                    infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                    
+                } else {
+                    infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                }
+                infoLabel.isHidden = false
+                brandImage.isHidden = false
+                loginButton.isHidden = false
+            } else {
+                infoLabel.isHidden = true
+                brandImage.isHidden = true
+                loginButton.isHidden = true
+            }
+        }
+    }
+    
     var infoLabel = UILabel()
     var brandImage = UIImageView()
     var loginButton = UIButton()
@@ -22,25 +44,30 @@ class MyReviewListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
-            // 비회원이라면
-            setEmptyView()
-            infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
-            loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
-            
-        } else {
-            setResultTableView()
-        }
-        // Do any additional setup after loading the view.
+        setViewStyle()
+        setEmptyView()
     }
     
-    func setResultTableView() {
+    override func viewWillAppear(_ animated: Bool) {
+        setResultTableView()
+    }
+}
+
+// MARK: Extension
+
+extension MyReviewListVC {
+    
+    func setViewStyle() {
+        // View 기본 Style 지정
         
         MyReviewListTableView.delegate = self
         MyReviewListTableView.dataSource = self
         MyReviewListTableView.backgroundColor = .boardGray
         self.view.backgroundColor = .boardGray
+    }
+    
+    func setResultTableView() {
+        // Network 연결 후 Tableview에 데이터 넣기
         
         if NetworkState.isConnected() {
             // 네트워크 연결 시
@@ -52,15 +79,7 @@ class MyReviewListVC: UIViewController {
                     
                     case .success(let data):
                         myReviewData = data
-                        if myReviewData.count == 0 {
-                            setEmptyView()
-                            infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
-                            loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
-                            
-                        } else {
-                            MyReviewListTableView.reloadData()
-                        }
-                       
+                        MyReviewListTableView.reloadData()
                         
                     case .failure(let error):
                         print(error)
@@ -76,6 +95,7 @@ class MyReviewListVC: UIViewController {
     }
     
     func setEmptyView() {
+        // 데이터가 미 존재시 보여줄 화면 구성
         
         self.view.addSubview(infoLabel)
         
@@ -106,9 +126,9 @@ class MyReviewListVC: UIViewController {
         
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
-        
-        
+
     }
+    
 }
 
 
