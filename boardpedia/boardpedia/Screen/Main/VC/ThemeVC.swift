@@ -43,19 +43,22 @@ extension ThemeVC {
         if let token = UserDefaults.standard.string(forKey: "UserToken"),
            let index = themeIdx {
             // 테마 받아오는 서버 연결
+            getThemeGame(token: token, index: index)
+        }
+    }
+    
+    func getThemeGame(token: String, index: Int) {
+        
+        APIService.shared.todayThemeDetail(token, index) { [self] result in
+            switch result {
             
-            APIService.shared.todayThemeDetail(token, index) { [self] result in
-                switch result {
+            case .success(let data):
+                themeDetailData = data
+                themeListCollectionView.reloadData()
+                // 데이터 화면에 뿌려주기
                 
-                case .success(let data):
-                    themeDetailData = data
-                    themeListCollectionView.reloadData()
-                    // 데이터 화면에 뿌려주기
-                    
-                case .failure(let error):
-                    print(error)
-                    
-                }
+            case .failure(let error):
+                print(error)
                 
             }
             
@@ -116,7 +119,19 @@ extension ThemeVC: UICollectionViewDataSource {
         
         if let data = themeDetailData?.themeGame[indexPath.row] {
             cell.configure(image: data.imageURL, name: data.name, info: data.intro, star: data.star, save: data.saveCount)
+            
+            if data.saved == 0 {
+                // 북마크 상태가 미선택된 상태라면
+                
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            } else {
+                // 북마크 상태가 선택된 상태라면
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            }
         }
+        
+        cell.cellDelegate = self
+        cell.cellIndex = indexPath
         
         return cell
     }
@@ -146,4 +161,70 @@ extension ThemeVC: UICollectionViewDataSource {
         return CGSize(width: collectionView.frame.width, height: 285/375 * collectionView.frame.width)
     }
     
+}
+
+
+extension ThemeVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                if let data = themeDetailData?.themeGame[value],
+                   let index = themeIdx {
+                    
+                    if data.saved == 0 {
+                        // 미저장 -> 저장으로 변경
+                        
+                        APIService.shared.saveGame(token, data.gameIdx) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                getThemeGame(token: token, index: index)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                    } else {
+                        // 저장 -> 미저장으로 변경
+                        
+                        APIService.shared.saveCancleGame(token, data.gameIdx) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                getThemeGame(token: token, index: index)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
 }

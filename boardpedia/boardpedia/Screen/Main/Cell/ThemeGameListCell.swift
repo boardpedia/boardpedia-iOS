@@ -9,13 +9,27 @@ import UIKit
 
 class ThemeGameListCell: UICollectionViewCell {
     
+    // MARK: Variable Part
+    
     static let identifier = "ThemeGameListCell"
+    var cellDelegate: BookmarkCellDelegate?
+    var cellIndex: IndexPath?
+    var impactFeedbackGenerator: UIImpactFeedbackGenerator?
+    
+    // MARK: IBOutlet
     
     @IBOutlet weak var gameImageView: UIImageView!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameInfoLabel: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameValueLabel: UILabel!
+    
+    // MARK: IBAction
+    
+    @IBAction func bookmarkButtonDidTap(_ sender: Any) {
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        self.impactFeedbackGenerator?.impactOccurred()
+    }
     
     // MARK: ContentView Default Set Function
     
@@ -28,6 +42,8 @@ class ThemeGameListCell: UICollectionViewCell {
         gameNameLabel.numberOfLines = 0
         gameInfoLabel.numberOfLines = 0
         gameImageView.setRounded(radius: 6)
+        
+        self.impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     }
     
     // MARK: Data Set Function
