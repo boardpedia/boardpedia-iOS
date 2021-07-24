@@ -12,6 +12,7 @@ class ThemeVC: UIViewController {
     // MARK: Variable Part
     
     var searchResultData: [SearchResultData] = []
+    var themeData: ThemeData?
     
     // MARK: IBOutlet
     
@@ -22,6 +23,10 @@ class ThemeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setResultCollectionView()
+        
+        if let data = themeData {
+            print(data)
+        }
     }
     
     

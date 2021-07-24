@@ -319,6 +319,24 @@ extension MainVC: UICollectionViewDataSource {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // collectionView Cell 클릭 시
+        
+        if collectionView == themeGameCollectionView {
+            // 테마 콜렉션 뷰라면?
+            
+            guard let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeVC") as? ThemeVC else {
+                return
+            }
+            
+            self.navigationController?.pushViewController(themeVC, animated: true)
+            // 테마 뷰로 이동
+            themeVC.themeData = todayThemeData[indexPath.row+1]
+            // 클릭한 테마에 대한 정보 전달
+        }
+        
+    }
+    
 }
 
 extension MainVC: BookmarkCellDelegate {
