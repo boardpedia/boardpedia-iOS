@@ -121,6 +121,8 @@ extension ThemeCollectionReusableView: UICollectionViewDataSource {
         if let data = themeKeywordData {
             cell.configure(title: data[indexPath.row])
         }
+        
+        cell.contentView.setRounded(radius: 13)
     
         return cell
     }
