@@ -136,7 +136,7 @@ extension MySaveListVC {
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
         
-        brandImage.image = UIImage(named: "charcter")
+        brandImage.image = UIImage(named: "grayCharcter")
         
         self.view.addSubview(loginButton)
         

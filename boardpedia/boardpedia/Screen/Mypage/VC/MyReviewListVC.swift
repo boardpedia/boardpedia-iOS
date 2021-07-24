@@ -125,7 +125,7 @@ extension MyReviewListVC {
         brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
-        brandImage.image = UIImage(named: "charcter")
+        brandImage.image = UIImage(named: "grayCharcter")
         
        
         self.view.addSubview(loginButton)
