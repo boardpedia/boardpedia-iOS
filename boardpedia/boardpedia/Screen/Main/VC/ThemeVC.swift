@@ -12,6 +12,7 @@ class ThemeVC: UIViewController {
     // MARK: Variable Part
     
     var searchResultData: [SearchResultData] = []
+    var themeDetailData: ThemeDetailData?
     var themeIdx: Int?
     
     // MARK: IBOutlet
@@ -39,6 +40,24 @@ extension ThemeVC {
         themeListCollectionView.delegate = self
         themeListCollectionView.dataSource = self
         themeListCollectionView.backgroundColor = .boardGray
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let index = themeIdx {
+            APIService.shared.todayThemeDetail(token, index) { [self] result in
+                switch result {
+                
+                case .success(let data):
+                    themeDetailData = data
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+                
+            }
+            
+        }
+        //todayThemeDetail
     }
 }
 
