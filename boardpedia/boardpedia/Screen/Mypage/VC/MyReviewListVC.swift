@@ -11,7 +11,38 @@ class MyReviewListVC: UIViewController {
     
     // MARK: Variable Part
     
-    var myReviewData: [UserReviewListData] = []
+    var myReviewData: [UserReviewListData] = [] {
+        didSet {
+            if myReviewData.count == 0 {
+                // 데이터가 없는 경우
+                
+                if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+                    // 비회원이라면
+                    infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                    
+                } else {
+                    // 회원이지만, 데이터가 없다면
+                    
+                    infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                }
+                infoLabel.isHidden = false
+                brandImage.isHidden = false
+                loginButton.isHidden = false
+            } else {
+                // 데이터가 존재하는 경우
+                
+                infoLabel.isHidden = true
+                brandImage.isHidden = true
+                loginButton.isHidden = true
+            }
+        }
+    }
+    
+    var infoLabel = UILabel()
+    var brandImage = UIImageView()
+    var loginButton = UIButton()
     
     @IBOutlet weak var MyReviewListTableView: UITableView!
     
@@ -19,23 +50,37 @@ class MyReviewListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
-            // 비회원이라면
-            setGoLogin()
-            
-        } else {
-            setResultTableView()
-        }
-        // Do any additional setup after loading the view.
+        setViewStyle()
+        setEmptyView()
     }
     
-    func setResultTableView() {
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+            setResultTableView()
+        } else {
+            
+            infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+            loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+        }
+    }
+}
+
+// MARK: Extension
+
+extension MyReviewListVC {
+    
+    func setViewStyle() {
+        // View 기본 Style 지정
         
         MyReviewListTableView.delegate = self
         MyReviewListTableView.dataSource = self
         MyReviewListTableView.backgroundColor = .boardGray
         self.view.backgroundColor = .boardGray
+    }
+    
+    func setResultTableView() {
+        // Network 연결 후 Tableview에 데이터 넣기
         
         if NetworkState.isConnected() {
             // 네트워크 연결 시
@@ -62,9 +107,9 @@ class MyReviewListVC: UIViewController {
         
     }
     
-    func setGoLogin() {
+    func setEmptyView() {
+        // 데이터가 미 존재시 보여줄 화면 구성
         
-        let infoLabel = UILabel()
         self.view.addSubview(infoLabel)
         
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,10 +117,6 @@ class MyReviewListVC: UIViewController {
         infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         infoLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
-        infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
-        
-        
-        let brandImage = UIImageView()
         self.view.addSubview(brandImage)
         
         brandImage.translatesAutoresizingMaskIntoConstraints = false
@@ -84,10 +125,9 @@ class MyReviewListVC: UIViewController {
         brandImage.heightAnchor.constraint(equalToConstant: 104/375 * self.view.frame.width).isActive = true
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
+        brandImage.image = UIImage(named: "grayCharcter")
         
-        brandImage.image = UIImage(named: "charcter")
-        
-        let loginButton = UIButton()
+       
         self.view.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -97,12 +137,11 @@ class MyReviewListVC: UIViewController {
         loginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30).isActive = true
         
-        loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
-        
-        
+
     }
+    
 }
 
 

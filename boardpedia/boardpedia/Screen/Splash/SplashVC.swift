@@ -30,7 +30,7 @@ extension SplashVC {
         UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
         UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
         
-        // 비회원 테스트
+//        // 비회원 테스트
 //        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
 //        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
         

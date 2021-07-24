@@ -11,7 +11,37 @@ class MySaveListVC: UIViewController {
 
     // MARK: Variable Part
     
-    var saveListData: [UserSaveListData] = []
+    var saveListData: [UserSaveListData] = [] {
+        didSet {
+            if saveListData.count == 0 {
+                print("커노")
+                // 데이터가 없는 경우
+                if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+                    // 비회원이라면
+                    infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                    
+                } else {
+                    // 회원이지만, 데이터가 없다면
+                    infoLabel.setLabel(text: "아직 저장한 게임이 없어요.", font: .neoMedium(ofSize: 16))
+                    loginButton.setButton(text: "지금 저장 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+                }
+                infoLabel.isHidden = false
+                brandImage.isHidden = false
+                loginButton.isHidden = false
+            } else {
+                // 데이터가 존재하는 경우
+                
+                infoLabel.isHidden = true
+                brandImage.isHidden = true
+                loginButton.isHidden = true
+            }
+        }
+    }
+    
+    var infoLabel = UILabel()
+    var brandImage = UIImageView()
+    var loginButton = UIButton()
     
     // MARK: IBOutlet
     
@@ -21,18 +51,24 @@ class MySaveListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setGoLogin()
+        setViewStyle()
        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
-            // 비회원이라면
-            setGoLogin()
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+            // 비회원이 아니라면
             
-        } else {
             setResultCollectionView()
+        } else {
+            
+            infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+            loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         }
+        
     }
 
 }
@@ -41,14 +77,19 @@ class MySaveListVC: UIViewController {
 
 extension MySaveListVC {
     
-    // MARK: Result Data Style Function
+    // MARK: View Default Style Function
     
-    func setResultCollectionView() {
+    func setViewStyle() {
         
-        saveListCollectionView.isHidden = false
         saveListCollectionView.delegate = self
         saveListCollectionView.dataSource = self
         saveListCollectionView.backgroundColor = .boardWhite
+        
+    }
+    
+    // MARK: Result Data Style Function
+    
+    func setResultCollectionView() {
         
         if NetworkState.isConnected() {
             // 네트워크 연결 시
@@ -79,9 +120,6 @@ extension MySaveListVC {
     
     func setGoLogin() {
         
-        saveListCollectionView.isHidden = true
-        
-        let infoLabel = UILabel()
         self.view.addSubview(infoLabel)
         
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,10 +127,6 @@ extension MySaveListVC {
         infoLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         infoLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
-        infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
-        
-        
-        let brandImage = UIImageView()
         self.view.addSubview(brandImage)
         
         brandImage.translatesAutoresizingMaskIntoConstraints = false
@@ -102,9 +136,8 @@ extension MySaveListVC {
         brandImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         brandImage.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -25).isActive = true
         
-        brandImage.image = UIImage(named: "charcter")
+        brandImage.image = UIImage(named: "grayCharcter")
         
-        let loginButton = UIButton()
         self.view.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +147,6 @@ extension MySaveListVC {
         loginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30).isActive = true
         
-        loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
         
