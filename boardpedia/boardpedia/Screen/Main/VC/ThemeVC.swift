@@ -130,6 +130,12 @@ extension ThemeVC: UICollectionViewDataSource {
             headerview.setTheme(info: data.detail, title: data.name, back: data.imageURL)
         }
         
+        headerview.backButtonAction = {
+            // closure 호출
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
         return headerview
     }
     

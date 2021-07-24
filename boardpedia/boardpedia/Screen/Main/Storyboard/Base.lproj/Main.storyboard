@@ -624,6 +624,7 @@
                                         <constraint firstAttribute="trailing" secondItem="1cQ-44-pQB" secondAttribute="trailing" constant="16" id="xwq-Q6-D6r"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="backButton" destination="StB-7M-sMs" id="oeT-jg-7QZ"/>
                                         <outlet property="backImageView" destination="iWD-4C-Sf3" id="fX6-c0-eFU"/>
                                         <outlet property="collectionLayout" destination="yEg-cd-wU6" id="m3h-LL-RNG"/>
                                         <outlet property="infoLabel" destination="1g2-cs-x8u" id="UBC-hf-X24"/>

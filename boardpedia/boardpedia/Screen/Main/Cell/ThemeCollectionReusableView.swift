@@ -12,12 +12,14 @@ class ThemeCollectionReusableView: UICollectionReusableView {
     // MARK: Variable Part
     
     var themeKeywordData: [KeywordData] = []
+    var backButtonAction : (() -> Void)? // closer 변수
  
     // MARK: IBOutlet
     
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var themeTitleLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var keywordCollectionView: UICollectionView!
     
@@ -30,6 +32,8 @@ class ThemeCollectionReusableView: UICollectionReusableView {
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
+        
+        backButton.addTarget(self, action: #selector(backButtonDidTap(_:)), for: .touchUpInside)
         
         infoLabel.setLabel(text: "", color: .boardWhite, font: .neoMedium(ofSize: 17))
         themeTitleLabel.setLabel(text: "", color: .boardWhite, font: .neoBold(ofSize: 24))
@@ -54,6 +58,16 @@ class ThemeCollectionReusableView: UICollectionReusableView {
         backImageView.setImage(from: back)
         infoLabel.text = info
         themeTitleLabel.text = title
+    }
+    
+    @objc func backButtonDidTap(_ sender : UIButton) {
+        
+        guard let pagePluginButtonAction = backButtonAction else {
+            return
+        }
+        
+        pagePluginButtonAction()
+        // 전달받은 action 실행
     }
     
 }
