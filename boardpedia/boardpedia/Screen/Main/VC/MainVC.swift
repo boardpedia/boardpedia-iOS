@@ -54,6 +54,19 @@ class MainVC: UIViewController {
         
     }
     
+    
+    @IBAction func bestThemeButtonDidTap(_ sender: Any) {
+        
+        guard let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeVC") as? ThemeVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(themeVC, animated: true)
+        // 테마 뷰로 이동
+        themeVC.themeIdx = todayThemeData[0].themeIdx
+        // 클릭한 테마 themeIdx 전달
+    }
+    
     // MARK: Life Cycle Part
     
     override func viewDidLoad() {
@@ -315,6 +328,24 @@ extension MainVC: UICollectionViewDataSource {
             cell.configure(name: todayThemeData[indexPath.row+1].name, image: todayThemeData[indexPath.row+1].imageURL, keyword: todayThemeData[indexPath.row+1].tag)
             
             return cell
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // collectionView Cell 클릭 시
+        
+        if collectionView == themeGameCollectionView {
+            // 테마 콜렉션 뷰라면?
+            
+            guard let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeVC") as? ThemeVC else {
+                return
+            }
+            
+            self.navigationController?.pushViewController(themeVC, animated: true)
+            // 테마 뷰로 이동
+            themeVC.themeIdx = todayThemeData[indexPath.row+1].themeIdx
+            // 클릭한 테마 themeIdx 전달
         }
         
     }

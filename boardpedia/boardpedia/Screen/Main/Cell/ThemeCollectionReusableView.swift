@@ -11,13 +11,15 @@ class ThemeCollectionReusableView: UICollectionReusableView {
     
     // MARK: Variable Part
     
-    var themeKeywordData: [KeywordData] = []
+    var themeKeywordData: [String]?
+    var backButtonAction : (() -> Void)? // closer 변수
  
     // MARK: IBOutlet
     
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var themeTitleLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var keywordCollectionView: UICollectionView!
     
@@ -31,6 +33,8 @@ class ThemeCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         
+        backButton.addTarget(self, action: #selector(backButtonDidTap(_:)), for: .touchUpInside)
+        
         infoLabel.setLabel(text: "", color: .boardWhite, font: .neoMedium(ofSize: 17))
         themeTitleLabel.setLabel(text: "", color: .boardWhite, font: .neoBold(ofSize: 24))
         themeTitleLabel.numberOfLines = 0
@@ -41,17 +45,29 @@ class ThemeCollectionReusableView: UICollectionReusableView {
         let layout = keywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .vertical
         
-        let item1 = KeywordData(keyword: "스피드")
-        let item2 = KeywordData(keyword: "파티")
-        let item3 = KeywordData(keyword: "즐거운")
-        
-        themeKeywordData.append(contentsOf: [item1,item2,item3])
         
     }
     
-    func setTheme(info: String, title: String) {
+    func setTheme(info: String, title: String, back: String) {
+        
+        backImageView.setImage(from: back)
         infoLabel.text = info
         themeTitleLabel.text = title
+    }
+    
+    func setTag(tag: [String]) {
+        themeKeywordData = tag
+        keywordCollectionView.reloadData()
+    }
+    
+    @objc func backButtonDidTap(_ sender : UIButton) {
+        
+        guard let pagePluginButtonAction = backButtonAction else {
+            return
+        }
+        
+        pagePluginButtonAction()
+        // 전달받은 action 실행
     }
     
 }
@@ -93,7 +109,7 @@ extension ThemeCollectionReusableView: UICollectionViewDelegateFlowLayout {
 extension ThemeCollectionReusableView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return themeKeywordData.count
+        return themeKeywordData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,7 +117,12 @@ extension ThemeCollectionReusableView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
-        cell.configure(title: themeKeywordData[indexPath.row].keyword)
+        
+        if let data = themeKeywordData {
+            cell.configure(title: data[indexPath.row])
+        }
+        
+        cell.contentView.setRounded(radius: 13)
     
         return cell
     }

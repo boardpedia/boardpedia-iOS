@@ -11,7 +11,8 @@ class ThemeVC: UIViewController {
     
     // MARK: Variable Part
     
-    var searchResultData: [SearchResultData] = []
+    var themeDetailData: ThemeDetailData?
+    var themeIdx: Int?
     
     // MARK: IBOutlet
     
@@ -35,16 +36,33 @@ extension ThemeVC {
     
     func setResultCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
-        let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
-        
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
-        
-        
         themeListCollectionView.delegate = self
         themeListCollectionView.dataSource = self
         themeListCollectionView.backgroundColor = .boardGray
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let index = themeIdx {
+            // 테마 받아오는 서버 연결
+            getThemeGame(token: token, index: index)
+        }
+    }
+    
+    func getThemeGame(token: String, index: Int) {
+        
+        APIService.shared.todayThemeDetail(token, index) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                themeDetailData = data
+                themeListCollectionView.reloadData()
+                // 데이터 화면에 뿌려주기
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
     }
 }
 
@@ -85,15 +103,35 @@ extension ThemeVC: UICollectionViewDelegateFlowLayout {
 
 extension ThemeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchResultData.count
+        
+        if let data = themeDetailData?.themeGame {
+            return data.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeGameListCell.identifier, for: indexPath) as? ThemeGameListCell else {
             return UICollectionViewCell()
         }
         
-        cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+        if let data = themeDetailData?.themeGame[indexPath.row] {
+            cell.configure(image: data.imageURL, name: data.name, info: data.intro, star: data.star, save: data.saveCount)
+            
+            if data.saved == 0 {
+                // 북마크 상태가 미선택된 상태라면
+                
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
+            } else {
+                // 북마크 상태가 선택된 상태라면
+                cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+            }
+        }
+        
+        cell.cellDelegate = self
+        cell.cellIndex = indexPath
         
         return cell
     }
@@ -103,7 +141,17 @@ extension ThemeVC: UICollectionViewDataSource {
         
         let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ThemeCollectionReusableView", for: indexPath) as! ThemeCollectionReusableView
         
-        headerview.setTheme(info: "✋은 👀보다 빠르다", title: "내가 이 구역 최고 브레인!")
+        if let data = themeDetailData?.themes[0] {
+            headerview.setTheme(info: data.detail, title: data.name, back: data.imageURL)
+            headerview.setTag(tag: data.tag)
+        }
+        
+        headerview.backButtonAction = {
+            // closure 호출
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
         return headerview
     }
     
@@ -113,4 +161,70 @@ extension ThemeVC: UICollectionViewDataSource {
         return CGSize(width: collectionView.frame.width, height: 285/375 * collectionView.frame.width)
     }
     
+}
+
+
+extension ThemeVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                if let data = themeDetailData?.themeGame[value],
+                   let index = themeIdx {
+                    
+                    if data.saved == 0 {
+                        // 미저장 -> 저장으로 변경
+                        
+                        APIService.shared.saveGame(token, data.gameIdx) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                getThemeGame(token: token, index: index)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                    } else {
+                        // 저장 -> 미저장으로 변경
+                        
+                        APIService.shared.saveCancleGame(token, data.gameIdx) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                getThemeGame(token: token, index: index)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
 }
