@@ -11,15 +11,15 @@ class GameCollectVC: UIViewController {
 
     // MARK: Variable Part
     
-    var searchResultData: [SearchResultData] = [] {
+    var searchResultData: [SearchGameData] = []
+    var filterData: [String] = []
+    var pageIdx: Int = 0
+    var totalGameCount: Int = 0 {
         didSet {
-            // 데이터 값이 바뀔 때 마다 라벨 변경
-            
             setResultLabel()
         }
     }
-    
-    var filterData: [String] = []
+
     
     // MARK: IBOutlet
     
@@ -65,11 +65,10 @@ extension GameCollectVC {
     
     func setResultCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
-        let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
-        
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+            
+        }
         
         let nibName = UINib(nibName: "GameCollectionCell", bundle: nil)
         gameCollectionView.register(nibName, forCellWithReuseIdentifier: "GameCollectionCell")
@@ -93,12 +92,12 @@ extension GameCollectVC {
     // MARK: Result Count Label Style Function
     
     func setResultLabel() {
-        resultLabel.setLabel(text: "해당 조건의 보드게임이 \(searchResultData.count)개 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        resultLabel.setLabel(text: "해당 조건의 보드게임이 \(totalGameCount)개 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
         
         if let text = resultLabel.text {
             // 앞부분만 폰트와 컬러를 다르게 설정
             
-            let changeString: String = "\(searchResultData.count)개"
+            let changeString: String = "\(totalGameCount)개"
             let attributedStr = NSMutableAttributedString(string: text)
             
             attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 15), range: (text as NSString).range(of: changeString))
@@ -106,6 +105,24 @@ extension GameCollectVC {
 
             resultLabel.attributedText = attributedStr
         }
+    }
+    
+    func getGameData(jwt: String, pageIdx: Int, playerNum: Int, level: String, tag: [String], duration: String) {
+        
+        APIService.shared.getGameCollection(jwt, pageIdx, playerNum, level, tag, duration) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                totalGameCount = data.totalNum
+                searchResultData.append(contentsOf: data.searchedGame)
+                gameCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+        
     }
     
 }
@@ -180,17 +197,18 @@ extension GameCollectVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            if searchResultData[indexPath.row].bookMark {
+            if searchResultData[indexPath.row].saved == 1 {
                 // 북마크 상태가 true(선택된 상태)라면
                 
                 cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+                
             } else {
                 // 북마크 상태가 false(미선택된 상태)라면
                 
                 cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
             }
             
-            cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+            cell.configure(image: searchResultData[indexPath.row].imageURL, name: searchResultData[indexPath.row].name, info: searchResultData[indexPath.row].intro, star: searchResultData[indexPath.row].star, save: searchResultData[indexPath.row].saveCount)
             
             return cell
             
