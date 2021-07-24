@@ -14,8 +14,8 @@ class MySaveListVC: UIViewController {
     var saveListData: [UserSaveListData] = [] {
         didSet {
             if saveListData.count == 0 {
+                print("커노")
                 // 데이터가 없는 경우
-                
                 if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
                     // 비회원이라면
                     infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
@@ -60,9 +60,15 @@ class MySaveListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
-            // 비회원이라면
+            // 비회원이 아니라면
+            
             setResultCollectionView()
+        } else {
+            
+            infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
+            loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         }
+        
     }
 
 }
