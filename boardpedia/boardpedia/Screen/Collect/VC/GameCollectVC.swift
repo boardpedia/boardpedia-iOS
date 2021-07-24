@@ -19,7 +19,7 @@ class GameCollectVC: UIViewController {
             setResultLabel()
         }
     }
-
+    var isPaging: Bool = false
     
     // MARK: IBOutlet
     
@@ -116,6 +116,7 @@ extension GameCollectVC {
                 totalGameCount = data.totalNum
                 searchResultData.append(contentsOf: data.searchedGame)
                 gameCollectionView.reloadData()
+                isPaging = false
                 
             case .failure(let error):
                 print(error)
@@ -225,4 +226,32 @@ extension GameCollectVC: UICollectionViewDataSource {
         
     }
     
+}
+
+extension GameCollectVC: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        if offsetY > (contentHeight - height) && !isPaging {
+            isPaging = true
+            
+            if (totalGameCount - searchResultData.count) > 0 {
+                // 아직 가져올 데이터가 남았다면
+                
+                pageIdx += 1
+                
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
 }
