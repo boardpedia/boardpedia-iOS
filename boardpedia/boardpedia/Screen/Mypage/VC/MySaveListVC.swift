@@ -14,7 +14,6 @@ class MySaveListVC: UIViewController {
     var saveListData: [UserSaveListData] = [] {
         didSet {
             if saveListData.count == 0 {
-                print("커노")
                 // 데이터가 없는 경우
                 if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
                     // 비회원이라면

@@ -54,6 +54,19 @@ class MainVC: UIViewController {
         
     }
     
+    
+    @IBAction func bestThemeButtonDidTap(_ sender: Any) {
+        
+        guard let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeVC") as? ThemeVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(themeVC, animated: true)
+        // 테마 뷰로 이동
+        themeVC.themeIdx = todayThemeData[0].themeIdx
+        // 클릭한 테마 themeIdx 전달
+    }
+    
     // MARK: Life Cycle Part
     
     override func viewDidLoad() {
