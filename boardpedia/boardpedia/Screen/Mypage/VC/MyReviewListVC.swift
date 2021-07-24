@@ -14,12 +14,16 @@ class MyReviewListVC: UIViewController {
     var myReviewData: [UserReviewListData] = [] {
         didSet {
             if myReviewData.count == 0 {
+                // 데이터가 없는 경우
+                
                 if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
                     // 비회원이라면
                     infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
                     loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
                     
                 } else {
+                    // 회원이지만, 데이터가 없다면
+                    
                     infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
                     loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
                 }
@@ -27,6 +31,8 @@ class MyReviewListVC: UIViewController {
                 brandImage.isHidden = false
                 loginButton.isHidden = false
             } else {
+                // 데이터가 존재하는 경우
+                
                 infoLabel.isHidden = true
                 brandImage.isHidden = true
                 loginButton.isHidden = true
