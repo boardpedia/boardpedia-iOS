@@ -331,8 +331,8 @@ extension MainVC: UICollectionViewDataSource {
             
             self.navigationController?.pushViewController(themeVC, animated: true)
             // 테마 뷰로 이동
-            themeVC.themeData = todayThemeData[indexPath.row+1]
-            // 클릭한 테마에 대한 정보 전달
+            themeVC.themeIdx = todayThemeData[indexPath.row+1].themeIdx
+            // 클릭한 테마 themeIdx 전달
         }
         
     }

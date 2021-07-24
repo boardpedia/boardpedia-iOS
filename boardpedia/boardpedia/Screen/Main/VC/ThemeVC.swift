@@ -12,7 +12,7 @@ class ThemeVC: UIViewController {
     // MARK: Variable Part
     
     var searchResultData: [SearchResultData] = []
-    var themeData: ThemeData?
+    var themeIdx: Int?
     
     // MARK: IBOutlet
     
@@ -23,10 +23,6 @@ class ThemeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setResultCollectionView()
-        
-        if let data = themeData {
-            print(data)
-        }
     }
     
     
@@ -39,13 +35,6 @@ extension ThemeVC {
     // MARK: Result Data Style Function
     
     func setResultCollectionView() {
-        
-        // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
-        let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
-        
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
-        
         
         themeListCollectionView.delegate = self
         themeListCollectionView.dataSource = self
