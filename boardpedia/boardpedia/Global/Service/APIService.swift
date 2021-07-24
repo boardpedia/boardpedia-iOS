@@ -52,6 +52,14 @@ struct APIService {
         
     }
     
+    func todayThemeDetail(_ jwt: String, _index: Int, completion: @escaping (NetworkResult<ThemeDetailData>)->(Void)) {
+        // 오늘의 테마 상세보기
+        
+        let target: APITarget = .themeDetail(jwt: jwt, index: _index)
+        judgeObject(target, completion: completion)
+        
+    }
+    
     func searchResult(_ jwt: String, _ inputWord: String, completion: @escaping (NetworkResult<[SearchGameData]>)->(Void)) {
         // 검색 결과
         
