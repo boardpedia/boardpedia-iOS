@@ -11,7 +11,6 @@ class ThemeVC: UIViewController {
     
     // MARK: Variable Part
     
-    var searchResultData: [SearchResultData] = []
     var themeDetailData: ThemeDetailData?
     var themeIdx: Int?
     
@@ -43,11 +42,15 @@ extension ThemeVC {
         
         if let token = UserDefaults.standard.string(forKey: "UserToken"),
            let index = themeIdx {
+            // 테마 받아오는 서버 연결
+            
             APIService.shared.todayThemeDetail(token, index) { [self] result in
                 switch result {
                 
                 case .success(let data):
                     themeDetailData = data
+                    themeListCollectionView.reloadData()
+                    // 데이터 화면에 뿌려주기
                     
                 case .failure(let error):
                     print(error)
@@ -57,7 +60,6 @@ extension ThemeVC {
             }
             
         }
-        //todayThemeDetail
     }
 }
 
@@ -98,15 +100,23 @@ extension ThemeVC: UICollectionViewDelegateFlowLayout {
 
 extension ThemeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchResultData.count
+        
+        if let data = themeDetailData?.themeGame {
+            return data.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeGameListCell.identifier, for: indexPath) as? ThemeGameListCell else {
             return UICollectionViewCell()
         }
         
-        cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+        if let data = themeDetailData?.themeGame[indexPath.row] {
+            cell.configure(image: data.imageURL, name: data.name, info: data.intro, star: data.star, save: data.saveCount)
+        }
         
         return cell
     }
@@ -116,7 +126,10 @@ extension ThemeVC: UICollectionViewDataSource {
         
         let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ThemeCollectionReusableView", for: indexPath) as! ThemeCollectionReusableView
         
-        headerview.setTheme(info: "✋은 👀보다 빠르다", title: "내가 이 구역 최고 브레인!")
+        if let data = themeDetailData?.themes[0] {
+            headerview.setTheme(info: data.detail, title: data.name, back: data.imageURL)
+        }
+        
         return headerview
     }
     

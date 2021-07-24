@@ -32,9 +32,9 @@ class ThemeGameListCell: UICollectionViewCell {
     
     // MARK: Data Set Function
     
-    func configure(image: String, name: String, info: String, star: Float, save: Int) {
+    func configure(image: String, name: String, info: String, star: Double, save: Int) {
 
-        gameImageView.image = UIImage(named: image)
+        gameImageView.setImage(from: image)
         gameNameLabel.setLabel(text: name, font: .neoMedium(ofSize: 16))
         gameInfoLabel.setLabel(text: info, color: .boardGray50, font: .neoRegular(ofSize: 13))
         gameValueLabel.setLabel(text: "별점 \(star) / 저장 \(save)회", color: .boardGray40, font: .neoMedium(ofSize: 12))

@@ -49,7 +49,9 @@ class ThemeCollectionReusableView: UICollectionReusableView {
         
     }
     
-    func setTheme(info: String, title: String) {
+    func setTheme(info: String, title: String, back: String) {
+        
+        backImageView.setImage(from: back)
         infoLabel.text = info
         themeTitleLabel.text = title
     }
