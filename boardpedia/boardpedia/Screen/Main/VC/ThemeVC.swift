@@ -128,6 +128,7 @@ extension ThemeVC: UICollectionViewDataSource {
         
         if let data = themeDetailData?.themes[0] {
             headerview.setTheme(info: data.detail, title: data.name, back: data.imageURL)
+            headerview.setTag(tag: data.tag)
         }
         
         headerview.backButtonAction = {

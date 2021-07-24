@@ -11,7 +11,7 @@ class ThemeCollectionReusableView: UICollectionReusableView {
     
     // MARK: Variable Part
     
-    var themeKeywordData: [KeywordData] = []
+    var themeKeywordData: [String]?
     var backButtonAction : (() -> Void)? // closer 변수
  
     // MARK: IBOutlet
@@ -45,11 +45,6 @@ class ThemeCollectionReusableView: UICollectionReusableView {
         let layout = keywordCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .vertical
         
-        let item1 = KeywordData(keyword: "스피드")
-        let item2 = KeywordData(keyword: "파티")
-        let item3 = KeywordData(keyword: "즐거운")
-        
-        themeKeywordData.append(contentsOf: [item1,item2,item3])
         
     }
     
@@ -58,6 +53,11 @@ class ThemeCollectionReusableView: UICollectionReusableView {
         backImageView.setImage(from: back)
         infoLabel.text = info
         themeTitleLabel.text = title
+    }
+    
+    func setTag(tag: [String]) {
+        themeKeywordData = tag
+        keywordCollectionView.reloadData()
     }
     
     @objc func backButtonDidTap(_ sender : UIButton) {
@@ -109,7 +109,7 @@ extension ThemeCollectionReusableView: UICollectionViewDelegateFlowLayout {
 extension ThemeCollectionReusableView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return themeKeywordData.count
+        return themeKeywordData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,7 +117,10 @@ extension ThemeCollectionReusableView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
-        cell.configure(title: themeKeywordData[indexPath.row].keyword)
+        
+        if let data = themeKeywordData {
+            cell.configure(title: data[indexPath.row])
+        }
     
         return cell
     }
