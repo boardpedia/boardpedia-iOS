@@ -108,13 +108,14 @@ extension GameCollectVC {
     }
     
     func getGameData(jwt: String, pageIdx: Int, playerNum: Int, level: String, tag: [String], duration: String) {
+        // 서버 연결 함수 : 게임 데이터 받아오기
         
         APIService.shared.getGameCollection(jwt, pageIdx, playerNum, level, tag, duration) { [self] result in
             switch result {
             
             case .success(let data):
                 totalGameCount = data.totalNum
-                searchResultData.append(contentsOf: data.searchedGame)
+                searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
                 gameCollectionView.reloadData()
                 isPaging = false
                 
