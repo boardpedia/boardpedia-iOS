@@ -13,13 +13,13 @@ class GameVC: UIViewController {
     
     var tab1VC: GameManualVC! = nil
     var tab2VC: GameReviewVC! = nil
-    var starPoint: Float = 4.8
+    var gameIndex: Int?
     
     private var pageController: UIPageViewController!
     private var arrVC: [UIViewController] = []
     private var currentPage: Int!
     
-    var gameDetail: GameDetailData?
+    var gameDetailData: GameDetailData?
     var heightConstraints: NSLayoutConstraint = NSLayoutConstraint()
     
     var reviewViewHeigth: CGFloat = 100
@@ -120,28 +120,44 @@ extension GameVC {
     
     func setCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let item = GameDetailData(gameIdx: 73, name: "다빈치 코드", intro: "상대방의 숫자를 추리하여 맞춰보자!", imageURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", playerNum: 2, maxPlayerNum: 4, duration: "15분", level: "하", tag: ["클래식", "머리쓰는", "카드","추리"], saved: 0, star: 3.5, objective: "여러분의 비밀코드는 숨기고, 상대방의 코드를 추리하세요. 하나씩 드러나는 상대방의 코드를 바탕으로 나머지 코드를 모두 맞춰보세요.", webURL: "https://www.koreaboardgames.com/upload/uploaded/prd/973341478169357.jpgg", method: "1.타일을 뒤집어서 잘 섞은 후, 각자 타일을 4개씩 가져오세요. \n2. 자기 차례가 되면 뒤집어진 타일 1개를 가져와 순서에 맞게 정리해서 놓으세요. 그리고 상대방의 타일 중 하나를 선택해 숫자를 맞혀주세요. \n3.상대방의 타일을 맞췄다면 계속 맞힐지 그만둘지를 결정하세요. \n4. 한 명만 남고 모든 타일이 공개되면 게임 끝!")
-        
-        gameDetail = item
-        
-        if let gameDetail = gameDetail {
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let gameIdx = gameIndex {
             
-            titleImageView.image = UIImage(named: "abaloneImg")
-            gameNameLabel.setLabel(text: gameDetail.name, font: .neoSemiBold(ofSize: 22))
-            gameInfoLabel.setLabel(text: gameDetail.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
-            gameStarLabel.setLabel(text: "별점 \(gameDetail.star)점", font: .neoMedium(ofSize: 14))
-            
-            if gameDetail.saved == 0 {
-                saveImage.image = UIImage(named: "icStorageUnselected")
-            } else {
-                saveImage.image = UIImage(named: "icStorageSelected")
+            APIService.shared.getGameDetail(token, gameIdx) { [self] result in
+                switch result {
+                
+                case .success(let data):
+                    
+                    gameDetailData = data
+                    gameTagCollectionView.reloadData()
+                    
+                    if let data = gameDetailData {
+                        
+                        titleImageView.setImage(from: data.imageURL)
+                        gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
+                        gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
+                        gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
+                        
+                        if data.saved == 0 {
+                            saveImage.image = UIImage(named: "icStorageUnselected")
+                        } else {
+                            saveImage.image = UIImage(named: "icStorageSelected")
+                        }
+                        
+                        viewHeigth = tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
+                        
+                        
+                        self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+                
             }
-            
-            viewHeigth = tab1VC.setData(name: gameDetail.name, objective: gameDetail.objective, time: 20, playerNum: gameDetail.playerNum, maxPlayerNum: gameDetail.maxPlayerNum, level: "하", method: gameDetail.method, tip: "어쩌구 저쩌구를 열심히 어쩌구 해보세요! 그럼 당신이 아발론 승리자!")
-            
-            self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
-            
+
         }
         
         
@@ -322,7 +338,7 @@ extension GameVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let data = gameDetail {
+        if let data = gameDetailData {
             return data.tag.count
         }
          return 0
@@ -336,7 +352,7 @@ extension GameVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        if let data = gameDetail {
+        if let data = gameDetailData {
             
             cell.tagLabel.text = data.tag[indexPath.row]
             

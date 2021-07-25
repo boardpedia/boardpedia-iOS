@@ -358,6 +358,9 @@ extension MainVC: UICollectionViewDataSource {
             self.navigationController?.pushViewController(gameTab, animated: true)
             // 클릭한 게임 상세보기 뷰로 이동
             
+            gameTab.gameIndex = trendingData[indexPath.row].gameIdx
+            // 상세보기 원하는 게임의 index 전달
+            
         }
         
     }

@@ -35,16 +35,20 @@ class GameManualVC: UIViewController {
 
 extension GameManualVC {
     
-    func setData(name: String, objective: String, time: Int, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String) -> CGFloat {
+    func setData(name: String, objective: String, time: String, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String) -> CGFloat {
         
         nameLabel.setLabel(text: name, font: .neoBold(ofSize: 20))
         objectiveLabel.setLabel(text: objective, font: .neoMedium(ofSize: 16))
         objectiveLabel.numberOfLines = 0
         
-        timeLabel.setLabel(text: "총 플레이 \(time)분 소요", font: .neoMedium(ofSize: 16))
+        timeLabel.setLabel(text: "총 플레이 \(time) 소요", font: .neoMedium(ofSize: 16))
         
         if maxPlayerNum != 0 {
-            headcountLabel.setLabel(text: "\(playerNum)~\(maxPlayerNum)인", font: .neoMedium(ofSize: 16))
+            if maxPlayerNum == playerNum {
+                headcountLabel.setLabel(text: "\(maxPlayerNum)인", font: .neoMedium(ofSize: 16))
+            } else {
+                headcountLabel.setLabel(text: "\(playerNum)~\(maxPlayerNum)인", font: .neoMedium(ofSize: 16))
+            }
         } else {
             headcountLabel.setLabel(text: "\(playerNum)인", font: .neoMedium(ofSize: 16))
         }

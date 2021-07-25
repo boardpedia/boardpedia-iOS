@@ -15,7 +15,7 @@ struct GameDetailData: Codable {
     let playerNum, maxPlayerNum: Int
     let duration, level: String
     let tag: [String]
-    let tip: String?
+    let tip: String
     let saved: Int
     let star: Double
     let objective: String
