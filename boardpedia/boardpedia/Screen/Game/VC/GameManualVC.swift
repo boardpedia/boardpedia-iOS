@@ -20,6 +20,9 @@ class GameManualVC: UIViewController {
     
     @IBOutlet weak var tipInfoLabel: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var tipImageView: UIImageView!
+    @IBOutlet weak var tipTopView: UIView!
+    @IBOutlet weak var tipBottomView: UIView!
     
     @IBOutlet weak var similarLabel: UILabel!
     @IBOutlet weak var similarCollectionView: UICollectionView!
@@ -93,6 +96,12 @@ extension GameManualVC {
             
         } else {
             // 꿀팁이 없을 때
+            
+            tipLabel.removeFromSuperview()
+            tipInfoLabel.removeFromSuperview()
+            tipImageView.removeFromSuperview()
+            tipBottomView.translatesAutoresizingMaskIntoConstraints = false
+            tipBottomView.topAnchor.constraint(equalTo: self.tipTopView.topAnchor).isActive = true
             
         }
         

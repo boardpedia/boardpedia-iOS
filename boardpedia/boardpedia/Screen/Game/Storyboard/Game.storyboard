@@ -684,8 +684,11 @@
                         <outlet property="similarCollectionView" destination="trl-mm-RAL" id="0W8-cA-L5u"/>
                         <outlet property="similarLabel" destination="0fk-tH-ZWQ" id="Re1-5P-Jx1"/>
                         <outlet property="timeLabel" destination="LtH-V0-uhc" id="hI5-QP-X1b"/>
+                        <outlet property="tipBottomView" destination="UHy-KO-blf" id="UQc-hx-9rW"/>
+                        <outlet property="tipImageView" destination="WPW-E6-osH" id="nBg-Td-zUQ"/>
                         <outlet property="tipInfoLabel" destination="mcW-cH-xJE" id="ba7-vJ-WCD"/>
                         <outlet property="tipLabel" destination="6SM-wP-afT" id="cvc-8d-mls"/>
+                        <outlet property="tipTopView" destination="0G1-Oj-rpL" id="U79-Zu-x23"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rH-Xa-mPQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
