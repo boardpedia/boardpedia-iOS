@@ -25,6 +25,13 @@ class ThemeVC: UIViewController {
         setResultCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let index = themeIdx {
+            // 테마 받아오는 서버 연결
+            getThemeGame(token: token, index: index)
+        }
+    }
     
 }
 
@@ -39,12 +46,6 @@ extension ThemeVC {
         themeListCollectionView.delegate = self
         themeListCollectionView.dataSource = self
         themeListCollectionView.backgroundColor = .boardGray
-        
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let index = themeIdx {
-            // 테마 받아오는 서버 연결
-            getThemeGame(token: token, index: index)
-        }
     }
     
     func getThemeGame(token: String, index: Int) {
