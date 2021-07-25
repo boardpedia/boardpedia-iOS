@@ -76,6 +76,8 @@ extension GameCollectVC {
         gameCollectionView.delegate = self
         gameCollectionView.dataSource = self
         gameCollectionView.backgroundColor = .boardGray
+        
+        initRefresh()
     }
     
     func setFilterCollectionView() {
@@ -115,7 +117,13 @@ extension GameCollectVC {
             
             case .success(let data):
                 totalGameCount = data.totalNum
-                searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
+                
+                if pageIdx == 0 {
+                    searchResultData = data.searchedGame
+                } else {
+                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
+                }
+                
                 gameCollectionView.reloadData()
                 isPaging = false
                 
@@ -123,6 +131,31 @@ extension GameCollectVC {
                 print(error)
                 
             }
+        }
+        
+    }
+    
+    // MARK: CollectionView Data Refresh Function
+    
+    func initRefresh() {
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateData(refresh:)), for: .valueChanged)
+        
+        gameCollectionView.addSubview(refresh)
+    }
+    
+    // MARK: Run On CollecionView Refresh Function
+    
+    @objc func updateData(refresh: UIRefreshControl) {
+        
+        refresh.endRefreshing()
+        
+        pageIdx = 0
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+            
         }
         
     }
