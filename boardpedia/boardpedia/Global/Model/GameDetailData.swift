@@ -15,6 +15,7 @@ struct GameDetailData: Codable {
     let playerNum, maxPlayerNum: Int
     let duration, level: String
     let tag: [String]
+    let tip: String?
     let saved: Int
     let star: Double
     let objective: String
@@ -25,7 +26,7 @@ struct GameDetailData: Codable {
         case gameIdx = "GameIdx"
         case name, intro
         case imageURL = "imageUrl"
-        case playerNum, maxPlayerNum, duration, level, tag, saved, star, objective
+        case playerNum, maxPlayerNum, duration, level, tag, saved, star, objective, tip
         case webURL = "webUrl"
         case method
     }

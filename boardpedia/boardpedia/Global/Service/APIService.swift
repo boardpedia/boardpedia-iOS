@@ -100,6 +100,13 @@ struct APIService {
         
     }
     
+    func getGameDetail(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<GameDetailData>)->(Void)) {
+        // 보드게임 상세 조회
+        
+        let target: APITarget = .gameDetail(jwt: jwt, gameIdx: gameIdx)
+        judgeObject(target, completion: completion)
+    }
+    
     
 }
 
