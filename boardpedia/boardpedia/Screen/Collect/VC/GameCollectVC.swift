@@ -255,3 +255,68 @@ extension GameCollectVC: UIScrollViewDelegate {
         
     }
 }
+
+
+
+extension GameCollectVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                if searchResultData[value].saved == 0 {
+                    // 미저장 -> 저장으로 변경
+                    
+                    APIService.shared.saveGame(token, searchResultData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            searchResultData[value].saved = 1
+                            gameCollectionView.reloadData()
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                } else {
+                    // 저장 -> 미저장으로 변경
+                    
+                    APIService.shared.saveCancleGame(token, searchResultData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            searchResultData[value].saved = 0
+                            gameCollectionView.reloadData()
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
+}
