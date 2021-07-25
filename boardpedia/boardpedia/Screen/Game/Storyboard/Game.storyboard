@@ -161,6 +161,9 @@
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-n4-wWQ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="138" height="89"/>
+                                                                        <connections>
+                                                                            <action selector="webButtonDidTap:" destination="uoq-Pc-QC1" eventType="touchUpInside" id="3MK-3Y-itK"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -231,6 +234,9 @@
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bx-EW-wxN">
                                                                         <rect key="frame" x="0.0" y="0.0" width="138" height="89"/>
+                                                                        <connections>
+                                                                            <action selector="bookmarkButtonDidTap:" destination="uoq-Pc-QC1" eventType="touchUpInside" id="pED-Iu-Dia"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -371,6 +377,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="bookmarkImageView" destination="5tb-nF-Fzr" id="w3V-Ha-GhR"/>
                         <outlet property="collectionLayout" destination="pxi-G5-aJh" id="WmG-QB-lpR"/>
                         <outlet property="firstButton" destination="cRl-Zn-8hp" id="PcL-oh-9QT"/>
                         <outlet property="gameInfoLabel" destination="ThF-Hk-fp6" id="dzu-V4-J9t"/>
@@ -383,6 +390,8 @@
                         <outlet property="secondButton" destination="ZU2-3C-AJ3" id="RVH-KG-fgl"/>
                         <outlet property="titleImageView" destination="XfM-dB-63b" id="Nlb-Zb-Nht"/>
                         <outlet property="viewLine" destination="tBd-uR-UNg" id="j5e-ov-bHQ"/>
+                        <outlet property="webButton" destination="ePA-n4-wWQ" id="OfB-l2-sIW"/>
+                        <outlet property="webButtonImage" destination="Drp-Nu-0zm" id="U9G-4c-Vgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tG-Zr-fqn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

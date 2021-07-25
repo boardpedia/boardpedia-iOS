@@ -43,6 +43,12 @@ class GameVC: UIViewController {
         }
     }
     
+    
+    @IBOutlet weak var webButton: UIButton!
+    @IBOutlet weak var webButtonImage: UIImageView!
+    
+    @IBOutlet weak var bookmarkImageView: UIImageView!
+    
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     
@@ -51,6 +57,78 @@ class GameVC: UIViewController {
     @IBOutlet weak var myView: UIView!
     
     // MARK: IBAction
+    
+    @IBAction func webButtonDidTap(_ sender: Any) {
+        // 웹 버튼 클릭 시
+        
+    }
+    
+    
+    @IBAction func bookmarkButtonDidTap(_ sender: Any) {
+        // 북마크 버튼 클릭 시
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                if let data = gameDetailData,
+                   let index = gameIndex {
+                    
+                    if data.saved == 0 {
+                        // 미저장 -> 저장으로 변경
+                        
+                        APIService.shared.saveGame(token, index) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                bookmarkImageView.image = UIImage(named: "icStorageSelected")
+                                gameDetailData?.saved = 1
+                                
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                    } else {
+                        // 저장 -> 미저장으로 변경
+                        
+                        APIService.shared.saveCancleGame(token, index) { [self] result in
+                            switch result {
+                            
+                            case .success(_):
+                                
+                                bookmarkImageView.image = UIImage(named: "icStorageUnselected")
+                                gameDetailData?.saved = 0
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     
     @IBAction func buttonDidTap(_ sender: UIButton) {
         
@@ -120,47 +198,7 @@ extension GameVC {
     
     func setCollectionView() {
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let gameIdx = gameIndex {
-            
-            APIService.shared.getGameDetail(token, gameIdx) { [self] result in
-                switch result {
-                
-                case .success(let data):
-                    
-                    gameDetailData = data
-                    gameTagCollectionView.reloadData()
-                    
-                    if let data = gameDetailData {
-                        
-                        titleImageView.setImage(from: data.imageURL)
-                        gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
-                        gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
-                        gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
-                        
-                        if data.saved == 0 {
-                            saveImage.image = UIImage(named: "icStorageUnselected")
-                        } else {
-                            saveImage.image = UIImage(named: "icStorageSelected")
-                        }
-                        
-                        viewHeigth = tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
-                        
-                        
-                        self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
-                        
-                    }
-                    
-                case .failure(let error):
-                    print(error)
-                    
-                }
-                
-            }
-
-        }
-        
-        
+        getGameDetailData()
         gameTagCollectionView.delegate = self
         gameTagCollectionView.dataSource = self
         
@@ -244,6 +282,74 @@ extension GameVC {
         
         currentPage = tag
         
+    }
+    
+    func getGameDetailData() {
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let gameIdx = gameIndex {
+            
+            APIService.shared.getGameDetail(token, gameIdx) { [self] result in
+                switch result {
+                
+                case .success(let data):
+                    
+                    gameDetailData = data
+                    gameTagCollectionView.reloadData()
+                    
+                    if let data = gameDetailData {
+                        
+                        titleImageView.setImage(from: data.imageURL)
+                        gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
+                        gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
+                        gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
+                        
+                        if data.saved == 0 {
+                            saveImage.image = UIImage(named: "icStorageUnselected")
+                        } else {
+                            saveImage.image = UIImage(named: "icStorageSelected")
+                        }
+                        
+                        viewHeigth = tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
+                        
+                        
+                        self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
+                        
+                        if data.webURL != "" {
+                            // 웹 링크가 있다면?
+                            
+                            webButtonImage.image = UIImage(named: "icLink")
+                            webButton.isEnabled = true
+                            // 웹 버튼 활성화
+                            
+                        } else {
+                            // 웹 링크가 없다면?
+                            
+                            webButtonImage.image = UIImage(named: "")
+                            webButton.isEnabled = false
+                            // 웹 버튼 비활성화
+                            
+                        }
+                        
+                        if data.saved == 0 {
+                            // 저장 안했다면?
+                            
+                            bookmarkImageView.image = UIImage(named: "icStorageUnselected")
+                        } else {
+                            // 저장했다면?
+                            
+                            bookmarkImageView.image = UIImage(named: "icStorageSelected")
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+                
+            }
+
+        }
     }
 }
 
