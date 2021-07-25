@@ -25,6 +25,8 @@ class GameVC: UIViewController {
     var reviewViewHeigth: CGFloat = 100
     var viewHeigth: CGFloat = 100
     
+    var impactFeedbackGenerator: UIImpactFeedbackGenerator?
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var titleImageView: UIImageView!
@@ -66,6 +68,8 @@ class GameVC: UIViewController {
     
     @IBAction func bookmarkButtonDidTap(_ sender: Any) {
         // 북마크 버튼 클릭 시
+        
+        self.impactFeedbackGenerator?.impactOccurred()
         
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면 -> 로그인 하라는 창으로 이동
@@ -194,6 +198,8 @@ extension GameVC {
         
         self.firstButton.setButton(text: "게임 설명", color: .boardBlack, font: .neoSemiBold(ofSize: 16))
         self.secondButton.setButton(text: "후기", color: .boardGray50, font: .neoSemiBold(ofSize: 16))
+        
+        self.impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     }
     
     func setCollectionView() {
