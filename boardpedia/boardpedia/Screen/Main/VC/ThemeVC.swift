@@ -196,6 +196,7 @@ extension ThemeVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 getThemeGame(token: token, index: index)
+                                showToast(message: "북마크 완료 🧡", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
                                 
                             case .failure(let error):
                                 print(error)
@@ -212,6 +213,7 @@ extension ThemeVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 getThemeGame(token: token, index: index)
+                                showToast(message: "저장 목록에서 삭제되었어요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
                                 
                             case .failure(let error):
                                 print(error)

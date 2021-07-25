@@ -57,6 +57,7 @@
 		9B634A472682355E005ADCC3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B634A462682355E005ADCC3 /* TabBarVC.swift */; };
 		9B652C5326AC3E9C00DC7931 /* ThemeDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B652C5226AC3E9C00DC7931 /* ThemeDetailData.swift */; };
 		9B652C5826AC7DD600DC7931 /* GameCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B652C5726AC7DD600DC7931 /* GameCollectionData.swift */; };
+		9B652C5B26AD264800DC7931 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B652C5A26AD264800DC7931 /* UIViewController+Extension.swift */; };
 		9B7F182E2666277B00BD29CC /* GameDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F182D2666277B00BD29CC /* GameDetailData.swift */; };
 		9B7F18332668AF7400BD29CC /* SimilarGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */; };
 		9B7F18362668C88800BD29CC /* GameReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F18352668C88800BD29CC /* GameReviewVC.swift */; };
@@ -142,6 +143,7 @@
 		9B634A462682355E005ADCC3 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		9B652C5226AC3E9C00DC7931 /* ThemeDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailData.swift; sourceTree = "<group>"; };
 		9B652C5726AC7DD600DC7931 /* GameCollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionData.swift; sourceTree = "<group>"; };
+		9B652C5A26AD264800DC7931 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		9B7F182D2666277B00BD29CC /* GameDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailData.swift; sourceTree = "<group>"; };
 		9B7F18322668AF7400BD29CC /* SimilarGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarGameCell.swift; sourceTree = "<group>"; };
 		9B7F18352668C88800BD29CC /* GameReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReviewVC.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				9BE098DF26498C52007D2BEC /* UITextField+Extension.swift */,
 				9B7F184D2668F8EF00BD29CC /* String+Extension.swift */,
 				9B2941872679CACB0008F69F /* UIImageView+Extension.swift */,
+				9B652C5A26AD264800DC7931 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */,
 				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
+				9B652C5B26AD264800DC7931 /* UIViewController+Extension.swift in Sources */,
 				9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */,
 				9B09110C265BEEBA00FB5928 /* ThemeVC.swift in Sources */,
 				9B652C5826AC7DD600DC7931 /* GameCollectionData.swift in Sources */,
