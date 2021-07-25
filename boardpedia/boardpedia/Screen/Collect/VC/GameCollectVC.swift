@@ -211,6 +211,9 @@ extension GameCollectVC: UICollectionViewDataSource {
             
             cell.configure(image: searchResultData[indexPath.row].imageURL, name: searchResultData[indexPath.row].name, info: searchResultData[indexPath.row].intro, star: searchResultData[indexPath.row].star, save: searchResultData[indexPath.row].saveCount)
             
+            cell.cellDelegate = self
+            cell.cellIndex = indexPath
+            
             return cell
             
         } else {

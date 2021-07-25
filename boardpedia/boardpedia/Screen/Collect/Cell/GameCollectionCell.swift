@@ -12,6 +12,9 @@ class GameCollectionCell: UICollectionViewCell {
     // MARK: Variable Part
     
     static let identifier = "GameCollectionCell"
+    var cellDelegate: BookmarkCellDelegate?
+    var cellIndex: IndexPath?
+    var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     // MARK: IBOutlet
     
@@ -21,11 +24,23 @@ class GameCollectionCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var gameValueLabel: UILabel!
     
+    // MARK: IBAction
+    
+    @IBAction func bookmarkButtonDidTap(_ sender: Any) {
+        
+        cellDelegate?.BookmarkCellGiveIndex(self, didClickedIndex: cellIndex?.row ?? 0)
+        self.impactFeedbackGenerator?.impactOccurred()
+        
+    }
+    
     // MARK: ContentView Default Set Function
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         // Initialization code
+        
+        self.impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
         
         self.contentView.backgroundColor = .boardWhite
         self.contentView.setRounded(radius: 6)
