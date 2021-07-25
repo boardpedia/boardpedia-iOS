@@ -11,15 +11,15 @@ class GameCollectVC: UIViewController {
 
     // MARK: Variable Part
     
-    var searchResultData: [SearchResultData] = [] {
+    var searchResultData: [SearchGameData] = []
+    var filterData: [String] = []
+    var pageIdx: Int = 0
+    var totalGameCount: Int = 0 {
         didSet {
-            // 데이터 값이 바뀔 때 마다 라벨 변경
-            
             setResultLabel()
         }
     }
-    
-    var filterData: [String] = []
+    var isPaging: Bool = false
     
     // MARK: IBOutlet
     
@@ -65,11 +65,10 @@ extension GameCollectVC {
     
     func setResultCollectionView() {
         
-        // Test Data (서버 연결 전)
-        let themeItem1 = SearchResultData(gameImage: "testImage", gameName: "할리갈리 디럭스", gameInfo: "벨과 함께 즐기는 스릴감", saveNumber: 100, startNumber: 4.5, bookMark: false)
-        let themeItem2 = SearchResultData(gameImage: "testImage", gameName: "오늘의 일기 김민희", gameInfo: "오늘은 굉장히 더운날이다. 미쳤다. 여름에는 얼마나 더울까?", saveNumber: 98, startNumber: 3, bookMark: true)
-        
-        searchResultData.append(contentsOf: [themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem1,themeItem2])
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+            
+        }
         
         let nibName = UINib(nibName: "GameCollectionCell", bundle: nil)
         gameCollectionView.register(nibName, forCellWithReuseIdentifier: "GameCollectionCell")
@@ -77,6 +76,8 @@ extension GameCollectVC {
         gameCollectionView.delegate = self
         gameCollectionView.dataSource = self
         gameCollectionView.backgroundColor = .boardGray
+        
+        initRefresh()
     }
     
     func setFilterCollectionView() {
@@ -93,12 +94,12 @@ extension GameCollectVC {
     // MARK: Result Count Label Style Function
     
     func setResultLabel() {
-        resultLabel.setLabel(text: "해당 조건의 보드게임이 \(searchResultData.count)개 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        resultLabel.setLabel(text: "해당 조건의 보드게임이 \(totalGameCount)개 있어요!", color: .boardGray40, font: .neoMedium(ofSize: 15))
         
         if let text = resultLabel.text {
             // 앞부분만 폰트와 컬러를 다르게 설정
             
-            let changeString: String = "\(searchResultData.count)개"
+            let changeString: String = "\(totalGameCount)개"
             let attributedStr = NSMutableAttributedString(string: text)
             
             attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: UIFont.neoSemiBold(ofSize: 15), range: (text as NSString).range(of: changeString))
@@ -106,6 +107,57 @@ extension GameCollectVC {
 
             resultLabel.attributedText = attributedStr
         }
+    }
+    
+    func getGameData(jwt: String, pageIdx: Int, playerNum: Int, level: String, tag: [String], duration: String) {
+        // 서버 연결 함수 : 게임 데이터 받아오기
+        
+        APIService.shared.getGameCollection(jwt, pageIdx, playerNum, level, tag, duration) { [self] result in
+            switch result {
+            
+            case .success(let data):
+                totalGameCount = data.totalNum
+                
+                if pageIdx == 0 {
+                    searchResultData = data.searchedGame
+                } else {
+                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
+                }
+                
+                gameCollectionView.reloadData()
+                isPaging = false
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+        
+    }
+    
+    // MARK: CollectionView Data Refresh Function
+    
+    func initRefresh() {
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateData(refresh:)), for: .valueChanged)
+        
+        gameCollectionView.addSubview(refresh)
+    }
+    
+    // MARK: Run On CollecionView Refresh Function
+    
+    @objc func updateData(refresh: UIRefreshControl) {
+        
+        refresh.endRefreshing()
+        
+        pageIdx = 0
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+            
+        }
+        
     }
     
 }
@@ -180,17 +232,21 @@ extension GameCollectVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            if searchResultData[indexPath.row].bookMark {
+            if searchResultData[indexPath.row].saved == 1 {
                 // 북마크 상태가 true(선택된 상태)라면
                 
                 cell.bookmarkButton.setImage(UIImage(named: "icStorageSelected"), for: .normal)
+                
             } else {
                 // 북마크 상태가 false(미선택된 상태)라면
                 
                 cell.bookmarkButton.setImage(UIImage(named: "icStorageUnselected"), for: .normal)
             }
             
-            cell.configure(image: searchResultData[indexPath.row].gameImage, name: searchResultData[indexPath.row].gameName, info: searchResultData[indexPath.row].gameInfo, star: searchResultData[indexPath.row].startNumber, save: searchResultData[indexPath.row].saveNumber)
+            cell.configure(image: searchResultData[indexPath.row].imageURL, name: searchResultData[indexPath.row].name, info: searchResultData[indexPath.row].intro, star: searchResultData[indexPath.row].star, save: searchResultData[indexPath.row].saveCount)
+            
+            cell.cellDelegate = self
+            cell.cellIndex = indexPath
             
             return cell
             
@@ -207,4 +263,97 @@ extension GameCollectVC: UICollectionViewDataSource {
         
     }
     
+}
+
+extension GameCollectVC: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        if offsetY > (contentHeight - height) && !isPaging {
+            isPaging = true
+            
+            if (totalGameCount - searchResultData.count) > 0 {
+                // 아직 가져올 데이터가 남았다면
+                
+                pageIdx += 1
+                
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+}
+
+
+
+extension GameCollectVC: BookmarkCellDelegate {
+    func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value: Int) {
+        
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
+            // 비회원이라면 -> 로그인 하라는 창으로 이동
+        
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+            
+            
+        } else {
+            // 회원 로그인을 했다면
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                // 토큰 존재 시
+                
+                if searchResultData[value].saved == 0 {
+                    // 미저장 -> 저장으로 변경
+                    
+                    APIService.shared.saveGame(token, searchResultData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            searchResultData[value].saved = 1
+                            gameCollectionView.reloadData()
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                } else {
+                    // 저장 -> 미저장으로 변경
+                    
+                    APIService.shared.saveCancleGame(token, searchResultData[value].gameIdx) { [self] result in
+                        switch result {
+                        
+                        case .success(_):
+                            
+                            searchResultData[value].saved = 0
+                            gameCollectionView.reloadData()
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
 }

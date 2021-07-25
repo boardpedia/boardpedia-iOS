@@ -25,6 +25,13 @@ class ThemeVC: UIViewController {
         setResultCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let index = themeIdx {
+            // 테마 받아오는 서버 연결
+            getThemeGame(token: token, index: index)
+        }
+    }
     
 }
 
@@ -39,12 +46,6 @@ extension ThemeVC {
         themeListCollectionView.delegate = self
         themeListCollectionView.dataSource = self
         themeListCollectionView.backgroundColor = .boardGray
-        
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let index = themeIdx {
-            // 테마 받아오는 서버 연결
-            getThemeGame(token: token, index: index)
-        }
     }
     
     func getThemeGame(token: String, index: Int) {
@@ -195,6 +196,7 @@ extension ThemeVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 getThemeGame(token: token, index: index)
+                                showToast(message: "북마크 완료 🧡", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
                                 
                             case .failure(let error):
                                 print(error)
@@ -211,6 +213,7 @@ extension ThemeVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 getThemeGame(token: token, index: index)
+                                showToast(message: "저장 목록에서 삭제되었어요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
                                 
                             case .failure(let error):
                                 print(error)

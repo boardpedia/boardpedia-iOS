@@ -10,7 +10,8 @@ import Foundation
 struct SearchGameData: Codable {
     let gameIdx: Int
     let name, intro, imageURL: String
-    let saved, saveCount: Int
+    var saved: Int
+    let saveCount: Int
     let star: Double
 
     enum CodingKeys: String, CodingKey {

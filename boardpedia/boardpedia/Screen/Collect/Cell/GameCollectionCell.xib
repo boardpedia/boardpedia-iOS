@@ -29,6 +29,9 @@
                             <constraint firstAttribute="width" secondItem="Rp5-55-EMF" secondAttribute="height" multiplier="1:1" id="7aZ-i3-tUD"/>
                         </constraints>
                         <state key="normal" image="icStorageUnselected"/>
+                        <connections>
+                            <action selector="bookmarkButtonDidTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nb6-QT-8lU"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whi-iW-SrR">
                         <rect key="frame" x="153" y="15" width="86.5" height="21"/>

@@ -92,6 +92,14 @@ struct APIService {
         
     }
     
+    func getGameCollection(_ jwt: String,_ pageIdx: Int, _ playerNum: Int, _ level: String, _ tag: [String], _ duration: String, completion: @escaping (NetworkResult<GameCollectionData>)->(Void)) {
+        // 게임 모아보기 조회
+        
+        let target: APITarget = .getFilterGame(jwt: jwt, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
+        judgeObject(target, completion: completion)
+        
+    }
+    
     
 }
 
