@@ -346,6 +346,18 @@ extension MainVC: UICollectionViewDataSource {
             // 테마 뷰로 이동
             themeVC.themeIdx = todayThemeData[indexPath.row+1].themeIdx
             // 클릭한 테마 themeIdx 전달
+            
+        } else if collectionView == trandingGameCollectionView {
+            // 트렌딩 게임을 선택했다면?
+            
+            let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+            guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+                return
+            }
+            
+            self.navigationController?.pushViewController(gameTab, animated: true)
+            // 클릭한 게임 상세보기 뷰로 이동
+            
         }
         
     }
