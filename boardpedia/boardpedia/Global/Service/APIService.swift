@@ -107,6 +107,13 @@ struct APIService {
         judgeObject(target, completion: completion)
     }
     
+    func getSimilarGame(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<[TrendingGame]>)->(Void)) {
+        // 유사한 게임 조회
+        
+        let target: APITarget = .similarGame(jwt: jwt, gameIdx: gameIdx)
+        judgeObject(target, completion: completion)
+    }
+    
     
 }
 
