@@ -9,6 +9,8 @@ import UIKit
 
 class GameManualVC: UIViewController {
     
+    var heightDelegate: ChangeHeightDelegate?
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var objectiveLabel: UILabel!
     
@@ -31,14 +33,18 @@ class GameManualVC: UIViewController {
         super.viewDidLoad()
         similarCollectionView.delegate = self
         similarCollectionView.dataSource = self
-
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        heightDelegate?.GiveHeight(value: self.similarCollectionView.frame.maxY)
+        // 동적 위치 전달
+    }
+    
 }
 
 extension GameManualVC {
     
-    func setData(name: String, objective: String, time: String, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String) -> CGFloat {
+    func setData(name: String, objective: String, time: String, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String) {
         
         nameLabel.setLabel(text: name, font: .neoBold(ofSize: 20))
         objectiveLabel.setLabel(text: objective, font: .neoMedium(ofSize: 16))
@@ -108,8 +114,6 @@ extension GameManualVC {
         similarLabel.setLabel(text: "\(name)과 비슷해요", font: .neoBold(ofSize: 18))
         
         similarCollectionView.reloadData()
-        
-        return self.view.frame.height
     }
     
 }
@@ -123,7 +127,7 @@ extension GameManualVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 한 아이템의 크기
         
-        return CGSize(width: 120/375 * self.view.frame.width, height: 120/375 * self.view.frame.width+30)
+        return CGSize(width: 120/375 * self.view.frame.width, height: 149/375*self.view.frame.width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -166,7 +170,6 @@ extension GameManualVC: UICollectionViewDataSource {
         }
         
         cell.configure(image: "testImage", name: "할리갈리")
-        
         return cell
         
     }

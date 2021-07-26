@@ -63,3 +63,7 @@ class SearchResultCell: UICollectionViewCell {
 protocol BookmarkCellDelegate {
     func BookmarkCellGiveIndex(_ cell: UICollectionViewCell, didClickedIndex value:Int)
 }
+
+protocol ChangeHeightDelegate {
+    func GiveHeight(value: CGFloat)
+}

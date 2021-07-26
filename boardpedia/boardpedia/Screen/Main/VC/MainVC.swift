@@ -194,7 +194,6 @@ extension MainVC {
                 
                 todayThemeData = data
                 themeGameCollectionView.reloadData()
-                
                 firstTag = todayThemeData[0].tag
                 keywordCollectionView.reloadData()
                 

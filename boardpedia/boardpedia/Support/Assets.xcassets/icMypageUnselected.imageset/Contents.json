@@ -6,14 +6,14 @@
       "idiom" : "universal"
     },
     {
-      "filename" : "icMypageUnselected@2x.png",
       "idiom" : "universal",
+      "filename" : "icMypageUnselected@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "icMypageUnselected@3x.png"
+      "filename" : "icMypageUnselected@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

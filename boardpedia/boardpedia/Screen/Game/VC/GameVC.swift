@@ -19,7 +19,17 @@ class GameVC: UIViewController {
     private var arrVC: [UIViewController] = []
     private var currentPage: Int!
     
-    var gameDetailData: GameDetailData?
+    var gameDetailData: GameDetailData? {
+        didSet {
+            if gameDetailData?.saved == 0 {
+                
+                bookmarkImageView.image = UIImage(named: "icStorageUnselected")
+                
+            } else {
+                bookmarkImageView.image = UIImage(named: "icStorageSelected")
+            }
+        }
+    }
     var heightConstraints: NSLayoutConstraint = NSLayoutConstraint()
     
     var reviewViewHeigth: CGFloat = 100
@@ -98,9 +108,7 @@ class GameVC: UIViewController {
                             
                             case .success(_):
                                 
-                                bookmarkImageView.image = UIImage(named: "icStorageSelected")
                                 gameDetailData?.saved = 1
-                                
                                 
                             case .failure(let error):
                                 print(error)
@@ -116,7 +124,6 @@ class GameVC: UIViewController {
                             
                             case .success(_):
                                 
-                                bookmarkImageView.image = UIImage(named: "icStorageUnselected")
                                 gameDetailData?.saved = 0
                                 
                             case .failure(let error):
@@ -216,7 +223,6 @@ extension GameVC {
     
     private func createPageViewController() {
         
-        
         pageController = UIPageViewController.init(transitionStyle: UIPageViewController.TransitionStyle.scroll, navigationOrientation: UIPageViewController.NavigationOrientation.horizontal, options: nil)
         
         pageController.view.backgroundColor = UIColor.clear
@@ -229,6 +235,8 @@ extension GameVC {
         
         tab1VC = self.storyboard?.instantiateViewController(withIdentifier: "GameManualVC") as? GameManualVC
         tab2VC = self.storyboard?.instantiateViewController(withIdentifier: "GameReviewVC") as? GameReviewVC
+        
+        tab1VC.heightDelegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 
@@ -316,35 +324,22 @@ extension GameVC {
                             saveImage.image = UIImage(named: "icStorageSelected")
                         }
                         
-                        viewHeigth = tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
-                        
-                        
-                        self.myView.heightAnchor.constraint(equalToConstant: viewHeigth).isActive = true
+                        tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
                         
                         if data.webURL != "" {
                             // 웹 링크가 있다면?
                             
-                            webButtonImage.image = UIImage(named: "icLink")
+                            webButtonImage.image = UIImage(named: "icWebSiteSelected")
                             webButton.isEnabled = true
                             // 웹 버튼 활성화
                             
                         } else {
                             // 웹 링크가 없다면?
                             
-                            webButtonImage.image = UIImage(named: "")
+                            webButtonImage.image = UIImage(named: "icWebSiteUnselected")
                             webButton.isEnabled = false
                             // 웹 버튼 비활성화
                             
-                        }
-                        
-                        if data.saved == 0 {
-                            // 저장 안했다면?
-                            
-                            bookmarkImageView.image = UIImage(named: "icStorageUnselected")
-                        } else {
-                            // 저장했다면?
-                            
-                            bookmarkImageView.image = UIImage(named: "icStorageSelected")
                         }
                     }
                     
@@ -477,3 +472,13 @@ extension GameVC: UICollectionViewDataSource {
     
 }
 
+// MARK: ChangeHeightDelegate
+
+extension GameVC: ChangeHeightDelegate {
+    
+    func GiveHeight(value: CGFloat) {
+        
+        self.myView.heightAnchor.constraint(equalToConstant: value-250).isActive = true
+        // 높이 변경
+    }
+}
