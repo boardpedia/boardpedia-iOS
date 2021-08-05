@@ -264,15 +264,22 @@ extension GameCollectVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
-        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
-            return
+        
+        if collectionView == gameCollectionView {
+            // 게임 CollectionView일 때만 연결
+            
+            let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+            guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+                return
+            }
+            
+            self.navigationController?.pushViewController(gameTab, animated: true)
+            // 클릭한 게임 상세보기 뷰로 이동
+            
+            gameTab.gameIndex = searchResultData[indexPath.row].gameIdx
+            
         }
         
-        self.navigationController?.pushViewController(gameTab, animated: true)
-        // 클릭한 게임 상세보기 뷰로 이동
-        
-        gameTab.gameIndex = searchResultData[indexPath.row].gameIdx
         
     }
     

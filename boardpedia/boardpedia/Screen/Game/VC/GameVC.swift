@@ -240,7 +240,7 @@ extension GameVC {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 
-            self.pageController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.tab1VC.view.frame.height)
+            self.pageController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 657)
             self.myView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -315,7 +315,7 @@ extension GameVC {
                         
                         titleImageView.setImage(from: data.imageURL)
                         gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
-                        gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
+                        gameInfoLabel.setLabel(text: data.objective, color: .boardGray50, font: .neoMedium(ofSize: 17))
                         gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
                         
                         if data.saved == 0 {
@@ -324,7 +324,7 @@ extension GameVC {
                             saveImage.image = UIImage(named: "icStorageSelected")
                         }
                         
-                        tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
+                        tab1VC.setData(name: data.name, objective: data.intro, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
                         
                         if data.webURL != "" {
                             // 웹 링크가 있다면?
@@ -478,7 +478,7 @@ extension GameVC: ChangeHeightDelegate {
     
     func GiveHeight(value: CGFloat) {
         
-        self.myView.heightAnchor.constraint(equalToConstant: value).isActive = true
+        self.myView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         // 높이 변경
     }
 }

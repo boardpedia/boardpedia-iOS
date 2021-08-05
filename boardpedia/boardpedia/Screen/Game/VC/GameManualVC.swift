@@ -19,14 +19,6 @@ class GameManualVC: UIViewController {
     @IBOutlet weak var headcountLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     
-    @IBOutlet weak var methodLabel: UILabel!
-    
-    @IBOutlet weak var tipInfoLabel: UILabel!
-    @IBOutlet weak var tipLabel: UILabel!
-    @IBOutlet weak var tipImageView: UIImageView!
-    @IBOutlet weak var tipTopView: UIView!
-    @IBOutlet weak var tipBottomView: UIView!
-    
     @IBOutlet weak var similarLabel: UILabel!
     @IBOutlet weak var similarCollectionView: UICollectionView!
     
@@ -76,43 +68,6 @@ extension GameManualVC {
         }
         
         levelLabel.setLabel(text: "\(level) \(levelInfo)", font: .neoMedium(ofSize: 16))
-    
-        methodLabel.lineSetting(lineSpacing: 5)
-        methodLabel.textAlignment = .left
-        methodLabel.numberOfLines = 0
-        methodLabel.setLabel(text: method, font: .neoMedium(ofSize: 16))
-        
-        tipInfoLabel.setLabel(text: "\(name) 꿀팁!", font: .neoBold(ofSize: 18))
-        
-        if let text = tipInfoLabel.text {
-            // 앞부분만 폰트와 컬러를 다르게 설정
-            
-            let changeString: String = "꿀팁!"
-            let attributedStr = NSMutableAttributedString(string: text)
-            
-            attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: changeString))
-
-            tipInfoLabel.attributedText = attributedStr
-        }
-        
-        if tip != "" {
-            // 꿀팁이 있을 때
-            
-            tipLabel.lineSetting(lineSpacing: 5)
-            tipLabel.textAlignment = .left
-            tipLabel.setLabel(text: tip, font: .neoMedium(ofSize: 16))
-            tipLabel.numberOfLines = 0
-            
-        } else {
-            // 꿀팁이 없을 때
-            
-            tipLabel.removeFromSuperview()
-            tipInfoLabel.removeFromSuperview()
-            tipImageView.removeFromSuperview()
-            tipBottomView.translatesAutoresizingMaskIntoConstraints = false
-            tipBottomView.topAnchor.constraint(equalTo: self.tipTopView.topAnchor).isActive = true
-            
-        }
         
         similarLabel.setLabel(text: "\(name)과 비슷해요", font: .neoBold(ofSize: 18))
         
