@@ -35,6 +35,7 @@ class GameManualVC: UIViewController {
         similarCollectionView.delegate = self
         similarCollectionView.dataSource = self
         similarCollectionView.isScrollEnabled = true
+        similarCollectionView.backgroundColor = .none
     }
     
     override func viewDidLayoutSubviews() {
