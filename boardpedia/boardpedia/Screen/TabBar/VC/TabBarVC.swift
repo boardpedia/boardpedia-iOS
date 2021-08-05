@@ -39,7 +39,7 @@ extension TabBarVC {
         }
         
         let collectStoryboard = UIStoryboard.init(name: "GameCollect", bundle: nil)
-        guard let collectVC = collectStoryboard.instantiateViewController(identifier: "GameCollectVC") as? GameCollectVC else {
+        guard let collectVC = collectStoryboard.instantiateViewController(identifier: "GameCollectionNaviVC") as? GameCollectionNaviVC else {
             return
         }
         

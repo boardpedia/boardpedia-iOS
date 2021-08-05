@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2UJ-xA-lCZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KPR-Yh-PTj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -143,6 +143,7 @@
                             <constraint firstItem="z0D-eI-Ah8" firstAttribute="leading" secondItem="xgr-Kx-40n" secondAttribute="leading" constant="16" id="wkY-gT-VHp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9y6-V6-Egb"/>
                     <connections>
                         <outlet property="collectionLayout" destination="GXO-Sz-4YH" id="9fN-Uz-yak"/>
                         <outlet property="filterCollcectionView" destination="IA1-UG-fhh" id="OvV-eB-PCu"/>
@@ -152,6 +153,23 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4Z-eI-JHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031.8840579710145" y="60.9375"/>
+        </scene>
+        <!--Game Collection NaviVC-->
+        <scene sceneID="xky-bJ-EnQ">
+            <objects>
+                <navigationController storyboardIdentifier="GameCollectionNaviVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="KPR-Yh-PTj" customClass="GameCollectionNaviVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cho-Q7-84N">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2UJ-xA-lCZ" kind="relationship" relationship="rootViewController" id="174-ha-D0L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V6c-Pp-y8P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="121.73913043478262" y="60.9375"/>
         </scene>
