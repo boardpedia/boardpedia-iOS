@@ -410,7 +410,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D83-3I-utw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="843.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="853.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf5-YS-dDC">
@@ -458,13 +458,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trl-mm-RAL">
-                                        <rect key="frame" x="0.0" y="693.5" width="414" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trl-mm-RAL">
+                                        <rect key="frame" x="0.0" y="693.5" width="414" height="160"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="xEQ-bl-42O"/>
+                                            <constraint firstAttribute="height" constant="160" id="nLh-yx-VLk"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sjB-Xz-7j0">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sjB-Xz-7j0">
                                             <size key="itemSize" width="127" height="176"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -472,13 +472,13 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimilarGameCell" id="tKq-z5-2iC" customClass="SimilarGameCell" customModule="boardpedia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="127" height="176"/>
+                                                <rect key="frame" x="0.0" y="-8" width="127" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="reY-eu-n38">
                                                     <rect key="frame" x="0.0" y="0.0" width="127" height="176"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77p-zR-3iI">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77p-zR-3iI">
                                                             <rect key="frame" x="0.0" y="0.0" width="127" height="127"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="77p-zR-3iI" secondAttribute="height" multiplier="1:1" id="Esn-HK-cXP"/>
@@ -635,7 +635,7 @@
                                     <constraint firstItem="Cf5-YS-dDC" firstAttribute="leading" secondItem="BoD-cm-fyQ" secondAttribute="leading" id="6RT-lq-6Tq"/>
                                     <constraint firstAttribute="trailing" secondItem="Cf5-YS-dDC" secondAttribute="trailing" id="7k3-em-p4A"/>
                                     <constraint firstItem="gsD-aa-cxl" firstAttribute="leading" secondItem="BoD-cm-fyQ" secondAttribute="leading" id="7lE-O4-1g2"/>
-                                    <constraint firstAttribute="trailing" secondItem="trl-mm-RAL" secondAttribute="trailing" id="BGM-WZ-j3S"/>
+                                    <constraint firstItem="Cf5-YS-dDC" firstAttribute="trailing" secondItem="trl-mm-RAL" secondAttribute="trailing" id="BGM-WZ-j3S"/>
                                     <constraint firstAttribute="trailing" secondItem="htF-Z1-Nid" secondAttribute="trailing" id="Bhw-6x-NYO"/>
                                     <constraint firstItem="0fk-tH-ZWQ" firstAttribute="top" secondItem="UHy-KO-blf" secondAttribute="bottom" constant="25" id="COa-zj-vNV"/>
                                     <constraint firstItem="trl-mm-RAL" firstAttribute="leading" secondItem="BoD-cm-fyQ" secondAttribute="leading" id="FCP-5e-LcB"/>
@@ -693,7 +693,7 @@
                         <outlet property="methodLabel" destination="PAO-O6-j1a" id="vXA-gp-D5I"/>
                         <outlet property="nameLabel" destination="gsD-aa-cxl" id="qqP-8V-phr"/>
                         <outlet property="objectiveLabel" destination="KUZ-zX-Fyz" id="6dg-ol-kWJ"/>
-                        <outlet property="similarCollectionView" destination="trl-mm-RAL" id="0W8-cA-L5u"/>
+                        <outlet property="similarCollectionView" destination="trl-mm-RAL" id="M57-Eu-hmj"/>
                         <outlet property="similarLabel" destination="0fk-tH-ZWQ" id="Re1-5P-Jx1"/>
                         <outlet property="timeLabel" destination="LtH-V0-uhc" id="hI5-QP-X1b"/>
                         <outlet property="tipBottomView" destination="UHy-KO-blf" id="UQc-hx-9rW"/>
@@ -1039,6 +1039,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

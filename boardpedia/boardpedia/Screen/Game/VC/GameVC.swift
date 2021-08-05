@@ -324,7 +324,7 @@ extension GameVC {
                             saveImage.image = UIImage(named: "icStorageSelected")
                         }
                         
-                        tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip)
+                        tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
                         
                         if data.webURL != "" {
                             // 웹 링크가 있다면?
@@ -478,7 +478,7 @@ extension GameVC: ChangeHeightDelegate {
     
     func GiveHeight(value: CGFloat) {
         
-        self.myView.heightAnchor.constraint(equalToConstant: value-250).isActive = true
+        self.myView.heightAnchor.constraint(equalToConstant: value).isActive = true
         // 높이 변경
     }
 }

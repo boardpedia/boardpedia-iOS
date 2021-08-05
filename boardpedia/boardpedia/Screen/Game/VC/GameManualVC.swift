@@ -10,6 +10,7 @@ import UIKit
 class GameManualVC: UIViewController {
     
     var heightDelegate: ChangeHeightDelegate?
+    var similarGameData: [TrendingGame] = []
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var objectiveLabel: UILabel!
@@ -33,6 +34,7 @@ class GameManualVC: UIViewController {
         super.viewDidLoad()
         similarCollectionView.delegate = self
         similarCollectionView.dataSource = self
+        similarCollectionView.isScrollEnabled = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,7 +46,7 @@ class GameManualVC: UIViewController {
 
 extension GameManualVC {
     
-    func setData(name: String, objective: String, time: String, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String) {
+    func setData(name: String, objective: String, time: String, playerNum: Int, maxPlayerNum: Int, level: String, method: String, tip: String, gameIdx: Int) {
         
         nameLabel.setLabel(text: name, font: .neoBold(ofSize: 20))
         objectiveLabel.setLabel(text: objective, font: .neoMedium(ofSize: 16))
@@ -113,9 +115,24 @@ extension GameManualVC {
         
         similarLabel.setLabel(text: "\(name)과 비슷해요", font: .neoBold(ofSize: 18))
         
-        similarCollectionView.reloadData()
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+            
+            APIService.shared.getSimilarGame(token, gameIdx) { [self] result in
+                switch result {
+                
+                case .success(let data):
+                    
+                    similarGameData = data
+                    similarCollectionView.reloadData()
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+            }
+        }
+        
     }
-    
 }
 
 
@@ -132,13 +149,13 @@ extension GameManualVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 10
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 10
+        return 0
     
     }
     
@@ -158,7 +175,7 @@ extension GameManualVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-         return 1
+        return similarGameData.count
         
     }
     
@@ -169,7 +186,7 @@ extension GameManualVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(image: "testImage", name: "할리갈리")
+        cell.configure(image: similarGameData[indexPath.row].imageURL, name: similarGameData[indexPath.row].name)
         return cell
         
     }

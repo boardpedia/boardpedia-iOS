@@ -18,7 +18,12 @@ class SimilarGameCell: UICollectionViewCell {
     func configure(image: String, name: String) {
 
         gameImageView.setRounded(radius: 6)
-        gameImageView.image = UIImage(named: image)
+        if image == "" {
+            gameImageView.image = UIImage(named: "testBackImage_2")
+        } else {
+            gameImageView.setImage(from: image)
+        }
+        
         gameNameLabel.setLabel(text: name, font: .neoMedium(ofSize: 16))
         
     }
