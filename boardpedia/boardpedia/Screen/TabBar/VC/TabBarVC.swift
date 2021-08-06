@@ -12,6 +12,11 @@ class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBar()
+        
+        self.viewControllers?.forEach {
+            let _ = $0.view
+            $0.viewWillAppear(true)
+        }
 
         // Do any additional setup after loading the view.
     }
