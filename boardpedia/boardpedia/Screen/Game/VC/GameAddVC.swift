@@ -1,0 +1,163 @@
+//
+//  GameAddVC.swift
+//  boardpedia
+//
+//  Created by Hailey on 2021/08/06.
+//
+
+import UIKit
+
+class GameAddVC: UIViewController {
+
+    var level: [String] = ["상","중","하"]
+    var count: [String] = ["1인","2인 ~ 4인","4인 ~ 6인","잘모르겠어요"]
+    var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
+    
+    // MARK: IBOutlet
+    
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var levelCollectionView: UICollectionView!
+    @IBOutlet weak var countCollectionView: UICollectionView!
+    
+    @IBOutlet weak var countCollectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            countCollectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
+    @IBOutlet weak var keywordCollectionView: UICollectionView!
+    
+    @IBOutlet weak var keywordCollectionLayout: UICollectionViewFlowLayout! {
+        didSet {
+            keywordCollectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
+    @IBOutlet weak var addButton: UIButton!
+    
+    // MARK: IBAction
+    
+    @IBAction func addButtonDidTap(_ sender: UIButton) {
+        // 보드게임 추가하기 버튼 클릭 시 Action
+        
+    }
+    
+    // MARK: Life Cycle Part
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setView()
+
+    }
+    
+
+}
+
+extension GameAddVC {
+    
+    func setView() {
+        
+        infoLabel.setLabel(text: "나만 알았던 보드게임을 알려주세요!", color: .black, font: .neoSemiBold(ofSize: 20))
+        
+        nameTextField.addLeftPadding()
+        nameTextField.setRounded(radius: 6)
+        
+        addButton.setRounded(radius: 8)
+        
+        if let text = infoLabel.text {
+            // 앞부분만 폰트와 컬러를 다르게 설정
+            
+            let changeString: String = "보드게임"
+            let attributedStr = NSMutableAttributedString(string: text)
+            
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.boardOrange, range: (text as NSString).range(of: changeString))
+            
+            infoLabel.attributedText = attributedStr
+        }
+        
+        levelCollectionView.delegate = self
+        levelCollectionView.dataSource = self
+        countCollectionView.delegate = self
+        countCollectionView.dataSource = self
+        keywordCollectionView.delegate = self
+        keywordCollectionView.dataSource = self
+        
+        let customLayout = LeftAlignFlowLayout()
+        keywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 40, height: 20)
+    }
+    
+    
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension GameAddVC: UICollectionViewDelegateFlowLayout {
+    // CollectionView 크기 잡기
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 한 아이템의 크기
+        
+        return CGSize(width: 67, height: 28)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 15
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 10
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // collectionView와 View 간의 간격
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+    }
+    
+}
+
+// MARK: UICollectionViewDataSource
+
+extension GameAddVC: UICollectionViewDataSource {
+    // CollectionView 데이터 넣기
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == levelCollectionView {
+            return level.count
+        } else if collectionView == countCollectionView {
+            return count.count
+        } else {
+            return keyword.count
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+            return UICollectionViewCell()
+        }
+        
+        if collectionView == levelCollectionView {
+            cell.tagLabel.text = level[indexPath.row]
+        } else if collectionView == countCollectionView {
+            cell.tagLabel.text = count[indexPath.row]
+        } else {
+            cell.tagLabel.text = keyword[indexPath.row]
+        }
+        
+        
+        return cell
+        
+    }
+    
+}
