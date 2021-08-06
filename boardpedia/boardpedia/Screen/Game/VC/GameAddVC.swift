@@ -48,6 +48,7 @@ class GameAddVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
+        scrollViewTap()
 
     }
     
@@ -83,10 +84,26 @@ extension GameAddVC {
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
         
+        nameTextField.delegate = self
+        
         let customLayout = LeftAlignFlowLayout()
         keywordCollectionView.collectionViewLayout = customLayout
         customLayout.estimatedItemSize = CGSize(width: 40, height: 20)
     }
+    
+    func scrollViewTap() {
+            //스크롤뷰 위에서 탭하면 키보드 내리기
+            
+            let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+            singleTapGestureRecognizer.numberOfTapsRequired = 1
+            singleTapGestureRecognizer.isEnabled = true
+            singleTapGestureRecognizer.cancelsTouchesInView = false
+            view.addGestureRecognizer(singleTapGestureRecognizer)
+        }
+    
+    @objc func MyTapMethod(sender: UITapGestureRecognizer) {
+                self.view.endEditing(true)
+        }
     
     
 }
@@ -158,6 +175,25 @@ extension GameAddVC: UICollectionViewDataSource {
         
         return cell
         
+    }
+    
+}
+// MARK: UITextFieldDelegate
+
+extension GameAddVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 리턴 키 클릭 시
+        
+        textField.endEditing(true)
+        return true
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        // textField 클릭하면 무조건 키보드 올라오게
+        textField.becomeFirstResponder()
     }
     
 }
