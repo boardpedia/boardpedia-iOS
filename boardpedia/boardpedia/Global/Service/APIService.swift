@@ -114,6 +114,13 @@ struct APIService {
         judgeObject(target, completion: completion)
     }
     
+    func getReview(_ jwt: String, _ gameIdx: Int, completion: @escaping (NetworkResult<ReviewData>)->(Void)) {
+        // 특정 게임 후기 조회
+        
+        let target: APITarget = .getReview(jwt: jwt, gameIdx: gameIdx)
+        judgeObject(target, completion: completion)
+    }
+    
     
 }
 
