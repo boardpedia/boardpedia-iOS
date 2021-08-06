@@ -67,8 +67,12 @@ extension GameAddVC {
         
         nameTextField.addLeftPadding()
         nameTextField.setRounded(radius: 6)
+        nameTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
         addButton.setRounded(radius: 8)
+        addButton.isEnabled = false
+        addButton.backgroundColor = .boardBlack10
+        addButton.setTitleColor(.boardGray30, for: .normal)
         
         if let text = infoLabel.text {
             // 앞부분만 폰트와 컬러를 다르게 설정
@@ -93,6 +97,26 @@ extension GameAddVC {
         let customLayout = LeftAlignFlowLayout()
         keywordCollectionView.collectionViewLayout = customLayout
         customLayout.estimatedItemSize = CGSize(width: 40, height: 20)
+    }
+    
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        if textField.text?.count == 0 || textField.text == nil {
+            // Text가 존재하지 않을 때 버튼 비활성화
+            
+            addButton.isEnabled = false
+            addButton.backgroundColor = .boardBlack10
+            addButton.setTitleColor(.boardGray30, for: .normal)
+        } else {
+            // Text가 존재할 때 버튼 활성화
+            
+            addButton.isEnabled = true
+            addButton.backgroundColor = .boardOrange
+            addButton.setTitleColor(.boardWhite, for: .normal)
+            
+        }
+        
     }
     
     func scrollViewTap() {

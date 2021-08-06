@@ -26,6 +26,10 @@ extension UIColor {
         return UIColor(white: 0.0, alpha: 1.0)
     }
     
+    @nonobjc class var boardBlack10: UIColor {
+        return UIColor(white: 0.0, alpha: 0.1)
+    }
+    
     @nonobjc class var boardOrange: UIColor {
         return UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
     }
