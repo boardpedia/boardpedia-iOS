@@ -324,6 +324,8 @@ extension GameVC {
                             saveImage.image = UIImage(named: "icStorageSelected")
                         }
                         
+                        tab2VC.gameIdx = gameIdx
+                        
                         tab1VC.setData(name: data.name, objective: data.intro, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
                         
                         if data.webURL != "" {

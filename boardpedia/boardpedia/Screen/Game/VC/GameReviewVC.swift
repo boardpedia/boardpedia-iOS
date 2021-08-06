@@ -10,6 +10,7 @@ import UIKit
 class GameReviewVC: UIViewController {
 
     var reviewData: ReviewData?
+    var gameIdx: Int?
     
     @IBOutlet weak var totalView: UIView!
     
@@ -31,29 +32,11 @@ class GameReviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        setData()
-    
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillLayoutSubviews() {
         
-        self.topKeywordCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.reviewTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        if let data = reviewData {
-            if data.reviewInfo.topKeywords.count > 2 {
-                
-                self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-                
-            } else {
-                
-                self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            }
+        if let gameIdx = gameIdx {
+            setData(gameIdx: gameIdx)
         }
-        
-        
-        
+        // Do any additional setup after loading the view.
     }
 
 }
@@ -61,6 +44,9 @@ class GameReviewVC: UIViewController {
 extension GameReviewVC {
     
     func setView() {
+        
+        self.topKeywordCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.reviewTableView.translatesAutoresizingMaskIntoConstraints = false
         
         self.totalView.setRounded(radius: 6)
         
@@ -86,37 +72,56 @@ extension GameReviewVC {
         reviewTableView.backgroundColor = .clear
     }
     
-    func setData() {
+    func setData(gameIdx: Int) {
         
-        let item = ReviewData(reviewInfo: ReviewInfo(averageStar: 3.5, topKeywords: ["파티", "심리", "하하호호"]), reviews: [Review(reviewIdx: 2, star: 4, keyword: ["파티","심리"], createdAt: "2021-05-26 23:12:13", userIdx: 8, nickName: "보드진심녀", level: "보드신입생")])
-        
-//        let item = ReviewData(reviewInfo: ReviewInfo(averageStar: 3.5, topKeywords: []), reviews: [])
-        
-        reviewData = item
-        
-        if let data = reviewData {
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
             
-            countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
-            averageStarLabel.setLabel(text: "0.0", font: .neoSemiBold(ofSize: 33))
-            
-            if data.reviewInfo.topKeywords.count == 0 {
+            APIService.shared.getReview(token, gameIdx) { [self] result in
+                switch result {
                 
-                reviewTableView.removeFromSuperview()
-                topKeywordCollectionView.reloadData()
-                setNoDataView()
-                
-            } else {
-                
-                averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
-                
-                topKeywordCollectionView.reloadData()
-                reviewTableView.reloadData()
-                
-                self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
+                case .success(let data):
+                    
+                    reviewData = data
+                    
+                    if let data = reviewData {
+                        
+                        countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
+                        averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
+                        
+                        if data.reviewInfo.topKeywords.count == 0 {
+                            
+                            reviewTableView.removeFromSuperview()
+                            topKeywordCollectionView.reloadData()
+                            setNoDataView()
+                            
+                        } else {
+                            
+                            averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
+                            
+                            topKeywordCollectionView.reloadData()
+                            reviewTableView.reloadData()
+                            
+                            self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
 
+                        }
+                        
+                        if data.reviewInfo.topKeywords.count > 2 {
+                            
+                            self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+                            
+                        } else {
+                            
+                            self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+                        }
+                    
+                        
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
             }
-        
-            
         }
         
     }
