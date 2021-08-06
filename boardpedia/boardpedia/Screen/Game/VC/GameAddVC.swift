@@ -13,6 +13,10 @@ class GameAddVC: UIViewController {
     var count: [String] = ["1인","2인 ~ 4인","4인 ~ 6인","잘모르겠어요"]
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     
+    var levelSelected: [Bool] = [false, false, false]
+    var countSelected: [Bool] = [false, false, false, false]
+    var keywordSelected: [Bool] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var infoLabel: UILabel!
@@ -92,18 +96,18 @@ extension GameAddVC {
     }
     
     func scrollViewTap() {
-            //스크롤뷰 위에서 탭하면 키보드 내리기
-            
-            let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
-            singleTapGestureRecognizer.numberOfTapsRequired = 1
-            singleTapGestureRecognizer.isEnabled = true
-            singleTapGestureRecognizer.cancelsTouchesInView = false
-            view.addGestureRecognizer(singleTapGestureRecognizer)
-        }
+        //스크롤뷰 위에서 탭하면 키보드 내리기
+        
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(singleTapGestureRecognizer)
+    }
     
     @objc func MyTapMethod(sender: UITapGestureRecognizer) {
-                self.view.endEditing(true)
-        }
+        self.view.endEditing(true)
+    }
     
     
 }

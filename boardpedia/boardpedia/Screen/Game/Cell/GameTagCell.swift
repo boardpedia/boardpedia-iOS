@@ -12,7 +12,14 @@ class GameTagCell: UICollectionViewCell {
     static let identifier = "GameTagCell"
     
     @IBOutlet weak var tagLabel: UILabel!
-    
+
+    override var isSelected: Bool {
+        willSet {
+            self.contentView.backgroundColor = newValue ? UIColor.boardOrange : UIColor.boardWhite
+            self.tagLabel.textColor = newValue ? UIColor.boardWhite : UIColor.boardOrange
+            
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         
