@@ -278,6 +278,32 @@ extension GameCollectVC: UICollectionViewDataSource {
             
             gameTab.gameIndex = searchResultData[indexPath.row].gameIdx
             
+        } else if collectionView == filterCollcectionView {
+            
+            let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+            
+            if indexPath.row == 2 {
+                // 키워드 필터 클릭
+                
+                guard let filterVC =
+                        storyboard.instantiateViewController(identifier: "KeywordFilterVC") as? KeywordFilterVC else {return}
+                
+                filterVC.modalPresentationStyle = .overFullScreen
+                filterVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(filterVC, animated: true, completion: nil)
+                
+            } else if indexPath.row == 3 {
+                
+                guard let filterVC =
+                        storyboard.instantiateViewController(identifier: "TimeFilterVC") as? TimeFilterVC else {return}
+                
+                filterVC.modalPresentationStyle = .overFullScreen
+                filterVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(filterVC, animated: true, completion: nil)
+                
+            }
         }
         
         

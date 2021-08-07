@@ -155,7 +155,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mnn-A7-uE3"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.30156256063094988" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ZPH-uS-hoO" firstAttribute="leading" secondItem="mnn-A7-uE3" secondAttribute="leading" id="fWq-hd-OT7"/>
                             <constraint firstAttribute="bottom" secondItem="ZPH-uS-hoO" secondAttribute="bottom" id="t3u-2e-wGe"/>
