@@ -12,7 +12,7 @@ class KeywordFilterVC: UIViewController {
     // MARK: Variable Part
 
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
-    var keywordSelected: [Bool] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    var keywordSelected: [Bool] = Array(repeating: false, count: 16)
     
     // MARK: IBOutlet
     
@@ -130,7 +130,25 @@ extension KeywordFilterVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
+        
+        if keywordSelected[indexPath.row] {
+            // 선택된 애를 선택했다면 -> 미선택으로 변경
+            
+            keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
+            
+        } else {
+            // 미선택된애를 선택했다면 -> 선택으로 변경
+            
+            if keywordSelected.filter({ $0 == true }).count < 3 {
+                // 아직 3개가 선택되지 않았다면
+                
+                keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
+                
+                
+            } else {
+                showToast(message: "키워드는 3개까지 선택 가능해요", font: .neoBold(ofSize: 15), width: 300, bottomY: 50)
+            }
+        }
         keywordCollectionView.reloadData()
     }
     

@@ -282,7 +282,17 @@ extension GameCollectVC: UICollectionViewDataSource {
             
             let storyboard = UIStoryboard(name: "Modal", bundle: nil)
             
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
+                
+                guard let filterVC =
+                        storyboard.instantiateViewController(identifier: "CountFilterVC") as? CountFilterVC else {return}
+                
+                filterVC.modalPresentationStyle = .overFullScreen
+                filterVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(filterVC, animated: true, completion: nil)
+                
+            } else if indexPath.row == 1 {
                 // 난이도 필터 클릭
                 
                 guard let filterVC =
