@@ -284,6 +284,14 @@ extension GameCollectVC: UICollectionViewDataSource {
                 cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
             }
             
+            if level != "" && indexPath.row == 1 {
+                
+                cell.contentView.backgroundColor = .boardOrange10
+                cell.filterLabel.textColor = .boardOrange
+                cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
+                
+            }
+            
             return cell
         }
         
