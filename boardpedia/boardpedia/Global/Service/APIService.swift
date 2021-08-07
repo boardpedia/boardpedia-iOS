@@ -121,6 +121,12 @@ struct APIService {
         judgeObject(target, completion: completion)
     }
     
+    func postGameAdd(_ jwt: String, _ name: String, _ minPlayerNum: Int, _ maxPlayerNum: Int,  _ level: String, _ keyword1: String, _ keyword2: String, _ keyword3: String, completion: @escaping (NetworkResult<ReviewData>)->(Void)) {
+        
+//        let target: APITarget = .addGame(jwt: jwt, name: name, minPlayerNum: minPlayerNum, maxPlayerNum: maxPlayerNum, level: level, keyword1: keyword1, keyword2: keyword2, keyword3: keyword3)
+        
+    }
+    
     
 }
 

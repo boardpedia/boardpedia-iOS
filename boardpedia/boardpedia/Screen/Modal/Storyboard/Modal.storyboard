@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pcu-kz-26G">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pop UpVC-->
+        <scene sceneID="EX8-Xi-TFl">
+            <objects>
+                <viewController storyboardIdentifier="PopUpVC" id="pcu-kz-26G" customClass="PopUpVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qxl-QP-b3d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nf-iM-Jmb">
+                                <rect key="frame" x="25" y="341" width="364" height="214"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-NC-vPH">
+                                        <rect key="frame" x="0.0" y="78.5" width="364" height="77.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tM-m7-QtC">
+                                                <rect key="frame" x="73" y="0.0" width="218.5" height="48"/>
+                                                <string key="text">소중한 보드게임 정보가 
+보드피디아에 추가되었어요!</string>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검토 후 게임목록에 추가됩니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teC-rV-Zqo">
+                                                <rect key="frame" x="84" y="58" width="196.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="16"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ai3-NC-vPH" secondAttribute="trailing" id="1xD-6A-U9k"/>
+                                    <constraint firstItem="ai3-NC-vPH" firstAttribute="centerX" secondItem="1nf-iM-Jmb" secondAttribute="centerX" id="M7e-ws-zYq"/>
+                                    <constraint firstAttribute="width" secondItem="1nf-iM-Jmb" secondAttribute="height" multiplier="325:191" id="XdQ-MI-lpj"/>
+                                    <constraint firstItem="ai3-NC-vPH" firstAttribute="leading" secondItem="1nf-iM-Jmb" secondAttribute="leading" id="bhM-6B-sAs"/>
+                                    <constraint firstItem="ai3-NC-vPH" firstAttribute="centerY" secondItem="1nf-iM-Jmb" secondAttribute="centerY" constant="10" id="kWB-lW-rM4"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charcter" translatesAutoresizingMaskIntoConstraints="NO" id="rI6-Kl-dWg">
+                                <rect key="frame" x="156.5" y="290.5" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rI6-Kl-dWg" secondAttribute="height" multiplier="1:1" id="ts6-ER-6nW"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tC1-8R-Xj2"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1nf-iM-Jmb" firstAttribute="centerY" secondItem="Qxl-QP-b3d" secondAttribute="centerY" id="CvK-mR-0RO"/>
+                            <constraint firstItem="rI6-Kl-dWg" firstAttribute="centerY" secondItem="1nf-iM-Jmb" secondAttribute="top" id="FDv-Te-3my"/>
+                            <constraint firstItem="rI6-Kl-dWg" firstAttribute="centerX" secondItem="Qxl-QP-b3d" secondAttribute="centerX" id="S16-A0-aom"/>
+                            <constraint firstItem="rI6-Kl-dWg" firstAttribute="width" secondItem="1nf-iM-Jmb" secondAttribute="width" multiplier="90/325" id="cl8-Ls-64W"/>
+                            <constraint firstItem="1nf-iM-Jmb" firstAttribute="leading" secondItem="tC1-8R-Xj2" secondAttribute="leading" constant="25" id="gRq-GN-9Zf"/>
+                            <constraint firstItem="1nf-iM-Jmb" firstAttribute="centerX" secondItem="Qxl-QP-b3d" secondAttribute="centerX" id="jD0-im-GeO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="popupView" destination="1nf-iM-Jmb" id="DKU-4Z-Ky9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uge-3c-QFP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="154" y="71"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="charcter" width="52" height="52"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
