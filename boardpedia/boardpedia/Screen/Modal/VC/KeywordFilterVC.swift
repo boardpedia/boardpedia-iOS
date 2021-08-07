@@ -8,9 +8,13 @@
 import UIKit
 
 class KeywordFilterVC: UIViewController {
+    
+    // MARK: Variable Part
 
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     var keywordSelected: [Bool] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    
+    // MARK: IBOutlet
     
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
@@ -21,8 +25,21 @@ class KeywordFilterVC: UIViewController {
         }
     }
     
+    // MARK: Life Cycle Part
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setView()
+        
+    }
+
+}
+
+// MARK: Extension
+
+extension KeywordFilterVC {
+    
+    func setView() {
         
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
@@ -31,22 +48,11 @@ class KeywordFilterVC: UIViewController {
         keywordCollectionView.collectionViewLayout = customLayout
         customLayout.estimatedItemSize = CGSize(width: 40, height: 20)
         
-        // Do any additional setup after loading the view.
+        popupView.layer.cornerRadius = 14
+        popupView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-
 
 // MARK: UICollectionViewDelegateFlowLayout
 
