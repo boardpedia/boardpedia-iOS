@@ -32,6 +32,12 @@ class KeywordFilterVC: UIViewController {
         setView()
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 뷰 클릭 시 뷰 내리기
+        
+        self.dismiss(animated: true)
+    }
 
 }
 
