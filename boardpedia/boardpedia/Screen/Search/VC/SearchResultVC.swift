@@ -186,11 +186,25 @@ extension SearchResultVC {
         addButton.setButton(text: "내가 직접 추가해보기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
         addButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         addButton.setRounded(radius: 6)
+        addButton.addTarget(self, action: #selector(addGameView), for: .touchUpInside)
         
         for i in Range(0...3) {
             filterButton[i].isEnabled = false
         }
         
+        
+    }
+    
+    @objc func addGameView() {
+        // 보드게임 추가하기 뷰로 연결
+        
+        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+        
+        guard let gameAddVC = storyboard.instantiateViewController(identifier: "GameAddVC") as? GameAddVC else {
+            return
+        }
+        gameAddVC.modalPresentationStyle = .fullScreen
+        self.present(gameAddVC, animated: true)
         
     }
     

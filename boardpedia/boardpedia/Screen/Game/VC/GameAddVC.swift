@@ -47,6 +47,13 @@ class GameAddVC: UIViewController {
         
     }
     
+    @IBAction func cancleButtonDidTap(_ sender: Any) {
+        // 뷰 내리기
+        
+        self.dismiss(animated: true)
+    }
+    
+    
     // MARK: Life Cycle Part
     
     override func viewDidLoad() {

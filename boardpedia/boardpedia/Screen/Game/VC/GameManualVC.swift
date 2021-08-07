@@ -26,7 +26,7 @@ class GameManualVC: UIViewController {
         super.viewDidLoad()
         similarCollectionView.delegate = self
         similarCollectionView.dataSource = self
-        similarCollectionView.isScrollEnabled = true
+//        similarCollectionView.isScrollEnabled = true
         similarCollectionView.backgroundColor = .none
     }
     
@@ -130,7 +130,6 @@ extension GameManualVC: UICollectionViewDataSource {
     // CollectionView 데이터 넣기
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return similarGameData.count
         
     }
@@ -147,18 +146,6 @@ extension GameManualVC: UICollectionViewDataSource {
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
-        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
-            return
-        }
-        
-        self.navigationController?.pushViewController(gameTab, animated: true)
-        // 클릭한 게임 상세보기 뷰로 이동
-        
-        gameTab.gameIndex = similarGameData[indexPath.row].gameIdx
-    }
     
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OiB-Kj-suX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OiB-Kj-suX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -410,7 +410,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D83-3I-utw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="619.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="659.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf5-YS-dDC">
@@ -439,10 +439,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trl-mm-RAL">
-                                        <rect key="frame" x="0.0" y="459.5" width="414" height="160"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trl-mm-RAL">
+                                        <rect key="frame" x="0.0" y="459.5" width="414" height="200"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="160" id="nLh-yx-VLk"/>
+                                            <constraint firstAttribute="height" constant="200" id="nLh-yx-VLk"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sjB-Xz-7j0">
                                             <size key="itemSize" width="127" height="176"/>
@@ -452,7 +452,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimilarGameCell" id="tKq-z5-2iC" customClass="SimilarGameCell" customModule="boardpedia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="-8" width="127" height="176"/>
+                                                <rect key="frame" x="0.0" y="12" width="127" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="reY-eu-n38">
                                                     <rect key="frame" x="0.0" y="0.0" width="127" height="176"/>
@@ -628,7 +628,7 @@
                         <outlet property="levelLabel" destination="e39-9b-45G" id="DUN-Wo-978"/>
                         <outlet property="nameLabel" destination="gsD-aa-cxl" id="qqP-8V-phr"/>
                         <outlet property="objectiveLabel" destination="KUZ-zX-Fyz" id="6dg-ol-kWJ"/>
-                        <outlet property="similarCollectionView" destination="trl-mm-RAL" id="M57-Eu-hmj"/>
+                        <outlet property="similarCollectionView" destination="trl-mm-RAL" id="SOL-7X-clF"/>
                         <outlet property="similarLabel" destination="0fk-tH-ZWQ" id="Re1-5P-Jx1"/>
                         <outlet property="timeLabel" destination="LtH-V0-uhc" id="hI5-QP-X1b"/>
                     </connections>
@@ -787,7 +787,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameReviewCell" rowHeight="139" id="pxE-4a-Yld" customClass="GameReviewCell" customModule="boardpedia" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="382" height="139"/>
+                                                        <rect key="frame" x="0.0" y="28" width="382" height="139"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pxE-4a-Yld" id="yLe-Uw-n5B">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="139"/>
@@ -977,6 +977,9 @@
                                             <constraint firstAttribute="width" secondItem="Vmf-9D-xqK" secondAttribute="height" multiplier="1:1" id="wZD-uC-Ygd"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="bntCloseBlack"/>
+                                        <connections>
+                                            <action selector="cancleButtonDidTap:" destination="OiB-Kj-suX" eventType="touchUpInside" id="Lqj-0A-NE1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
