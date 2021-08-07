@@ -12,6 +12,8 @@ class LevelFilterVC: UIViewController {
     // MARK: Variable Part
     
     var level: [String] = ["상","중","하"]
+    var levelFilterAction : ((String) -> Void)? // closer 변수
+    var myLevel: Int?
     
     // MARK: IBOutlet
     
@@ -30,6 +32,14 @@ class LevelFilterVC: UIViewController {
         // 뷰 클릭 시 뷰 내리기
         
         self.dismiss(animated: true)
+        
+        if let level = myLevel {
+            guard let levelFilterAction = self.levelFilterAction else {
+                return
+            }
+            
+            levelFilterAction(self.level[level])
+        }
     }
 
 }
@@ -49,8 +59,15 @@ extension LevelFilterVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LevelCell.identifier, for: indexPath) as? LevelCell else { return UITableViewCell() }
         
         cell.levelLabel.text = level[indexPath.row]
-        
         cell.selectionStyle = .none
+        cell.cellIndex = indexPath
+        
+        cell.clickIndexAction = {
+            text in
+            
+            self.myLevel = text
+            
+        }
         
         return cell
         

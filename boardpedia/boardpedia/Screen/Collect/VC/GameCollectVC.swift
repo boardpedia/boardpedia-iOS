@@ -22,6 +22,7 @@ class GameCollectVC: UIViewController {
     var isPaging: Bool = false
     
     var playerNum = 0 // 필터 - 인원수
+    var level: String = "" // 필터 - 레벨
     
     // MARK: IBOutlet
     
@@ -161,7 +162,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
             
         }
         
@@ -173,7 +174,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
             
         }
         
@@ -343,6 +344,16 @@ extension GameCollectVC: UICollectionViewDataSource {
                 filterVC.modalPresentationStyle = .overFullScreen
                 filterVC.modalTransitionStyle = .crossDissolve
                 
+                filterVC.levelFilterAction = {
+                    
+                    text in
+                    
+                    self.level = text
+                    self.filterCollcectionView.reloadData()
+                    self.refreshFilter()
+                    
+                }
+                
                 self.present(filterVC, animated: true, completion: nil)
                 
                 
@@ -392,7 +403,7 @@ extension GameCollectVC: UIScrollViewDelegate {
                 pageIdx += 1
                 
                 if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
                     
                 }
                 

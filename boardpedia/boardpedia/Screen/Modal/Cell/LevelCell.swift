@@ -10,6 +10,8 @@ import UIKit
 class LevelCell: UITableViewCell {
 
     static let identifier = "LevelCell"
+    var clickIndexAction : ((Int) -> Void)? // closer 변수
+    var cellIndex: IndexPath?
     
     @IBOutlet weak var levelLabel: UILabel!
     
@@ -27,6 +29,24 @@ class LevelCell: UITableViewCell {
         self.contentView.backgroundColor = selected ? UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1) : UIColor.boardWhite
         self.levelLabel.textColor = selected ? UIColor.boardOrange : UIColor.black
         self.levelLabel.font = selected ? UIFont.neoSemiBold(ofSize: 16) : UIFont.neoMedium(ofSize: 16)
+        
+        guard let clickIndexAction = clickIndexAction else {
+            return
+        }
+        
+        if selected {
+            // 선택했다면
+            
+            if let index = cellIndex?.row {
+                clickIndexAction(index)
+                // 인덱스 전달
+            }
+            
+        }
+        
+        // 클릭한 인덱스 전달
+        
+        
     }
 
 
