@@ -45,6 +45,20 @@ class GameAddVC: UIViewController {
     @IBAction func addButtonDidTap(_ sender: UIButton) {
         // 보드게임 추가하기 버튼 클릭 시 Action
         
+        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+        guard let popUpVC =
+                storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
+        
+        popUpVC.modalPresentationStyle = .overCurrentContext
+        popUpVC.modalTransitionStyle = .crossDissolve
+        self.present(popUpVC, animated: true, completion: nil)
+        
+        popUpVC.popButtonAction = {
+            // closure 호출
+            
+            self.dismiss(animated: true)
+        }
+        
     }
     
     @IBAction func cancleButtonDidTap(_ sender: Any) {
