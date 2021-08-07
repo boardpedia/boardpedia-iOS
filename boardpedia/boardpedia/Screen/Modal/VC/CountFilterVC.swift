@@ -16,6 +16,8 @@ class CountFilterVC: UIViewController {
         }
         // 10분 단위로 10분 ~ 180분 까지
     }
+    
+    var countFilterAction : ((Int) -> Void)? // closer 변수
 
     // MARK: IBOutlet
     
@@ -52,6 +54,13 @@ class CountFilterVC: UIViewController {
         // 뷰 클릭 시 뷰 내리기
         
         self.dismiss(animated: true)
+        
+        guard let countFilterAction = countFilterAction else {
+            return
+        }
+        
+        countFilterAction(count)
+        // 전달받은 action 실행
     }
     
 }

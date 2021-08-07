@@ -21,6 +21,8 @@ class GameCollectVC: UIViewController {
     }
     var isPaging: Bool = false
     
+    var playerNum = 0 // 필터 - 인원수
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -120,6 +122,11 @@ extension GameCollectVC {
                 
                 if pageIdx == 0 {
                     searchResultData = data.searchedGame
+                    
+                    // 스크롤 맨 위로 이동
+                    let topOffest = CGPoint(x: 0, y: -(self.gameCollectionView?.contentInset.top ?? 0))
+                    self.gameCollectionView?.setContentOffset(topOffest, animated: true)
+                    
                 } else {
                     searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
                 }
@@ -154,7 +161,19 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
+            
+        }
+        
+    }
+    
+    func refreshFilter() {
+        // 필터로 인한 초기화
+        
+        pageIdx = 0
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken") {
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
             
         }
         
@@ -225,7 +244,6 @@ extension GameCollectVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
         if collectionView == gameCollectionView {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCollectionCell.identifier, for: indexPath) as? GameCollectionCell else {
@@ -255,7 +273,15 @@ extension GameCollectVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.filterLabel.text = filterData[indexPath.row]
+            cell.filterLabel.setLabel(text: filterData[indexPath.row], color: .boardGray50, font: .neoMedium(ofSize: 16))
+            cell.contentView.backgroundColor = UIColor(red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
+            cell.contentView.setBorder(borderColor: .none, borderWidth: 1)
+            
+            if playerNum != 0 && indexPath.row == 0 {
+                cell.contentView.backgroundColor = .boardOrange10
+                cell.filterLabel.textColor = .boardOrange
+                cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
+            }
             
             return cell
         }
@@ -289,6 +315,22 @@ extension GameCollectVC: UICollectionViewDataSource {
                 
                 filterVC.modalPresentationStyle = .overFullScreen
                 filterVC.modalTransitionStyle = .crossDissolve
+                
+                filterVC.countFilterAction = {
+                    
+                    text in
+                    
+                    if text != 0 {
+                        // 검색 인원이 0명이 아니라면?
+                        
+                        self.playerNum = text
+                        self.filterCollcectionView.reloadData()
+                        
+                        self.refreshFilter()
+                        
+                    }
+                    
+                }
                 
                 self.present(filterVC, animated: true, completion: nil)
                 
@@ -350,7 +392,7 @@ extension GameCollectVC: UIScrollViewDelegate {
                 pageIdx += 1
                 
                 if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: "", tag: [], duration: "")
                     
                 }
                 
