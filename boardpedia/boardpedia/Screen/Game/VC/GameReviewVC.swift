@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class GameReviewVC: UIViewController {
 
@@ -18,6 +19,7 @@ class GameReviewVC: UIViewController {
     @IBOutlet weak var totalView: UIView!
     
     @IBOutlet weak var averageStarLabel: UILabel!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var topKeywordCollectionView: UICollectionView!
 
     @IBOutlet weak var countLabel: UILabel!
@@ -79,6 +81,12 @@ extension GameReviewVC {
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
         reviewTableView.backgroundColor = .clear
+        
+        starView.settings.starSize = 20
+        starView.settings.starMargin = 3
+        starView.backgroundColor = .clear
+        starView.settings.updateOnTouch = false
+        
     }
     
     func setData(gameIdx: Int) {
@@ -108,7 +116,7 @@ extension GameReviewVC {
                         } else {
                             
                             averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
-                            
+                            starView.rating = data.reviewInfo.averageStar
                             topKeywordCollectionView.reloadData()
                             reviewTableView.reloadData()
                             
