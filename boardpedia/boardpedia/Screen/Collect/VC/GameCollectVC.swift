@@ -329,8 +329,8 @@ extension GameCollectVC: UICollectionViewDataSource {
                     
                     text in
                     
-                    if text != 0 {
-                        // 검색 인원이 0명이 아니라면?
+                    if text != self.playerNum {
+                        // 검색 인원이 바꼈다면?
                         
                         self.playerNum = text
                         self.filterCollcectionView.reloadData()
@@ -342,6 +342,8 @@ extension GameCollectVC: UICollectionViewDataSource {
                 }
                 
                 self.present(filterVC, animated: true, completion: nil)
+                
+                filterVC.count = playerNum
                 
             } else if indexPath.row == 1 {
                 // 난이도 필터 클릭
