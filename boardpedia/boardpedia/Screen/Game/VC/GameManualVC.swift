@@ -57,17 +57,7 @@ extension GameManualVC {
             headcountLabel.setLabel(text: "\(playerNum)인", font: .neoMedium(ofSize: 16))
         }
         
-        var levelInfo: String = ""
-
-        if level == "하" {
-            levelInfo = "(누구나 쉽게)"
-        } else if level == "중" {
-            levelInfo = "(누구나 어쩌구)"
-        } else {
-            levelInfo = "(누구나 웅앵)"
-        }
-        
-        levelLabel.setLabel(text: "\(level) \(levelInfo)", font: .neoMedium(ofSize: 16))
+        levelLabel.setLabel(text: level, font: .neoMedium(ofSize: 16))
         
         similarLabel.setLabel(text: "\(name)과 비슷해요", font: .neoBold(ofSize: 18))
         
