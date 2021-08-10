@@ -245,7 +245,6 @@ extension GameReviewVC: UICollectionViewDataSource {
                 
                 return 1
             }
-            
             return data.reviewInfo.topKeywords.count
         }
         

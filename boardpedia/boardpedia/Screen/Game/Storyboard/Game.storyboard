@@ -702,7 +702,7 @@
                                                                 <rect key="frame" x="191" y="0.0" width="191" height="104"/>
                                                                 <subviews>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXh-mg-k9C">
-                                                                        <rect key="frame" x="20" y="0.0" width="151" height="104"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="171" height="104"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" priority="250" constant="104" id="7DO-jl-Gn2"/>
@@ -715,7 +715,7 @@
                                                                         </collectionViewFlowLayout>
                                                                         <cells>
                                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="Mr2-cv-Tpk" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
-                                                                                <rect key="frame" x="14.5" y="0.0" width="122" height="53"/>
+                                                                                <rect key="frame" x="24.5" y="0.0" width="122" height="53"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5bp-KX-5Jw">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="53"/>
@@ -745,9 +745,8 @@
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="SXh-mg-k9C" firstAttribute="centerY" secondItem="5iw-aJ-zx6" secondAttribute="centerY" id="9Dq-Mm-TQy"/>
-                                                                    <constraint firstItem="SXh-mg-k9C" firstAttribute="leading" secondItem="5iw-aJ-zx6" secondAttribute="leading" constant="20" symbolic="YES" id="Ilc-4R-d6j"/>
-                                                                    <constraint firstItem="SXh-mg-k9C" firstAttribute="leading" secondItem="5iw-aJ-zx6" secondAttribute="leading" constant="20" id="pj0-2m-hEi"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="SXh-mg-k9C" secondAttribute="trailing" constant="20" id="pwj-Fd-ACo"/>
+                                                                    <constraint firstItem="SXh-mg-k9C" firstAttribute="leading" secondItem="5iw-aJ-zx6" secondAttribute="leading" constant="10" id="pj0-2m-hEi"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="SXh-mg-k9C" secondAttribute="trailing" constant="10" id="pwj-Fd-ACo"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -850,7 +849,7 @@
                                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                     </collectionViewFlowLayout>
                                                                     <cells>
-                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameTagCell" id="Bnu-8T-jzn" customClass="GameTagCell" customModule="boardpedia" customModuleProvider="target">
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="Bnu-8T-jzn" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
                                                                             <rect key="frame" x="21" y="0.0" width="191" height="37"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mI0-XZ-hpc">
@@ -873,7 +872,7 @@
                                                                             </collectionViewCellContentView>
                                                                             <size key="customSize" width="191" height="37"/>
                                                                             <connections>
-                                                                                <outlet property="tagLabel" destination="gJI-pm-D4d" id="kS0-7C-QTY"/>
+                                                                                <outlet property="keywordLabel" destination="gJI-pm-D4d" id="zYO-4k-UoK"/>
                                                                             </connections>
                                                                         </collectionViewCell>
                                                                     </cells>

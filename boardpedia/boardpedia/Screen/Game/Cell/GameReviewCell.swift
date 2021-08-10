@@ -34,6 +34,10 @@ class GameReviewCell: UITableViewCell {
         
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
+        
+        let customLayout = LeftAlignFlowLayout()
+        keywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
         // Initialization code
     }
     
@@ -69,14 +73,14 @@ extension GameReviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // 아이템간의 간격
         
-        return 10
+        return 0
         
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 10
     
     }
     
@@ -103,11 +107,11 @@ extension GameReviewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
         
-        cell.tagLabel.setLabel(text: "#\(tagArray[indexPath.row])", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        cell.keywordLabel.setLabel(text: "#\(tagArray[indexPath.row])", color: .boardGray40, font: .neoMedium(ofSize: 15))
         cell.contentView.layer.borderColor = UIColor.boardGray40.cgColor
         cell.contentView.setRounded(radius: 10)
         
