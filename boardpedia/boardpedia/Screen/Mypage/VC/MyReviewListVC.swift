@@ -164,6 +164,18 @@ extension MyReviewListVC: UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(gameTab, animated: true)
+        // 클릭한 게임 상세보기 뷰로 이동
+        
+        gameTab.gameIndex = myReviewData[indexPath.row].boardGame.gameIdx
+    }
+    
     
 }
 

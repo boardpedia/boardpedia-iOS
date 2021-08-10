@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eDo-UA-kVl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fev-Io-pI4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -146,6 +146,7 @@
                             <constraint firstItem="DGf-PW-zcS" firstAttribute="top" secondItem="YeB-9A-pRM" secondAttribute="bottom" constant="20" id="zGP-FH-gTm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="FUm-a1-eAt"/>
                     <connections>
                         <outlet property="collectionLayout" destination="pDd-wv-Jkk" id="iRE-sU-Pa8"/>
                         <outlet property="editButton" destination="eqq-ns-WKg" id="C0V-DM-YE0"/>
@@ -157,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3c-hU-aOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1292.753623188406" y="-85.044642857142847"/>
+            <point key="canvasLocation" x="2202.898550724638" y="-85.044642857142847"/>
         </scene>
         <!--My Save ListVC-->
         <scene sceneID="C0H-bU-4pv">
@@ -264,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjR-7V-Esc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208.695652173913" y="-139.28571428571428"/>
+            <point key="canvasLocation" x="3117.3913043478265" y="-139.28571428571428"/>
         </scene>
         <!--My Review ListVC-->
         <scene sceneID="d6t-yG-og7">
@@ -286,7 +287,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyReviewCell" rowHeight="162" id="K95-f6-NTC" customClass="MyReviewCell" customModule="boardpedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="162"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="382" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K95-f6-NTC" id="mas-MU-tzl">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="162"/>
@@ -294,6 +295,26 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaT-Aa-k0P">
                                                     <rect key="frame" x="0.0" y="5" width="382" height="152"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-x4-whk" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="157" y="117" width="108" height="20"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="Ec2-qW-0dU"/>
+                                                                <constraint firstAttribute="width" constant="108" id="yEo-4H-Ort"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="icStar"/>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="icStarBlank"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z1P-a4-iTn">
@@ -349,29 +370,6 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ge5-Xx-Kqp">
-                                                    <rect key="frame" x="157" y="117" width="137.5" height="25"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStarBlank" translatesAutoresizingMaskIntoConstraints="NO" id="JzO-h6-Vuh">
-                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="JzO-h6-Vuh" secondAttribute="height" multiplier="1:1" id="qJB-fV-FC8"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStarBlank" translatesAutoresizingMaskIntoConstraints="NO" id="PGD-U2-V0u">
-                                                            <rect key="frame" x="28" y="0.0" width="25" height="25"/>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFv-FQ-Jaj">
-                                                            <rect key="frame" x="56" y="0.0" width="25" height="25"/>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LZz-Cs-9vD">
-                                                            <rect key="frame" x="84" y="0.0" width="25.5" height="25"/>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KP7-ab-PBl">
-                                                            <rect key="frame" x="112.5" y="0.0" width="25" height="25"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="FaT-Aa-k0P" secondAttribute="bottom" constant="5" id="4kM-l2-wxK"/>
@@ -382,11 +380,10 @@
                                                 <constraint firstItem="FaT-Aa-k0P" firstAttribute="leading" secondItem="mas-MU-tzl" secondAttribute="leading" id="Gfp-du-6yJ"/>
                                                 <constraint firstItem="2KJ-nb-nVq" firstAttribute="top" secondItem="z1P-a4-iTn" secondAttribute="top" constant="5" id="GzN-Hh-vWg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tjv-ub-xPy" secondAttribute="trailing" constant="10" id="Jof-No-s5g"/>
-                                                <constraint firstItem="Ge5-Xx-Kqp" firstAttribute="bottom" secondItem="z1P-a4-iTn" secondAttribute="bottom" constant="-5" id="PUl-q0-L0Y"/>
-                                                <constraint firstItem="Ge5-Xx-Kqp" firstAttribute="leading" secondItem="2KJ-nb-nVq" secondAttribute="leading" id="SLZ-ww-mCZ"/>
                                                 <constraint firstItem="FaT-Aa-k0P" firstAttribute="top" secondItem="mas-MU-tzl" secondAttribute="top" constant="5" id="VrE-pp-QEF"/>
-                                                <constraint firstItem="JzO-h6-Vuh" firstAttribute="width" secondItem="z1P-a4-iTn" secondAttribute="width" multiplier="19/100" id="k8A-pv-HDe"/>
+                                                <constraint firstItem="qVA-x4-whk" firstAttribute="bottom" secondItem="z1P-a4-iTn" secondAttribute="bottom" constant="-5" id="fe7-1w-pkO"/>
                                                 <constraint firstItem="2KJ-nb-nVq" firstAttribute="leading" secondItem="z1P-a4-iTn" secondAttribute="trailing" constant="15" id="ulv-Tx-k31"/>
+                                                <constraint firstItem="qVA-x4-whk" firstAttribute="leading" secondItem="2KJ-nb-nVq" secondAttribute="leading" id="w09-T4-uMg"/>
                                                 <constraint firstItem="z1P-a4-iTn" firstAttribute="top" secondItem="FaT-Aa-k0P" secondAttribute="top" constant="10" id="wQ2-z9-08t"/>
                                                 <constraint firstItem="tjv-ub-xPy" firstAttribute="top" secondItem="2KJ-nb-nVq" secondAttribute="bottom" constant="5" id="y0G-qD-mLF"/>
                                             </constraints>
@@ -397,11 +394,7 @@
                                             <outlet property="gameNameLabel" destination="2KJ-nb-nVq" id="obj-i4-Wge"/>
                                             <outlet property="keywordCollectionView" destination="tjv-ub-xPy" id="fhf-TE-FpE"/>
                                             <outlet property="seperateView" destination="FaT-Aa-k0P" id="1Ar-RT-caM"/>
-                                            <outletCollection property="starImageView" destination="JzO-h6-Vuh" collectionClass="NSMutableArray" id="q2I-4r-Zeh"/>
-                                            <outletCollection property="starImageView" destination="PGD-U2-V0u" collectionClass="NSMutableArray" id="RhZ-kQ-utd"/>
-                                            <outletCollection property="starImageView" destination="bFv-FQ-Jaj" collectionClass="NSMutableArray" id="GYM-1M-CuH"/>
-                                            <outletCollection property="starImageView" destination="LZz-Cs-9vD" collectionClass="NSMutableArray" id="lAv-MX-aDU"/>
-                                            <outletCollection property="starImageView" destination="KP7-ab-PBl" collectionClass="NSMutableArray" id="BqU-1u-UiH"/>
+                                            <outlet property="starView" destination="qVA-x4-whk" id="Ifa-33-D3w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -425,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJS-9t-xNz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3034.7826086956525" y="-139.28571428571428"/>
+            <point key="canvasLocation" x="3944.9275362318845" y="-139.28571428571428"/>
         </scene>
         <!--Swipe ListVC-->
         <scene sceneID="gIl-h1-55G">
@@ -496,12 +489,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTY-U7-Ljx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3892" y="-236"/>
+            <point key="canvasLocation" x="4801.449275362319" y="-236.38392857142856"/>
+        </scene>
+        <!--Mypage NaviVC-->
+        <scene sceneID="Kh7-DF-XKY">
+            <objects>
+                <navigationController storyboardIdentifier="MypageNaviVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Fev-Io-pI4" customClass="MypageNaviVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3V2-71-FBI">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eDo-UA-kVl" kind="relationship" relationship="rootViewController" id="Jdg-BQ-CkR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9S-oW-S4n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1292.753623188406" y="-85.044642857142847"/>
         </scene>
     </scenes>
     <resources>
         <image name="bntProfile" width="16" height="16"/>
         <image name="bntSetting" width="23" height="24"/>
+        <image name="icStar" width="37" height="36"/>
         <image name="icStarBlank" width="37" height="36"/>
         <image name="icStorageUnselected" width="18" height="21.5"/>
         <systemColor name="systemBackgroundColor">

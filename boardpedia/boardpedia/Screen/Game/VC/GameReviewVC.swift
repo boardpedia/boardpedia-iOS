@@ -106,7 +106,7 @@ extension GameReviewVC {
                         averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
                         
                         if data.reviewInfo.topKeywords.count == 0 {
-                            
+                            starView.rating = 0.0
                             reviewTableView.removeFromSuperview()
                             topKeywordCollectionView.reloadData()
                             setNoDataView()
