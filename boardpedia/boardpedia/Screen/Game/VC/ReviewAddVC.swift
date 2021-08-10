@@ -23,8 +23,8 @@ class ReviewAddVC: UIViewController {
                 checkButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
                 checkButton.setImage(UIImage(named: "checkBtn"), for: .normal)
                 
-                if starView.rating != 0.0 {
-                    // 별점이 존재한다면 -> 추가하기 버튼 활성화
+                if starView.rating != 0.0 && keywordSelected.filter({ $0 == true }).count > 0 {
+                    // 별점이 존재하고, 키워드를 하나 이상 선택했다면 -> 추가하기 버튼 활성화
                     addButton.isEnabled = true
                     addButton.backgroundColor = .boardOrange
                     addButton.setTitleColor(.boardWhite, for: .normal)
@@ -110,7 +110,7 @@ extension ReviewAddVC {
         starView.settings.starSize = 40
         starView.settings.starMargin = 12
         starView.didFinishTouchingCosmos  = { rating in
-            if self.isSelected {
+            if self.isSelected && self.keywordSelected.filter({ $0 == true }).count > 0 {
                 // 동의 버튼을 클릭 한 상태라면 -> 추가하기 버튼 활성화
                 
                 self.addButton.isEnabled = true
@@ -180,6 +180,17 @@ extension ReviewAddVC: UICollectionViewDataSource {
                     keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
                     keywordCollectionView.reloadData()
                 }
+            }
+            
+            if starView.rating != 0.0 && isSelected && keywordSelected.filter({ $0 == true }).count > 0 {
+                // 별점이 존재하고, 동의 버튼을 클릭했다면 -> 추가하기 버튼 활성화
+                addButton.isEnabled = true
+                addButton.backgroundColor = .boardOrange
+                addButton.setTitleColor(.boardWhite, for: .normal)
+            } else {
+                addButton.isEnabled = false
+                addButton.backgroundColor = .boardBlack10
+                addButton.setTitleColor(.boardGray30, for: .normal)
             }
             
             

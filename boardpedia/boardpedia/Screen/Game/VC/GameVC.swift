@@ -480,7 +480,7 @@ extension GameVC: ChangeHeightDelegate {
     
     func GiveHeight(value: CGFloat) {
         
-        self.myView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        self.myView.heightAnchor.constraint(equalToConstant: value).isActive = true
         // 높이 변경
     }
 }

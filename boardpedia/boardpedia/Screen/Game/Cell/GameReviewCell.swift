@@ -12,6 +12,7 @@ class GameReviewCell: UITableViewCell {
     static let identifier = "GameReviewCell"
     var tagArray: [String] = []
     
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

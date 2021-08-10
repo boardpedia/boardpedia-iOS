@@ -31,7 +31,7 @@ class GameManualVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        heightDelegate?.GiveHeight(value: self.similarCollectionView.frame.maxY)
+        heightDelegate?.GiveHeight(value: 350)
         // 동적 위치 전달
     }
     

@@ -100,10 +100,9 @@ extension GameReviewVC {
                         if data.reviewInfo.topKeywords.count == 0 {
                             
                             reviewTableView.removeFromSuperview()
-                            reviewTableView.isHidden = true
-                            
                             topKeywordCollectionView.reloadData()
                             setNoDataView()
+                            view.reloadInputViews()
                             
                             
                         } else {
@@ -157,14 +156,11 @@ extension GameReviewVC {
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
         noDataLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         noDataLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 25).isActive = true
-        
+        noDataLabel.lineSetting(lineSpacing: 5)
         noDataLabel.setLabel(text: "아직 후기가 없어요.\n첫번째로 후기를 남겨보세요!", font: .neoMedium(ofSize: 16))
         noDataLabel.numberOfLines = 0
         noDataLabel.textAlignment = .center
         
-        
-        
-//        let writeReviewButton = UIButton()
         self.view.addSubview(writeReviewButton)
         
         writeReviewButton.addTarget(self, action: #selector(hi), for: .touchUpInside)
@@ -180,8 +176,6 @@ extension GameReviewVC {
         writeReviewButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .clear)
         writeReviewButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         writeReviewButton.setRounded(radius: 6)
-        
-        
     }
     
     @objc func hi() {
