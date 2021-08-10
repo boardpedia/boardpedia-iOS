@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OiB-Kj-suX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OiB-Kj-suX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -76,7 +76,7 @@
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameTagCell" id="d1S-rf-o77" customClass="GameTagCell" customModule="boardpedia" customModuleProvider="target">
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="d1S-rf-o77" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="110" height="24"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="716-Ze-GBT">
@@ -99,7 +99,7 @@
                                                                         </collectionViewCellContentView>
                                                                         <size key="customSize" width="110" height="24"/>
                                                                         <connections>
-                                                                            <outlet property="tagLabel" destination="BgS-NN-ADY" id="bRG-LK-27s"/>
+                                                                            <outlet property="keywordLabel" destination="BgS-NN-ADY" id="xoq-gu-eJU"/>
                                                                         </connections>
                                                                     </collectionViewCell>
                                                                 </cells>
@@ -714,7 +714,7 @@
                                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         </collectionViewFlowLayout>
                                                                         <cells>
-                                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameTagCell" id="Mr2-cv-Tpk" customClass="GameTagCell" customModule="boardpedia" customModuleProvider="target">
+                                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemeKeywordCell" id="Mr2-cv-Tpk" customClass="ThemeKeywordCell" customModule="boardpedia" customModuleProvider="target">
                                                                                 <rect key="frame" x="14.5" y="0.0" width="122" height="53"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5bp-KX-5Jw">
@@ -737,7 +737,7 @@
                                                                                 </collectionViewCellContentView>
                                                                                 <size key="customSize" width="122" height="53"/>
                                                                                 <connections>
-                                                                                    <outlet property="tagLabel" destination="7ka-Hd-BVe" id="ikm-EA-Z4n"/>
+                                                                                    <outlet property="keywordLabel" destination="7ka-Hd-BVe" id="FkQ-CU-UVa"/>
                                                                                 </connections>
                                                                             </collectionViewCell>
                                                                         </cells>
@@ -787,7 +787,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameReviewCell" rowHeight="139" id="pxE-4a-Yld" customClass="GameReviewCell" customModule="boardpedia" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="382" height="139"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="382" height="139"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pxE-4a-Yld" id="yLe-Uw-n5B">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="139"/>

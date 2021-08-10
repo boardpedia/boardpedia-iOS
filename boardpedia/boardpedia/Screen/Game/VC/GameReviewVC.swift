@@ -230,22 +230,21 @@ extension GameReviewVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
-        
         
         if let data = reviewData {
             
             if data.reviewInfo.topKeywords.count == 0 {
                 
-                cell.tagLabel.text = "#후기없음"
-                cell.tagLabel.textColor = .boardGray40
+                cell.keywordLabel.text = "#후기없음"
+                cell.keywordLabel.textColor = .boardGray40
                 cell.contentView.layer.borderColor = UIColor.boardGray40.cgColor
                 
             } else {
                 
-                cell.tagLabel.text = "# \(data.reviewInfo.topKeywords[indexPath.row])"
+                cell.keywordLabel.text = "# \(data.reviewInfo.topKeywords[indexPath.row])"
                 
             }
             
