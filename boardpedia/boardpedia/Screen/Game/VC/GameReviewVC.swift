@@ -312,9 +312,10 @@ extension GameReviewVC: UITableViewDataSource {
         
         if let data = reviewData {
             
-            cell.configure(nick: data.reviews[indexPath.row].nickName, start: data.reviews[indexPath.row].star, keyword: data.reviews[indexPath.row].keyword, date: data.reviews[indexPath.row].createdAt, level: data.reviews[indexPath.row].level)
+            cell.configure(nick: data.reviews[indexPath.row].nickName, star: data.reviews[indexPath.row].star, keyword: data.reviews[indexPath.row].keyword, date: data.reviews[indexPath.row].createdAt, level: data.reviews[indexPath.row].level)
         }
         
+        cell.selectionStyle = .none
         
         return cell
         

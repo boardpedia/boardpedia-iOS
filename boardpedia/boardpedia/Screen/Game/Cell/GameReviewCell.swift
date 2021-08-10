@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class GameReviewCell: UITableViewCell {
     
@@ -17,6 +18,7 @@ class GameReviewCell: UITableViewCell {
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
@@ -39,13 +41,20 @@ class GameReviewCell: UITableViewCell {
         keywordCollectionView.collectionViewLayout = customLayout
         customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
         // Initialization code
+        
+        starView.settings.starSize = 18
+        starView.settings.starMargin = 3
+        starView.backgroundColor = .clear
+        starView.settings.updateOnTouch = false
     }
     
-    func configure(nick: String, start: Double, keyword: [String], date: String, level: String) {
+    func configure(nick: String, star: Double, keyword: [String], date: String, level: String) {
         
         nickLabel.setLabel(text: nick, font: .neoMedium(ofSize: 16))
         dateLabel.setLabel(text: date.recordTime(), color: .boardGray30, font: .neoMedium(ofSize: 14))
         profileImageView.image = UIImage(named: "profileImg")
+        
+        starView.rating = star
         
         tagArray = keyword
         keywordCollectionView.reloadData()
