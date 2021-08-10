@@ -292,6 +292,18 @@ extension SearchResultVC: UICollectionViewDataSource {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(gameTab, animated: true)
+        // 클릭한 게임 상세보기 뷰로 이동
+        
+        gameTab.gameIndex = searchResult[indexPath.row].gameIdx
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
