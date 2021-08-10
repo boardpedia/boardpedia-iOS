@@ -12,6 +12,7 @@ class LevelFilterVC: UIViewController {
     // MARK: Variable Part
     
     var level: [String] = ["상","중","하"]
+    var levelBool: [Bool] = [false, false, false]
     var levelFilterAction : ((String) -> Void)? // closer 변수
     var myLevel: Int?
     
@@ -21,9 +22,15 @@ class LevelFilterVC: UIViewController {
     @IBOutlet weak var levelTableView: UITableView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         levelTableView.delegate = self
         levelTableView.dataSource = self
+        
+        if let level = myLevel {
+            
+            levelBool[level] = true
+        }
         
 
     }
@@ -33,12 +40,17 @@ class LevelFilterVC: UIViewController {
         
         self.dismiss(animated: true)
         
-        if let level = myLevel {
+        if let myLevel = myLevel {
             guard let levelFilterAction = self.levelFilterAction else {
                 return
             }
             
-            levelFilterAction(self.level[level])
+            if myLevel == -1 {
+                levelFilterAction("")
+            } else {
+                levelFilterAction(self.level[myLevel])
+            }
+        
         }
     }
 
@@ -60,17 +72,47 @@ extension LevelFilterVC: UITableViewDataSource {
         
         cell.levelLabel.text = level[indexPath.row]
         cell.selectionStyle = .none
-        cell.cellIndex = indexPath
         
-        cell.clickIndexAction = {
-            text in
+        print(levelBool)
+        
+        if levelBool[indexPath.row] {
+            // 선택된 상태라면?
             
-            self.myLevel = text
+            cell.contentView.backgroundColor = UIColor(red: 1.0, green: 119.0 / 255.0, blue: 72.0 / 255.0, alpha: 0.1)
+            cell.levelLabel.textColor = .boardOrange
+            cell.levelLabel.font =  UIFont.neoSemiBold(ofSize: 16)
+        
+        } else {
+            // 미선택된 상태라면?
+            
+            cell.contentView.backgroundColor = .boardWhite
+            cell.levelLabel.textColor = .black
+            cell.levelLabel.font =  UIFont.neoMedium(ofSize: 16)
             
         }
         
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if levelBool[indexPath.row] {
+            // 선택상태였는데 다시 선택했다면? -> 선택을 취소한 것
+            
+            levelBool[indexPath.row] = !levelBool[indexPath.row]
+            myLevel = -1
+            
+        } else {
+            // 미선택된것을 다시 선택했다면? -> 이전에 선택된것이 있다면 그걸 취소해야함(초기화)
+            
+            levelBool = [false, false, false]
+            levelBool[indexPath.row] = true
+            myLevel = indexPath.row
+            
+        }
+        
+        levelTableView.reloadData()
     }
     
     

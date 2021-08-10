@@ -358,13 +358,27 @@ extension GameCollectVC: UICollectionViewDataSource {
                     
                     text in
                     
-                    self.level = text
-                    self.filterCollcectionView.reloadData()
-                    self.refreshFilter()
+                    if text != self.level {
+                        // 값이 변경됐다면
+                        
+                        self.level = text
+                        self.filterCollcectionView.reloadData()
+                        self.refreshFilter()
+                    }
+                
                     
                 }
                 
+                if level == "상" {
+                    filterVC.myLevel = 0
+                } else if level == "중" {
+                    filterVC.myLevel = 1
+                } else if level == "하" {
+                    filterVC.myLevel = 2
+                }
+                
                 self.present(filterVC, animated: true, completion: nil)
+                
                 
                 
             } else if indexPath.row == 2 {
