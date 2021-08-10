@@ -64,6 +64,11 @@ class ReviewAddVC: UIViewController {
        
     }
     
+    @IBAction func cancleButtonDidTap(_ sender: Any) {
+        // 뷰 내리기
+        
+        self.dismiss(animated: true)
+    }
     
     
     override func viewDidLoad() {

@@ -775,6 +775,9 @@
                                                     <constraint firstAttribute="height" constant="46" id="AnL-y8-AeB"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="writeButtonDidTap:" destination="DeO-nS-n9k" eventType="touchUpInside" id="wiA-Gs-tz9"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-aj-tiL">
                                                 <rect key="frame" x="16" y="163" width="41.5" height="20.5"/>
@@ -1295,6 +1298,9 @@
                                             <constraint firstAttribute="width" secondItem="B3T-m1-rNB" secondAttribute="height" multiplier="1:1" id="bwj-Jg-e3I"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="bntCloseBlack"/>
+                                        <connections>
+                                            <action selector="cancleButtonDidTap:" destination="VKI-TI-wMu" eventType="touchUpInside" id="JPW-dq-NKh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

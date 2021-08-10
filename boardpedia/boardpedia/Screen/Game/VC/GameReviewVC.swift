@@ -11,6 +11,9 @@ class GameReviewVC: UIViewController {
 
     var reviewData: ReviewData?
     var gameIdx: Int?
+    lazy var writeReviewButton: UIButton = {
+      return UIButton()
+    }()
     
     @IBOutlet weak var totalView: UIView!
     
@@ -28,6 +31,12 @@ class GameReviewVC: UIViewController {
             // 동적 사이즈를 주기 위해 estimatedItemSize 를 사용했다. 대략적인 셀의 크기를 먼저 조정한 후에 셀이 나중에 AutoLayout 될 때, 셀의 크기가 변경된다면 그 값이 다시 UICollectionViewFlowLayout에 전달되어 최종 사이즈가 결정되게 된다.
         }
     }
+    
+    @IBAction func writeButtonDidTap(_ sender: Any) {
+        
+        writeReviewAction()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,8 +100,11 @@ extension GameReviewVC {
                         if data.reviewInfo.topKeywords.count == 0 {
                             
                             reviewTableView.removeFromSuperview()
+                            reviewTableView.isHidden = true
+                            
                             topKeywordCollectionView.reloadData()
                             setNoDataView()
+                            
                             
                         } else {
                             
@@ -151,8 +163,11 @@ extension GameReviewVC {
         noDataLabel.textAlignment = .center
         
         
-        let writeReviewButton = UIButton()
+        
+//        let writeReviewButton = UIButton()
         self.view.addSubview(writeReviewButton)
+        
+        writeReviewButton.addTarget(self, action: #selector(hi), for: .touchUpInside)
         
         writeReviewButton.translatesAutoresizingMaskIntoConstraints = false
         writeReviewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -165,6 +180,22 @@ extension GameReviewVC {
         writeReviewButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .clear)
         writeReviewButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         writeReviewButton.setRounded(radius: 6)
+        
+        
+    }
+    
+    @objc func hi() {
+        print("hihi")
+    }
+    
+    @objc func writeReviewAction() {
+        // 후기 쓰기 버튼으로 이동
+        
+        guard let reviewAddVC = self.storyboard?.instantiateViewController(identifier: "ReviewAddVC") as? ReviewAddVC else {
+            return
+        }
+        reviewAddVC.modalPresentationStyle = .fullScreen
+        self.present(reviewAddVC, animated: true)
         
     }
     
