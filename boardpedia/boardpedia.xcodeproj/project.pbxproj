@@ -96,6 +96,7 @@
 		D2C1DA3C26C26D5700A6EFDD /* SettingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3B26C26D5700A6EFDD /* SettingListVC.swift */; };
 		D2C1DA4026C2732200A6EFDD /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */; };
 		D2C1DA4126C2732200A6EFDD /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */; };
+		D2C1DA4326C279BB00A6EFDD /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */; };
 		D2DB8AE426BCFF2500CBADA1 /* GameAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +194,7 @@
 		D2C1DA3B26C26D5700A6EFDD /* SettingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListVC.swift; sourceTree = "<group>"; };
 		D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -654,6 +656,7 @@
 			isa = PBXGroup;
 			children = (
 				D2C1DA3B26C26D5700A6EFDD /* SettingListVC.swift */,
+				D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				9B41FA9626467B96002A3E13 /* TrandingGameCell.swift in Sources */,
 				9B7F18332668AF7400BD29CC /* SimilarGameCell.swift in Sources */,
 				9BC8BEF826BC458B0088C392 /* GameCollectionNaviVC.swift in Sources */,
+				D2C1DA4326C279BB00A6EFDD /* ProfileVC.swift in Sources */,
 				9B140E7E268B4EE6003421F2 /* UserData.swift in Sources */,
 				9BE098F22649B3E8007D2BEC /* LeftAlignFlowLayout.swift in Sources */,
 				9B40CFB32660E57E00221ED4 /* GameVC.swift in Sources */,
