@@ -11,12 +11,13 @@ class TimeFilterVC: UIViewController {
     
     // MARK: Variable Part
     
-    var date: Int = 10 {
+    var date: Int = 0 {
         didSet {
             timeLabel.text = "\(date)분"
         }
-        // 10분 단위로 10분 ~ 180분 까지
+        // 10분 단위로 0분 ~ 180분 까지
     }
+    var timeFilterAction : ((Int) -> Void)? // closer 변수
 
     // MARK: IBOutlet
     
@@ -29,7 +30,7 @@ class TimeFilterVC: UIViewController {
     // MARK: IBAction
     
     @IBAction func minusButtonDidTap(_ sender: Any) {
-        if date > 10 {
+        if date > 0 {
             date -= 10
         }
         
@@ -51,8 +52,14 @@ class TimeFilterVC: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 뷰 클릭 시 뷰 내리기
-        
+
         self.dismiss(animated: true)
+        
+        guard let timeFilterAction = timeFilterAction else {
+            return
+        }
+        
+        timeFilterAction(date)
     }
     
 }

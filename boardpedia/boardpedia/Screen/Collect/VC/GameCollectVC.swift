@@ -24,6 +24,16 @@ class GameCollectVC: UIViewController {
     var playerNum = 0 // 필터 - 인원수
     var level: String = "" // 필터 - 레벨
     var tag: [String] = [] // 필터 - 키워드
+    var time: Int = 0 {
+        didSet {
+            if time == 0 {
+                duration = ""
+            } else {
+                duration = "\(time)분"
+            }
+        }
+    }
+    var duration: String = "" // 필터 - 시간
     
     // MARK: IBOutlet
     
@@ -163,7 +173,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
             
         }
         
@@ -175,7 +185,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
             
         }
         
@@ -294,6 +304,12 @@ extension GameCollectVC: UICollectionViewDataSource {
             }
             
             if tag != [] && indexPath.row == 2 {
+                cell.contentView.backgroundColor = .boardOrange10
+                cell.filterLabel.textColor = .boardOrange
+                cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
+            }
+            
+            if duration != "" && indexPath.row == 3 {
                 cell.contentView.backgroundColor = .boardOrange10
                 cell.filterLabel.textColor = .boardOrange
                 cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
@@ -420,7 +436,19 @@ extension GameCollectVC: UICollectionViewDataSource {
                 filterVC.modalPresentationStyle = .overFullScreen
                 filterVC.modalTransitionStyle = .crossDissolve
                 
+                filterVC.timeFilterAction = {
+                    
+                    text in
+                    
+                    if text != self.time {
+                        self.time = text
+                        self.filterCollcectionView.reloadData()
+                        self.refreshFilter()
+                    }
+                }
+                
                 self.present(filterVC, animated: true, completion: nil)
+                filterVC.date = time
                 
             }
         }
@@ -447,7 +475,7 @@ extension GameCollectVC: UIScrollViewDelegate {
                 pageIdx += 1
                 
                 if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
                     
                 }
                 
