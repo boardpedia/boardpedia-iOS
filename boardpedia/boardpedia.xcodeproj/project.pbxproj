@@ -90,6 +90,7 @@
 		BDD02A23D6CC622A1D25CF31 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */; };
 		D2AF055C268EE0A900E71138 /* UserReviewListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF055B268EE0A900E71138 /* UserReviewListData.swift */; };
 		D2C1DA3126C21D5500A6EFDD /* ReviewAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3026C21D5500A6EFDD /* ReviewAddVC.swift */; };
+		D2C1DA3326C2582200A6EFDD /* CompleteReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3226C2582200A6EFDD /* CompleteReviewData.swift */; };
 		D2DB8AE426BCFF2500CBADA1 /* GameAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
 		D2AF055B268EE0A900E71138 /* UserReviewListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewListData.swift; sourceTree = "<group>"; };
 		D2C1DA3026C21D5500A6EFDD /* ReviewAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddVC.swift; sourceTree = "<group>"; };
+		D2C1DA3226C2582200A6EFDD /* CompleteReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteReviewData.swift; sourceTree = "<group>"; };
 		D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -402,6 +404,7 @@
 				9B140E82268B5C06003421F2 /* UserSaveListData.swift */,
 				D2AF055B268EE0A900E71138 /* UserReviewListData.swift */,
 				9B652C5726AC7DD600DC7931 /* GameCollectionData.swift */,
+				D2C1DA3226C2582200A6EFDD /* CompleteReviewData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				D2AF055C268EE0A900E71138 /* UserReviewListData.swift in Sources */,
 				9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */,
 				9B294193267A4A420008F69F /* SplashVC.swift in Sources */,
+				D2C1DA3326C2582200A6EFDD /* CompleteReviewData.swift in Sources */,
 				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
 				9B652C5326AC3E9C00DC7931 /* ThemeDetailData.swift in Sources */,
 				9B4FFE3B267F355700797E96 /* MainNaviVC.swift in Sources */,

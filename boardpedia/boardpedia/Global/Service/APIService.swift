@@ -127,6 +127,13 @@ struct APIService {
         
     }
     
+    func postReview(_ jwt: String, _ gameIdx: Int, _ star: Float, _ keyword1: String, _ keyword2: String, _ keyword3: String, completion: @escaping (NetworkResult<CompleteReviewData>)->(Void)) {
+        
+        let target: APITarget = .postReview(jwt: jwt, gameIdx: gameIdx, star: star, keyword1: keyword1, keyword2: keyword2, keyword3: keyword3)
+        judgeObject(target, completion: completion)
+                
+    }
+    
     
 }
 

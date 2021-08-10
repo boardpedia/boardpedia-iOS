@@ -190,6 +190,7 @@ extension GameReviewVC {
         }
         reviewAddVC.modalPresentationStyle = .fullScreen
         self.present(reviewAddVC, animated: true)
+        reviewAddVC.gameIdx = gameIdx
         
     }
     

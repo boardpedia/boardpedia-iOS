@@ -12,6 +12,7 @@ class ReviewAddVC: UIViewController {
 
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     var keywordSelected = [Bool](repeating: false, count: 16)
+    var gameIdx: Int?
     
     var isSelected: Bool = false { // 체크 버튼 선택 여부
         didSet {
@@ -61,6 +62,49 @@ class ReviewAddVC: UIViewController {
     }
     
     @IBAction func addButtonDidTap(_ sender: Any) {
+        
+        var k: Int = 0
+        var mykeyword = ["", "", ""]
+        
+        for i in 0..<keywordSelected.count {
+            if keywordSelected[i] {
+                mykeyword[k] = keyword[i]
+                k += 1
+            }
+        }
+        
+        if let token = UserDefaults.standard.string(forKey: "UserToken"),
+           let gameIdx = gameIdx {
+            
+            APIService.shared.postReview(token, gameIdx, Float(starView.rating), mykeyword[0], mykeyword[1], mykeyword[2]) { [self] result in
+                switch result {
+
+                case .success(_):
+
+                    let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+                    guard let popUpVC =
+                            storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
+                    
+                    popUpVC.modalPresentationStyle = .overCurrentContext
+                    popUpVC.modalTransitionStyle = .crossDissolve
+                    self.present(popUpVC, animated: true, completion: nil)
+                    popUpVC.titleLabel.text = "소중한 보드게임 리뷰가\n보드피디아에 등록되었어요!"
+                    popUpVC.subLabel.text = "다른 게임의 리뷰도 작성해보세요."
+                    
+                    popUpVC.popButtonAction = {
+                        // closure 호출
+                        
+                        self.dismiss(animated: true)
+                    }
+                    
+                case .failure(let error):
+                    if error == 404 {
+                        showToast(message: "이미 리뷰가 등록된 게임이에요!", font: .neoBold(ofSize: 15), width: 240, bottomY: 50)
+                    }
+
+                }
+            }
+        }
        
     }
     
