@@ -121,7 +121,7 @@ extension GameCollectVC {
                 if pageIdx == 0 {
                     searchResultData = data.searchedGame
                 } else {
-                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
+                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*20)
                 }
                 
                 gameCollectionView.reloadData()
