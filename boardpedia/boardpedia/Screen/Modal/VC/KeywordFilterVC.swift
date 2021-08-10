@@ -13,6 +13,8 @@ class KeywordFilterVC: UIViewController {
 
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     var keywordSelected: [Bool] = Array(repeating: false, count: 16)
+    var keywordFilterAction : (([String]) -> Void)? // closer 변수
+    var keywordData: [String]?
     
     // MARK: IBOutlet
     
@@ -29,7 +31,19 @@ class KeywordFilterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let keywordData = keywordData {
+            for k in keywordData {
+                if let index = keyword.index(of: k) {
+                    keywordSelected[index] = true
+                }
+                
+            }
+        }
+        
         setView()
+        
+        
         
     }
     
@@ -37,6 +51,28 @@ class KeywordFilterVC: UIViewController {
         // 뷰 클릭 시 뷰 내리기
         
         self.dismiss(animated: true)
+        
+        keywordData = []
+        // 초기화
+        
+        for i in 0..<keyword.count {
+            if keywordSelected[i] {
+                // 선택된것이라면
+                
+                keywordData?.append(keyword[i])
+                // 더해주기
+            }
+        }
+        
+        guard let keywordFilterAction = keywordFilterAction else {
+            return
+        }
+        
+        if let keywordData = keywordData {
+            keywordFilterAction(keywordData)
+            // 전달받은 action 실행
+        }
+        
     }
 
 }

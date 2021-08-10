@@ -23,6 +23,7 @@ class GameCollectVC: UIViewController {
     
     var playerNum = 0 // 필터 - 인원수
     var level: String = "" // 필터 - 레벨
+    var tag: [String] = [] // 필터 - 키워드
     
     // MARK: IBOutlet
     
@@ -162,7 +163,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
             
         }
         
@@ -174,7 +175,7 @@ extension GameCollectVC {
         pageIdx = 0
         
         if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
+          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
             
         }
         
@@ -292,6 +293,12 @@ extension GameCollectVC: UICollectionViewDataSource {
                 
             }
             
+            if tag != [] && indexPath.row == 2 {
+                cell.contentView.backgroundColor = .boardOrange10
+                cell.filterLabel.textColor = .boardOrange
+                cell.contentView.layer.borderColor = UIColor.boardOrange.cgColor
+            }
+            
             return cell
         }
         
@@ -390,6 +397,19 @@ extension GameCollectVC: UICollectionViewDataSource {
                 filterVC.modalPresentationStyle = .overFullScreen
                 filterVC.modalTransitionStyle = .crossDissolve
                 
+                filterVC.keywordFilterAction = {
+                    
+                    text in
+                    
+                    if text != self.tag {
+                        self.tag = text
+                        self.filterCollcectionView.reloadData()
+                        self.refreshFilter()
+                    }
+                }
+                
+                filterVC.keywordData = tag
+                
                 self.present(filterVC, animated: true, completion: nil)
                 
             } else if indexPath.row == 3 {
@@ -427,7 +447,7 @@ extension GameCollectVC: UIScrollViewDelegate {
                 pageIdx += 1
                 
                 if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: [], duration: "")
+                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: "")
                     
                 }
                 
