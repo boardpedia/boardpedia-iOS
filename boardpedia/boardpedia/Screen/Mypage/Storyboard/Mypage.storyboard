@@ -29,6 +29,9 @@
                                             <constraint firstAttribute="height" constant="30" id="j7c-om-F3f"/>
                                         </constraints>
                                         <state key="normal" image="bntSetting"/>
+                                        <connections>
+                                            <action selector="settingButtonDidTap:" destination="eDo-UA-kVl" eventType="touchUpInside" id="DdO-Bl-Qkg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

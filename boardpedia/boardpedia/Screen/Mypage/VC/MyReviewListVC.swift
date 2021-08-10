@@ -25,7 +25,6 @@ class MyReviewListVC: UIViewController {
                     // 회원이지만, 데이터가 없다면
                     
                     infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
-                    loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
                 }
                 infoLabel.isHidden = false
                 brandImage.isHidden = false

@@ -29,6 +29,17 @@ class MypageVC: UIViewController {
     
     // MARK: IBAction
     
+    @IBAction func settingButtonDidTap(_ sender: Any) {
+        
+        let storyboard = UIStoryboard.init(name: "Setting", bundle: nil)
+        guard let settingVC = storyboard.instantiateViewController(identifier: "SettingListVC") as? SettingListVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(settingVC, animated: true)
+        // 설정 뷰로 이동
+        
+    }
     
     // MARK: Life Cycle Part
     
