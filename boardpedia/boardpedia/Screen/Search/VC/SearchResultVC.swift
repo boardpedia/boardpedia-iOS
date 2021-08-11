@@ -95,7 +95,6 @@ class SearchResultVC: UIViewController {
             self.searchNetwork(jwt: token, inputWord: searchWord)
         }
     }
-    
 }
 
 // MARK: Extension
@@ -188,7 +187,7 @@ extension SearchResultVC {
         addButton.setRounded(radius: 6)
         addButton.addTarget(self, action: #selector(addGameView), for: .touchUpInside)
         
-        for i in Range(0...3) {
+        for i in Range(0...2) {
             filterButton[i].isEnabled = false
         }
         

@@ -15,6 +15,8 @@ class GameReviewVC: UIViewController {
     lazy var writeReviewButton: UIButton = {
       return UIButton()
     }()
+    var logoImage = UIImageView()
+    var noDataLabel = UILabel()
     
     @IBOutlet weak var totalView: UIView!
     
@@ -35,20 +37,35 @@ class GameReviewVC: UIViewController {
     }
     
     @IBAction func writeButtonDidTap(_ sender: Any) {
+        // 비회원은 못쓰게 막아야함
         
-        writeReviewAction()
+        if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+            // 비회원이 아니라면?
+            
+            writeReviewAction()
+        } else {
+            // 비회원이라면 ?
+            
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+        }
+        
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        
         if let gameIdx = gameIdx {
             setData(gameIdx: gameIdx)
         }
         // Do any additional setup after loading the view.
     }
+    
 
 }
 
@@ -107,9 +124,10 @@ extension GameReviewVC {
                         
                         if data.reviewInfo.topKeywords.count == 0 {
                             starView.rating = 0.0
-                            reviewTableView.removeFromSuperview()
+                            
                             topKeywordCollectionView.reloadData()
                             setNoDataView()
+                            
                             view.reloadInputViews()
                             
                             
@@ -118,6 +136,13 @@ extension GameReviewVC {
                             averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
                             starView.rating = data.reviewInfo.averageStar
                             topKeywordCollectionView.reloadData()
+                            
+                            writeReviewButton.removeFromSuperview()
+                            logoImage.removeFromSuperview()
+                            noDataLabel.removeFromSuperview()
+                            
+                            view.reloadInputViews()
+                            
                             reviewTableView.reloadData()
                             
                             self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
@@ -147,7 +172,6 @@ extension GameReviewVC {
     
     func setNoDataView() {
         
-        let logoImage = UIImageView()
         self.view.addSubview(logoImage)
         
         logoImage.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +182,6 @@ extension GameReviewVC {
         
         logoImage.image = UIImage(named: "brandNoDataChacter")
         
-        let noDataLabel = UILabel()
         self.view.addSubview(noDataLabel)
         
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -199,6 +222,11 @@ extension GameReviewVC {
         reviewAddVC.modalPresentationStyle = .fullScreen
         self.present(reviewAddVC, animated: true)
         reviewAddVC.gameIdx = gameIdx
+        reviewAddVC.reloadDataAction = {
+            if let gameIdx = self.gameIdx {
+                self.setData(gameIdx: gameIdx)
+            }
+        }
         
     }
     

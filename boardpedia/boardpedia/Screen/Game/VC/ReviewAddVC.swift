@@ -13,6 +13,7 @@ class ReviewAddVC: UIViewController {
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     var keywordSelected = [Bool](repeating: false, count: 16)
     var gameIdx: Int?
+    var reloadDataAction : (() -> Void)?
     
     var isSelected: Bool = false { // 체크 버튼 선택 여부
         didSet {
@@ -96,6 +97,12 @@ class ReviewAddVC: UIViewController {
                         // closure 호출
                         
                         self.dismiss(animated: true)
+                        
+                        guard let reloadDataAction = self.reloadDataAction else {
+                            return
+                        }
+                        
+                        reloadDataAction()
                     }
                     
                     
