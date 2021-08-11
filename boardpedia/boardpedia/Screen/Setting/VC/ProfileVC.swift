@@ -39,7 +39,7 @@ class ProfileVC: UIViewController {
                         popUpVC.modalTransitionStyle = .crossDissolve
                         self.present(popUpVC, animated: true, completion: nil)
                         popUpVC.titleLabel.text = "닉네임 정보가 변경되었어요!"
-                        popUpVC.subLabel.text = "새로운 닉네임으로 보드피디아를 즐겨보아요."
+                        popUpVC.subLabel.text = "새로운 닉네임으로 보드피디아를 즐겨보세요."
                         
                         popUpVC.popButtonAction = {
                             // closure 호출
