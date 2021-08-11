@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import Cosmos
 
 class GameReviewVC: UIViewController {
 
     var reviewData: ReviewData?
     var gameIdx: Int?
+    lazy var writeReviewButton: UIButton = {
+      return UIButton()
+    }()
+    var logoImage = UIImageView()
+    var noDataLabel = UILabel()
     
     @IBOutlet weak var totalView: UIView!
     
     @IBOutlet weak var averageStarLabel: UILabel!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var topKeywordCollectionView: UICollectionView!
 
     @IBOutlet weak var countLabel: UILabel!
@@ -29,15 +36,36 @@ class GameReviewVC: UIViewController {
         }
     }
     
+    @IBAction func writeButtonDidTap(_ sender: Any) {
+        // 비회원은 못쓰게 막아야함
+        
+        if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+            // 비회원이 아니라면?
+            
+            writeReviewAction()
+        } else {
+            // 비회원이라면 ?
+            
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+            // 로그인 유도 팝업 띄우기
+        }
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        
         if let gameIdx = gameIdx {
             setData(gameIdx: gameIdx)
         }
         // Do any additional setup after loading the view.
     }
+    
 
 }
 
@@ -70,6 +98,12 @@ extension GameReviewVC {
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
         reviewTableView.backgroundColor = .clear
+        
+        starView.settings.starSize = 20
+        starView.settings.starMargin = 3
+        starView.backgroundColor = .clear
+        starView.settings.updateOnTouch = false
+        
     }
     
     func setData(gameIdx: Int) {
@@ -89,16 +123,26 @@ extension GameReviewVC {
                         averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
                         
                         if data.reviewInfo.topKeywords.count == 0 {
+                            starView.rating = 0.0
                             
-                            reviewTableView.removeFromSuperview()
                             topKeywordCollectionView.reloadData()
                             setNoDataView()
+                            
+                            view.reloadInputViews()
+                            
                             
                         } else {
                             
                             averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
-                            
+                            starView.rating = data.reviewInfo.averageStar
                             topKeywordCollectionView.reloadData()
+                            
+                            writeReviewButton.removeFromSuperview()
+                            logoImage.removeFromSuperview()
+                            noDataLabel.removeFromSuperview()
+                            
+                            view.reloadInputViews()
+                            
                             reviewTableView.reloadData()
                             
                             self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
@@ -128,7 +172,6 @@ extension GameReviewVC {
     
     func setNoDataView() {
         
-        let logoImage = UIImageView()
         self.view.addSubview(logoImage)
         
         logoImage.translatesAutoresizingMaskIntoConstraints = false
@@ -139,20 +182,19 @@ extension GameReviewVC {
         
         logoImage.image = UIImage(named: "brandNoDataChacter")
         
-        let noDataLabel = UILabel()
         self.view.addSubview(noDataLabel)
         
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
         noDataLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         noDataLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 25).isActive = true
-        
+        noDataLabel.lineSetting(lineSpacing: 5)
         noDataLabel.setLabel(text: "아직 후기가 없어요.\n첫번째로 후기를 남겨보세요!", font: .neoMedium(ofSize: 16))
         noDataLabel.numberOfLines = 0
         noDataLabel.textAlignment = .center
         
-        
-        let writeReviewButton = UIButton()
         self.view.addSubview(writeReviewButton)
+        
+        writeReviewButton.addTarget(self, action: #selector(hi), for: .touchUpInside)
         
         writeReviewButton.translatesAutoresizingMaskIntoConstraints = false
         writeReviewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -165,6 +207,26 @@ extension GameReviewVC {
         writeReviewButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .clear)
         writeReviewButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         writeReviewButton.setRounded(radius: 6)
+    }
+    
+    @objc func hi() {
+        print("hihi")
+    }
+    
+    @objc func writeReviewAction() {
+        // 후기 쓰기 버튼으로 이동
+        
+        guard let reviewAddVC = self.storyboard?.instantiateViewController(identifier: "ReviewAddVC") as? ReviewAddVC else {
+            return
+        }
+        reviewAddVC.modalPresentationStyle = .fullScreen
+        self.present(reviewAddVC, animated: true)
+        reviewAddVC.gameIdx = gameIdx
+        reviewAddVC.reloadDataAction = {
+            if let gameIdx = self.gameIdx {
+                self.setData(gameIdx: gameIdx)
+            }
+        }
         
     }
     
@@ -219,7 +281,6 @@ extension GameReviewVC: UICollectionViewDataSource {
                 
                 return 1
             }
-            
             return data.reviewInfo.topKeywords.count
         }
         
@@ -230,22 +291,21 @@ extension GameReviewVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
-        
         
         if let data = reviewData {
             
             if data.reviewInfo.topKeywords.count == 0 {
                 
-                cell.tagLabel.text = "#후기없음"
-                cell.tagLabel.textColor = .boardGray40
+                cell.keywordLabel.text = "#후기없음"
+                cell.keywordLabel.textColor = .boardGray40
                 cell.contentView.layer.borderColor = UIColor.boardGray40.cgColor
                 
             } else {
                 
-                cell.tagLabel.text = "# \(data.reviewInfo.topKeywords[indexPath.row])"
+                cell.keywordLabel.text = "# \(data.reviewInfo.topKeywords[indexPath.row])"
                 
             }
             
@@ -280,9 +340,10 @@ extension GameReviewVC: UITableViewDataSource {
         
         if let data = reviewData {
             
-            cell.configure(nick: data.reviews[indexPath.row].nickName, start: data.reviews[indexPath.row].star, keyword: data.reviews[indexPath.row].keyword, date: data.reviews[indexPath.row].createdAt, level: data.reviews[indexPath.row].level)
+            cell.configure(nick: data.reviews[indexPath.row].nickName, star: data.reviews[indexPath.row].star, keyword: data.reviews[indexPath.row].keyword, date: data.reviews[indexPath.row].createdAt, level: data.reviews[indexPath.row].level)
         }
         
+        cell.selectionStyle = .none
         
         return cell
         

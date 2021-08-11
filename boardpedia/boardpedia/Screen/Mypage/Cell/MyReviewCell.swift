@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class MyReviewCell: UITableViewCell {
 
@@ -16,7 +17,7 @@ class MyReviewCell: UITableViewCell {
     @IBOutlet weak var gameImageView: UIImageView!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
-    @IBOutlet var starImageView: [UIImageView]!
+    @IBOutlet weak var starView: CosmosView!
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
         didSet {
@@ -28,6 +29,12 @@ class MyReviewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         defaultSettingView()
+        
+        starView.settings.starSize = 20
+        starView.settings.starMargin = 2
+        starView.backgroundColor = .clear
+        starView.settings.updateOnTouch = false
+        
     }
     
     // MARK: Default View Setting Function
@@ -61,13 +68,7 @@ class MyReviewCell: UITableViewCell {
         keywordData = keyword
         keywordCollectionView.reloadData()
         
-        for i in Range(0...4) {
-            if Double(i) < star {
-                starImageView[i].image = UIImage(named: "icStar")
-            } else {
-                starImageView[i].image = UIImage(named: "icStarBlank")
-            }
-        }
+        starView.rating = star
         
     }
 

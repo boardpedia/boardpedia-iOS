@@ -13,9 +13,7 @@ class GameAddVC: UIViewController {
     var count: [String] = ["1인","2인 ~ 4인","4인 ~ 6인","잘모르겠어요"]
     var keyword: [String] = ["간단한", "클래식", "롤플레이", "전략", "심리", "스피드", "파티", "스릴만점", "모험", "운빨", "주사위", "카드", "견제", "협상", "퍼즐", "팀전"]
     
-    var levelSelected: [Bool] = [false, false, false]
-    var countSelected: [Bool] = [false, false, false, false]
-    var keywordSelected: [Bool] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    var keywordSelected = [Bool](repeating: false, count: 16)
     
     // MARK: IBOutlet
     
@@ -206,23 +204,66 @@ extension GameAddVC: UICollectionViewDataSource {
         
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == keywordCollectionView {
+            
+            if keywordSelected[indexPath.row] {
+                keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
+                keywordCollectionView.reloadData()
+            } else {
+                if keywordSelected.filter({ $0 == true }).count < 3 {
+                    keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
+                    keywordCollectionView.reloadData()
+                } else {
+                    showToast(message: "키워드는 3개까지 지정 가능해요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
+                }
+            }
+            
+            
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
-            return UICollectionViewCell()
-        }
-        
         if collectionView == levelCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+                return UICollectionViewCell()
+            }
+            
             cell.tagLabel.text = level[indexPath.row]
+            return cell
+            
         } else if collectionView == countCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+                return UICollectionViewCell()
+            }
+            
             cell.tagLabel.text = count[indexPath.row]
+            return cell
+            
         } else {
-            cell.tagLabel.text = keyword[indexPath.row]
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
+                return UICollectionViewCell()
+            }
+            
+            if keywordSelected[indexPath.row] {
+                // true 라면 -> 선택되었다면
+                
+                cell.contentView.backgroundColor = .boardOrange
+                cell.keywordLabel.textColor = .white
+            } else {
+                // false 라면 -> 미선택되었다면
+                
+                cell.contentView.backgroundColor = .white
+                cell.keywordLabel.textColor = .boardOrange
+            }
+            cell.keywordLabel.text = keyword[indexPath.row]
+            return cell
         }
-        
-        
-        return cell
         
     }
     

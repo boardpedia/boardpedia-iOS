@@ -127,6 +127,22 @@ struct APIService {
         
     }
     
+    func postReview(_ jwt: String, _ gameIdx: Int, _ star: Float, _ keyword1: String, _ keyword2: String, _ keyword3: String, completion: @escaping (NetworkResult<Any>)->(Void)) {
+        // 후기 등록하기
+        
+        let target: APITarget = .postReview(jwt: jwt, gameIdx: gameIdx, star: star, keyword1: keyword1, keyword2: keyword2, keyword3: keyword3)
+        judgeSimpleObject(target, completion: completion)
+                
+    }
+    
+    func editUserName(_ jwt: String, _ nickName: String, completion: @escaping (NetworkResult<Any>)->(Void)) {
+        // 회원 유저네임 수정
+        
+        let target: APITarget = .nickName(jwt: jwt, nickName: nickName)
+        judgeSimpleObject(target, completion: completion)
+        
+    }
+    
     
 }
 

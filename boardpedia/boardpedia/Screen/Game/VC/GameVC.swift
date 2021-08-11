@@ -457,13 +457,13 @@ extension GameVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
         
         if let data = gameDetailData {
             
-            cell.tagLabel.text = data.tag[indexPath.row]
+            cell.keywordLabel.text = data.tag[indexPath.row]
             
         }
         
@@ -480,7 +480,7 @@ extension GameVC: ChangeHeightDelegate {
     
     func GiveHeight(value: CGFloat) {
         
-        self.myView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        self.myView.heightAnchor.constraint(equalToConstant: value).isActive = true
         // 높이 변경
     }
 }

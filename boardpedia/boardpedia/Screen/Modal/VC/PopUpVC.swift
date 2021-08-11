@@ -10,6 +10,10 @@ import UIKit
 class PopUpVC: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subLabel: UILabel!
+    
+    
     var popButtonAction : (() -> Void)?
     
     override func viewDidLoad() {

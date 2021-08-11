@@ -49,7 +49,7 @@ extension TabBarVC {
         }
         
         let mypageStoryboard = UIStoryboard.init(name: "Mypage", bundle: nil)
-        guard let mypageVC = mypageStoryboard.instantiateViewController(identifier: "MypageVC") as? MypageVC else {
+        guard let mypageVC = mypageStoryboard.instantiateViewController(identifier: "MypageNaviVC") as? MypageNaviVC else {
             return
         }
         

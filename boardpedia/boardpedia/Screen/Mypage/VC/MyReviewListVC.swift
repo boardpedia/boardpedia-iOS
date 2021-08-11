@@ -25,7 +25,6 @@ class MyReviewListVC: UIViewController {
                     // 회원이지만, 데이터가 없다면
                     
                     infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
-                    loginButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
                 }
                 infoLabel.isHidden = false
                 brandImage.isHidden = false
@@ -162,6 +161,18 @@ extension MyReviewListVC: UITableViewDataSource {
         
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(gameTab, animated: true)
+        // 클릭한 게임 상세보기 뷰로 이동
+        
+        gameTab.gameIndex = myReviewData[indexPath.row].boardGame.gameIdx
     }
     
     

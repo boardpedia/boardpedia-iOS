@@ -37,7 +37,7 @@ class SearchResultVC: UIViewController {
         searchResult = copySearchResult
         // 정렬 초기화
         
-        for i in Range(0...3) {
+        for i in Range(0...2) {
             
             if filterButton[i].isTouchInside {
                 // 터치된 특정 인덱스 찾기
@@ -63,11 +63,11 @@ class SearchResultVC: UIViewController {
             if filterButton[i].isSelected {
                 // 선택된 필터가 있다면
                 
-                if i == 1 {
+                if i == 0 {
                     searchResult = searchResult.sorted(by: {$0.name < $1.name})
-                } else if i == 2 {
+                } else if i == 1 {
                     searchResult = searchResult.sorted(by: {$0.star > $1.star})
-                } else if i == 3 {
+                } else if i == 2 {
                     searchResult = searchResult.sorted(by: {$0.saveCount > $1.saveCount})
                 }
             }
@@ -95,7 +95,6 @@ class SearchResultVC: UIViewController {
             self.searchNetwork(jwt: token, inputWord: searchWord)
         }
     }
-    
 }
 
 // MARK: Extension
@@ -188,7 +187,7 @@ extension SearchResultVC {
         addButton.setRounded(radius: 6)
         addButton.addTarget(self, action: #selector(addGameView), for: .touchUpInside)
         
-        for i in Range(0...3) {
+        for i in Range(0...2) {
             filterButton[i].isEnabled = false
         }
         
@@ -290,6 +289,18 @@ extension SearchResultVC: UICollectionViewDataSource {
         
         return searchResult.count
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Game", bundle: nil)
+        guard let gameTab = storyboard.instantiateViewController(identifier: "GameVC") as? GameVC else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(gameTab, animated: true)
+        // 클릭한 게임 상세보기 뷰로 이동
+        
+        gameTab.gameIndex = searchResult[indexPath.row].gameIdx
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

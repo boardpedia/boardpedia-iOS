@@ -140,7 +140,7 @@ extension GameCollectVC {
                     self.gameCollectionView?.setContentOffset(topOffest, animated: true)
                     
                 } else {
-                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*10)
+                    searchResultData.insert(contentsOf: data.searchedGame, at: pageIdx*20)
                 }
                 
                 gameCollectionView.reloadData()

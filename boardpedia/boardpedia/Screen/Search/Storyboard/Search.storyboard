@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eSR-6Q-xVK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eSR-6Q-xVK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -255,21 +255,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xoW-XC-iNR">
-                                        <rect key="frame" x="16" y="16" width="332" height="30"/>
+                                        <rect key="frame" x="16" y="16" width="250" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkE-Eu-dNH">
-                                                <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="72" id="8nG-e0-qh8"/>
-                                                    <constraint firstAttribute="height" constant="30" id="iyM-wK-r3j"/>
-                                                </constraints>
-                                                <state key="normal" title="인기순"/>
-                                                <connections>
-                                                    <action selector="filterButtonDidTap:" destination="oe3-i5-lHc" eventType="touchUpInside" id="eLB-Wv-4lr"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kX-b9-ufJ">
-                                                <rect key="frame" x="82" y="0.0" width="86" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="86" id="KSA-1a-W6m"/>
                                                     <constraint firstAttribute="height" constant="30" id="ifN-Em-Gjf"/>
@@ -280,7 +269,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UC-IE-PMq">
-                                                <rect key="frame" x="178" y="0.0" width="72" height="30"/>
+                                                <rect key="frame" x="96" y="0.0" width="72" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Ocx-4L-hFf"/>
                                                     <constraint firstAttribute="width" constant="72" id="saR-ma-ygN"/>
@@ -291,7 +280,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-Y3-Mar">
-                                                <rect key="frame" x="260" y="0.0" width="72" height="30"/>
+                                                <rect key="frame" x="178" y="0.0" width="72" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="M9d-Kr-efU"/>
                                                     <constraint firstAttribute="width" constant="72" id="T26-CH-GkH"/>
@@ -425,7 +414,6 @@
                     <connections>
                         <outlet property="resultLabel" destination="zJ1-Yp-r9b" id="pDc-fS-Hmg"/>
                         <outlet property="searchResultCollectionView" destination="2kg-Lv-L91" id="Ecf-6y-HZH"/>
-                        <outletCollection property="filterButton" destination="ZkE-Eu-dNH" collectionClass="NSMutableArray" id="Qwz-Gn-lCJ"/>
                         <outletCollection property="filterButton" destination="1kX-b9-ufJ" collectionClass="NSMutableArray" id="p3O-rH-HYw"/>
                         <outletCollection property="filterButton" destination="8UC-IE-PMq" collectionClass="NSMutableArray" id="F2x-PB-Ks0"/>
                         <outletCollection property="filterButton" destination="OTM-Y3-Mar" collectionClass="NSMutableArray" id="xdo-cX-smj"/>

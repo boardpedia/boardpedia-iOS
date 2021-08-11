@@ -30,6 +30,6 @@ class RecentKeywordCell: UICollectionViewCell {
     // MARK: Data Set Function
     
     func configure(search: String) {
-        keywordLabel.text = "\(search) X"
+        keywordLabel.text = "\(search)"
     }
 }

@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import Cosmos
 
 class GameReviewCell: UITableViewCell {
     
     static let identifier = "GameReviewCell"
     var tagArray: [String] = []
     
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout! {
@@ -33,14 +36,25 @@ class GameReviewCell: UITableViewCell {
         
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
+        
+        let customLayout = LeftAlignFlowLayout()
+        keywordCollectionView.collectionViewLayout = customLayout
+        customLayout.estimatedItemSize = CGSize(width: 41, height: 41)
         // Initialization code
+        
+        starView.settings.starSize = 18
+        starView.settings.starMargin = 3
+        starView.backgroundColor = .clear
+        starView.settings.updateOnTouch = false
     }
     
-    func configure(nick: String, start: Double, keyword: [String], date: String, level: String) {
+    func configure(nick: String, star: Double, keyword: [String], date: String, level: String) {
         
         nickLabel.setLabel(text: nick, font: .neoMedium(ofSize: 16))
         dateLabel.setLabel(text: date.recordTime(), color: .boardGray30, font: .neoMedium(ofSize: 14))
         profileImageView.image = UIImage(named: "profileImg")
+        
+        starView.rating = star
         
         tagArray = keyword
         keywordCollectionView.reloadData()
@@ -68,14 +82,14 @@ extension GameReviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // 아이템간의 간격
         
-        return 10
+        return 0
         
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 0
+        return 10
     
     }
     
@@ -102,11 +116,11 @@ extension GameReviewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameTagCell.identifier, for: indexPath) as? GameTagCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeKeywordCell.identifier, for: indexPath) as? ThemeKeywordCell else {
             return UICollectionViewCell()
         }
         
-        cell.tagLabel.setLabel(text: "#\(tagArray[indexPath.row])", color: .boardGray40, font: .neoMedium(ofSize: 15))
+        cell.keywordLabel.setLabel(text: "#\(tagArray[indexPath.row])", color: .boardGray40, font: .neoMedium(ofSize: 15))
         cell.contentView.layer.borderColor = UIColor.boardGray40.cgColor
         cell.contentView.setRounded(radius: 10)
         
