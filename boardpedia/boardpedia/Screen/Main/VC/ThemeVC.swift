@@ -26,11 +26,17 @@ class ThemeVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let index = themeIdx {
-            // 테마 받아오는 서버 연결
-            getThemeGame(token: token, index: index)
+        
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let index = themeIdx {
+                // 테마 받아오는 서버 연결
+                getThemeGame(token: token, index: index)
+            }
+        } else {
+            self.showNetworkModal()
         }
+        
     }
     
 }
@@ -196,41 +202,44 @@ extension ThemeVC: BookmarkCellDelegate {
         } else {
             // 회원 로그인을 했다면
             
-            if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                // 토큰 존재 시
-                if let data = themeDetailData?.themeGame[value],
-                   let index = themeIdx {
-                    
-                    if data.saved == 0 {
-                        // 미저장 -> 저장으로 변경
+            if NetworkState.isConnected() {
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    // 토큰 존재 시
+                    if let data = themeDetailData?.themeGame[value],
+                       let index = themeIdx {
                         
-                        APIService.shared.saveGame(token, data.gameIdx) { [self] result in
-                            switch result {
+                        if data.saved == 0 {
+                            // 미저장 -> 저장으로 변경
                             
-                            case .success(_):
+                            APIService.shared.saveGame(token, data.gameIdx) { [self] result in
+                                switch result {
                                 
-                                getThemeGame(token: token, index: index)
-                                showToast(message: "북마크 완료 🧡", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
-                                
-                            case .failure(let error):
-                                print(error)
+                                case .success(_):
+                                    
+                                    getThemeGame(token: token, index: index)
+                                    showToast(message: "북마크 완료 🧡", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    
+                                }
                                 
                             }
+                        } else {
+                            // 저장 -> 미저장으로 변경
                             
-                        }
-                    } else {
-                        // 저장 -> 미저장으로 변경
-                        
-                        APIService.shared.saveCancleGame(token, data.gameIdx) { [self] result in
-                            switch result {
-                            
-                            case .success(_):
+                            APIService.shared.saveCancleGame(token, data.gameIdx) { [self] result in
+                                switch result {
                                 
-                                getThemeGame(token: token, index: index)
-                                showToast(message: "저장 목록에서 삭제되었어요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
-                                
-                            case .failure(let error):
-                                print(error)
+                                case .success(_):
+                                    
+                                    getThemeGame(token: token, index: index)
+                                    showToast(message: "저장 목록에서 삭제되었어요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    
+                                }
                                 
                             }
                             
@@ -240,7 +249,10 @@ extension ThemeVC: BookmarkCellDelegate {
                     
                 }
                 
+            } else {
+                self.showNetworkModal()
             }
+            
             
         }
     }

@@ -79,9 +79,13 @@ extension GameCollectVC {
     
     func setResultCollectionView() {
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
-            
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+              getGameData(jwt: token, pageIdx: pageIdx, playerNum: 0, level: "", tag: [], duration: "")
+                
+            }
+        } else {
+            self.showNetworkModal()
         }
         
         let nibName = UINib(nibName: "GameCollectionCell", bundle: nil)
@@ -172,10 +176,16 @@ extension GameCollectVC {
         
         pageIdx = 0
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
-            
+        
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+              getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
+                
+            }
+        } else {
+            self.showNetworkModal()
         }
+        
         
     }
     
@@ -184,10 +194,15 @@ extension GameCollectVC {
         
         pageIdx = 0
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-          getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
-            
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+              getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
+                
+            }
+        } else {
+            self.showNetworkModal()
         }
+        
         
     }
     
@@ -473,11 +488,15 @@ extension GameCollectVC: UIScrollViewDelegate {
                 // 아직 가져올 데이터가 남았다면
                 
                 pageIdx += 1
-                
-                if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                    getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
-                    
+                if NetworkState.isConnected() {
+                    if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                        getGameData(jwt: token, pageIdx: pageIdx, playerNum: playerNum, level: level, tag: tag, duration: duration)
+                        
+                    }
+                } else {
+                    self.showNetworkModal()
                 }
+                
                 
             }
             
@@ -504,48 +523,52 @@ extension GameCollectVC: BookmarkCellDelegate {
             
         } else {
             // 회원 로그인을 했다면
-            
-            if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                // 토큰 존재 시
-                
-                if searchResultData[value].saved == 0 {
-                    // 미저장 -> 저장으로 변경
+            if NetworkState.isConnected() {
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    // 토큰 존재 시
                     
-                    APIService.shared.saveGame(token, searchResultData[value].gameIdx) { [self] result in
-                        switch result {
+                    if searchResultData[value].saved == 0 {
+                        // 미저장 -> 저장으로 변경
                         
-                        case .success(_):
+                        APIService.shared.saveGame(token, searchResultData[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            searchResultData[value].saved = 1
-                            gameCollectionView.reloadData()
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                searchResultData[value].saved = 1
+                                gameCollectionView.reloadData()
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
+                    } else {
+                        // 저장 -> 미저장으로 변경
                         
-                    }
-                } else {
-                    // 저장 -> 미저장으로 변경
-                    
-                    APIService.shared.saveCancleGame(token, searchResultData[value].gameIdx) { [self] result in
-                        switch result {
-                        
-                        case .success(_):
+                        APIService.shared.saveCancleGame(token, searchResultData[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            searchResultData[value].saved = 0
-                            gameCollectionView.reloadData()
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                searchResultData[value].saved = 0
+                                gameCollectionView.reloadData()
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
                         
                     }
                     
                 }
-                
+            } else {
+                self.showNetworkModal()
             }
+            
             
         }
     }

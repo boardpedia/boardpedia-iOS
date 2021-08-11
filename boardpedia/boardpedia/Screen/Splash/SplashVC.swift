@@ -13,9 +13,11 @@ class SplashVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkDeviceNetworkStatus()
-        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        checkDeviceNetworkStatus()
     }
     
     
@@ -78,6 +80,8 @@ extension SplashVC {
             
         } else {
             // 네트워크 확인 alert 띄워주기
+
+            self.showNetworkModal()
             
         }
         

@@ -39,5 +39,18 @@ extension UIViewController {
             toastLabel.removeFromSuperview()
         })
     }
+    
+    
+    func showNetworkModal() {
+        
+        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+        guard let popUpVC =
+                storyboard.instantiateViewController(identifier: "NetworkErrorVC") as? NetworkErrorVC else {return}
+        
+        popUpVC.modalPresentationStyle = .overCurrentContext
+        popUpVC.modalTransitionStyle = .crossDissolve
+        self.present(popUpVC, animated: true, completion: nil)
+        
+    }
 }
 

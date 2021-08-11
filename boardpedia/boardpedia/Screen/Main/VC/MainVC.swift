@@ -84,9 +84,14 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-            trendingGameData(jwt: token)
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                trendingGameData(jwt: token)
+            }
+        } else {
+            self.showNetworkModal()
         }
+        
         
     }
     
@@ -383,37 +388,40 @@ extension MainVC: BookmarkCellDelegate {
         } else {
             // 회원 로그인을 했다면
             
-            if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                // 토큰 존재 시
-                
-                if trendingData[value].saved == 0 {
-                    // 미저장 -> 저장으로 변경
+            if NetworkState.isConnected() {
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    // 토큰 존재 시
                     
-                    APIService.shared.saveGame(token, trendingData[value].gameIdx) { [self] result in
-                        switch result {
+                    if trendingData[value].saved == 0 {
+                        // 미저장 -> 저장으로 변경
                         
-                        case .success(_):
+                        APIService.shared.saveGame(token, trendingData[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            trendingGameData(jwt: token)
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                trendingGameData(jwt: token)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
+                    } else {
+                        // 저장 -> 미저장으로 변경
                         
-                    }
-                } else {
-                    // 저장 -> 미저장으로 변경
-                    
-                    APIService.shared.saveCancleGame(token, trendingData[value].gameIdx) { [self] result in
-                        switch result {
-                        
-                        case .success(_):
+                        APIService.shared.saveCancleGame(token, trendingData[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            trendingGameData(jwt: token)
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                trendingGameData(jwt: token)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
                         
@@ -421,7 +429,10 @@ extension MainVC: BookmarkCellDelegate {
                     
                 }
                 
+            } else {
+                self.showNetworkModal()
             }
+            
             
         }
     }

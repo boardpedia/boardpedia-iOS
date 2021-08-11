@@ -102,6 +102,7 @@
 		D2C1DA4026C2732200A6EFDD /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */; };
 		D2C1DA4126C2732200A6EFDD /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */; };
 		D2C1DA4326C279BB00A6EFDD /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */; };
+		D2C1DA4626C3D0CE00A6EFDD /* NetworkErrorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */; };
 		D2DB8AE426BCFF2500CBADA1 /* GameAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorVC.swift; sourceTree = "<group>"; };
 		D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -563,6 +565,7 @@
 				9B8A38E826BE58E0005E7DD3 /* TimeFilterVC.swift */,
 				9B8A38EB26BE7D11005E7DD3 /* LevelFilterVC.swift */,
 				9BA41E4126BEF36900A00BDA /* CountFilterVC.swift */,
+				D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
 				9BE098EB264995DC007D2BEC /* RecentKeywordCell.swift in Sources */,
 				9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */,
+				D2C1DA4626C3D0CE00A6EFDD /* NetworkErrorVC.swift in Sources */,
 				D2C1DA3526C266DE00A6EFDD /* MypageNaviVC.swift in Sources */,
 				9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */,
 				9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */,

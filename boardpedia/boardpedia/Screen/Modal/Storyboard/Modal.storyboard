@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pcu-kz-26G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CN8-2r-cjv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -313,7 +313,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LevelCell" rowHeight="58" id="seg-AY-QOQ" customClass="LevelCell" customModule="boardpedia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="58"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="58"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="seg-AY-QOQ" id="1Cv-UW-f1M">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
@@ -480,8 +480,92 @@
             </objects>
             <point key="canvasLocation" x="3464" y="58"/>
         </scene>
+        <!--Network ErrorVC-->
+        <scene sceneID="Ic6-Dd-pMj">
+            <objects>
+                <viewController storyboardIdentifier="NetworkErrorVC" id="CN8-2r-cjv" customClass="NetworkErrorVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="45l-Hw-sce">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXi-3c-Ryv">
+                                <rect key="frame" x="25" y="307" width="364" height="282"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SsI-OX-XIx">
+                                        <rect key="frame" x="39" y="90" width="286" height="142"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3xT-Jc-vj7">
+                                                <rect key="frame" x="29" y="0.0" width="228.5" height="53.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="네트워크 연결이 필요해요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-2K-8aT">
+                                                        <rect key="frame" x="11" y="0.0" width="206.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="네트워크 접속 후 다시 시도해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-0X-Che">
+                                                        <rect key="frame" x="0.0" y="34" width="228.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="16"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-QT-9Cq">
+                                                <rect key="frame" x="0.0" y="83.5" width="286" height="58.5"/>
+                                                <color key="backgroundColor" red="1" green="0.46666666666666667" blue="0.28235294117647058" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="OBo-QT-9Cq" secondAttribute="height" multiplier="255:52" id="d2K-Q0-oSR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                                <state key="normal" title="재시도하기">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="retryButtonDidTap:" destination="CN8-2r-cjv" eventType="touchUpInside" id="652-lf-KLt"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cXi-3c-Ryv" secondAttribute="height" multiplier="325:252" id="Q22-U9-888"/>
+                                    <constraint firstItem="OBo-QT-9Cq" firstAttribute="width" secondItem="cXi-3c-Ryv" secondAttribute="width" multiplier="255/325" id="ZV3-FJ-P6K"/>
+                                    <constraint firstItem="SsI-OX-XIx" firstAttribute="centerY" secondItem="cXi-3c-Ryv" secondAttribute="centerY" constant="20" id="b5Y-dS-knH"/>
+                                    <constraint firstItem="SsI-OX-XIx" firstAttribute="centerX" secondItem="cXi-3c-Ryv" secondAttribute="centerX" id="ucx-4r-eKH"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badCharcter" translatesAutoresizingMaskIntoConstraints="NO" id="0nq-Fg-C38">
+                                <rect key="frame" x="156.5" y="256.5" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0nq-Fg-C38" secondAttribute="height" multiplier="1:1" id="cZT-Ke-VKM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lu0-Nv-dUe"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cXi-3c-Ryv" firstAttribute="centerX" secondItem="45l-Hw-sce" secondAttribute="centerX" id="LcU-6d-Iex"/>
+                            <constraint firstItem="cXi-3c-Ryv" firstAttribute="centerY" secondItem="45l-Hw-sce" secondAttribute="centerY" id="cMD-fx-fel"/>
+                            <constraint firstItem="cXi-3c-Ryv" firstAttribute="leading" secondItem="lu0-Nv-dUe" secondAttribute="leading" constant="25" id="ciJ-NC-LuS"/>
+                            <constraint firstItem="0nq-Fg-C38" firstAttribute="width" secondItem="cXi-3c-Ryv" secondAttribute="width" multiplier="90/325" id="gVJ-vR-VrX"/>
+                            <constraint firstItem="0nq-Fg-C38" firstAttribute="centerX" secondItem="45l-Hw-sce" secondAttribute="centerX" id="hSD-Ee-Zwc"/>
+                            <constraint firstItem="0nq-Fg-C38" firstAttribute="centerY" secondItem="cXi-3c-Ryv" secondAttribute="top" id="t90-zP-5PQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="popView" destination="cXi-3c-Ryv" id="DOJ-7f-o4O"/>
+                        <outlet property="retryButton" destination="OBo-QT-9Cq" id="y1V-Bi-k0l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9fK-Ha-Ggl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="154" y="721"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="badCharcter" width="104" height="104"/>
         <image name="charcter" width="52" height="52"/>
         <image name="minusButtonImg" width="14" height="14"/>
         <image name="plusButtonImg" width="14" height="14"/>

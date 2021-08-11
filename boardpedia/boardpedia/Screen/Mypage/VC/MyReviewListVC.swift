@@ -100,7 +100,9 @@ extension MyReviewListVC {
                 }
             }
         } else {
-            // 네트워크 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
         

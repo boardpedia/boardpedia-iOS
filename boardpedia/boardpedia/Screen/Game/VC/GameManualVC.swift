@@ -61,22 +61,29 @@ extension GameManualVC {
         
         similarLabel.setLabel(text: "\(name)과 비슷해요", font: .neoBold(ofSize: 18))
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-            
-            APIService.shared.getSimilarGame(token, gameIdx) { [self] result in
-                switch result {
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
                 
-                case .success(let data):
+                APIService.shared.getSimilarGame(token, gameIdx) { [self] result in
+                    switch result {
                     
-                    similarGameData = data
-                    similarCollectionView.reloadData()
-                    
-                case .failure(let error):
-                    print(error)
-                    
+                    case .success(let data):
+                        
+                        similarGameData = data
+                        similarCollectionView.reloadData()
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
                 }
             }
+        } else {
+            // 네트워크 미연결시
+            
+            self.showNetworkModal()
         }
+        
         
     }
 }

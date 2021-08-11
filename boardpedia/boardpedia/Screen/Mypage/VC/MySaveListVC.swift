@@ -112,7 +112,9 @@ extension MySaveListVC {
             }
             
         } else {
-            // 네트워크 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
     }
@@ -244,7 +246,9 @@ extension MySaveListVC: BookmarkCellDelegate {
             }
             
         } else {
-            // 네트워크 연결 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
         

@@ -240,6 +240,8 @@ extension SearchResultVC {
         } else {
             // 네트워크 제연결 팝업
             
+            self.showNetworkModal()
+            
             
         }
     }
@@ -349,47 +351,51 @@ extension SearchResultVC: BookmarkCellDelegate {
             
             
         } else {
-            
-            if let token = UserDefaults.standard.string(forKey: "UserToken"),
-               let searchWord = searchWord {
-                // 토큰 존재 시
-                if searchResult[value].saved == 0 {
-                    // 미저장 -> 저장으로 변경
-                    
-                    APIService.shared.saveGame(token, searchResult[value].gameIdx) { [self] result in
-                        switch result {
+            if NetworkState.isConnected() {
+                if let token = UserDefaults.standard.string(forKey: "UserToken"),
+                   let searchWord = searchWord {
+                    // 토큰 존재 시
+                    if searchResult[value].saved == 0 {
+                        // 미저장 -> 저장으로 변경
                         
-                        case .success(_):
+                        APIService.shared.saveGame(token, searchResult[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            self.searchNetwork(jwt: token, inputWord: searchWord)
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                self.searchNetwork(jwt: token, inputWord: searchWord)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
                         
-                    }
-                    
-                } else {
-                    // 저장 -> 미저장으로 변경
-                    
-                    APIService.shared.saveCancleGame(token, searchResult[value].gameIdx) { [self] result in
-                        switch result {
+                    } else {
+                        // 저장 -> 미저장으로 변경
                         
-                        case .success(_):
+                        APIService.shared.saveCancleGame(token, searchResult[value].gameIdx) { [self] result in
+                            switch result {
                             
-                            self.searchNetwork(jwt: token, inputWord: searchWord)
-                            
-                        case .failure(let error):
-                            print(error)
+                            case .success(_):
+                                
+                                self.searchNetwork(jwt: token, inputWord: searchWord)
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
                             
                         }
-                        
                     }
+                    
+                    
                 }
-                
-                
+            } else {
+                self.showNetworkModal()
             }
+            
         }
     }
     

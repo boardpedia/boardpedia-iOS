@@ -82,7 +82,9 @@ class GameAddVC: UIViewController {
             }
             
         } else {
-            // 미연결 시 
+            // 미연결 시
+            
+            self.showNetworkModal()
         }
         
         

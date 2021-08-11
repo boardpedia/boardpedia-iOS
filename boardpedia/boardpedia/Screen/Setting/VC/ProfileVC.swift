@@ -64,6 +64,8 @@ class ProfileVC: UIViewController {
         } else {
             
             // 네트워크 미연결 팝업
+            
+            self.showNetworkModal()
         }
 
         

@@ -93,49 +93,54 @@ class GameVC: UIViewController {
             
         } else {
             // 회원 로그인을 했다면
-            
-            if let token = UserDefaults.standard.string(forKey: "UserToken") {
-                // 토큰 존재 시
-                
-                if let data = gameDetailData,
-                   let index = gameIndex {
+            if NetworkState.isConnected() {
+                if let token = UserDefaults.standard.string(forKey: "UserToken") {
+                    // 토큰 존재 시
                     
-                    if data.saved == 0 {
-                        // 미저장 -> 저장으로 변경
+                    if let data = gameDetailData,
+                       let index = gameIndex {
                         
-                        APIService.shared.saveGame(token, index) { [self] result in
-                            switch result {
+                        if data.saved == 0 {
+                            // 미저장 -> 저장으로 변경
                             
-                            case .success(_):
+                            APIService.shared.saveGame(token, index) { [self] result in
+                                switch result {
                                 
-                                gameDetailData?.saved = 1
-                                
-                            case .failure(let error):
-                                print(error)
+                                case .success(_):
+                                    
+                                    gameDetailData?.saved = 1
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    
+                                }
                                 
                             }
+                        } else {
+                            // 저장 -> 미저장으로 변경
                             
-                        }
-                    } else {
-                        // 저장 -> 미저장으로 변경
-                        
-                        APIService.shared.saveCancleGame(token, index) { [self] result in
-                            switch result {
-                            
-                            case .success(_):
+                            APIService.shared.saveCancleGame(token, index) { [self] result in
+                                switch result {
                                 
-                                gameDetailData?.saved = 0
-                                
-                            case .failure(let error):
-                                print(error)
+                                case .success(_):
+                                    
+                                    gameDetailData?.saved = 0
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    
+                                }
                                 
                             }
                             
                         }
                         
                     }
-                    
                 }
+            } else {
+                // 네트워크 미연결 팝업
+                
+                self.showNetworkModal()
             }
         }
     }
@@ -300,59 +305,69 @@ extension GameVC {
     
     func getGameDetailData() {
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let gameIdx = gameIndex {
+        if NetworkState.isConnected() {
             
-            APIService.shared.getGameDetail(token, gameIdx) { [self] result in
-                switch result {
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let gameIdx = gameIndex {
                 
-                case .success(let data):
+                APIService.shared.getGameDetail(token, gameIdx) { [self] result in
+                    switch result {
                     
-                    gameDetailData = data
-                    gameTagCollectionView.reloadData()
-                    
-                    if let data = gameDetailData {
+                    case .success(let data):
                         
-                        titleImageView.setImage(from: data.imageURL)
-                        gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
-                        gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
-                        gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
+                        gameDetailData = data
+                        gameTagCollectionView.reloadData()
                         
-                        if data.saved == 0 {
-                            saveImage.image = UIImage(named: "icStorageUnselected")
-                        } else {
-                            saveImage.image = UIImage(named: "icStorageSelected")
+                        if let data = gameDetailData {
+                            
+                            titleImageView.setImage(from: data.imageURL)
+                            gameNameLabel.setLabel(text: data.name, font: .neoSemiBold(ofSize: 22))
+                            gameInfoLabel.setLabel(text: data.intro, color: .boardGray50, font: .neoMedium(ofSize: 17))
+                            gameStarLabel.setLabel(text: "별점 \(data.star)점", font: .neoMedium(ofSize: 14))
+                            
+                            if data.saved == 0 {
+                                saveImage.image = UIImage(named: "icStorageUnselected")
+                            } else {
+                                saveImage.image = UIImage(named: "icStorageSelected")
+                            }
+                            
+                            tab2VC.gameIdx = gameIdx
+                            
+                            tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
+                            
+                            if data.webURL != "" {
+                                // 웹 링크가 있다면?
+                                
+                                webButtonImage.image = UIImage(named: "icWebSiteSelected")
+                                webButton.isEnabled = true
+                                // 웹 버튼 활성화
+                                
+                            } else {
+                                // 웹 링크가 없다면?
+                                
+                                webButtonImage.image = UIImage(named: "icWebSiteUnselected")
+                                webButton.isEnabled = false
+                                // 웹 버튼 비활성화
+                                
+                            }
                         }
                         
-                        tab2VC.gameIdx = gameIdx
+                    case .failure(let error):
+                        print(error)
                         
-                        tab1VC.setData(name: data.name, objective: data.objective, time: data.duration, playerNum: data.playerNum, maxPlayerNum: data.maxPlayerNum, level: data.level, method: data.method, tip: data.tip, gameIdx: gameIdx)
-                        
-                        if data.webURL != "" {
-                            // 웹 링크가 있다면?
-                            
-                            webButtonImage.image = UIImage(named: "icWebSiteSelected")
-                            webButton.isEnabled = true
-                            // 웹 버튼 활성화
-                            
-                        } else {
-                            // 웹 링크가 없다면?
-                            
-                            webButtonImage.image = UIImage(named: "icWebSiteUnselected")
-                            webButton.isEnabled = false
-                            // 웹 버튼 비활성화
-                            
-                        }
                     }
                     
-                case .failure(let error):
-                    print(error)
-                    
                 }
-                
-            }
 
+            }
+            
+            
+        } else {
+            
+            self.showNetworkModal()
+            
         }
+        
     }
 }
 
