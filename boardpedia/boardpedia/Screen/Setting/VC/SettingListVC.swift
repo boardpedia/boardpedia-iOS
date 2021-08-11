@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingListVC: UIViewController {
 
@@ -45,6 +46,15 @@ class SettingListVC: UIViewController {
         return tableView
         
     }()
+    
+    func showSendMailErrorAlert() {
+        
+        let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "아이폰 - Mail 설정을 확인해주세요.\n(문의 이메일 주소: boardpediaofficial@gmail.com)", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default)
+        
+        sendMailErrorAlert.addAction(confirmAction)
+        self.present(sendMailErrorAlert, animated: true, completion: nil)
+    }
 
 }
 
@@ -145,10 +155,37 @@ extension SettingListVC: UITableViewDataSource {
                     // 로그인 유도 팝업 띄우기
                 }
                 
+            } else if indexPath.row == 1 {
+                // 문의하기 클릭
+                
+                if MFMailComposeViewController.canSendMail() {
+                    // 메일 보내기가 가능한지 확인
+                    
+                    let compseVC = MFMailComposeViewController()
+                    compseVC.mailComposeDelegate = self
+                    
+                    compseVC.setToRecipients(["boardpediaofficial@gmail.com"])
+                    compseVC.setSubject("‘보드피디아’ 1:1 문의하기")
+                    compseVC.setMessageBody("문의 내용:", isHTML: false)
+                    
+                    self.present(compseVC, animated: true, completion: nil)
+                    
+                }
+                else {
+                    // 불가능 시 alter으로 보여주기
+                    
+                    self.showSendMailErrorAlert()
+                }
             }
         }
     }
     
     
     
+}
+extension SettingListVC: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+            controller.dismiss(animated: true, completion: nil)
+        }
 }
