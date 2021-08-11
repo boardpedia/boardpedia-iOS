@@ -66,9 +66,14 @@
 		9B7F184E2668F8EF00BD29CC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F184D2668F8EF00BD29CC /* String+Extension.swift */; };
 		9B8A38DA26BE4D0A005E7DD3 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A38D926BE4D0A005E7DD3 /* Modal.storyboard */; };
 		9B8A38DF26BE4D24005E7DD3 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A38DE26BE4D24005E7DD3 /* PopUpVC.swift */; };
+		9B8A38E526BE54F8005E7DD3 /* KeywordFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A38E426BE54F8005E7DD3 /* KeywordFilterVC.swift */; };
+		9B8A38E926BE58E0005E7DD3 /* TimeFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A38E826BE58E0005E7DD3 /* TimeFilterVC.swift */; };
+		9B8A38EC26BE7D11005E7DD3 /* LevelFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A38EB26BE7D11005E7DD3 /* LevelFilterVC.swift */; };
+		9B8A38F126BE7DF7005E7DD3 /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A38F026BE7DF7005E7DD3 /* LevelCell.swift */; };
 		9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */; };
 		9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */; };
 		9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C53CA264D23C900C6A01C /* MyReviewData.swift */; };
+		9BA41E4226BEF36900A00BDA /* CountFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA41E4126BEF36900A00BDA /* CountFilterVC.swift */; };
 		9BC8BEF526BC45040088C392 /* GameCollect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC8BEF426BC45040088C392 /* GameCollect.storyboard */; };
 		9BC8BEF826BC458B0088C392 /* GameCollectionNaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BEF726BC458B0088C392 /* GameCollectionNaviVC.swift */; };
 		9BD72CD22671EA8900CE299C /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD72CD12671EA8900CE299C /* APITarget.swift */; };
@@ -164,9 +169,14 @@
 		9B7F184D2668F8EF00BD29CC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9B8A38D926BE4D0A005E7DD3 /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		9B8A38DE26BE4D24005E7DD3 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		9B8A38E426BE54F8005E7DD3 /* KeywordFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFilterVC.swift; sourceTree = "<group>"; };
+		9B8A38E826BE58E0005E7DD3 /* TimeFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFilterVC.swift; sourceTree = "<group>"; };
+		9B8A38EB26BE7D11005E7DD3 /* LevelFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelFilterVC.swift; sourceTree = "<group>"; };
+		9B8A38F026BE7DF7005E7DD3 /* LevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		9B9C53BF264D083A00C6A01C /* SwipeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeListVC.swift; sourceTree = "<group>"; };
 		9B9C53C7264D1DE900C6A01C /* MyReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewCell.swift; sourceTree = "<group>"; };
 		9B9C53CA264D23C900C6A01C /* MyReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewData.swift; sourceTree = "<group>"; };
+		9BA41E4126BEF36900A00BDA /* CountFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountFilterVC.swift; sourceTree = "<group>"; };
 		9BC8BEF426BC45040088C392 /* GameCollect.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameCollect.storyboard; sourceTree = "<group>"; };
 		9BC8BEF726BC458B0088C392 /* GameCollectionNaviVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionNaviVC.swift; sourceTree = "<group>"; };
 		9BD72CD12671EA8900CE299C /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
@@ -530,6 +540,7 @@
 		9B8A38D826BE4CF9005E7DD3 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				9B8A38EF26BE7DE5005E7DD3 /* Cell */,
 				9B8A38DD26BE4D16005E7DD3 /* VC */,
 				9B8A38DC26BE4D0D005E7DD3 /* Storyboard */,
 			);
@@ -548,8 +559,20 @@
 			isa = PBXGroup;
 			children = (
 				9B8A38DE26BE4D24005E7DD3 /* PopUpVC.swift */,
+				9B8A38E426BE54F8005E7DD3 /* KeywordFilterVC.swift */,
+				9B8A38E826BE58E0005E7DD3 /* TimeFilterVC.swift */,
+				9B8A38EB26BE7D11005E7DD3 /* LevelFilterVC.swift */,
+				9BA41E4126BEF36900A00BDA /* CountFilterVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		9B8A38EF26BE7DE5005E7DD3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9B8A38F026BE7DF7005E7DD3 /* LevelCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		9BE098C7264909EE007D2BEC /* Cell */ = {
@@ -804,9 +827,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8A38F126BE7DF7005E7DD3 /* LevelCell.swift in Sources */,
 				9B41FA842643EE67002A3E13 /* UIView+Extension.swift in Sources */,
 				9B41FA9926467FBC002A3E13 /* GameData.swift in Sources */,
 				9B2941882679CACB0008F69F /* UIImageView+Extension.swift in Sources */,
+				9B8A38E926BE58E0005E7DD3 /* TimeFilterVC.swift in Sources */,
 				9B41FA572643DD92002A3E13 /* MainVC.swift in Sources */,
 				9B4ACDC8266B53B100381416 /* LoginPopupVC.swift in Sources */,
 				9BE098CC26490AB2007D2BEC /* ThemeData.swift in Sources */,
@@ -822,6 +847,7 @@
 				9BE098EF2649AE1A007D2BEC /* TopKeywordCell.swift in Sources */,
 				9B294180267904120008F69F /* TrendingGame.swift in Sources */,
 				9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */,
+				9B8A38EC26BE7D11005E7DD3 /* LevelFilterVC.swift in Sources */,
 				9B09111F265C05F100FB5928 /* ThemeGameListCell.swift in Sources */,
 				D2C1DA3C26C26D5700A6EFDD /* SettingListVC.swift in Sources */,
 				9B162C4C264ADC7600219529 /* MyReviewListVC.swift in Sources */,
@@ -849,10 +875,12 @@
 				9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */,
 				9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */,
 				9B7F18392668DE8E00BD29CC /* ReviewData.swift in Sources */,
+				9B8A38E526BE54F8005E7DD3 /* KeywordFilterVC.swift in Sources */,
 				9BE098E7264995A6007D2BEC /* KeywordData.swift in Sources */,
 				9BE098D926492562007D2BEC /* SearchVC.swift in Sources */,
 				9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */,
 				9B7F18362668C88800BD29CC /* GameReviewVC.swift in Sources */,
+				9BA41E4226BEF36900A00BDA /* CountFilterVC.swift in Sources */,
 				D2DB8AE426BCFF2500CBADA1 /* GameAddVC.swift in Sources */,
 				9B40CFE92664E6F200221ED4 /* GameTagCell.swift in Sources */,
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
