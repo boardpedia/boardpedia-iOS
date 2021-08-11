@@ -12,6 +12,7 @@ class SettingListVC: UIViewController {
     
     var section1 = ["프로필 설정", "문의하기", "개인정보처리방침"]
     var section2 = ["버전 1.0","로그아웃","탈퇴하기"]
+    var nick: String?
     
     
     @IBOutlet weak var subView: UIView!
@@ -101,6 +102,38 @@ extension SettingListVC: UITableViewDataSource {
         
         return cell
 
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                // 프로필 설정
+                
+                if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+                    // 비회원이 아니라면?
+                    
+                    guard let profileVC = self.storyboard?.instantiateViewController(identifier: "ProfileVC") as? ProfileVC else {
+                        return
+                    }
+                    
+                    profileVC.hidesBottomBarWhenPushed = true
+                    
+                    self.navigationController?.pushViewController(profileVC, animated: true)
+                    
+                    profileVC.nick = nick
+                } else {
+                    // 비회원이라면
+                    
+                    let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+                    
+                    self.present(popUpVC, animated: true, completion: nil)
+                    // 로그인 유도 팝업 띄우기
+                }
+                
+            }
+        }
     }
     
     

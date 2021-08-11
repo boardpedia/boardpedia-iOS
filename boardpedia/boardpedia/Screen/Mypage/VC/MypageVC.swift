@@ -39,6 +39,8 @@ class MypageVC: UIViewController {
         self.navigationController?.pushViewController(settingVC, animated: true)
         // 설정 뷰로 이동
         
+        settingVC.nick = nickLabel.text
+        
     }
     
     // MARK: Life Cycle Part
