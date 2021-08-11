@@ -10,6 +10,7 @@ import UIKit
 class ProfileVC: UIViewController {
 
     var nick: String?
+    var giveNickAction : ((String) -> Void)?
     
     @IBOutlet weak var nickTextField: UITextField!
     @IBOutlet weak var completeButton: UIButton!
@@ -20,6 +21,51 @@ class ProfileVC: UIViewController {
     
     @IBAction func completeButtonDidTap(_ sender: Any) {
         
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
+            
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let nick = nick {
+                
+                APIService.shared.editUserName(token, nick) { [self] result in
+                    switch result {
+                    
+                    case .success(_):
+                        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+                        guard let popUpVC =
+                                storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
+                        
+                        popUpVC.modalPresentationStyle = .overCurrentContext
+                        popUpVC.modalTransitionStyle = .crossDissolve
+                        self.present(popUpVC, animated: true, completion: nil)
+                        popUpVC.titleLabel.text = "닉네임 정보가 변경되었어요!"
+                        popUpVC.subLabel.text = "새로운 닉네임으로 보드피디아를 즐겨보아요."
+                        
+                        popUpVC.popButtonAction = {
+                            // closure 호출
+                            
+                            self.navigationController?.popViewController(animated: true)
+                            
+                            guard let giveNickAction = self.giveNickAction else {
+                                return
+                            }
+                            
+                            giveNickAction(nick)
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                    
+                }
+            }
+            
+        } else {
+            
+            // 네트워크 미연결 팝업
+        }
+
         
     }
     

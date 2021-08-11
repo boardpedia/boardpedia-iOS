@@ -13,6 +13,7 @@ class SettingListVC: UIViewController {
     var section1 = ["프로필 설정", "문의하기", "개인정보처리방침"]
     var section2 = ["버전 1.0","로그아웃","탈퇴하기"]
     var nick: String?
+    var giveNickAction : ((String) -> Void)?
     
     
     @IBOutlet weak var subView: UIView!
@@ -118,6 +119,18 @@ extension SettingListVC: UITableViewDataSource {
                     }
                     
                     profileVC.hidesBottomBarWhenPushed = true
+                    profileVC.giveNickAction = {
+                        
+                        text in
+                        
+                        self.nick = text
+                        
+                        guard let giveNickAction = self.giveNickAction else {
+                            return
+                        }
+                        
+                        giveNickAction(text)
+                    }
                     
                     self.navigationController?.pushViewController(profileVC, animated: true)
                     

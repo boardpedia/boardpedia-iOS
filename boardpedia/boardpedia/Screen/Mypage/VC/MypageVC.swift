@@ -40,6 +40,12 @@ class MypageVC: UIViewController {
         // 설정 뷰로 이동
         
         settingVC.nick = nickLabel.text
+        settingVC.giveNickAction = {
+            text in
+            
+            self.nickLabel.text = text
+            
+        }
         
     }
     

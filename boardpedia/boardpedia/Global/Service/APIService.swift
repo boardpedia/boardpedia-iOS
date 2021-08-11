@@ -135,6 +135,14 @@ struct APIService {
                 
     }
     
+    func editUserName(_ jwt: String, _ nickName: String, completion: @escaping (NetworkResult<Any>)->(Void)) {
+        // 회원 유저네임 수정
+        
+        let target: APITarget = .nickName(jwt: jwt, nickName: nickName)
+        judgeSimpleObject(target, completion: completion)
+        
+    }
+    
     
 }
 
