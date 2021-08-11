@@ -25,7 +25,7 @@ class ProfileVC: UIViewController {
             // 네트워크 연결 시
             
             if let token = UserDefaults.standard.string(forKey: "UserToken"),
-               let nick = nick {
+               let nick = nickTextField.text {
                 
                 APIService.shared.editUserName(token, nick) { [self] result in
                     switch result {
@@ -133,7 +133,7 @@ extension ProfileVC {
 
                 textField.deleteBackward()
                 // 그 뒤에 글자들은 쳐져도 삭제된다
-                showToast(message: "최대 글자수는 4글자예요", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
+                showToast(message: "최대 글자수는 4글자예요", width: 188, bottomY: 50)
             }
         }
     }

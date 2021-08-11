@@ -115,8 +115,10 @@ extension MypageVC {
                         case .success(let data):
                             
                             userData = data
+                            print(userData)
                             
                             if let userData = userData {
+                               
                                 nickLabel.setLabel(text: userData.nickName, font: .neoBold(ofSize: 20))
                                 levelCollectionView.reloadData()
                                 

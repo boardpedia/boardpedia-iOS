@@ -281,7 +281,7 @@ extension GameAddVC: UICollectionViewDataSource {
                     keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
                     keywordCollectionView.reloadData()
                 } else {
-                    showToast(message: "키워드는 3개까지 지정 가능해요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
+                    showToast(message: "키워드는 3개까지 지정 가능해요", width: 200, bottomY: 50)
                 }
             }
             

@@ -182,7 +182,7 @@ extension KeywordFilterVC: UICollectionViewDataSource {
                 
                 
             } else {
-                showToast(message: "키워드는 3개까지 선택 가능해요", font: .neoBold(ofSize: 15), width: 300, bottomY: 50)
+                showToast(message: "키워드는 3개까지 선택 가능해요", width: 300, bottomY: 50)
             }
         }
         keywordCollectionView.reloadData()

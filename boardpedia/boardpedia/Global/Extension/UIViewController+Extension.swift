@@ -12,7 +12,7 @@ extension UIViewController {
     
     // MARK: Toast Alert Extension
     
-    func showToast(message : String, font: UIFont, width: Int, bottomY: Int) {
+    func showToast(message : String, width: Int, bottomY: Int) {
         let guide = view.safeAreaInsets.bottom
         let y = self.view.frame.size.height-guide
         
@@ -20,13 +20,13 @@ extension UIViewController {
             frame: CGRect( x: self.view.frame.size.width/2 - CGFloat(width)/2,
                            y: y-CGFloat(bottomY),
                            width: CGFloat(width),
-                           height: 40
+                           height: 39
             )
         )
         
         toastLabel.backgroundColor = UIColor.darkGray
-        toastLabel.textColor = UIColor.boardOrange
-        toastLabel.font = font
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = .neoSemiBold(ofSize: 16)
         toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0

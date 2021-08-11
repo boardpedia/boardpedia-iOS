@@ -109,7 +109,7 @@ class ReviewAddVC: UIViewController {
                         
                     case .failure(let error):
                         if error == 404 {
-                            showToast(message: "이미 리뷰가 등록된 게임이에요!", font: .neoBold(ofSize: 15), width: 240, bottomY: 50)
+                            showToast(message: "이미 리뷰가 등록된 게임이에요!", width: 240, bottomY: 50)
                         }
                         addButton.isEnabled = true
 
