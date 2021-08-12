@@ -24,7 +24,6 @@ class MypageVC: UIViewController {
         }
     }
     @IBOutlet weak var subView: UIView!
-    @IBOutlet weak var editButton: UIButton!
     
     
     // MARK: IBAction
@@ -97,12 +96,10 @@ extension MypageVC {
             
             nickLabel.setLabel(text: "로그인을 해보세요", font: .neoBold(ofSize: 20))
             profileImageView.image = UIImage(named: "level1ProfileImg")
-            editButton.isHidden = true
             
         } else {
             // 로그인을 했다면
             
-            editButton.isHidden = false
             
             if NetworkState.isConnected() {
                 // 네트워크 연결 시

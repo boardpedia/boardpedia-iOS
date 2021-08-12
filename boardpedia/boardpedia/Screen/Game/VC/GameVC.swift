@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Segmentio
 
 class GameVC: UIViewController {
 
@@ -40,6 +39,7 @@ class GameVC: UIViewController {
     
     // MARK: IBOutlet
     
+    @IBOutlet weak var mySection: UIView!
     @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var gameTagCollectionView: UICollectionView!

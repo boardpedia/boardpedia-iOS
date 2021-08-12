@@ -83,7 +83,6 @@ class MainVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if NetworkState.isConnected() {
             if let token = UserDefaults.standard.string(forKey: "UserToken") {
                 trendingGameData(jwt: token)
