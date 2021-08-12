@@ -6,11 +6,13 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - Segmentio (4.1)
 
 DEPENDENCIES:
   - Cosmos (~> 23.0)
   - Kingfisher
   - Moya (~> 14.0)
+  - Segmentio
 
 SPEC REPOS:
   trunk:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - Cosmos
     - Kingfisher
     - Moya
+    - Segmentio
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Segmentio: ab29def64e1bff6e6e9b97671788a99bed3f1d9f
 
-PODFILE CHECKSUM: 9ccb842aa2d6cb02634bc81d39eda8c828cfd603
+PODFILE CHECKSUM: 84b8aad0cbbd66d4453c622d78a98a3789a5645f
 
 COCOAPODS: 1.10.1

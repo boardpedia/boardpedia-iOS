@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Segmentio
 
 class GameVC: UIViewController {
 
@@ -67,6 +68,7 @@ class GameVC: UIViewController {
     @IBOutlet weak var viewLine: UIView!
     @IBOutlet weak var lineFrame: NSLayoutConstraint!
     @IBOutlet weak var myView: UIView!
+    
     
     // MARK: IBAction
     
@@ -153,16 +155,10 @@ class GameVC: UIViewController {
             
             sender.tag = 1
             
-//            self.myView.heightAnchor.constraint(equalToConstant: 2000).isActive = true
-            
-            
-        
         } else if sender == self.secondButton {
             // 두번째 버튼 클릭 시
             
             sender.tag = 2
-            
-//            self.myView.heightAnchor.constraint(equalToConstant: reviewViewHeigth).isActive = true
         }
         
         pageController.setViewControllers([arrVC[sender.tag-1]], direction: UIPageViewController.NavigationDirection.reverse, animated: false, completion: {(Bool) -> Void in
@@ -245,7 +241,7 @@ extension GameVC {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 
-            self.pageController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 657)
+            self.pageController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 600)
             self.myView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -256,6 +252,7 @@ extension GameVC {
         self.addChild(pageController)
         self.myView.addSubview(pageController.view)
         pageController.didMove(toParent: self)
+//        pageController.isPagingEnabled = false
     }
     
     //MARK: Set View Line Frame
@@ -264,7 +261,6 @@ extension GameVC {
         // 버튼 클릭 시 viewLine의 위치를 변경
         
         if btn.tag == 1 {
-            
             lineFrame.constant = 0
 
         } else {
@@ -317,7 +313,7 @@ extension GameVC {
                         
                         gameDetailData = data
                         gameTagCollectionView.reloadData()
-                        
+//                        self.myView.heightAnchor.constraint(equalToConstant: 1000).isActi  ve = true
                         if let data = gameDetailData {
                             
                             titleImageView.setImage(from: data.imageURL)
@@ -497,5 +493,29 @@ extension GameVC: ChangeHeightDelegate {
         
         self.myView.heightAnchor.constraint(equalToConstant: value).isActive = true
         // 높이 변경
+        self.myView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
     }
 }
+extension UIPageViewController {
+    var isPagingEnabled: Bool {
+        get {
+            var isEnabled: Bool = true
+            for view in view.subviews {
+                if let subView = view as? UIScrollView {
+                    isEnabled = subView.isScrollEnabled
+                }
+            }
+            return isEnabled
+        }
+        set {
+            for view in view.subviews {
+                if let subView = view as? UIScrollView {
+                    subView.isScrollEnabled = newValue
+                }
+            }
+        }
+  
+    }
+}
+
