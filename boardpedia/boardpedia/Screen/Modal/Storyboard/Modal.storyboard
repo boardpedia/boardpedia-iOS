@@ -160,7 +160,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.30156256063094988" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ZPH-uS-hoO" firstAttribute="leading" secondItem="mnn-A7-uE3" secondAttribute="leading" id="fWq-hd-OT7"/>
-                            <constraint firstAttribute="bottom" secondItem="ZPH-uS-hoO" secondAttribute="bottom" id="t3u-2e-wGe"/>
+                            <constraint firstItem="mnn-A7-uE3" firstAttribute="bottom" secondItem="ZPH-uS-hoO" secondAttribute="bottom" constant="-34" id="t3u-2e-wGe"/>
                             <constraint firstItem="mnn-A7-uE3" firstAttribute="trailing" secondItem="ZPH-uS-hoO" secondAttribute="trailing" id="z9Y-8R-B08"/>
                         </constraints>
                     </view>
