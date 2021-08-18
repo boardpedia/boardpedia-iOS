@@ -207,6 +207,7 @@
 		D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorVC.swift; sourceTree = "<group>"; };
+		D2C6DE1426CD07A500268F71 /* boardpedia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = boardpedia.entitlements; sourceTree = "<group>"; };
 		D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -347,6 +348,7 @@
 		9B41FA512643DD92002A3E13 /* boardpedia */ = {
 			isa = PBXGroup;
 			children = (
+				D2C6DE1426CD07A500268F71 /* boardpedia.entitlements */,
 				9B41FA692643DF07002A3E13 /* Global */,
 				9B41FA682643DF02002A3E13 /* Screen */,
 				9B41FA672643DEFA002A3E13 /* Support */,
@@ -1059,6 +1061,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = boardpedia/boardpedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUQE66MABG;
 				INFOPLIST_FILE = boardpedia/Support/Info.plist;
@@ -1079,6 +1082,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = boardpedia/boardpedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUQE66MABG;
 				INFOPLIST_FILE = boardpedia/Support/Info.plist;
