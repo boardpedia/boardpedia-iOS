@@ -29,12 +29,12 @@ extension SplashVC {
         
         // 로그인 테스트
         
-//        UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
-//        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
+        UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
+        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
         
 //        // 비회원 테스트
-        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
-        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
+//        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
+//        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
         
         if NetworkState.isConnected() {
             // 네트워크 연결 시
@@ -42,7 +42,6 @@ extension SplashVC {
             if let id = UserDefaults.standard.string(forKey: "UserSnsId"),
                let provider = UserDefaults.standard.string(forKey: "UserProvider") {
                 // 이전 접속 기록 존재 시
-                
                 APIService.shared.login(id, provider) { [self] result in
                     switch result {
                     

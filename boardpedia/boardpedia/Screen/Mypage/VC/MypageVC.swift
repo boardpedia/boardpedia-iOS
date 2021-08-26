@@ -90,7 +90,7 @@ extension MypageVC {
     // MARK: Profile Style Function
     
     func setProfile() {
-        
+        print(UserDefaults.standard.string(forKey: "UserSnsId"))
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
             
@@ -99,7 +99,6 @@ extension MypageVC {
             
         } else {
             // 로그인을 했다면
-            
             
             if NetworkState.isConnected() {
                 // 네트워크 연결 시
@@ -110,12 +109,9 @@ extension MypageVC {
                         switch result {
                         
                         case .success(let data):
-                            
                             userData = data
-                            print(userData)
-                            
+                            print(data)
                             if let userData = userData {
-                               
                                 nickLabel.setLabel(text: userData.nickName, font: .neoBold(ofSize: 20))
                                 levelCollectionView.reloadData()
                                 
@@ -125,6 +121,7 @@ extension MypageVC {
                             }
                             
                         case .failure(let error):
+                            print("======")
                             print(error)
                             
                         }

@@ -74,7 +74,7 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
                     switch result {
                     
                     case .success(let data):
-                        print(data)
+                        
                         tokenData = data
                         
                         UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
@@ -83,14 +83,8 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
                         UserDefaults.standard.setValue("apple", forKey: "UserProvider")
                         // 아이디와 플랫폼 저장
                         
-                        let storyboard = UIStoryboard.init(name: "TabBar", bundle: nil)
-                        guard let mainTab = storyboard.instantiateViewController(identifier: "TabBarVC") as? TabBarVC else {
-                            return
-                        }
-                        
-                        mainTab.modalPresentationStyle = .fullScreen
-                        self.present(mainTab, animated: false, completion: nil)
-                        // main 화면으로 이동
+                    // 만약 이미 회원이라면?
+                        self.dismiss(animated: true, completion: nil)
                         
                     case .failure(let error):
                         print(error)
