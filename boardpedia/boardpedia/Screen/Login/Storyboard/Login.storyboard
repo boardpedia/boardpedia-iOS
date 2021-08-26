@@ -63,7 +63,6 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-Xn-eun">
                                                 <rect key="frame" x="0.0" y="80.5" width="382" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>

@@ -13,7 +13,7 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
         return self.view.window!
     }
     
-
+    var tokenData: TokenData?
     @IBOutlet weak var appleView: UIView!
     
     override func viewDidLoad() {
@@ -56,7 +56,9 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
            authorizationController.presentationContextProvider = self
            authorizationController.performRequests()
     }
+    
     // Apple ID 연동 성공 시
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         // Apple ID
@@ -66,6 +68,42 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
             let userIdentifier = appleIDCredential.user
                 //000684.f8590ae737d74fa5ad4a5120b0432991.1718
             print("User ID : \(userIdentifier)")
+            
+            if NetworkState.isConnected() {
+                APIService.shared.login(userIdentifier, "apple") { [self] result in
+                    switch result {
+                    
+                    case .success(let data):
+                        print(data)
+                        tokenData = data
+                        
+                        UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
+                        // 토큰 저장
+                        UserDefaults.standard.setValue(userIdentifier, forKey: "UserSnsId")
+                        UserDefaults.standard.setValue("apple", forKey: "UserProvider")
+                        // 아이디와 플랫폼 저장
+                        
+                        let storyboard = UIStoryboard.init(name: "TabBar", bundle: nil)
+                        guard let mainTab = storyboard.instantiateViewController(identifier: "TabBarVC") as? TabBarVC else {
+                            return
+                        }
+                        
+                        mainTab.modalPresentationStyle = .fullScreen
+                        self.present(mainTab, animated: false, completion: nil)
+                        // main 화면으로 이동
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                }
+            } else {
+                // 네트워크 확인 alert 띄워주기
+
+                self.showNetworkModal()
+                
+            }
+            
      
         default:
             break
