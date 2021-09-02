@@ -13,6 +13,7 @@ class MypageVC: UIViewController {
     
     var userData: UserData?
     var id: String?
+    var changeLoginInfoAction : (() -> Void)?
     
     // MARK: IBOutlet
     
@@ -66,6 +67,7 @@ class MypageVC: UIViewController {
                 // 불러온 아이디와 지금 저장된 아이디가 같지 않다면 ? -> 로그인 정보 변경되었다
                 
                 self.setProfile()
+                NotificationCenter.default.post(name: NSNotification.Name("ChangeLoginInfoAction"), object: nil, userInfo: nil)
             }
         }
     }

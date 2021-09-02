@@ -63,6 +63,8 @@ class MyReviewListVC: UIViewController {
             
             infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
             loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+            myReviewData = []
+            MyReviewListTableView.reloadData()
         }
     }
 }
