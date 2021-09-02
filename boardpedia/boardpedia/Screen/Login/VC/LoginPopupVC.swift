@@ -9,12 +9,18 @@ import UIKit
 import AuthenticationServices
 
 class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
+    @IBAction func cancleButtonDidTap(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     var tokenData: TokenData?
+    
     @IBOutlet weak var appleView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

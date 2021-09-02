@@ -142,7 +142,15 @@ extension MyReviewListVC {
         
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
+        loginButton.addTarget(self, action: #selector(loginPopUp), for: .touchUpInside)
 
+    }
+    
+    @objc func loginPopUp() {
+        let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+        
+        self.present(popUpVC, animated: true, completion: nil)
     }
     
 }

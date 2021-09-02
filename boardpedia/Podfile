@@ -7,6 +7,6 @@ target 'boardpedia' do
   pod 'Moya', '~> 14.0'
   pod 'Kingfisher'
   pod 'Cosmos', '~> 23.0'
-  # Pods for boardpedia
+# Pods for boardpedia
 
 end
