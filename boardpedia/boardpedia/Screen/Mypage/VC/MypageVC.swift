@@ -12,6 +12,7 @@ class MypageVC: UIViewController {
     // MARK: Variable Part
     
     var userData: UserData?
+    var id: String?
     
     // MARK: IBOutlet
     
@@ -58,6 +59,17 @@ class MypageVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let id = id {
+            if id != UserDefaults.standard.string(forKey: "UserSnsId") {
+                // 불러온 아이디와 지금 저장된 아이디가 같지 않다면 ? -> 로그인 정보 변경되었다
+                
+                self.setProfile()
+            }
+        }
+    }
+    
     
 }
 
@@ -90,6 +102,9 @@ extension MypageVC {
     // MARK: Profile Style Function
     
     func setProfile() {
+        
+        id = UserDefaults.standard.string(forKey: "UserSnsId")
+        
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
             
@@ -116,11 +131,9 @@ extension MypageVC {
                                 
                                 profileImageView.image = UIImage(named: "profile")
                                 // 레벨별로 이미지 달라야해서 이거 수정해야함! 꼬옥!
-                                
                             }
                             
                         case .failure(let error):
-                            print("======")
                             print(error)
                             
                         }

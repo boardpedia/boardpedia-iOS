@@ -11,6 +11,7 @@ class LogoutPopUpVC: UIViewController {
     
     
     var logoutAction : ((String) -> Void)?
+    var tokenData: TokenData?
     
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var logoutButton: UIButton!
@@ -23,18 +24,48 @@ class LogoutPopUpVC: UIViewController {
     
     @IBAction func logoutButtonDidTap(_ sender: Any) {
         
-        self.dismiss(animated: true) {
-            // 비회원 전용 아이디로 변경
+        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
+        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
+        
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
             
-            UserDefaults.standard.removeObject(forKey: "UserToken") // 토큰 삭제
-            UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
-            UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
-            
-            guard let logoutAction = self.logoutAction else {
-                return
+            if let id = UserDefaults.standard.string(forKey: "UserSnsId"),
+               let provider = UserDefaults.standard.string(forKey: "UserProvider") {
+                
+                APIService.shared.login(id, provider) { [self] result in
+                    switch result {
+                    
+                    case .success(let data):
+                        
+                        tokenData = data
+                        UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
+                        // 토큰 저장
+                    
+                        self.dismiss(animated: true) {
+                            
+                            guard let logoutAction = self.logoutAction else {
+                                return
+                            }
+                            
+                            logoutAction("로그아웃 완료 🥕")
+                        }
+                        
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                }
+                
             }
             
-            logoutAction("로그아웃 완료 🥕")
+            
+        } else {
+            // 네트워크 확인 alert 띄워주기
+
+            self.showNetworkModal()
+            
         }
         
     }
