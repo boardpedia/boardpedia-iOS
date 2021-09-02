@@ -88,6 +88,11 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
                             self.dismiss(animated: true, completion: nil)
                         } else {
                             // 신규 회원이라면? -> 아이디 팝업으로 이동
+                            guard let popUpVC =
+                                    self.storyboard?.instantiateViewController(identifier: "NickVC") as? NickVC else {return}
+                            popUpVC.modalPresentationStyle = .overCurrentContext
+                            popUpVC.modalTransitionStyle = .crossDissolve
+                            self.present(popUpVC, animated: true, completion: nil)
                         }
                         
                         

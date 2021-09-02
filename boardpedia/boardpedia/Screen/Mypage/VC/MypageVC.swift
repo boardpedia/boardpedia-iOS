@@ -90,7 +90,6 @@ extension MypageVC {
     // MARK: Profile Style Function
     
     func setProfile() {
-        print(UserDefaults.standard.string(forKey: "UserSnsId"))
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
             

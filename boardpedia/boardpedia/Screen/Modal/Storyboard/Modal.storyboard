@@ -563,9 +563,106 @@
             </objects>
             <point key="canvasLocation" x="154" y="721"/>
         </scene>
+        <!--Logout Pop UpVC-->
+        <scene sceneID="Iae-Uf-PHV">
+            <objects>
+                <viewController storyboardIdentifier="LogoutPopUpVC" id="TAS-Hv-Uvq" customClass="LogoutPopUpVC" customModule="boardpedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bzd-7K-cmt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtw-Ru-6Qt">
+                                <rect key="frame" x="25" y="307" width="364" height="282"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3ak-gO-KNo">
+                                        <rect key="frame" x="39" y="90" width="286" height="142"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zxi-XC-nzS">
+                                                <rect key="frame" x="31" y="0.0" width="224.5" height="53.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정말 로그아웃 하시겠어요?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-BG-54C">
+                                                        <rect key="frame" x="7" y="0.0" width="210" height="24"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그아웃 시 일부 기능이 제한됩니다" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a60-ph-V9Z">
+                                                        <rect key="frame" x="0.0" y="34" width="224.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="16"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjw-3a-gMS">
+                                                <rect key="frame" x="0.0" y="83.5" width="286" height="58.5"/>
+                                                <color key="backgroundColor" red="1" green="0.46666666670000001" blue="0.28235294119999998" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Kjw-3a-gMS" secondAttribute="height" multiplier="255:52" id="1vG-b8-dL7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                                <state key="normal" title="로그아웃 하기">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logoutButtonDidTap:" destination="TAS-Hv-Uvq" eventType="touchUpInside" id="GRc-iu-ED0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-UO-7IA">
+                                        <rect key="frame" x="6" y="8" width="36" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="J2h-or-DNn"/>
+                                            <constraint firstAttribute="width" secondItem="Qd7-UO-7IA" secondAttribute="height" multiplier="1:1" id="ZGL-Eo-jhp"/>
+                                        </constraints>
+                                        <state key="normal" image="bntCloseBlack"/>
+                                        <connections>
+                                            <action selector="closeButtonDidTap:" destination="TAS-Hv-Uvq" eventType="touchUpInside" id="BOI-58-vUJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jtw-Ru-6Qt" secondAttribute="height" multiplier="325:252" id="Fll-Hc-2ka"/>
+                                    <constraint firstItem="3ak-gO-KNo" firstAttribute="centerX" secondItem="jtw-Ru-6Qt" secondAttribute="centerX" id="TnG-98-LlT"/>
+                                    <constraint firstItem="Qd7-UO-7IA" firstAttribute="leading" secondItem="jtw-Ru-6Qt" secondAttribute="leading" constant="6" id="gHW-gi-aJU"/>
+                                    <constraint firstItem="3ak-gO-KNo" firstAttribute="centerY" secondItem="jtw-Ru-6Qt" secondAttribute="centerY" constant="20" id="ji2-dU-thA"/>
+                                    <constraint firstItem="Kjw-3a-gMS" firstAttribute="width" secondItem="jtw-Ru-6Qt" secondAttribute="width" multiplier="255/325" id="vfh-ko-dBe"/>
+                                    <constraint firstItem="Qd7-UO-7IA" firstAttribute="top" secondItem="jtw-Ru-6Qt" secondAttribute="top" constant="8" id="w3e-4l-lDP"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badCharcter" translatesAutoresizingMaskIntoConstraints="NO" id="jb7-oY-amp">
+                                <rect key="frame" x="156.5" y="256.5" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jb7-oY-amp" secondAttribute="height" multiplier="1:1" id="6Ud-kM-S9T"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PMb-ER-qdJ"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jtw-Ru-6Qt" firstAttribute="centerX" secondItem="Bzd-7K-cmt" secondAttribute="centerX" id="3UQ-Kd-68o"/>
+                            <constraint firstItem="jtw-Ru-6Qt" firstAttribute="centerY" secondItem="Bzd-7K-cmt" secondAttribute="centerY" id="Hq3-cH-J5n"/>
+                            <constraint firstItem="jb7-oY-amp" firstAttribute="centerX" secondItem="Bzd-7K-cmt" secondAttribute="centerX" id="Pts-0r-c43"/>
+                            <constraint firstItem="jtw-Ru-6Qt" firstAttribute="leading" secondItem="PMb-ER-qdJ" secondAttribute="leading" constant="25" id="hhh-NM-wev"/>
+                            <constraint firstItem="jb7-oY-amp" firstAttribute="width" secondItem="jtw-Ru-6Qt" secondAttribute="width" multiplier="90/325" id="nOW-4R-1tP"/>
+                            <constraint firstItem="jb7-oY-amp" firstAttribute="centerY" secondItem="jtw-Ru-6Qt" secondAttribute="top" id="xNr-dH-552"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logoutButton" destination="Kjw-3a-gMS" id="tgM-Bf-Cqy"/>
+                        <outlet property="popupView" destination="jtw-Ru-6Qt" id="f6c-jq-1l1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UJv-AT-4Ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="721"/>
+        </scene>
     </scenes>
     <resources>
         <image name="badCharcter" width="104" height="104"/>
+        <image name="bntCloseBlack" width="36" height="36"/>
         <image name="charcter" width="52" height="52"/>
         <image name="minusButtonImg" width="14" height="14"/>
         <image name="plusButtonImg" width="14" height="14"/>
