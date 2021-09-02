@@ -83,8 +83,13 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
                         UserDefaults.standard.setValue("apple", forKey: "UserProvider")
                         // 아이디와 플랫폼 저장
                         
-                    // 만약 이미 회원이라면?
-                        self.dismiss(animated: true, completion: nil)
+                     // 만약 이미 회원이라면?
+                        if tokenData?.status == "회원" {
+                            self.dismiss(animated: true, completion: nil)
+                        } else {
+                            // 신규 회원이라면? -> 아이디 팝업으로 이동
+                        }
+                        
                         
                     case .failure(let error):
                         print(error)
