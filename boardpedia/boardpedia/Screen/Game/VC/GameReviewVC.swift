@@ -12,9 +12,7 @@ class GameReviewVC: UIViewController {
 
     var reviewData: ReviewData?
     var gameIdx: Int?
-    lazy var writeReviewButton: UIButton = {
-      return UIButton()
-    }()
+    
     var logoImage = UIImageView()
     var noDataLabel = UILabel()
     
@@ -138,7 +136,6 @@ extension GameReviewVC {
                                 starView.rating = data.reviewInfo.averageStar
                                 topKeywordCollectionView.reloadData()
                                 
-                                writeReviewButton.removeFromSuperview()
                                 logoImage.removeFromSuperview()
                                 noDataLabel.removeFromSuperview()
                                 
@@ -199,22 +196,6 @@ extension GameReviewVC {
         noDataLabel.setLabel(text: "아직 후기가 없어요.\n첫번째로 후기를 남겨보세요!", font: .neoMedium(ofSize: 16))
         noDataLabel.numberOfLines = 0
         noDataLabel.textAlignment = .center
-        
-        self.view.addSubview(writeReviewButton)
-        
-        writeReviewButton.addTarget(self, action: #selector(hi), for: .touchUpInside)
-        
-        writeReviewButton.translatesAutoresizingMaskIntoConstraints = false
-        writeReviewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        writeReviewButton.topAnchor.constraint(equalTo: noDataLabel.bottomAnchor, constant: 30).isActive = true
-        
-        writeReviewButton.widthAnchor.constraint(equalToConstant: 164).isActive = true
-        writeReviewButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-        writeReviewButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .clear)
-        writeReviewButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
-        writeReviewButton.setRounded(radius: 6)
     }
     
     @objc func hi() {

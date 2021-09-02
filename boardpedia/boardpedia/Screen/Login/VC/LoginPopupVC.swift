@@ -18,6 +18,7 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
     }
     
     var tokenData: TokenData?
+    var loginDoneAction: (() -> Void)? // 로그인 시 현재 페이지 reload하기 위한 closure
     
     @IBOutlet weak var appleView: UIView!
     
