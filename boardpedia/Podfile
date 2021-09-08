@@ -7,6 +7,10 @@ target 'boardpedia' do
   pod 'Moya', '~> 14.0'
   pod 'Kingfisher'
   pod 'Cosmos', '~> 23.0'
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKAuth'
+  pod 'KakaoSDKUser'
+
 # Pods for boardpedia
 
 end

@@ -1,6 +1,17 @@
 PODS:
   - Alamofire (5.4.3)
   - Cosmos (23.0.0)
+  - KakaoSDKAuth (2.7.1):
+    - KakaoSDKCommon (= 2.7.1)
+  - KakaoSDKCommon (2.7.1):
+    - KakaoSDKCommon/Common (= 2.7.1)
+    - KakaoSDKCommon/Network (= 2.7.1)
+  - KakaoSDKCommon/Common (2.7.1)
+  - KakaoSDKCommon/Network (2.7.1):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.7.1)
+  - KakaoSDKUser (2.7.1):
+    - KakaoSDKAuth (= 2.7.1)
   - Kingfisher (6.3.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -9,6 +20,9 @@ PODS:
 
 DEPENDENCIES:
   - Cosmos (~> 23.0)
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
   - Kingfisher
   - Moya (~> 14.0)
 
@@ -16,15 +30,21 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Cosmos
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - Kingfisher
     - Moya
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  KakaoSDKAuth: 70cfb1e4e60f543fd5f0ece2995c3b0e879c532e
+  KakaoSDKCommon: 48fe293e8970a8db8d10d5ca63600a7a8cc5f74c
+  KakaoSDKUser: 5609a2679b6beda86298d63c45961953c7203101
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
 
-PODFILE CHECKSUM: 76ed7715f29eebb635b38daa7ecac1c9aeaa08b5
+PODFILE CHECKSUM: 54140b3247d8895ed13351833d5398f7741cf54a
 
 COCOAPODS: 1.10.1
