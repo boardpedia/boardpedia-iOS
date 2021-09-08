@@ -13,6 +13,7 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
+    
     @IBAction func cancleButtonDidTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -21,11 +22,12 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
     var loginDoneAction: (() -> Void)? // 로그인 시 현재 페이지 reload하기 위한 closure
     
     @IBOutlet weak var appleView: UIView!
-    
+    @IBOutlet weak var popupView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        popupView.setRounded(radius: 10)
         let appleLoginButton = ASAuthorizationAppleIDButton(type: .continue, style: .white)
         
         appleLoginButton.layer.borderWidth = 1

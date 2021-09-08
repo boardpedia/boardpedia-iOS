@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kEC-xl-Lf3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kEC-xl-Lf3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,12 +20,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9h-zv-9mt">
                                 <rect key="frame" x="0.0" y="457.5" width="414" height="438.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charcter" translatesAutoresizingMaskIntoConstraints="NO" id="kcT-qb-sa5">
-                                        <rect key="frame" x="149.5" y="-57" width="115" height="114.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="kcT-qb-sa5" secondAttribute="height" multiplier="1:1" id="oce-zP-2dV"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyz-gl-Hlj">
                                         <rect key="frame" x="6" y="11" width="36" height="36"/>
                                         <constraints>
@@ -38,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DbW-vi-N6M">
-                                        <rect key="frame" x="58" y="87.5" width="298" height="53.5"/>
+                                        <rect key="frame" x="58" y="82" width="298" height="53.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인이 필요해요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JF-Qt-6d4">
                                                 <rect key="frame" x="74.5" y="0.0" width="149.5" height="24"/>
@@ -55,7 +49,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-lE-z2d">
-                                        <rect key="frame" x="16" y="181" width="382" height="140.5"/>
+                                        <rect key="frame" x="16" y="175.5" width="382" height="140.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrd-UK-fBv">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="60.5"/>
@@ -72,29 +66,36 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="kcT-qb-sa5" firstAttribute="width" secondItem="r9h-zv-9mt" secondAttribute="width" multiplier="104/375" id="2bj-nE-xdH"/>
+                                    <constraint firstItem="DbW-vi-N6M" firstAttribute="top" secondItem="r9h-zv-9mt" secondAttribute="top" constant="82" id="4jw-J3-rlu"/>
                                     <constraint firstItem="Hyz-gl-Hlj" firstAttribute="leading" secondItem="r9h-zv-9mt" secondAttribute="leading" constant="6" id="FrV-62-8Q5"/>
-                                    <constraint firstItem="kcT-qb-sa5" firstAttribute="centerY" secondItem="r9h-zv-9mt" secondAttribute="top" id="Gf6-Ec-cGh"/>
                                     <constraint firstItem="Phl-lE-z2d" firstAttribute="centerX" secondItem="r9h-zv-9mt" secondAttribute="centerX" id="Gl1-HH-Gvb"/>
                                     <constraint firstItem="Hyz-gl-Hlj" firstAttribute="top" secondItem="r9h-zv-9mt" secondAttribute="top" constant="11" id="PU3-KR-ZUQ"/>
-                                    <constraint firstItem="DbW-vi-N6M" firstAttribute="top" secondItem="kcT-qb-sa5" secondAttribute="bottom" constant="30" id="UTc-kZ-XFy"/>
                                     <constraint firstItem="DbW-vi-N6M" firstAttribute="centerX" secondItem="r9h-zv-9mt" secondAttribute="centerX" id="ZdR-Co-G5G"/>
                                     <constraint firstItem="Phl-lE-z2d" firstAttribute="leading" secondItem="r9h-zv-9mt" secondAttribute="leading" constant="16" id="fCu-Jz-WbW"/>
-                                    <constraint firstItem="kcT-qb-sa5" firstAttribute="centerX" secondItem="r9h-zv-9mt" secondAttribute="centerX" id="gef-If-Xn5"/>
                                     <constraint firstAttribute="width" secondItem="r9h-zv-9mt" secondAttribute="height" multiplier="375/397" id="krk-6p-SLw"/>
                                     <constraint firstItem="Phl-lE-z2d" firstAttribute="top" secondItem="DbW-vi-N6M" secondAttribute="bottom" constant="40" id="yA2-7b-vX2"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charcter" translatesAutoresizingMaskIntoConstraints="NO" id="kcT-qb-sa5">
+                                <rect key="frame" x="149.5" y="400.5" width="115" height="114.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kcT-qb-sa5" secondAttribute="height" multiplier="1:1" id="oce-zP-2dV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z26-0b-ItJ"/>
                         <constraints>
                             <constraint firstItem="Z26-0b-ItJ" firstAttribute="trailing" secondItem="r9h-zv-9mt" secondAttribute="trailing" id="07V-A5-8AR"/>
+                            <constraint firstItem="kcT-qb-sa5" firstAttribute="centerY" secondItem="r9h-zv-9mt" secondAttribute="top" id="DR2-s7-BJD"/>
+                            <constraint firstItem="kcT-qb-sa5" firstAttribute="centerX" secondItem="XRN-Kr-dOG" secondAttribute="centerX" id="Fq4-oD-ig8"/>
                             <constraint firstAttribute="bottom" secondItem="r9h-zv-9mt" secondAttribute="bottom" id="Jc7-CM-dal"/>
+                            <constraint firstItem="kcT-qb-sa5" firstAttribute="width" secondItem="r9h-zv-9mt" secondAttribute="width" multiplier="104/375" id="cVF-hn-0sX"/>
                             <constraint firstItem="r9h-zv-9mt" firstAttribute="leading" secondItem="Z26-0b-ItJ" secondAttribute="leading" id="naE-GE-4Yh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="appleView" destination="6aO-Xn-eun" id="9y6-Jr-FPg"/>
+                        <outlet property="popupView" destination="r9h-zv-9mt" id="c9U-ZJ-Ibp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15e-ef-9Rw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
