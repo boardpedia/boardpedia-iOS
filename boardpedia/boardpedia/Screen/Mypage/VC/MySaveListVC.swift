@@ -158,10 +158,17 @@ extension MySaveListVC {
     }
     
     @objc func loginPopUp() {
-        let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
         
-        self.present(popUpVC, animated: true, completion: nil)
+        if loginButton.titleLabel?.text == "지금 로그인 하러가기" {
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+        } else {
+            // 저장하러 가기라면?
+            self.tabBarController?.selectedIndex = 1
+        }
+        
     }
 }
 

@@ -364,6 +364,7 @@ extension SearchResultVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 self.searchNetwork(jwt: token, inputWord: searchWord)
+                                showToast(message: "북마크 완료 ⭐️", width: 124, bottomY: 64)
                                 
                             case .failure(let error):
                                 print(error)
@@ -381,6 +382,7 @@ extension SearchResultVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 self.searchNetwork(jwt: token, inputWord: searchWord)
+                                showToast(message: "저장 목록에서 삭제되었어요", width: 205, bottomY: 64)
                                 
                             case .failure(let error):
                                 print(error)

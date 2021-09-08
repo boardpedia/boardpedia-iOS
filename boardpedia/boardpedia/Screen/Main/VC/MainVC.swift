@@ -71,6 +71,9 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 0
+ 
         setView()
         setCollectionView()
         
@@ -400,6 +403,7 @@ extension MainVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 trendingGameData(jwt: token)
+                                showToast(message: "북마크 완료 ⭐️", width: 124, bottomY: 64)
                                 
                             case .failure(let error):
                                 print(error)
@@ -416,6 +420,7 @@ extension MainVC: BookmarkCellDelegate {
                             case .success(_):
                                 
                                 trendingGameData(jwt: token)
+                                showToast(message: "저장 목록에서 삭제되었어요", width: 205, bottomY: 64)
                                 
                             case .failure(let error):
                                 print(error)
