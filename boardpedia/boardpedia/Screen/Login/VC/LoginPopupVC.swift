@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import KakaoSDKUser
 
 class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
@@ -18,6 +19,25 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func kakaoLoginButtonDidTap(_ sender: Any) {
+        
+        if (UserApi.isKakaoTalkLoginAvailable()) { // 카카오톡이 깔려있는지
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    // 로그인 하다가 에러 발생 시
+                    self.showToast(message: "오류 발생🚨 다시 시도해주세요.", width: 300, bottomY: 50)
+                }
+                else {
+                    // 로그인 성공 시
+                    self.kakaoLoginSuccess()
+
+                }
+            }
+        } else { // 카카오톡이 안깔려 있을 때
+            self.showToast(message: "카카오톡 미설치 유저예요:(", width: 250, bottomY: 50)
+        }
+        
+    }
     var tokenData: TokenData?
     var loginDoneAction: (() -> Void)? // 로그인 시 현재 페이지 reload하기 위한 closure
     
@@ -128,4 +148,56 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
         // Handle error.
     }
 
+    func kakaoLoginSuccess() {
+        
+        UserApi.shared.me() {(user, error) in // 사용자 정보 가져오기
+            if let error = error { // 에러 발생 시
+                print(error)
+            }
+            else { // 정보 잘 가져왔을 때
+                
+                if NetworkState.isConnected() {
+                    
+                    let userIdentifier = String((user?.id)!)
+                    APIService.shared.login(userIdentifier, "kakao") { [self] result in
+                        switch result {
+                        
+                        case .success(let data):
+                            
+                            tokenData = data
+                            
+                            UserDefaults.standard.setValue(tokenData?.accessToken, forKey: "UserToken")
+                            // 토큰 저장
+                            UserDefaults.standard.setValue(userIdentifier, forKey: "UserSnsId")
+                            UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
+                            // 아이디와 플랫폼 저장
+                            
+                         // 만약 이미 회원이라면?
+                            if tokenData?.status == "회원" {
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                // 신규 회원이라면? -> 아이디 팝업으로 이동
+                                guard let popUpVC =
+                                        self.storyboard?.instantiateViewController(identifier: "NickVC") as? NickVC else {return}
+                                popUpVC.modalPresentationStyle = .overCurrentContext
+                                popUpVC.modalTransitionStyle = .crossDissolve
+                                self.present(popUpVC, animated: true, completion: nil)
+                            }
+                            
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                        }
+                    }
+                } else {
+                    // 네트워크 확인 alert 띄워주기
+
+                    self.showNetworkModal()
+                    
+                }
+                
+            }
+        }
+    }
 }

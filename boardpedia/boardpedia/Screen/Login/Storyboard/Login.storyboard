@@ -53,9 +53,21 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrd-UK-fBv">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="60.5"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJG-6I-5qt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="60.5"/>
+                                                        <state key="normal" image="bntKakaoLogin"/>
+                                                        <connections>
+                                                            <action selector="kakaoLoginButtonDidTap:" destination="kEC-xl-Lf3" eventType="touchUpInside" id="OIU-9n-xfo"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="wJG-6I-5qt" secondAttribute="trailing" id="7US-wS-Yrv"/>
+                                                    <constraint firstItem="wJG-6I-5qt" firstAttribute="leading" secondItem="lrd-UK-fBv" secondAttribute="leading" id="Alg-L2-SHz"/>
                                                     <constraint firstAttribute="width" secondItem="lrd-UK-fBv" secondAttribute="height" multiplier="343:54" id="FdU-Tz-6KZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wJG-6I-5qt" secondAttribute="bottom" id="o1X-fp-m9z"/>
+                                                    <constraint firstItem="wJG-6I-5qt" firstAttribute="top" secondItem="lrd-UK-fBv" secondAttribute="top" id="oh2-sS-pOA"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-Xn-eun">
@@ -225,13 +237,11 @@
     <resources>
         <image name="bntBackBlack" width="36" height="36"/>
         <image name="bntCloseBlack" width="36" height="36"/>
+        <image name="bntKakaoLogin" width="343" height="54"/>
         <image name="charcter" width="52" height="52"/>
         <image name="level1ProfileImg" width="76" height="76"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
