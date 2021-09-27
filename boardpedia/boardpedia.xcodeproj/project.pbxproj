@@ -51,6 +51,8 @@
 		9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */; };
 		9B4ACDDD266B703100381416 /* SimpleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDDC266B703100381416 /* SimpleData.swift */; };
 		9B4FFE3B267F355700797E96 /* MainNaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FFE3A267F355700797E96 /* MainNaviVC.swift */; };
+		9B5D18092700830B00345DE6 /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5D18082700830B00345DE6 /* SearchListCell.swift */; };
+		9B5D180C2700837B00345DE6 /* SearchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5D180B2700837B00345DE6 /* SearchListVC.swift */; };
 		9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */; };
 		9B634A442682352F005ADCC3 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B634A432682352F005ADCC3 /* TabBar.storyboard */; };
 		9B634A472682355E005ADCC3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B634A462682355E005ADCC3 /* TabBarVC.swift */; };
@@ -156,6 +158,8 @@
 		9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		9B4ACDDC266B703100381416 /* SimpleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleData.swift; sourceTree = "<group>"; };
 		9B4FFE3A267F355700797E96 /* MainNaviVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNaviVC.swift; sourceTree = "<group>"; };
+		9B5D18082700830B00345DE6 /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
+		9B5D180B2700837B00345DE6 /* SearchListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListVC.swift; sourceTree = "<group>"; };
 		9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameData.swift; sourceTree = "<group>"; };
 		9B634A432682352F005ADCC3 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		9B634A462682355E005ADCC3 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
@@ -613,6 +617,7 @@
 				9BE098E3264991C7007D2BEC /* KeywordVC.swift */,
 				9BE098F12649B3E8007D2BEC /* LeftAlignFlowLayout.swift */,
 				9BE098F7264A4FD9007D2BEC /* SearchResultVC.swift */,
+				9B5D180B2700837B00345DE6 /* SearchListVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 				9BE098EA264995DC007D2BEC /* RecentKeywordCell.swift */,
 				9BE098EE2649AE19007D2BEC /* TopKeywordCell.swift */,
 				9BE098FD264A6E8D007D2BEC /* SearchResultCell.swift */,
+				9B5D18082700830B00345DE6 /* SearchListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -885,6 +891,7 @@
 				9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */,
 				9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */,
 				9B7F18392668DE8E00BD29CC /* ReviewData.swift in Sources */,
+				9B5D180C2700837B00345DE6 /* SearchListVC.swift in Sources */,
 				9B8A38E526BE54F8005E7DD3 /* KeywordFilterVC.swift in Sources */,
 				9BE098E7264995A6007D2BEC /* KeywordData.swift in Sources */,
 				9BE098D926492562007D2BEC /* SearchVC.swift in Sources */,
@@ -896,6 +903,7 @@
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
 				9B4ACDD7266B6A9400381416 /* APIService.swift in Sources */,
 				9B09112B265FC14500FB5928 /* GameCollectVC.swift in Sources */,
+				9B5D18092700830B00345DE6 /* SearchListCell.swift in Sources */,
 				9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */,
 				9B294196267A6C760008F69F /* TokenData.swift in Sources */,
 				9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */,

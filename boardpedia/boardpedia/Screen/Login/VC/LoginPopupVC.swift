@@ -23,14 +23,13 @@ class LoginPopupVC: UIViewController, ASAuthorizationControllerDelegate, ASAutho
         
         if (UserApi.isKakaoTalkLoginAvailable()) { // 카카오톡이 깔려있는지
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {
+                if error != nil {
                     // 로그인 하다가 에러 발생 시
                     self.showToast(message: "오류 발생🚨 다시 시도해주세요.", width: 300, bottomY: 50)
                 }
                 else {
                     // 로그인 성공 시
                     self.kakaoLoginSuccess()
-
                 }
             }
         } else { // 카카오톡이 안깔려 있을 때
