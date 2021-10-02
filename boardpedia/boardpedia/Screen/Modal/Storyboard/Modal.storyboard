@@ -691,10 +691,10 @@
                                         <rect key="frame" x="0.0" y="47" width="414" height="229.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="o76-3U-DD4">
-                                                <rect key="frame" x="12.5" y="48.5" width="389" height="132.5"/>
+                                                <rect key="frame" x="16" y="49" width="382" height="131.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tvo-MB-ghs">
-                                                        <rect key="frame" x="0.0" y="0.0" width="389" height="53.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="53.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보드피디아를 탈퇴하시겠어요? :(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-a4-qfd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="257" height="24"/>
@@ -711,7 +711,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="탈퇴를 원하시면 ‘탈퇴'를 입력해주세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dgv-bo-blm">
-                                                        <rect key="frame" x="0.0" y="83.5" width="389" height="49"/>
+                                                        <rect key="frame" x="0.0" y="83.5" width="382" height="48"/>
                                                         <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Dgv-bo-blm" secondAttribute="height" multiplier="343:43" id="2D4-AF-Axq"/>
@@ -725,8 +725,8 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="o76-3U-DD4" firstAttribute="centerX" secondItem="MKl-CM-1Xp" secondAttribute="centerX" id="3cr-o9-qB7"/>
+                                            <constraint firstItem="o76-3U-DD4" firstAttribute="leading" secondItem="MKl-CM-1Xp" secondAttribute="leading" constant="16" id="Ug0-Z3-I6O"/>
                                             <constraint firstItem="o76-3U-DD4" firstAttribute="centerY" secondItem="MKl-CM-1Xp" secondAttribute="centerY" id="h7p-N8-6Fp"/>
-                                            <constraint firstItem="o76-3U-DD4" firstAttribute="width" secondItem="MKl-CM-1Xp" secondAttribute="width" multiplier="343/365" id="lWm-ca-9on"/>
                                         </constraints>
                                     </view>
                                 </subviews>
