@@ -678,6 +678,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="bntCloseBlack"/>
+                                        <connections>
+                                            <action selector="popButtonDidTap:" destination="OG9-03-wAZ" eventType="touchUpInside" id="iOs-yS-shY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXI-VE-pLN">
                                         <rect key="frame" x="15" y="276.5" width="384" height="60.5"/>
@@ -720,7 +723,7 @@
                                                             <constraint firstAttribute="width" secondItem="Dgv-bo-blm" secondAttribute="height" multiplier="343:43" id="2D4-AF-Axq"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -759,6 +762,7 @@
                     <connections>
                         <outlet property="deleteButton" destination="jXI-VE-pLN" id="zRV-xK-wPZ"/>
                         <outlet property="deleteTextField" destination="Dgv-bo-blm" id="ngS-FG-reD"/>
+                        <outlet property="popButton" destination="HDu-zO-poq" id="OZr-DQ-irY"/>
                         <outlet property="popupView" destination="TSB-tt-PRl" id="IpH-5x-5ta"/>
                     </connections>
                 </viewController>

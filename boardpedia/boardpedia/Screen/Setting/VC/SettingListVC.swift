@@ -196,10 +196,26 @@ extension SettingListVC: UITableViewDataSource {
                         
                         self.showToast(message: text, width: 150, bottomY: 64)
                     }
+                    
                 } else {
                     self.showToast(message: "아직 로그인하지 않은 상태에요", width: 250, bottomY: 64)
                 }
+                
+            } else if indexPath.row == 2 {
+                // 탈퇴하기 클릭
+                
+                if UserDefaults.standard.string(forKey: "UserSnsId") != "1234567" {
+                    // 비회원이 아니라면?
+                    let nextStoryboard = UIStoryboard(name: "Modal", bundle: nil)
+                    guard let popUpVC =
+                            nextStoryboard.instantiateViewController(identifier: "DeleteAccountVC") as? DeleteAccountVC else {return}
+                    popUpVC.modalPresentationStyle = .overCurrentContext
+                    popUpVC.modalTransitionStyle = .crossDissolve
+                    self.present(popUpVC, animated: true, completion: nil)
+                } else {
+                    self.showToast(message: "아직 로그인하지 않은 상태에요", width: 250, bottomY: 64)
                 }
+            }
                 
                 
         }

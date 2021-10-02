@@ -144,6 +144,13 @@ struct APIService {
         
     }
     
+    func deleteUser(_ jwt: String,  completion: @escaping (NetworkResult<Any>)->(Void)) {
+        // 탈퇴하기
+        
+        let target: APITarget = .deleteUser(jwt: jwt)
+        judgeSimpleObject(target, completion: completion)
+    }
+    
     
 }
 
