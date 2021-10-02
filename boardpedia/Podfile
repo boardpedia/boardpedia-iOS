@@ -10,7 +10,7 @@ target 'boardpedia' do
   pod 'KakaoSDKCommon'
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'
-
+  pod 'lottie-ios'
 # Pods for boardpedia
 
 end
