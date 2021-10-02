@@ -6,18 +6,36 @@
 //
 
 import UIKit
+import Lottie
 
 class SplashVC: UIViewController {
     
     var tokenData: TokenData?
     
     override func viewDidLoad() {
+        self.view.backgroundColor = .white
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkDeviceNetworkStatus()
+        
+        let animationView = AnimationView(name: "boardpediaSplash")
+        
+        animationView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        animationView.contentMode = .scaleToFill
+        view.addSubview(animationView)
+        animationView.play(fromProgress: 0,
+                           toProgress: 1,
+                           loopMode: LottieLoopMode.playOnce,
+                           completion: { (finished) in
+                            if finished {
+                                self.checkDeviceNetworkStatus()
+                            } else {
+                                // 앱 다시 확인
+                            }
+                           })
+        
     }
     
     
@@ -26,15 +44,6 @@ class SplashVC: UIViewController {
 extension SplashVC {
     
     func checkDeviceNetworkStatus() {
-        
-        // 로그인 테스트
-        
-//        UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
-//        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
-        
-//        // 비회원 테스트
-//        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
-//        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
         
         if NetworkState.isConnected() {
             // 네트워크 연결 시

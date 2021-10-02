@@ -44,6 +44,7 @@
 		9B41FA9626467B96002A3E13 /* TrandingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9526467B96002A3E13 /* TrandingGameCell.swift */; };
 		9B41FA9926467FBC002A3E13 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9826467FBC002A3E13 /* GameData.swift */; };
 		9B4383D727083BBA00A5A8C0 /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4383D627083BBA00A5A8C0 /* DeleteAccountVC.swift */; };
+		9B4383D927085C9200A5A8C0 /* boardpediaSplash.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */; };
 		9B4ACDC5266B539F00381416 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC4266B539F00381416 /* Login.storyboard */; };
 		9B4ACDC8266B53B100381416 /* LoginPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */; };
 		9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDCA266B5ACB00381416 /* NickVC.swift */; };
@@ -152,6 +153,7 @@
 		9B41FA9526467B96002A3E13 /* TrandingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandingGameCell.swift; sourceTree = "<group>"; };
 		9B41FA9826467FBC002A3E13 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		9B4383D627083BBA00A5A8C0 /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
+		9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = boardpediaSplash.json; sourceTree = "<group>"; };
 		9B4ACDC4266B539F00381416 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPopupVC.swift; sourceTree = "<group>"; };
 		9B4ACDCA266B5ACB00381416 /* NickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickVC.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		9B29418A267A48550008F69F /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */,
 				9B29418B267A48640008F69F /* Splash.storyboard */,
 				9B294192267A4A420008F69F /* SplashVC.swift */,
 			);
@@ -784,6 +787,7 @@
 				9BC8BEF526BC45040088C392 /* GameCollect.storyboard in Resources */,
 				9B41FA5F2643DD95002A3E13 /* LaunchScreen.storyboard in Resources */,
 				9B8A38DA26BE4D0A005E7DD3 /* Modal.storyboard in Resources */,
+				9B4383D927085C9200A5A8C0 /* boardpediaSplash.json in Resources */,
 				9B41FA5C2643DD95002A3E13 /* Assets.xcassets in Resources */,
 				9B29418C267A48640008F69F /* Splash.storyboard in Resources */,
 				9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */,
