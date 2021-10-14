@@ -12,9 +12,7 @@ class GameReviewVC: UIViewController {
 
     var reviewData: ReviewData?
     var gameIdx: Int?
-    lazy var writeReviewButton: UIButton = {
-      return UIButton()
-    }()
+    
     var logoImage = UIImageView()
     var noDataLabel = UILabel()
     
@@ -108,65 +106,72 @@ extension GameReviewVC {
     
     func setData(gameIdx: Int) {
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken") {
-            
-            APIService.shared.getReview(token, gameIdx) { [self] result in
-                switch result {
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken") {
                 
-                case .success(let data):
+                APIService.shared.getReview(token, gameIdx) { [self] result in
+                    switch result {
                     
-                    reviewData = data
-                    
-                    if let data = reviewData {
+                    case .success(let data):
                         
-                        countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
-                        averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
+                        reviewData = data
                         
-                        if data.reviewInfo.topKeywords.count == 0 {
-                            starView.rating = 0.0
+                        if let data = reviewData {
                             
-                            topKeywordCollectionView.reloadData()
-                            setNoDataView()
-                            
-                            view.reloadInputViews()
-                            
-                            
-                        } else {
-                            
+                            countLabel.setLabel(text: "후기 \(data.reviews.count)개", font: .neoMedium(ofSize: 16))
                             averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
-                            starView.rating = data.reviewInfo.averageStar
-                            topKeywordCollectionView.reloadData()
                             
-                            writeReviewButton.removeFromSuperview()
-                            logoImage.removeFromSuperview()
-                            noDataLabel.removeFromSuperview()
-                            
-                            view.reloadInputViews()
-                            
-                            reviewTableView.reloadData()
-                            
-                            self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
+                            if data.reviewInfo.topKeywords.count == 0 {
+                                starView.rating = 0.0
+                                
+                                topKeywordCollectionView.reloadData()
+                                setNoDataView()
+                                
+                                view.reloadInputViews()
+                                
+                                
+                            } else {
+                                
+                                averageStarLabel.setLabel(text: "\(data.reviewInfo.averageStar)", font: .neoSemiBold(ofSize: 33))
+                                starView.rating = data.reviewInfo.averageStar
+                                topKeywordCollectionView.reloadData()
+                                
+                                logoImage.removeFromSuperview()
+                                noDataLabel.removeFromSuperview()
+                                
+                                view.reloadInputViews()
+                                
+                                reviewTableView.reloadData()
+                                
+                                self.reviewTableView.heightAnchor.constraint(equalToConstant: CGFloat(data.reviews.count*100)).isActive = true
 
+                            }
+                            
+                            if data.reviewInfo.topKeywords.count > 2 {
+                                
+                                self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+                                
+                            } else {
+                                
+                                self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+                            }
+                        
+                            
                         }
                         
-                        if data.reviewInfo.topKeywords.count > 2 {
-                            
-                            self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-                            
-                        } else {
-                            
-                            self.topKeywordCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-                        }
-                    
+                    case .failure(let error):
+                        print(error)
                         
                     }
-                    
-                case .failure(let error):
-                    print(error)
-                    
                 }
             }
+        } else {
+            // 네트워크 미연결시
+            
+            self.showNetworkModal()
+            
         }
+        
         
     }
     
@@ -191,22 +196,6 @@ extension GameReviewVC {
         noDataLabel.setLabel(text: "아직 후기가 없어요.\n첫번째로 후기를 남겨보세요!", font: .neoMedium(ofSize: 16))
         noDataLabel.numberOfLines = 0
         noDataLabel.textAlignment = .center
-        
-        self.view.addSubview(writeReviewButton)
-        
-        writeReviewButton.addTarget(self, action: #selector(hi), for: .touchUpInside)
-        
-        writeReviewButton.translatesAutoresizingMaskIntoConstraints = false
-        writeReviewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        writeReviewButton.topAnchor.constraint(equalTo: noDataLabel.bottomAnchor, constant: 30).isActive = true
-        
-        writeReviewButton.widthAnchor.constraint(equalToConstant: 164).isActive = true
-        writeReviewButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-        writeReviewButton.setButton(text: "지금 후기 쓰러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .clear)
-        writeReviewButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
-        writeReviewButton.setRounded(radius: 6)
     }
     
     @objc func hi() {

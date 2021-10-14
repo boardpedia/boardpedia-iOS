@@ -74,7 +74,6 @@ extension TabBarVC {
         
         setViewControllers([mainVC, collectVC, mypageVC], animated: true)
         
- 
     }
     
 }

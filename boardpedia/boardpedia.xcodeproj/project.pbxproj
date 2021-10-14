@@ -43,6 +43,8 @@
 		9B41FA912644FC16002A3E13 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */; };
 		9B41FA9626467B96002A3E13 /* TrandingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9526467B96002A3E13 /* TrandingGameCell.swift */; };
 		9B41FA9926467FBC002A3E13 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41FA9826467FBC002A3E13 /* GameData.swift */; };
+		9B4383D727083BBA00A5A8C0 /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4383D627083BBA00A5A8C0 /* DeleteAccountVC.swift */; };
+		9B4383D927085C9200A5A8C0 /* boardpediaSplash.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */; };
 		9B4ACDC5266B539F00381416 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC4266B539F00381416 /* Login.storyboard */; };
 		9B4ACDC8266B53B100381416 /* LoginPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */; };
 		9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDCA266B5ACB00381416 /* NickVC.swift */; };
@@ -51,6 +53,8 @@
 		9B4ACDDA266B6ADC00381416 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */; };
 		9B4ACDDD266B703100381416 /* SimpleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4ACDDC266B703100381416 /* SimpleData.swift */; };
 		9B4FFE3B267F355700797E96 /* MainNaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FFE3A267F355700797E96 /* MainNaviVC.swift */; };
+		9B5D18092700830B00345DE6 /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5D18082700830B00345DE6 /* SearchListCell.swift */; };
+		9B5D180C2700837B00345DE6 /* SearchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5D180B2700837B00345DE6 /* SearchListVC.swift */; };
 		9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */; };
 		9B634A442682352F005ADCC3 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B634A432682352F005ADCC3 /* TabBar.storyboard */; };
 		9B634A472682355E005ADCC3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B634A462682355E005ADCC3 /* TabBarVC.swift */; };
@@ -93,6 +97,7 @@
 		9BE09905264A8CBD007D2BEC /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE09904264A8CBD007D2BEC /* Mypage.storyboard */; };
 		9BE09915264AA448007D2BEC /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE09914264AA448007D2BEC /* MypageVC.swift */; };
 		BDD02A23D6CC622A1D25CF31 /* Pods_boardpedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CAC76B5924D1F3B931027 /* Pods_boardpedia.framework */; };
+		D25FC99326E0502D00F83D6A /* LogoutPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25FC99226E0502D00F83D6A /* LogoutPopUpVC.swift */; };
 		D2AF055C268EE0A900E71138 /* UserReviewListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF055B268EE0A900E71138 /* UserReviewListData.swift */; };
 		D2C1DA3126C21D5500A6EFDD /* ReviewAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3026C21D5500A6EFDD /* ReviewAddVC.swift */; };
 		D2C1DA3326C2582200A6EFDD /* CompleteReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3226C2582200A6EFDD /* CompleteReviewData.swift */; };
@@ -102,6 +107,7 @@
 		D2C1DA4026C2732200A6EFDD /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */; };
 		D2C1DA4126C2732200A6EFDD /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */; };
 		D2C1DA4326C279BB00A6EFDD /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */; };
+		D2C1DA4626C3D0CE00A6EFDD /* NetworkErrorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */; };
 		D2DB8AE426BCFF2500CBADA1 /* GameAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +152,8 @@
 		9B41FA902644FC16002A3E13 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		9B41FA9526467B96002A3E13 /* TrandingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandingGameCell.swift; sourceTree = "<group>"; };
 		9B41FA9826467FBC002A3E13 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		9B4383D627083BBA00A5A8C0 /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
+		9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = boardpediaSplash.json; sourceTree = "<group>"; };
 		9B4ACDC4266B539F00381416 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9B4ACDC7266B53B100381416 /* LoginPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPopupVC.swift; sourceTree = "<group>"; };
 		9B4ACDCA266B5ACB00381416 /* NickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickVC.swift; sourceTree = "<group>"; };
@@ -154,6 +162,8 @@
 		9B4ACDD9266B6ADC00381416 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		9B4ACDDC266B703100381416 /* SimpleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleData.swift; sourceTree = "<group>"; };
 		9B4FFE3A267F355700797E96 /* MainNaviVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNaviVC.swift; sourceTree = "<group>"; };
+		9B5D18082700830B00345DE6 /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
+		9B5D180B2700837B00345DE6 /* SearchListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListVC.swift; sourceTree = "<group>"; };
 		9B634A3C2680A4B8005ADCC3 /* SearchGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameData.swift; sourceTree = "<group>"; };
 		9B634A432682352F005ADCC3 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		9B634A462682355E005ADCC3 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
@@ -196,6 +206,7 @@
 		9BE09904264A8CBD007D2BEC /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		9BE09914264AA448007D2BEC /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
 		CB9E0B65FC09D0A7A1A87040 /* Pods-boardpedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boardpedia.release.xcconfig"; path = "Target Support Files/Pods-boardpedia/Pods-boardpedia.release.xcconfig"; sourceTree = "<group>"; };
+		D25FC99226E0502D00F83D6A /* LogoutPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopUpVC.swift; sourceTree = "<group>"; };
 		D2AF055B268EE0A900E71138 /* UserReviewListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewListData.swift; sourceTree = "<group>"; };
 		D2C1DA3026C21D5500A6EFDD /* ReviewAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAddVC.swift; sourceTree = "<group>"; };
 		D2C1DA3226C2582200A6EFDD /* CompleteReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteReviewData.swift; sourceTree = "<group>"; };
@@ -205,6 +216,8 @@
 		D2C1DA3E26C2732200A6EFDD /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		D2C1DA3F26C2732200A6EFDD /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		D2C1DA4226C279BB00A6EFDD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorVC.swift; sourceTree = "<group>"; };
+		D2C6DE1426CD07A500268F71 /* boardpedia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = boardpedia.entitlements; sourceTree = "<group>"; };
 		D2DB8AE326BCFF2500CBADA1 /* GameAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,6 +290,7 @@
 		9B29418A267A48550008F69F /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				9B4383D827085C9200A5A8C0 /* boardpediaSplash.json */,
 				9B29418B267A48640008F69F /* Splash.storyboard */,
 				9B294192267A4A420008F69F /* SplashVC.swift */,
 			);
@@ -345,6 +359,7 @@
 		9B41FA512643DD92002A3E13 /* boardpedia */ = {
 			isa = PBXGroup;
 			children = (
+				D2C6DE1426CD07A500268F71 /* boardpedia.entitlements */,
 				9B41FA692643DF07002A3E13 /* Global */,
 				9B41FA682643DF02002A3E13 /* Screen */,
 				9B41FA672643DEFA002A3E13 /* Support */,
@@ -563,6 +578,9 @@
 				9B8A38E826BE58E0005E7DD3 /* TimeFilterVC.swift */,
 				9B8A38EB26BE7D11005E7DD3 /* LevelFilterVC.swift */,
 				9BA41E4126BEF36900A00BDA /* CountFilterVC.swift */,
+				D2C1DA4526C3D0CE00A6EFDD /* NetworkErrorVC.swift */,
+				D25FC99226E0502D00F83D6A /* LogoutPopUpVC.swift */,
+				9B4383D627083BBA00A5A8C0 /* DeleteAccountVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -605,6 +623,7 @@
 				9BE098E3264991C7007D2BEC /* KeywordVC.swift */,
 				9BE098F12649B3E8007D2BEC /* LeftAlignFlowLayout.swift */,
 				9BE098F7264A4FD9007D2BEC /* SearchResultVC.swift */,
+				9B5D180B2700837B00345DE6 /* SearchListVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -623,6 +642,7 @@
 				9BE098EA264995DC007D2BEC /* RecentKeywordCell.swift */,
 				9BE098EE2649AE19007D2BEC /* TopKeywordCell.swift */,
 				9BE098FD264A6E8D007D2BEC /* SearchResultCell.swift */,
+				9B5D18082700830B00345DE6 /* SearchListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -767,6 +787,7 @@
 				9BC8BEF526BC45040088C392 /* GameCollect.storyboard in Resources */,
 				9B41FA5F2643DD95002A3E13 /* LaunchScreen.storyboard in Resources */,
 				9B8A38DA26BE4D0A005E7DD3 /* Modal.storyboard in Resources */,
+				9B4383D927085C9200A5A8C0 /* boardpediaSplash.json in Resources */,
 				9B41FA5C2643DD95002A3E13 /* Assets.xcassets in Resources */,
 				9B29418C267A48640008F69F /* Splash.storyboard in Resources */,
 				9B40CFA62660C34B00221ED4 /* GameCollectionCell.xib in Resources */,
@@ -866,15 +887,18 @@
 				D2C1DA3326C2582200A6EFDD /* CompleteReviewData.swift in Sources */,
 				9B4ACDD0266B688A00381416 /* NetworkResult.swift in Sources */,
 				9B652C5326AC3E9C00DC7931 /* ThemeDetailData.swift in Sources */,
+				D25FC99326E0502D00F83D6A /* LogoutPopUpVC.swift in Sources */,
 				9B4FFE3B267F355700797E96 /* MainNaviVC.swift in Sources */,
 				9BE098E026498C52007D2BEC /* UITextField+Extension.swift in Sources */,
 				9BE098C926490A01007D2BEC /* ThemeGameCell.swift in Sources */,
 				9BE098EB264995DC007D2BEC /* RecentKeywordCell.swift in Sources */,
 				9B9C53C8264D1DE900C6A01C /* MyReviewCell.swift in Sources */,
+				D2C1DA4626C3D0CE00A6EFDD /* NetworkErrorVC.swift in Sources */,
 				D2C1DA3526C266DE00A6EFDD /* MypageNaviVC.swift in Sources */,
 				9B634A3D2680A4B8005ADCC3 /* SearchGameData.swift in Sources */,
 				9B40CFA92660CEDC00221ED4 /* FilterCell.swift in Sources */,
 				9B7F18392668DE8E00BD29CC /* ReviewData.swift in Sources */,
+				9B5D180C2700837B00345DE6 /* SearchListVC.swift in Sources */,
 				9B8A38E526BE54F8005E7DD3 /* KeywordFilterVC.swift in Sources */,
 				9BE098E7264995A6007D2BEC /* KeywordData.swift in Sources */,
 				9BE098D926492562007D2BEC /* SearchVC.swift in Sources */,
@@ -886,6 +910,7 @@
 				9B41FA812643ED31002A3E13 /* UIColor+Extension.swift in Sources */,
 				9B4ACDD7266B6A9400381416 /* APIService.swift in Sources */,
 				9B09112B265FC14500FB5928 /* GameCollectVC.swift in Sources */,
+				9B5D18092700830B00345DE6 /* SearchListCell.swift in Sources */,
 				9B162C49264AD79700219529 /* MySaveListCell.swift in Sources */,
 				9B294196267A6C760008F69F /* TokenData.swift in Sources */,
 				9B4ACDCB266B5ACB00381416 /* NickVC.swift in Sources */,
@@ -902,6 +927,7 @@
 				9BE098FE264A6E8D007D2BEC /* SearchResultCell.swift in Sources */,
 				9BE098E4264991C7007D2BEC /* KeywordVC.swift in Sources */,
 				D2C1DA4026C2732200A6EFDD /* SettingCell.swift in Sources */,
+				9B4383D727083BBA00A5A8C0 /* DeleteAccountVC.swift in Sources */,
 				9B9C53C0264D083A00C6A01C /* SwipeListVC.swift in Sources */,
 				9B9C53CB264D23C900C6A01C /* MyReviewData.swift in Sources */,
 				9B091112265BF13F00FB5928 /* ThemeCollectionViewFlowLayout.swift in Sources */,
@@ -1055,6 +1081,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = boardpedia/boardpedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUQE66MABG;
 				INFOPLIST_FILE = boardpedia/Support/Info.plist;
@@ -1075,6 +1102,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = boardpedia/boardpedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUQE66MABG;
 				INFOPLIST_FILE = boardpedia/Support/Info.plist;

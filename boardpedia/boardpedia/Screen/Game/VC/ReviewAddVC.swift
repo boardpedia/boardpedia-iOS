@@ -75,46 +75,53 @@ class ReviewAddVC: UIViewController {
         }
         addButton.isEnabled = false
         
-        if let token = UserDefaults.standard.string(forKey: "UserToken"),
-           let gameIdx = gameIdx {
-            
-            APIService.shared.postReview(token, gameIdx, Float(starView.rating), mykeyword[0], mykeyword[1], mykeyword[2]) { [self] result in
-                switch result {
+        if NetworkState.isConnected() {
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let gameIdx = gameIdx {
+                
+                APIService.shared.postReview(token, gameIdx, Float(starView.rating), mykeyword[0], mykeyword[1], mykeyword[2]) { [self] result in
+                    switch result {
 
-                case .success(_):
+                    case .success(_):
 
-                    let storyboard = UIStoryboard(name: "Modal", bundle: nil)
-                    guard let popUpVC =
-                            storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
-                    
-                    popUpVC.modalPresentationStyle = .overCurrentContext
-                    popUpVC.modalTransitionStyle = .crossDissolve
-                    self.present(popUpVC, animated: true, completion: nil)
-                    popUpVC.titleLabel.text = "소중한 보드게임 리뷰가\n보드피디아에 등록되었어요!"
-                    popUpVC.subLabel.text = "다른 게임의 리뷰도 작성해보세요."
-                    
-                    popUpVC.popButtonAction = {
-                        // closure 호출
+                        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+                        guard let popUpVC =
+                                storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
                         
-                        self.dismiss(animated: true)
+                        popUpVC.modalPresentationStyle = .overCurrentContext
+                        popUpVC.modalTransitionStyle = .crossDissolve
+                        self.present(popUpVC, animated: true, completion: nil)
+                        popUpVC.titleLabel.text = "소중한 보드게임 리뷰가\n보드피디아에 등록되었어요!"
+                        popUpVC.subLabel.text = "다른 게임의 리뷰도 작성해보세요."
                         
-                        guard let reloadDataAction = self.reloadDataAction else {
-                            return
+                        popUpVC.popButtonAction = {
+                            // closure 호출
+                            
+                            self.dismiss(animated: true)
+                            
+                            guard let reloadDataAction = self.reloadDataAction else {
+                                return
+                            }
+                            
+                            reloadDataAction()
                         }
                         
-                        reloadDataAction()
-                    }
-                    
-                    
-                case .failure(let error):
-                    if error == 404 {
-                        showToast(message: "이미 리뷰가 등록된 게임이에요!", font: .neoBold(ofSize: 15), width: 240, bottomY: 50)
-                    }
-                    addButton.isEnabled = true
+                        
+                    case .failure(let error):
+                        if error == 404 {
+                            showToast(message: "이미 리뷰가 등록된 게임이에요!", width: 240, bottomY: 50)
+                        }
+                        addButton.isEnabled = true
 
+                    }
                 }
             }
+        } else {
+            // 네트워크 미연결시
+            
+            self.showNetworkModal()
         }
+        
        
     }
     

@@ -256,6 +256,7 @@ extension SearchVC: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("시작했습니다")
         searchTextField.becomeFirstResponder()
     }
     
@@ -269,6 +270,11 @@ extension SearchVC: UITextFieldDelegate {
             self.navigationController?.popViewController(animated: false)
         }
         
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("끝났습니다")
         return true
     }
     

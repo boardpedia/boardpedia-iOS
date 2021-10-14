@@ -15,7 +15,7 @@ enum APITarget {
     case theme(jwt: String) // 오늘의 추천테마 조회하기
     case themeDetail(jwt: String, index: Int) // 추천테마 상세 조회
     case searchGame(jwt: String, inputWord: String) // 게임 검색 및 검색결과 조회
-    case addGame(jwt: String, name: String, minPlayerNum: Int, maxPlayerNum: Int, level: String, keyword1: String, keyword2: String, keyword3: String, duration: String) // 게임 추가하기
+    case addGame(jwt: String, name: String, minPlayerNum: Int, maxPlayerNum: Int, level: String, keyword1: String, keyword2: String, keyword3: String) // 게임 추가하기
     case saveGame(jwt: String, gameIdx: Int) // 보드게임 저장하기
     case saveCancleGame(jwt: String, gameIdx: Int) // 보드게임 저장 취소하기
     
@@ -121,8 +121,8 @@ extension APITarget: TargetType {
         case .searchGame(_, let inputWord):
             return .requestParameters(parameters: ["inputWord" : inputWord], encoding: JSONEncoding.default)
             
-        case .addGame(_, let name, let minPlayerNum, let maxPlayerNum, let level, let keyword1, let keyword2, let keyword3, let duration):
-            return .requestParameters(parameters: ["name" : name, "minPlayerNum" : minPlayerNum, "maxPlayerNum" : maxPlayerNum, "level" : level, "keyword1" : keyword1, "keyword2" : keyword2, "keyword3" : keyword3, "duration" : duration], encoding: JSONEncoding.default)
+        case .addGame(_, let name, let minPlayerNum, let maxPlayerNum, let level, let keyword1, let keyword2, let keyword3):
+            return .requestParameters(parameters: ["name" : name, "minPlayerNum" : minPlayerNum, "maxPlayerNum" : maxPlayerNum, "level" : level, "keyword1" : keyword1, "keyword2" : keyword2, "keyword3" : keyword3], encoding: JSONEncoding.default)
         
         case .saveGame(_, let gameIdx), .saveCancleGame(_, let gameIdx):
             return .requestParameters(parameters: ["gameIdx" : gameIdx], encoding: JSONEncoding.default)
@@ -153,7 +153,7 @@ extension APITarget: TargetType {
         case .login :
             return ["Content-Type" : "application/json"]
             
-        case .trending(let jwt), .theme(let jwt), .themeDetail(let jwt, _), .searchGame(let jwt, _), .addGame(let jwt, _, _, _, _, _, _, _, _), .saveGame(let jwt, _), .saveCancleGame(let jwt, _), .getFilterGame(let jwt, _, _, _, _, _), .gameDetail(let jwt, _), .postReview(let jwt, _, _, _, _, _), .getReview(let jwt, _), .similarGame(let jwt, _), .getUser(let jwt), .mySavedGame(let jwt), .myReivew(let jwt), .nickName(let jwt, _), .deleteUser(let jwt):
+        case .trending(let jwt), .theme(let jwt), .themeDetail(let jwt, _), .searchGame(let jwt, _), .addGame(let jwt, _, _, _, _, _, _, _), .saveGame(let jwt, _), .saveCancleGame(let jwt, _), .getFilterGame(let jwt, _, _, _, _, _), .gameDetail(let jwt, _), .postReview(let jwt, _, _, _, _, _), .getReview(let jwt, _), .similarGame(let jwt, _), .getUser(let jwt), .mySavedGame(let jwt), .myReivew(let jwt), .nickName(let jwt, _), .deleteUser(let jwt):
             return ["Content-Type" : "application/json", "jwt" : jwt]
         }
     }

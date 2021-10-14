@@ -52,7 +52,6 @@ class MySaveListVC: UIViewController {
         super.viewDidLoad()
         setGoLogin()
         setViewStyle()
-       
         // Do any additional setup after loading the view.
     }
     
@@ -66,6 +65,8 @@ class MySaveListVC: UIViewController {
             
             infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
             loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+            saveListData = []
+            saveListCollectionView.reloadData()
         }
         
     }
@@ -112,7 +113,9 @@ extension MySaveListVC {
             }
             
         } else {
-            // 네트워크 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
     }
@@ -149,6 +152,22 @@ extension MySaveListVC {
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
         
+        loginButton.addTarget(self, action: #selector(loginPopUp), for: .touchUpInside)
+        
+        
+    }
+    
+    @objc func loginPopUp() {
+        
+        if loginButton.titleLabel?.text == "지금 로그인 하러가기" {
+            let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+            
+            self.present(popUpVC, animated: true, completion: nil)
+        } else {
+            // 저장하러 가기라면?
+            self.tabBarController?.selectedIndex = 1
+        }
         
     }
 }
@@ -244,7 +263,9 @@ extension MySaveListVC: BookmarkCellDelegate {
             }
             
         } else {
-            // 네트워크 연결 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
         

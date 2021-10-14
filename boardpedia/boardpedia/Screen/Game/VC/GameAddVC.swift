@@ -15,6 +15,11 @@ class GameAddVC: UIViewController {
     
     var keywordSelected = [Bool](repeating: false, count: 16)
     
+    var minPlayerNum: Int = 0
+    var maxPlayerNum: Int = 0
+    var chooseLevel: String = ""
+    var chooseKeyword: [String] = ["","",""]
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var infoLabel: UILabel!
@@ -43,19 +48,45 @@ class GameAddVC: UIViewController {
     @IBAction func addButtonDidTap(_ sender: UIButton) {
         // 보드게임 추가하기 버튼 클릭 시 Action
         
-        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
-        guard let popUpVC =
-                storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
-        
-        popUpVC.modalPresentationStyle = .overCurrentContext
-        popUpVC.modalTransitionStyle = .crossDissolve
-        self.present(popUpVC, animated: true, completion: nil)
-        
-        popUpVC.popButtonAction = {
-            // closure 호출
+        if NetworkState.isConnected() {
+            // 네트워크 연결 시
             
-            self.dismiss(animated: true)
+            if let token = UserDefaults.standard.string(forKey: "UserToken"),
+               let gameName = nameTextField.text {
+                
+                APIService.shared.postGameAdd(token, gameName, minPlayerNum, maxPlayerNum, chooseLevel, chooseKeyword[0], chooseKeyword[1], chooseKeyword[2]) { [self] result in
+                    switch result {
+
+                    case .success(_):
+                        // 성공 시 팝업
+                        
+                        let storyboard = UIStoryboard(name: "Modal", bundle: nil)
+                        guard let popUpVC =
+                                storyboard.instantiateViewController(identifier: "PopUpVC") as? PopUpVC else {return}
+                        
+                        popUpVC.modalPresentationStyle = .overCurrentContext
+                        popUpVC.modalTransitionStyle = .crossDissolve
+                        self.present(popUpVC, animated: true, completion: nil)
+                        
+                        popUpVC.popButtonAction = {
+                            // closure 호출
+                            
+                            self.dismiss(animated: true)
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+
+                    }
+                }
+            }
+            
+        } else {
+            // 미연결 시
+            
+            self.showNetworkModal()
         }
+        
         
     }
     
@@ -207,17 +238,50 @@ extension GameAddVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if collectionView == keywordCollectionView {
+        if collectionView == levelCollectionView {
+            if indexPath.row == 0 {
+                chooseLevel = "상"
+            } else if indexPath.row == 1 {
+                chooseLevel = "중"
+            } else {
+                chooseLevel = "하"
+            }
+        } else if collectionView == countCollectionView {
+            
+            if indexPath.row == 0 {
+                minPlayerNum = 1
+                maxPlayerNum = 1
+            } else if indexPath.row == 1 {
+                minPlayerNum = 2
+                maxPlayerNum = 4
+            } else if indexPath.row == 2 {
+                minPlayerNum = 4
+                maxPlayerNum = 6
+            } else {
+                minPlayerNum = 0
+                maxPlayerNum = 0
+            }
+            
+        } else if collectionView == keywordCollectionView {
             
             if keywordSelected[indexPath.row] {
+                
+                chooseKeyword.indices.filter({chooseKeyword[$0] == keyword[indexPath.row]}).forEach({chooseKeyword[$0] = ""})
+                
                 keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
                 keywordCollectionView.reloadData()
+                
             } else {
                 if keywordSelected.filter({ $0 == true }).count < 3 {
+                    
+                    if let firstIndex = chooseKeyword.firstIndex(of: "") {
+                        chooseKeyword[firstIndex] = keyword[indexPath.row]
+                    }
+                        
                     keywordSelected[indexPath.row] = !keywordSelected[indexPath.row]
                     keywordCollectionView.reloadData()
                 } else {
-                    showToast(message: "키워드는 3개까지 지정 가능해요", font: .neoBold(ofSize: 15), width: 200, bottomY: 50)
+                    showToast(message: "키워드는 3개까지 지정 가능해요", width: 200, bottomY: 50)
                 }
             }
             

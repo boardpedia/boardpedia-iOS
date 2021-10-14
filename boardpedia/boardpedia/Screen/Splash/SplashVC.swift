@@ -6,16 +6,36 @@
 //
 
 import UIKit
+import Lottie
 
 class SplashVC: UIViewController {
     
     var tokenData: TokenData?
     
     override func viewDidLoad() {
+        self.view.backgroundColor = .white
         super.viewDidLoad()
-        checkDeviceNetworkStatus()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        // Do any additional setup after loading the view.
+        let animationView = AnimationView(name: "boardpediaSplash")
+        
+        animationView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        animationView.contentMode = .scaleToFill
+        view.addSubview(animationView)
+        animationView.play(fromProgress: 0,
+                           toProgress: 1,
+                           loopMode: LottieLoopMode.playOnce,
+                           completion: { (finished) in
+                            if finished {
+                                self.checkDeviceNetworkStatus()
+                            } else {
+                                // 앱 다시 확인
+                            }
+                           })
+        
     }
     
     
@@ -25,22 +45,12 @@ extension SplashVC {
     
     func checkDeviceNetworkStatus() {
         
-        // 로그인 테스트
-        
-        UserDefaults.standard.setValue("019238492", forKey: "UserSnsId")
-        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
-        
-//        // 비회원 테스트
-//        UserDefaults.standard.setValue("1234567", forKey: "UserSnsId")
-//        UserDefaults.standard.setValue("kakao", forKey: "UserProvider")
-        
         if NetworkState.isConnected() {
             // 네트워크 연결 시
             
             if let id = UserDefaults.standard.string(forKey: "UserSnsId"),
                let provider = UserDefaults.standard.string(forKey: "UserProvider") {
                 // 이전 접속 기록 존재 시
-                
                 APIService.shared.login(id, provider) { [self] result in
                     switch result {
                     
@@ -78,6 +88,8 @@ extension SplashVC {
             
         } else {
             // 네트워크 확인 alert 띄워주기
+
+            self.showNetworkModal()
             
         }
         

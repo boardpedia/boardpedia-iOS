@@ -20,15 +20,17 @@ class MyReviewListVC: UIViewController {
                     // 비회원이라면
                     infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
                     loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
-                    
+                    loginButton.isHidden = false
                 } else {
                     // 회원이지만, 데이터가 없다면
                     
                     infoLabel.setLabel(text: "아직 작성한 후기가 없어요.", font: .neoMedium(ofSize: 16))
+                    loginButton.isHidden = true
+                    
                 }
                 infoLabel.isHidden = false
                 brandImage.isHidden = false
-                loginButton.isHidden = false
+                
             } else {
                 // 데이터가 존재하는 경우
                 
@@ -61,6 +63,8 @@ class MyReviewListVC: UIViewController {
             
             infoLabel.setLabel(text: "더 많은 기능을 사용하고 싶다면?", font: .neoMedium(ofSize: 16))
             loginButton.setButton(text: "지금 로그인 하러가기", color: .boardOrange, font: .neoSemiBold(ofSize: 16), backgroundColor: .boardWhite)
+            myReviewData = []
+            MyReviewListTableView.reloadData()
         }
     }
 }
@@ -100,7 +104,9 @@ extension MyReviewListVC {
                 }
             }
         } else {
-            // 네트워크 팝업 띄우기
+            // 네트워크 미연결 팝업 띄우기
+            
+            self.showNetworkModal()
             
         }
         
@@ -138,7 +144,15 @@ extension MyReviewListVC {
         
         loginButton.setBorder(borderColor: .boardOrange, borderWidth: 1)
         loginButton.setRounded(radius: 6)
+        loginButton.addTarget(self, action: #selector(loginPopUp), for: .touchUpInside)
 
+    }
+    
+    @objc func loginPopUp() {
+        let nextStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        guard let popUpVC = nextStoryboard.instantiateViewController(identifier: "LoginPopupVC") as? LoginPopupVC else { return }
+        
+        self.present(popUpVC, animated: true, completion: nil)
     }
     
 }

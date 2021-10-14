@@ -19,11 +19,11 @@ extension UIImageView {
             case .success(let value):
                 if value.image != nil {
                     self.image = value.image
-                    
                 } else {
                     self.kf.setImage(with: URL(string: url))
                     
                 }
+                self.backgroundColor = .clear
             case .failure(let err):
                 print(err.errorCode)
             }

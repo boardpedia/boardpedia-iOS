@@ -12,6 +12,8 @@ class MypageVC: UIViewController {
     // MARK: Variable Part
     
     var userData: UserData?
+    var id: String?
+    var changeLoginInfoAction : (() -> Void)?
     
     // MARK: IBOutlet
     
@@ -24,7 +26,6 @@ class MypageVC: UIViewController {
         }
     }
     @IBOutlet weak var subView: UIView!
-    @IBOutlet weak var editButton: UIButton!
     
     
     // MARK: IBAction
@@ -57,6 +58,18 @@ class MypageVC: UIViewController {
         setSubView()
         setProfile()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let id = id {
+            if id != UserDefaults.standard.string(forKey: "UserSnsId") {
+                // 불러온 아이디와 지금 저장된 아이디가 같지 않다면 ? -> 로그인 정보 변경되었다
+                
+                self.setProfile()
+                NotificationCenter.default.post(name: NSNotification.Name("ChangeLoginInfoAction"), object: nil, userInfo: nil)
+            }
+        }
     }
     
     
@@ -92,17 +105,16 @@ extension MypageVC {
     
     func setProfile() {
         
+        id = UserDefaults.standard.string(forKey: "UserSnsId")
+        
         if UserDefaults.standard.string(forKey: "UserSnsId") == "1234567" {
             // 비회원이라면
             
             nickLabel.setLabel(text: "로그인을 해보세요", font: .neoBold(ofSize: 20))
             profileImageView.image = UIImage(named: "level1ProfileImg")
-            editButton.isHidden = true
             
         } else {
             // 로그인을 했다면
-            
-            editButton.isHidden = false
             
             if NetworkState.isConnected() {
                 // 네트워크 연결 시
@@ -113,16 +125,14 @@ extension MypageVC {
                         switch result {
                         
                         case .success(let data):
-                            
                             userData = data
-                            
+                            print(data)
                             if let userData = userData {
                                 nickLabel.setLabel(text: userData.nickName, font: .neoBold(ofSize: 20))
                                 levelCollectionView.reloadData()
                                 
                                 profileImageView.image = UIImage(named: "profile")
                                 // 레벨별로 이미지 달라야해서 이거 수정해야함! 꼬옥!
-                                
                             }
                             
                         case .failure(let error):
@@ -136,6 +146,8 @@ extension MypageVC {
             } else {
                 
                 // 네트워크 미연결 팝업
+                
+                self.showNetworkModal()
             }
             
         }

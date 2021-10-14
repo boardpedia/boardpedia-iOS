@@ -25,7 +25,7 @@ class ProfileVC: UIViewController {
             // 네트워크 연결 시
             
             if let token = UserDefaults.standard.string(forKey: "UserToken"),
-               let nick = nick {
+               let nick = nickTextField.text {
                 
                 APIService.shared.editUserName(token, nick) { [self] result in
                     switch result {
@@ -39,7 +39,7 @@ class ProfileVC: UIViewController {
                         popUpVC.modalTransitionStyle = .crossDissolve
                         self.present(popUpVC, animated: true, completion: nil)
                         popUpVC.titleLabel.text = "닉네임 정보가 변경되었어요!"
-                        popUpVC.subLabel.text = "새로운 닉네임으로 보드피디아를 즐겨보아요."
+                        popUpVC.subLabel.text = "새로운 닉네임으로 보드피디아를 즐겨보세요."
                         
                         popUpVC.popButtonAction = {
                             // closure 호출
@@ -64,6 +64,8 @@ class ProfileVC: UIViewController {
         } else {
             
             // 네트워크 미연결 팝업
+            
+            self.showNetworkModal()
         }
 
         
@@ -131,7 +133,7 @@ extension ProfileVC {
 
                 textField.deleteBackward()
                 // 그 뒤에 글자들은 쳐져도 삭제된다
-                showToast(message: "최대 글자수는 4글자예요", font: .neoBold(ofSize: 15), width: 188, bottomY: 50)
+                showToast(message: "최대 글자수는 4글자예요", width: 188, bottomY: 50)
             }
         }
     }
